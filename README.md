@@ -67,6 +67,14 @@ server log. Current standings: [results/RESULTS.md](results/RESULTS.md).
 - Coding harnesses through the same discipline: give opencode, Claude
   Code, codex, and friends a launch procedure and a repo, and score the
   trace the same way.
+- A comms bench: traffic arrives from the spacecraft (questions, commands,
+  partial reports) and the model must stage the work AND transmit every
+  crew-facing response through a radio tool call... text not sent over the
+  radio was never heard. Channel discipline as a scored behavior.
+- Reruns at larger context, an n>1 pass, and the currently open board
+  cells (stations/cryo for both bigger gemmas and think-on, and a fair
+  retry protocol for default-reasoning models like gemma-4-12B, whose
+  first run drowned in its own deliberation).
 - Whatever you send. If a model beats a station, the right response is a
   harder station; PRs welcome.
 
