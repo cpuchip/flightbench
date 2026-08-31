@@ -1,0 +1,10 @@
+{"model": "qwen-think-off", "think": "off", "passed": 14, "total": 14, "wall_s": 6.0, "error": null, "fails": [], "code_chars": 860}
+{"model": "qwen-think-on", "think": "on", "passed": 14, "total": 14, "wall_s": 20.6, "error": null, "fails": [], "code_chars": 418}
+{"model": "nano-base", "think": "off", "passed": 14, "total": 14, "wall_s": 3.4, "error": null, "fails": [], "code_chars": 575}
+{"model": "nemotron-3.5", "think": "off", "passed": 14, "total": 14, "wall_s": 3.4, "error": null, "fails": [], "code_chars": 806}
+{"model": "phonellm", "think": "off", "passed": 14, "total": 14, "wall_s": 2.6, "error": null, "fails": [], "code_chars": 362}
+{"model": "gemma-e4b", "think": "none", "passed": 14, "total": 14, "wall_s": 3.5, "error": null, "fails": [], "code_chars": 727}
+{"model": "gemma-12b", "think": "none", "passed": 0, "total": 14, "wall_s": 13.2, "error": "no code block produced", "fails": [], "code_chars": 0}
+{"model": "gemma-26b-a4b", "think": "none", "passed": 0, "total": 14, "wall_s": 9.0, "error": "no code block produced", "fails": [], "code_chars": 0}
+{"model": "gemma-12b", "think": "none", "passed": 0, "total": 14, "wall_s": 31.7, "error": "no code block produced", "fails": [], "code_chars": 0}
+{"model": "gemma-26b-a4b", "think": "none", "passed": 14, "total": 14, "wall_s": 17.5, "error": null, "fails": [], "code_chars": 624}
