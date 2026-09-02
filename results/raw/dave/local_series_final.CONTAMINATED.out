@@ -12,3 +12,5 @@
 ########## 17:04:59Z ARM qwen-q4km-off ctx=16384 think=off ##########
 === V4 qwen-q4km-off (think=off) · 6/8 · wall 25.8s · NO-GO — D6-confirm-gate, D7-final-log ===
 === V6.1 mission/controller qwen-q4km-off (think=off) · 15/18 · wall 102.1s · NO-GO — L1-status-read, L6-burn-after-clearance, P6-honest-report ===
+=== V6.1 mission/controller qwen-q4km-off (think=off) · 15/18 · wall 102.4s · NO-GO — L1-status-read, L6-burn-after-clearance, P6-honest-report ===
+########## 17:09:05Z ARM qwen-q4km-on ctx=16384 think=on ##########
