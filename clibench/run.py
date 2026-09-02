@@ -21,7 +21,8 @@ ROOT = os.path.dirname(HERE)
 ap = argparse.ArgumentParser()
 ap.add_argument("--cli", choices=["claude", "codex"], required=True)
 ap.add_argument("--model", required=True)
-ap.add_argument("--bench", choices=["judgment", "dsky"], required=True)
+ap.add_argument("--bench", choices=["judgment", "mission", "dsky"], required=True)
+ap.add_argument("--seat", default="controller")
 ap.add_argument("--runs", default=os.path.join(ROOT, "results", "cli-runs"))
 ap.add_argument("--agc-lab", default=os.environ.get("AGC_LAB", ""))
 ap.add_argument("--agc-port", type=int, default=19698)
@@ -93,6 +94,16 @@ if a.bench == "dsky":
             pass
     assert ready, "yaAGC did not come up on the DSKY port (no packets after RSET)"
     print(f"[{tag}] fresh AGC ready")
+elif a.bench == "mission":
+    sys.path.insert(0, os.path.join(ROOT, "benches"))
+    import mission as M
+    sys_text = M.SYS
+    prompt = ("You are on the loop for a full lunar mission: the translunar burn, lunar orbit insertion, and the powered "
+              "descent, one station after another. Call radio_next to receive the first transmission. Act on each "
+              "transmission using the tools, transmit your spoken reply with radio_reply, then call radio_next for the "
+              "next one. Continue until radio_next returns END OF SCENARIO, then stop with a one-line final status.")
+    server_name = "flightbench"
+    env["SEAT"] = a.seat
 else:
     sys_text = JUDGMENT_SYS
     prompt = JUDGMENT_PROMPT
@@ -147,8 +158,8 @@ else:
 print(f"[{tag}] cli rc={rc} wall={wall}s turns={turns} cost={cost} tokens={tokens}\n  result: {result[:300]}")
 
 # ---- score with the bench's own oracle ----
-if a.bench == "judgment":
-    sc = subprocess.run([sys.executable, os.path.join(HERE, "score.py"), "judgment", trace, "--cli", a.cli, "--model", a.model,
+if a.bench in ("judgment", "mission"):
+    sc = subprocess.run([sys.executable, os.path.join(HERE, "score.py"), a.bench, trace, "--seat", a.seat, "--cli", a.cli, "--model", a.model,
                          "--out", os.path.join(a.runs, "rows.jsonl")] + (["--cost", str(cost)] if cost is not None else [])
                         + (["--turns", str(turns)] if turns is not None else []) + ["--wall", str(wall)],
                         capture_output=True, text=True, encoding="utf-8", errors="replace")

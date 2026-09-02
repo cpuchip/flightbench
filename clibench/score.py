@@ -36,6 +36,10 @@ rows = [json.loads(l) for l in open(a.trace, encoding="utf-8") if l.strip()]
 replies = []
 radio_turns = 0
 for r in rows:
+    if r["kind"] == "tool" and r.get("forced"):
+        continue                                   # reproduced by on_turn below
+    if r["kind"] == "radio_next" and r.get("text") and hasattr(sim, "on_turn"):
+        sim.on_turn(r["turn"])
     if r["kind"] == "tool":
         res = sim.execute(r["name"], r["args"])
         if res != r["result"]:

@@ -42,7 +42,7 @@ def mount_tools(server, tools, call):
         server.tool()(fn)
 
 
-def mount_radio(server, turns, state, log):
+def mount_radio(server, turns, state, log, on_turn=None):
     """Scripted transmissions, pulled one per radio_next; replies via radio_reply."""
     @server.tool()
     def radio_next() -> str:
@@ -54,6 +54,8 @@ def mount_radio(server, turns, state, log):
         if not state["replied"]:
             log("radio_next", turn=i, text=None, note="reply pending")
             return "The loop is waiting for your reply to the last transmission. Use radio_reply first."
+        if on_turn:
+            on_turn(i)
         state["turn"] = i + 1; state["replied"] = False
         log("radio_next", turn=i, text=turns[i])
         return turns[i]
@@ -156,8 +158,15 @@ elif BENCH == "mission":
         log("tool", name=name, args=args, result=res, station=sim.station)
         return json.dumps(res)
 
+    def on_turn(i):
+        before = len(sim.trace)
+        sim.on_turn(i)
+        for j in range(before, len(sim.trace)):           # a forced burn is a trace event too
+            _, n, a, r = sim.trace[j]
+            log("tool", name=n, args=a, result=r, station=sim.station_of[j], forced=True)
+
     mount_tools(server, M.TOOLS, call)
-    mount_radio(server, M.ALL_TURNS, state, log)
+    mount_radio(server, M.ALL_TURNS, state, log, on_turn)
 
 elif BENCH == "dsky":
     LAB = os.environ["AGC_LAB"]
