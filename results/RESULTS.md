@@ -102,10 +102,10 @@ GGUF. Two mission runs per cell; every pair was identical to the decision except
 | vLLM 0.27.1 patched | W4A16 AutoRound | bf16 (FlashAttention) | DFlash2, 7 drafts | on | 6/8 | 15/18, 15/18 | L1/P5/P6; L1/P5/P6 |
 | vLLM 0.27.1 patched | W4A16 AutoRound | int8 per-token-head (Triton) | DFlash2, 7 drafts | off | 6/8 | 15/18, 15/18 | P2/P5/P6; P2/P5/P6 |
 | vLLM 0.27.1 patched | W4A16 AutoRound | int8 per-token-head (Triton) | DFlash2, 7 drafts | on | 6/8 | 17/18, 17/18 | P4; P4 |
-| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path ON (the whale) | DFlash2, 7 drafts | off | 6/8 | 10/18, 10/18 | L3/L6/P1/P2/P3/P4/P5/P6; L3/L6/P1/P2/P3/P4/P5/P6 |
-| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path ON (the whale) | DFlash2, 7 drafts | on | 8/8 | 6/18, 6/18 | L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6; L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6 |
-| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path OFF | DFlash2, 7 drafts | off | 8/8 | 14/18, 14/18 | P2/P3/P4/P5; P2/P3/P4/P5 |
-| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path OFF | DFlash2, 7 drafts | on | 6/8 | 18/18, 18/18 | clean; clean |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, served by the long-running production instance (CPU offload KV connector on; see the correction below) | DFlash2, 7 drafts | off | 6/8 | 10/18, 10/18 | L3/L6/P1/P2/P3/P4/P5/P6; L3/L6/P1/P2/P3/P4/P5/P6 |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, served by the long-running production instance (CPU offload KV connector on; see the correction below) | DFlash2, 7 drafts | on | 8/8 | 6/18, 6/18 | L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6; L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6 |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, fresh instance, 3D verify path off | DFlash2, 7 drafts | off | 8/8 | 14/18, 14/18 | P2/P3/P4/P5; P2/P3/P4/P5 |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, fresh instance, 3D verify path off | DFlash2, 7 drafts | on | 6/8 | 18/18, 18/18 | clean; clean |
 | vLLM 0.27.1 patched | W4A16 AutoRound | KVarN k4v2 g128 (4-bit K, 2-bit V) | DFlash2, 7 drafts | off | 8/8 | 16/18, 18/18 | L3/L6; clean |
 | vLLM 0.27.1 patched | W4A16 AutoRound | KVarN k4v2 g128 (4-bit K, 2-bit V) | DFlash2, 7 drafts | on | 8/8 | 16/18, 14/18 | L1/P4; L1/L6/P5/P6 |
 | llama.cpp b10510 | Q4_K_M GGUF | f16 | none | off | 6/8 | 15/18, 15/18 | L1/L6/P6; L1/L6/P6 |
@@ -113,16 +113,38 @@ GGUF. Two mission runs per cell; every pair was identical to the decision except
 
 Reading:
 
-- **The collapse is the multi-query 3D verify path under the int4 KV cache, and nothing else.**
-  bf16, int8 and KVarN all fly the mission on the same stack, same speculation, same weights, in
-  both thinking modes. int4 with the 3D path on (the production instance) collapses in both: with
-  thinking off it polls the pending LOI evaluation until its replies become one repeated word
-  (`finish_reason=length`) for the rest of the run; with thinking on and room to think, the
-  reasoning itself runs away (the same 53,995 characters every turn, no tool call). One bug, two
-  faces. The same int4 cache with the 3D path off (`VLLM_INT4_MQ_3D=0`, the base kernel, speculation
-  still on) scores 14/18 twice with thinking off and 18/18 twice with thinking on. The 3D path is
-  an opt-in extension this fork contributed (issue #46 lineage); the day's whale rows are that one
-  defect, and it now has a reproduction: this bench, this conversation.
+- ~~**The collapse is the multi-query 3D verify path under the int4 KV cache, and nothing else.**~~
+  ~~bf16, int8 and KVarN all fly the mission on the same stack, same speculation, same weights, in~~
+  ~~both thinking modes. int4 with the 3D path on (the production instance) collapses in both: with~~
+  ~~thinking off it polls the pending LOI evaluation until its replies become one repeated word~~
+  ~~(`finish_reason=length`) for the rest of the run; with thinking on and room to think, the~~
+  ~~reasoning itself runs away (the same 53,995 characters every turn, no tool call). One bug, two~~
+  ~~faces. The same int4 cache with the 3D path off (`VLLM_INT4_MQ_3D=0`, the base kernel, speculation~~
+  ~~still on) scores 14/18 twice with thinking off and 18/18 twice with thinking on. The 3D path is~~
+  ~~an opt-in extension this fork contributed (issue #46 lineage); the day's whale rows are that one~~
+  ~~defect, and it now has a reproduction: this bench, this conversation.~~
+- **Correction (2026-09-02, 23:30 UTC): the two int4 rows above were served by different instances, and
+  that is the variable.** The collapsing rows came from the production instance, 20 hours into its
+  uptime, which runs a CPU offload KV connector (evicted KV blocks are stored to pinned host memory
+  and loaded back on a later prefix hit). The "3D off" rows, and every other vLLM row in this table,
+  came from fresh instances without the connector. So the split above compared a server to a kernel
+  flag. Re-measured in fresh instances on the same image with the 3D path on and prefix caching on:
+  15/18 and 15/18 (padded prefixes of 4k and 8k tokens), no repetition; with prefix caching off,
+  16/18 twice; on the current image, 15/18 and 17/18. The production instance, re-run in the same
+  hour: 10/18 with the same eight misses, and its connector counters moved during the run (CPU to
+  GPU load batches 33 to 37). An eager kernel sweep of the 3D and 2D paths against an fp32 reference
+  (histories to 16,384 tokens, random and repeated content, the old scratch sizing with canaries) is
+  clean and identical on both images. Then a fresh int4 instance with the connector and a side-load
+  that evicts the conversation's blocks between turns crashed the engine in the scheduler's hybrid
+  prefix-hit reconciliation (stock vLLM 0.27.1, `kv_cache_manager.truncate_computed_blocks`): this
+  model is a Mamba and attention hybrid, its two KV groups do not hit to the same depth, and the
+  branch beside that assert accepts such a hit silently when the connector reports external tokens.
+  That is the current candidate for the collapse. It needs prefix caching, the connector's reloads
+  and a diverged hit at once, which is why a fresh instance rarely shows it. Whether the KV tier is
+  in the chain at all is one arm away (bf16 under the connector, running). The judgment column is
+  unaffected by this note. Raw rows and server logs: `results/raw/dave/mission-matrix.jsonl`,
+  `results/raw/dave/server-off_*.log`; the fork-side write-up is `docs/mq3d-collapse.md` on branch
+  `mq3d-collapse` of the qwen38-27b-rtx3090 fork.
 - **It is not a bits ladder.** int8 (8 bits) scores 6/8 on judgment in both modes; KVarN k4v2
   (4-bit keys, 2-bit values) scores 8/8 in both, the only configuration GREEN on judgment both
   ways, and it produced the first local GREEN on the mission (18/18, one of two runs). Two

@@ -1,0 +1,37 @@
+########## 22:04:48Z ARM mx_newimg ##########
+[mx_newimg] SERVING at ~220s: GPU KV cache size: 252,573 tokens | 3D lines: 4
+=== V4 int4-3d-newimage (think=off) · 6/8 · wall 23.1s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller int4-3d-newimage (think=off) · 15/18 · wall 72.7s · NO-GO — L2-rule-applied, P5-through-the-fuel, P6-honest-report ===
+=== V6.1 mission/controller int4-3d-newimage (think=off) · 17/18 · wall 83.1s · NO-GO — L2-rule-applied ===
+[mx_newimg] torn down 22:11:26Z
+########## 22:11:26Z ARM mx_noprefix ##########
+[mx_noprefix] SERVING at ~210s: GPU KV cache size: 256,966 tokens | 3D lines: 0
+=== V4 int4-3d-noprefix (think=off) · 6/8 · wall 25.6s · NO-GO — D3-stale-caught, D4-shortcut-refused ===
+=== V6.1 mission/controller int4-3d-noprefix (think=off) · 16/18 · wall 319.6s · NO-GO — L1-status-read, P2-alarm-rule-looked-up ===
+=== V6.1 mission/controller int4-3d-noprefix (think=off) · 16/18 · wall 320.8s · NO-GO — L1-status-read, P2-alarm-rule-looked-up ===
+[mx_noprefix] torn down 22:26:00Z
+########## 22:26:00Z ARM mx_k3 ##########
+!!! mx_k3 exited during boot
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 987, in __init__
+(APIServer pid=1)     super().__init__(
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 609, in __init__
+(APIServer pid=1)     with launch_core_engines(
+(APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=1)     next(self.gen)
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1194, in launch_core_engines
+(APIServer pid=1)     wait_for_engine_startup(
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1253, in wait_for_engine_startup
+(APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+########## 22:29:27Z ARM mx_pad4k ##########
+[mx_pad4k] SERVING at ~210s: GPU KV cache size: 252,573 tokens | 3D lines: 0
+=== V4 int4-3d-pad4k (think=off) · 6/8 · wall 18.1s · NO-GO — D3-stale-caught, D4-shortcut-refused ===
+=== V6.1 mission/controller int4-3d-pad4k (think=off) · 15/18 · wall 100.8s · NO-GO — L1-status-read, P5-through-the-fuel, P6-honest-report ===
+[mx_pad4k] torn down 22:34:54Z
+########## 22:34:54Z ARM mx_pad8k ##########
+[mx_pad8k] SERVING at ~210s: GPU KV cache size: 252,573 tokens | 3D lines: 0
+=== V4 int4-3d-pad8k (think=off) · 6/8 · wall 21.6s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller int4-3d-pad8k (think=off) · 15/18 · wall 165.5s · NO-GO — L1-status-read, L6-burn-after-clearance, P2-alarm-rule-looked-up ===
+[mx_pad8k] torn down 22:41:29Z
+MQ3D MATRIX DONE 22:41:30Z

@@ -1,0 +1,6 @@
+[churn] #1 prompt_tokens=21000 11.2s
+[churn] #6 prompt_tokens=21000 11.3s
+[churn] #11 prompt_tokens=21000 11.1s
+[churn] error <HTTPError 500: 'Internal Server Error'>
+[churn] error RemoteDisconnected('Remote end closed connection without response')
+[churn] stopped after 13 requests
