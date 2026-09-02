@@ -1,0 +1,7 @@
+0.00.029.008 I cmn  common_param: common_params_print_info: verbosity = 3 (adjust with the `-lv N` CLI arg)
+0.00.103.944 W srv  llama_server: -----------------
+0.00.103.948 W srv  llama_server: CORS is set to allow all origins ('*') and no API key is set
+0.00.103.948 W srv  llama_server: this can be a security risk (cross-origin attacks)
+0.00.103.949 W srv  llama_server: more info: https://github.com/ggml-org/llama.cpp/pull/25655
+0.00.103.949 W srv  llama_server: -----------------
+0.00.106.429 I srv    load_model: loading model 'C:/Users/cpuch/.lmstudio/models/unsloth/gemma-4-26B-A4B-it-GGUF/gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf'
