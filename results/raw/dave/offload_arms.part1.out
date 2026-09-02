@@ -1,0 +1,13 @@
+########## 22:54:57Z ARM off_int4_3d ##########
+[off_int4_3d] SERVING at ~210s: GPU KV cache size: 35,313 tokens | connector: 3 | kv dtype: kv_cache_dtype=int4_per_token_head
+=== V6.1 mission/controller int4-3d-offload (think=off) · 15/18 · wall 113.0s · NO-GO — L1-status-read, P5-through-the-fuel, P6-honest-report ===
+[off_int4_3d] CPU->GPU load batches during run 1: 0.0 -> 3.0
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_int4_3d] CPU->GPU load batches during run 2: 3.0 -> 
+[churn] stopped after 0 requests
+[off_int4_3d] torn down 23:03:46Z
+########## 23:03:46Z ARM off_bf16 ##########

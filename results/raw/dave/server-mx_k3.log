@@ -1,0 +1,237 @@
+/app/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:310: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+(APIServer pid=1) INFO 09-02 22:26:08 [api_utils.py:345] 
+(APIServer pid=1) INFO 09-02 22:26:08 [api_utils.py:345]        █     █     █▄   ▄█
+(APIServer pid=1) INFO 09-02 22:26:08 [api_utils.py:345]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.27.1
+(APIServer pid=1) INFO 09-02 22:26:08 [api_utils.py:345]   █▄█▀ █     █     █     █  model   models/Qwen3.8-27B-W4A16-AutoRound
+(APIServer pid=1) INFO 09-02 22:26:08 [api_utils.py:345]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=1) INFO 09-02 22:26:08 [api_utils.py:345] 
+(APIServer pid=1) INFO 09-02 22:26:08 [api_utils.py:273] non-default args: {'model_tag': 'models/Qwen3.8-27B-W4A16-AutoRound', 'default_chat_template_kwargs': {'enable_thinking': False}, 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18025, 'model': 'models/Qwen3.8-27B-W4A16-AutoRound', 'max_model_len': 244224, 'served_model_name': ['qwen3.8-27b'], 'attention_backend': 'TRITON_ATTN', 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.93, 'kv_cache_dtype': 'int4_per_token_head', 'enable_prefix_caching': True, 'mamba_ssm_cache_dtype': 'float16', 'mamba_cache_mode': 'align', 'language_model_only': True, 'max_num_batched_tokens': 2048, 'max_num_seqs': 4, 'async_scheduling': True, 'speculative_config': {'method': 'dflash', 'model': 'models/Qwen3.8-27B-DFlash2-W4A16', 'num_speculative_tokens': 3}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+rms_norm', '+silu_and_mul'], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': None, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': 16, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}}
+(APIServer pid=1) WARNING 09-02 22:26:08 [envs.py:2155] Unknown vLLM environment variable detected: VLLM_DFLASH2_LOOKUP
+(APIServer pid=1) WARNING 09-02 22:26:08 [envs.py:2155] Unknown vLLM environment variable detected: VLLM_OFFLOAD_KEEP_SHM
+(APIServer pid=1) WARNING 09-02 22:26:08 [envs.py:2155] Unknown vLLM environment variable detected: VLLM_INT4_MQ_3D
+(APIServer pid=1) INFO 09-02 22:26:08 [model.py:645] Resolved architecture: Qwen3_5ForConditionalGeneration
+(APIServer pid=1) INFO 09-02 22:26:08 [model.py:1883] Using max model len 244224
+(APIServer pid=1) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(APIServer pid=1) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(APIServer pid=1) INFO 09-02 22:26:10 [registry.py:134] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+(APIServer pid=1) INFO 09-02 22:26:10 [model.py:842] Disabled mm_prefix attention mode because multimodal inputs are configuration-disabled. Attention backends without mm_prefix support may now be selected.
+(APIServer pid=1) INFO 09-02 22:26:10 [cache.py:294] Using int4_per_token_head data type to store kv cache. It reduces the GPU memory footprint and boosts the performance. Dynamic per-token-head scales will be computed at runtime.
+(APIServer pid=1) INFO 09-02 22:26:10 [model.py:645] Resolved architecture: DFlash2DraftModel
+(APIServer pid=1) INFO 09-02 22:26:10 [model.py:1883] Using max model len 262144
+(APIServer pid=1) INFO 09-02 22:26:10 [speculative.py:1157] Overriding draft model max model len from 262144 to 244224
+(APIServer pid=1) WARNING 09-02 22:26:10 [config.py:817] Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='float16' was passed. Using the user-specified value.
+(APIServer pid=1) INFO 09-02 22:26:10 [config.py:638] Warning: Prefix caching in Mamba cache 'align' mode is currently enabled. Its support for Mamba layers is experimental. Please report any issues you may observe.
+(APIServer pid=1) INFO 09-02 22:26:10 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(APIServer pid=1) WARNING 09-02 22:26:10 [vllm.py:1774] max_num_scheduled_tokens is set to 2036 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens or max_num_seqs.
+(APIServer pid=1) WARNING 09-02 22:26:10 [vllm.py:2284] Model Runner V2 does not yet support the thinking_token_budget request parameter. Set VLLM_USE_V2_MODEL_RUNNER=0 if this is required.
+(APIServer pid=1) INFO 09-02 22:26:10 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+/app/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:310: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+(EngineCore pid=194) INFO 09-02 22:26:17 [core.py:121] Initializing a V1 LLM engine (v0.27.1) with config: model='models/Qwen3.8-27B-W4A16-AutoRound', speculative_config=SpeculativeConfig(method='dflash', model='models/Qwen3.8-27B-DFlash2-W4A16', num_spec_tokens=3), tokenizer='models/Qwen3.8-27B-W4A16-AutoRound', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=244224, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=compressed-tensors, quantization_config=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=int4_per_token_head, device_config=cuda, structured_outputs_config=StructuredOutputsConfig(backend='auto', disable_any_whitespace=False, disable_additional_properties=False, reasoning_parser='qwen3', reasoning_parser_plugin='', enable_in_reasoning=False), observability_config=ObservabilityConfig(show_hidden_metrics_for_version=None, otlp_traces_endpoint=None, collect_detailed_traces=None, kv_cache_metrics=False, kv_cache_metrics_sample=0.01, cudagraph_metrics=False, enable_layerwise_nvtx_tracing=False, enable_mfu_metrics=False, enable_mm_processor_stats=False, enable_logging_iteration_details=False, jit_monitor_mode='warn', jit_monitor_verbose=False), seed=0, served_model_name=qwen3.8-27b, enable_prefix_caching=True, enable_chunked_prefill=True, pooler_config=None, compilation_config={'mode': <CompilationMode.VLLM_COMPILE: 3>, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+rms_norm', '+silu_and_mul', 'none'], 'ir_enable_torch_wrap': True, 'splitting_ops': ['vllm::unified_attention_with_output', 'vllm::unified_mla_attention_with_output', 'vllm::mamba_mixer2', 'vllm::mamba_mixer', 'vllm::short_conv', 'vllm::linear_attention', 'vllm::qwen_gdn_attention_core', 'vllm::gdn_attention_core_xpu', 'vllm::olmo_hybrid_gdn_full_forward', 'vllm::sparse_attn_indexer', 'vllm::rocm_aiter_sparse_attn_indexer', 'vllm::deepseek_v4_attention', 'vllm::hpc_rope_norm_forward', 'vllm::unified_kv_cache_update', 'vllm::unified_mla_kv_cache_update'], 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': [], 'compile_ranges_endpoints': [2048], 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': <CUDAGraphMode.FULL_AND_PIECEWISE: (2, 1)>, 'cudagraph_num_of_warmups': 1, 'cudagraph_capture_sizes': [1, 2, 4, 8, 16], 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': False, 'pass_config': {'fuse_norm_quant': True, 'fuse_act_quant': True, 'fuse_attn_quant': False, 'enable_sp': False, 'fuse_gemm_comms': False, 'fuse_allreduce_rms': False, 'enable_qk_norm_rope_fusion': False, 'fuse_rope_kvcache_cat_mla': False, 'fuse_act_padding': False, 'fuse_qk_norm_rope_kvcache': False}, 'max_cudagraph_capture_size': 16, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': False, 'static_all_moe_layers': []}, kernel_config=KernelConfig(ir_op_priority=IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native']), enable_flashinfer_autotune=True, enable_cutedsl_warmup=True, enable_jit_warmup=True, enable_bf16x3_router_gemm=False, moe_backend='auto', linear_backend='auto')
+(EngineCore pid=194) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(EngineCore pid=194) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+(EngineCore pid=194) INFO 09-02 22:26:19 [registry.py:134] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+(EngineCore pid=194) INFO 09-02 22:26:19 [parallel_state.py:1640] world_size=1 rank=0 local_rank=0 distributed_init_method=tcp://172.17.0.4:38147 backend=nccl
+(EngineCore pid=194) INFO 09-02 22:26:19 [parallel_state.py:1977] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+(EngineCore pid=194) INFO 09-02 22:26:19 [gpu_worker.py:385] Using V2 Model Runner
+(EngineCore pid=194) INFO 09-02 22:26:19 [speculator.py:340] DFlash2 lookup-augmented drafting on (k=3 nmin=6 nmax=12 nstrong=6 agree=0 nmin_tail=4 longmin=6 search=1073741824)
+(EngineCore pid=194) INFO 09-02 22:26:20 [model_runner.py:312] Loading model from scratch...
+(EngineCore pid=194) INFO 09-02 22:26:20 [cuda.py:667] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+(EngineCore pid=194) INFO 09-02 22:26:20 [mm_encoder_attention.py:375] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+(EngineCore pid=194) INFO 09-02 22:26:20 [compressed_tensors_wNa16.py:137] Using MarlinLinearKernel for CompressedTensorsWNA16
+(EngineCore pid=194) INFO 09-02 22:26:20 [qwen_gdn_linear_attn.py:150] Using Triton/FLA GDN prefill kernel (requested=auto, head_k_dim=128).
+(EngineCore pid=194) INFO 09-02 22:26:20 [cuda.py:548] Using AttentionBackendEnum.TRITON_ATTN backend.
+(EngineCore pid=194) WARNING 09-02 22:26:21 [compilation.py:1347] Op 'rms_norm' not present in model, enabling with '+rms_norm' has no effect
+(EngineCore pid=194) INFO 09-02 22:26:21 [weight_utils.py:867] Filesystem type for checkpoints: 9P. Checkpoint size: 15.59 GiB. Available RAM: 17.18 GiB.
+(EngineCore pid=194) INFO 09-02 22:26:21 [weight_utils.py:897] Auto-prefetch is disabled because the filesystem (9P) is not a recognized network FS (NFS/Lustre) and the checkpoint size (15.59 GiB) exceeds 90% of available RAM (17.18 GiB).
+(EngineCore pid=194) Loading safetensors checkpoint shards:   0% Completed | 0/8 [00:00<?, ?it/s]
+(EngineCore pid=194) Loading safetensors checkpoint shards:  12% Completed | 1/8 [00:16<01:54, 16.38s/it]
+(EngineCore pid=194) Loading safetensors checkpoint shards:  25% Completed | 2/8 [00:32<01:35, 16.00s/it]
+(EngineCore pid=194) Loading safetensors checkpoint shards:  38% Completed | 3/8 [00:47<01:19, 15.84s/it]
+(EngineCore pid=194) Loading safetensors checkpoint shards:  50% Completed | 4/8 [01:02<01:02, 15.58s/it]
+(EngineCore pid=194) Loading safetensors checkpoint shards:  62% Completed | 5/8 [01:03<00:30, 10.02s/it]
+(EngineCore pid=194) Loading safetensors checkpoint shards:  75% Completed | 6/8 [01:09<00:17,  8.65s/it]
+(EngineCore pid=194) Loading safetensors checkpoint shards:  88% Completed | 7/8 [01:15<00:07,  7.78s/it]
+(EngineCore pid=194) Loading safetensors checkpoint shards: 100% Completed | 8/8 [01:15<00:00,  9.39s/it]
+(EngineCore pid=194) 
+(EngineCore pid=194) INFO 09-02 22:27:36 [default_loader.py:430] Loading weights took 75.16 seconds
+(EngineCore pid=194) INFO 09-02 22:27:36 [eagle3_utils.py:28] Using Eagle3 auxiliary layers from config: (6, 20, 34, 48, 62)
+(EngineCore pid=194) INFO 09-02 22:27:36 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(EngineCore pid=194) WARNING 09-02 22:27:36 [vllm.py:1774] max_num_scheduled_tokens is set to 2036 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens or max_num_seqs.
+(EngineCore pid=194) WARNING 09-02 22:27:36 [vllm.py:2284] Model Runner V2 does not yet support the thinking_token_budget request parameter. Set VLLM_USE_V2_MODEL_RUNNER=0 if this is required.
+(EngineCore pid=194) INFO 09-02 22:27:36 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=194) INFO 09-02 22:27:37 [cuda.py:608] Using TRITON_ATTN attention backend out of potential backends: ['TRITON_ATTN'].
+(EngineCore pid=194) INFO 09-02 22:27:37 [weight_utils.py:867] Filesystem type for checkpoints: 9P. Checkpoint size: 1.19 GiB. Available RAM: 17.17 GiB.
+(EngineCore pid=194) INFO 09-02 22:27:37 [weight_utils.py:890] Auto-prefetch is disabled because the filesystem (9P) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+(EngineCore pid=194) Loading safetensors checkpoint shards:   0% Completed | 0/1 [00:00<?, ?it/s]
+(EngineCore pid=194) Loading safetensors checkpoint shards: 100% Completed | 1/1 [00:00<00:00, 15.96it/s]
+(EngineCore pid=194) 
+(EngineCore pid=194) INFO 09-02 22:27:44 [default_loader.py:430] Loading weights took 6.95 seconds
+(EngineCore pid=194) INFO 09-02 22:27:46 [model_runner.py:333] Model loading took 15.92 GiB and 87.126064 seconds
+(EngineCore pid=194) INFO 09-02 22:27:47 [topk_topp_sampler.py:46] FlashInfer top-p/top-k sampling disabled via VLLM_USE_FLASHINFER_SAMPLER=0.
+(EngineCore pid=194) INFO 09-02 22:27:47 [interface.py:939] Setting attention block size to 1616 tokens to ensure that attention page size is >= mamba page size.
+(EngineCore pid=194) INFO 09-02 22:27:47 [interface.py:963] Padding mamba page size by 0.63% to ensure that mamba page size and attention page size are exactly equal.
+(EngineCore pid=194) INFO 09-02 22:27:56 [backends.py:1092] vLLM's torch.compile cache is disabled.
+(EngineCore pid=194) INFO 09-02 22:27:56 [backends.py:1155] Dynamo bytecode transform time: 8.98 s
+(EngineCore pid=194) INFO 09-02 22:28:11 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 14.23 s
+(EngineCore pid=194) /app/venv/lib/python3.12/site-packages/triton/language/core.py:2284: UserWarning: tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.
+(EngineCore pid=194)   warn("tl.make_block_ptr is deprecated. Use TensorDescriptor or tl.make_tensor_descriptor instead.")
+(EngineCore pid=194) INFO 09-02 22:28:52 [monitor.py:53] torch.compile and initial profiling/warmup run together took 64.65 s in total
+(EngineCore pid=194) INFO 09-02 22:28:53 [backends.py:1155] Dynamo bytecode transform time: 1.39 s
+(EngineCore pid=194) INFO 09-02 22:29:03 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 9.09 s
+(EngineCore pid=194) INFO 09-02 22:29:03 [monitor.py:53] torch.compile and initial profiling/warmup run together took 11.21 s in total
+(EngineCore pid=194) INFO 09-02 22:29:03 [backends.py:1155] Dynamo bytecode transform time: 0.12 s
+(EngineCore pid=194) INFO 09-02 22:29:05 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 0.88 s
+(EngineCore pid=194) INFO 09-02 22:29:05 [monitor.py:53] torch.compile and initial profiling/warmup run together took 1.57 s in total
+(EngineCore pid=194) INFO 09-02 22:29:06 [gpu_worker.py:563] Available KV cache memory: 4.87 GiB
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:1170] Raising block size of model.layers.64.self_attn.attn from 16 to 816 tokens so its page (1723392 B) covers the maximum (1706496 B) instead of being padded to it at block 16.
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:1170] Raising block size of model.layers.65.self_attn.attn from 16 to 816 tokens so its page (1723392 B) covers the maximum (1706496 B) instead of being padded to it at block 16.
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:1170] Raising block size of model.layers.66.self_attn.attn from 16 to 816 tokens so its page (1723392 B) covers the maximum (1706496 B) instead of being padded to it at block 16.
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:1170] Raising block size of model.layers.67.self_attn.attn from 16 to 816 tokens so its page (1723392 B) covers the maximum (1706496 B) instead of being padded to it at block 16.
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:1170] Raising block size of model.layers.68.self_attn.attn from 16 to 816 tokens so its page (1723392 B) covers the maximum (1706496 B) instead of being padded to it at block 16.
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:1295] Sliding-window bucket(s) are the smallest; using group_size 8 (pads the sliding-window group instead of the full-attention/mamba layers)
+(EngineCore pid=194) WARNING 09-02 22:29:06 [kv_cache_utils.py:1430] Add 3 padding layers, may waste at most 60.00% KV cache memory
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:2404] GPU KV cache size: 269,856 tokens
+(EngineCore pid=194) INFO 09-02 22:29:06 [kv_cache_utils.py:2405] Maximum concurrency for 244,224 tokens per request: 1.10x
+(EngineCore pid=194) INFO 09-02 22:29:06 [kernel.py:306] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+(EngineCore pid=194) INFO 09-02 22:29:07 [qwen_triton_warmup.py:270] Warming up Qwen Triton kernels for model_type=qwen3_5_text.
+(EngineCore pid=194) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/5 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):  20%|██        | 1/5 [00:00<00:03,  1.01it/s]Capturing CUDA graphs (PIECEWISE):  40%|████      | 2/5 [00:01<00:01,  1.98it/s]Capturing CUDA graphs (PIECEWISE):  60%|██████    | 3/5 [00:01<00:00,  2.12it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 5/5 [00:02<00:00,  2.37it/s]Capturing CUDA graphs (PIECEWISE): 100%|██████████| 5/5 [00:02<00:00,  2.12it/s]
+(EngineCore pid=194) Capturing CUDA graphs (FULL):   0%|          | 0/3 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  33%|███▎      | 1/3 [00:00<00:00,  2.66it/s]Capturing CUDA graphs (FULL): 100%|██████████| 3/3 [00:00<00:00,  5.00it/s]Capturing CUDA graphs (FULL): 100%|██████████| 3/3 [00:00<00:00,  4.59it/s]
+(EngineCore pid=194) INFO 09-02 22:29:11 [speculator.py:167] Capturing model for DFlash2 speculator...
+(EngineCore pid=194) Capturing dflash2 CUDA graphs (FULL):   0%|          | 0/3 [00:00<?, ?it/s]Capturing dflash2 CUDA graphs (FULL):  33%|███▎      | 1/3 [00:00<00:01,  1.81it/s]Capturing dflash2 CUDA graphs (FULL): 100%|██████████| 3/3 [00:01<00:00,  3.04it/s]Capturing dflash2 CUDA graphs (FULL): 100%|██████████| 3/3 [00:01<00:00,  2.85it/s]
+(EngineCore pid=194) INFO 09-02 22:29:12 [model_runner.py:811] Graph capturing finished in 5 secs, took 0.19 GiB
+(EngineCore pid=194) INFO 09-02 22:29:12 [gpu_worker.py:789] Free memory on device (22.45/23.99 GiB) on startup. Desired GPU memory utilization is (0.93, 22.31 GiB). Actual usage is 16.1 GiB for consumed memory (weights + non-torch), 1.34 GiB for peak activation, and 0.19 GiB for CUDAGraph memory. Replace gpu_memory_utilization config with `--kv-cache-memory=4867039048` (4.53 GiB) to fit into requested memory, or `--kv-cache-memory=5017976320` (4.67 GiB) to fully utilize gpu memory. Current kv cache memory in use is 4.87 GiB.
+(EngineCore pid=194) INFO 09-02 22:29:16 [jit_monitor.py:79] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=194) INFO 09-02 22:29:16 [core.py:348] init engine (profile, create kv cache, warmup model) took 89.97 s (compilation: 77.44 s)
+(EngineCore pid=194) INFO 09-02 22:29:17 [kv_cache_utils.py:695] kvarn-v2 hash-unit fallback: groups=[1616, 1616, 1616, 1616, 1616, 1616, 1616, 1616, 816] cache_block=816 -> scheduler=1616 hash=16
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349] EngineCore failed to start.
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349] Traceback (most recent call last):
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1318, in run_engine_core
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     return func(*args, **kwargs)
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1074, in __init__
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     super().__init__(
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 160, in __init__
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     self.scheduler: SchedulerInterface = Scheduler(
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]                                          ^^^^^^^^^^
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/sched/async_scheduler.py", line 14, in __init__
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     super().__init__(*args, **kwargs)
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py", line 276, in __init__
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     self.kv_cache_manager = KVCacheManager(
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]                             ^^^^^^^^^^^^^^^
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py", line 151, in __init__
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     self.coordinator = get_kv_cache_coordinator(
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py", line 896, in get_kv_cache_coordinator
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     return HybridKVCacheCoordinator(
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py", line 541, in __init__
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     super().__init__(
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py", line 84, in __init__
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]     assert scheduler_block_size % hash_block_size == 0 and all(
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349]            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194) ERROR 09-02 22:29:17 [core.py:1349] AssertionError
+(EngineCore pid=194) Process EngineCore:
+(EngineCore pid=194) Traceback (most recent call last):
+(EngineCore pid=194)   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=194)     self.run()
+(EngineCore pid=194)   File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=194)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1353, in run_engine_core
+(EngineCore pid=194)     raise e
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1318, in run_engine_core
+(EngineCore pid=194)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=194)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=194)     return func(*args, **kwargs)
+(EngineCore pid=194)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1074, in __init__
+(EngineCore pid=194)     super().__init__(
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 160, in __init__
+(EngineCore pid=194)     self.scheduler: SchedulerInterface = Scheduler(
+(EngineCore pid=194)                                          ^^^^^^^^^^
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/sched/async_scheduler.py", line 14, in __init__
+(EngineCore pid=194)     super().__init__(*args, **kwargs)
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/sched/scheduler.py", line 276, in __init__
+(EngineCore pid=194)     self.kv_cache_manager = KVCacheManager(
+(EngineCore pid=194)                             ^^^^^^^^^^^^^^^
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_manager.py", line 151, in __init__
+(EngineCore pid=194)     self.coordinator = get_kv_cache_coordinator(
+(EngineCore pid=194)                        ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py", line 896, in get_kv_cache_coordinator
+(EngineCore pid=194)     return HybridKVCacheCoordinator(
+(EngineCore pid=194)            ^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py", line 541, in __init__
+(EngineCore pid=194)     super().__init__(
+(EngineCore pid=194)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/core/kv_cache_coordinator.py", line 84, in __init__
+(EngineCore pid=194)     assert scheduler_block_size % hash_block_size == 0 and all(
+(EngineCore pid=194)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=194) AssertionError
+[rank0]:[W902 22:29:17.500037445 ProcessGroupNCCL.cpp:1624] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+(APIServer pid=1) INFO 09-02 22:29:17 [utils.py:612] [shutdown] Process manager: send sigterm to process EngineCore
+(APIServer pid=1) Traceback (most recent call last):
+(APIServer pid=1)   File "/app/venv/bin/vllm", line 6, in <module>
+(APIServer pid=1)     sys.exit(main())
+(APIServer pid=1)              ^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/entrypoints/cli/main.py", line 97, in main
+(APIServer pid=1)     args.dispatch_function(args)
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/entrypoints/cli/serve.py", line 152, in cmd
+(APIServer pid=1)     uvloop.run(run_server(args))
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/uvloop/__init__.py", line 96, in run
+(APIServer pid=1)     return __asyncio.run(
+(APIServer pid=1)            ^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+(APIServer pid=1)     return runner.run(main)
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+(APIServer pid=1)     return self._loop.run_until_complete(task)
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=1)     return await main
+(APIServer pid=1)            ^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 764, in run_server
+(APIServer pid=1)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 778, in run_server_worker
+(APIServer pid=1)     async with build_async_engine_client(
+(APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1)     return await anext(self.gen)
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 132, in build_async_engine_client
+(APIServer pid=1)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 210, in __aenter__
+(APIServer pid=1)     return await anext(self.gen)
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/entrypoints/openai/api_server.py", line 168, in build_async_engine_client_from_engine_args
+(APIServer pid=1)     async_llm = AsyncLLM.from_vllm_config(
+(APIServer pid=1)                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 220, in from_vllm_config
+(APIServer pid=1)     return cls(
+(APIServer pid=1)            ^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/async_llm.py", line 149, in __init__
+(APIServer pid=1)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=1)                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=1)     return func(*args, **kwargs)
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 139, in make_async_mp_client
+(APIServer pid=1)     return AsyncMPClient(*client_args)
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=1)     return func(*args, **kwargs)
+(APIServer pid=1)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 987, in __init__
+(APIServer pid=1)     super().__init__(
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 609, in __init__
+(APIServer pid=1)     with launch_core_engines(
+(APIServer pid=1)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=1)     next(self.gen)
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1194, in launch_core_engines
+(APIServer pid=1)     wait_for_engine_startup(
+(APIServer pid=1)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1253, in wait_for_engine_startup
+(APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
