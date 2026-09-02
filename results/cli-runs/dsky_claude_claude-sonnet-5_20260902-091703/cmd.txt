@@ -1,0 +1,8 @@
+claude -p You are the LM pilot at the DSKY of a freshly started Apollo Guidance Computer running Luminary 099. The LM simulator IMU is NOT powered and crew switches are not available to you: DSKY keys only. Work strictly by the flight book (it is the dsky server's instructions). Checkpoints, in order:
+1. Reset the AGC (section 0.1).
+2. Bring it to the idle loop and CONFIRM that PROG shows 00 on the display (section 0.1).
+3. Run the DSKY lamp test (section 4.0) and REPORT which digits and lamps lit, then let it end.
+4. Display the AGC clock (V16N36E) and CONFIRM it is counting by reading twice a few seconds apart; report both readings.
+5. Monitor the gimbal angles (section 1.6) and report the three registers exactly as shown.
+6. Call done with a report that quotes the display readings.
+Rules: one key per press call; read_display after every ENTR; if OPR ERR lights, recover with RSET before continuing; never report a value you did not read. Stop after done returns. --model claude-sonnet-5 --append-system-prompt-file C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\flightbench\results\cli-runs\dsky_claude_claude-sonnet-5_20260902-091703\system.txt --mcp-config C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\flightbench\results\cli-runs\dsky_claude_claude-sonnet-5_20260902-091703\mcp.json --strict-mcp-config --tools  --allowedTools mcp__dsky__* --output-format json --max-turns 80 --no-session-persistence

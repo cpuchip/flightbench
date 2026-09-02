@@ -55,7 +55,7 @@ tag = f"{a.bench}_{a.cli}_{a.model.replace('/', '_')}" + (f"_{a.tag}" if a.tag e
 rd = os.path.join(a.runs, tag)
 work = os.path.join(rd, "work")
 os.makedirs(work, exist_ok=True)
-trace = os.path.join(rd, "trace.jsonl")
+trace = os.path.join(rd, "flight.trace.jsonl")   # agc_pilot --rescore derives its output name by stripping .trace.jsonl
 env = {"BENCH": a.bench, "TRACE": trace.replace("\\", "/"), "FLIGHTBENCH": ROOT.replace("\\", "/"), "MODEL": a.model}
 if a.bench == "dsky":
     assert a.agc_lab, "--agc-lab (dir with agc_dsky.py, flightbook.md, agc_pilot.py) is required for dsky"
@@ -103,7 +103,8 @@ t0 = time.time()
 if a.cli == "claude":
     cfg = os.path.join(rd, "mcp.json")
     json.dump({"mcpServers": {server_name: {"command": "python", "args": [server], "env": env}}}, open(cfg, "w"))
-    cmd = ["claude", "-p", prompt, "--model", a.model, "--append-system-prompt", sys_text,
+    sysf = os.path.join(rd, "system.txt"); open(sysf, "w", encoding="utf-8").write(sys_text)   # the flight book exceeds the Windows command line
+    cmd = ["claude", "-p", "--model", a.model, "--append-system-prompt-file", sysf,
            "--mcp-config", cfg, "--strict-mcp-config", "--tools", "", "--allowedTools", f"mcp__{server_name}__*",
            "--output-format", "json", "--max-turns", str(a.max_turns), "--no-session-persistence"]
 else:
@@ -112,10 +113,11 @@ else:
     cmd = ["codex", "exec", "-m", a.model, "--skip-git-repo-check", "--ephemeral", "--ignore-user-config",
            "--approve-for-me", "-c", f'mcp_servers.{server_name}.command="python"',
            "-c", f'mcp_servers.{server_name}.args=["{server}"]', "-c", f"mcp_servers.{server_name}.env={env_toml}",
-           "--json", prompt]
+           "--json", "-"]
 open(os.path.join(rd, "cmd.txt"), "w", encoding="utf-8").write(" ".join(cmd))
 try:
-    p = subprocess.run(cmd, cwd=work, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=a.timeout, shell=(os.name == "nt"))
+    # the prompt goes in on stdin: a multi-line prompt on the command line is split by the Windows shell
+    p = subprocess.run(cmd, cwd=work, input=prompt, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=a.timeout, shell=(os.name == "nt"))
     out, err, rc = p.stdout, p.stderr, p.returncode
 except subprocess.TimeoutExpired as e:
     out, err, rc = (e.stdout or ""), (e.stderr or "") + "\nTIMEOUT", -9

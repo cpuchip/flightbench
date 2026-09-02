@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\Users\cpuch\Documents\code\stuffleberry\workspace\private-workspace\.spec\bench\agc-lab\agc_pilot.py", line 152, in <module>
+    snaps = [json.loads(l) for l in open(OUT + ".trace.jsonl", encoding="utf-8")]
+                                    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\cpuch\\Documents\\code\\stuffleberry\\workspace\\projects\\flightbench\\results\\cli-runs\\dsky_claude_claude-opus-5_20260902-092130.trace.jsonl'
