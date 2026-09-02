@@ -259,8 +259,9 @@ Reading:
   mid-way); with a 6,000-token cap the thinking itself runs away, the same 53,995 characters of
   reasoning every turn from the fourth transmission on, 6/18 twice. **The control implicates the
   stack, not the model:** qwen3.8-27B as a Q4_K_M GGUF on llama.cpp scores 15/18 twice (thinking
-  off) and 14/18 twice (on) with no loop, no collapse, no runaway; quantizations differ, so the
-  next control is our stack with speculation off. gemma-4 on llama.cpp: E4B 6 and 11; 12B 11 and 7
+  off) and 14/18 twice (on) with no loop, no collapse, no runaway; the KV-cache tiers in "One model,
+  every runtime and KV cache" above name the knob (the int4 per-token-head KV cache). gemma-4 on
+  llama.cpp: E4B 6 and 11; 12B 11 and 7
   (earlier v6.1 scorer); 26B-A4B 12 and 13; **31B 15 and 17**, the best local row. The local table
   with stacks, and the provenance of every row, is in `results/for-dave-2026-09-02.md`.
 
