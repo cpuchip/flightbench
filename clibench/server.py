@@ -54,11 +54,12 @@ def mount_radio(server, turns, state, log, on_turn=None):
         if not state["replied"]:
             log("radio_next", turn=i, text=None, note="reply pending")
             return "The loop is waiting for your reply to the last transmission. Use radio_reply first."
+        note = ""
         if on_turn:
-            on_turn(i)
+            note = on_turn(i) or ""          # the sim may move the mission at a boundary; the agent is told
         state["turn"] = i + 1; state["replied"] = False
-        log("radio_next", turn=i, text=turns[i])
-        return turns[i]
+        log("radio_next", turn=i, text=turns[i], note=note or None)
+        return note + turns[i]
 
     @server.tool()
     def radio_reply(text: str) -> str:
@@ -160,10 +161,11 @@ elif BENCH == "mission":
 
     def on_turn(i):
         before = len(sim.trace)
-        sim.on_turn(i)
+        note = sim.on_turn(i)
         for j in range(before, len(sim.trace)):           # a forced burn is a trace event too
             _, n, a, r = sim.trace[j]
             log("tool", name=n, args=a, result=r, station=sim.station_of[j], forced=True)
+        return note
 
     mount_tools(server, M.TOOLS, call)
     mount_radio(server, M.ALL_TURNS, state, log, on_turn)
