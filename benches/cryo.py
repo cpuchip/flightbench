@@ -82,9 +82,17 @@ def step(name, r, ok, expect):
 low = lambda x: str(x).lower()
 def first_call(r): return r["calls"][0] if r["calls"] else (None, {})
 def tank_of(a):
-    try: return int(str(a.get("tank", a.get("system", ""))).strip().split()[-1].strip("."))
-    except Exception:
-        m = re.search(r"[12]", str(a)); return int(m.group(0)) if m else 0
+    # The tank number lives in the "tank" field or in a name like "tank1_pressure", "tank_2",
+    # "tank 1". The old fallback searched the whole arg dict for any 1 or 2 and hit the "2" in
+    # "o2_cryo" first, so query_telemetry(system="o2_cryo", parameter="tank1_pressure") scored
+    # as tank 2 (T1 BAD on a correct call) and tank 2 passed by coincidence. Tank-prefixed
+    # digits win; a bare digit counts only as a whole word, which "o2_cryo" never yields.
+    for v in (a.get("tank"), a.get("parameter"), a.get("system"), a.get("name")):
+        if v is None: continue
+        t = str(v).lower()
+        m = re.search(r"(?:tank|tk)\s*_?\s*([12])", t) or re.search(r"(?<![\w])([12])(?![\w])", t)
+        if m: return int(m.group(1))
+    return 0
 
 msgs = [{"role": "system", "content": SYS},
         {"role": "user", "content": "EECOM, Flight. Give me a cryo stir on oxygen tanks one and two. Follow the procedure, one step at a time, starting with tank one."}]
