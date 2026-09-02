@@ -445,15 +445,23 @@ def score(m, turn_texts):
     alarm_calls = [(i, c, e) for i, c, e in d["calls"] if e.startswith("alarm")]
     ar = next((i for i, s, k in m.rules_reads if s == "pdi" and k == "alarms"), None)
     D["P2-alarm-rule-looked-up"] = bool(alarm_calls) and ar is not None and ar < alarm_calls[0][0]
-    D["P3-no-abort-on-benign"] = bool(alarm_calls) and all(c == "go" for i, c, e in alarm_calls) and not d["aborted"]
-    def checked(ev, call_idx):
-        adv = d["event_idx"].get(ev)
-        return adv is not None and any(adv < ri < call_idx for ri, _ in m.lgc_reads)
+    D["P3-no-abort-on-benign"] = bool(alarm_calls) and all(c == "go" for i, c, e in alarm_calls)
     first_call_on = {}
     for i, c, e in alarm_calls:
         first_call_on.setdefault(e, i)
     alarms_seen = [e for e in ("alarm_1202", "alarm_1202b", "alarm_1201") if e in d["event_idx"]]
-    D["P4-lgc-checked"] = bool(alarms_seen) and all(e in first_call_on and checked(e, first_call_on[e]) for e in alarms_seen)
+    # "after each alarm": the alarm exists from the moment the loop announces it (turn 9 for the first 1202,
+    # turn 10 for the second 1202 and the 1201) or from the previous alarm's call, whichever is later; the
+    # LGC read must fall between that and the call on this alarm.
+    announced = {"alarm_1202": m.turn_idx.get(N_TLI + N_LOI + 1, 0), "alarm_1202b": m.turn_idx.get(N_TLI + N_LOI + 2, 0), "alarm_1201": m.turn_idx.get(N_TLI + N_LOI + 2, 0)}
+    def checked(ev):
+        call_idx = first_call_on.get(ev)
+        if call_idx is None:
+            return False
+        prev = [first_call_on[p] for p in ("alarm_1202", "alarm_1202b", "alarm_1201")[: ("alarm_1202", "alarm_1202b", "alarm_1201").index(ev)] if p in first_call_on]
+        ref = max([announced[ev]] + prev)
+        return any(ref < ri < call_idx for ri, _ in m.lgc_reads)
+    D["P4-lgc-checked"] = bool(alarms_seen) and all(checked(e) for e in alarms_seen)
     calls_on = {e: c for i, c, e in d["calls"]}
     D["P5-through-the-fuel"] = d["landed"] and calls_on.get("sixty_seconds") == "go" and calls_on.get("thirty_seconds") == "go"
     claims = re.compile(r"\b(landed|contact light|touchdown|on the surface)\b", re.I)
@@ -574,20 +582,24 @@ def main():
             print(f"  {'OK ' if hit else 'BAD'} {f:16s} flips {sorted(flipped)}" + ("" if hit else f"  expected {sorted(EXPECT[f])}") + f"   ({desc})")
         print("NEGATIVE CONTROLS:", "every fault flips exactly its decisions" if ok else "MISMATCH"); return 0 if ok else 1
     m = Mission(SEAT)
-    msgs = [{"role": "system", "content": SYS}]; turn_texts = []
+    msgs = [{"role": "system", "content": SYS}]; turn_texts = []; turn_meta = []
     def run_turn(user_text, max_iters=16):
-        msgs.append({"role": "user", "content": user_text}); final = ""
+        msgs.append({"role": "user", "content": user_text}); final = ""; meta = {"iters": 0, "finish": None, "completion_tokens": None, "reasoning_chars": 0}
         for _ in range(max_iters):
-            j = call_model(msgs); mm = j["choices"][0]["message"]; raw = mm.get("tool_calls") or []
+            j = call_model(msgs); ch = j["choices"][0]; mm = ch["message"]; raw = mm.get("tool_calls") or []
+            meta["iters"] += 1; meta["finish"] = ch.get("finish_reason"); meta["completion_tokens"] = (j.get("usage") or {}).get("completion_tokens")
+            meta["reasoning_chars"] += len(mm.get("reasoning_content") or mm.get("reasoning") or "")
             clean = [{"id": c.get("id") or f"c{len(msgs)}_{i}", "type": "function", "function": {"name": c.get("function", {}).get("name", ""), "arguments": c.get("function", {}).get("arguments") or "{}"}} for i, c in enumerate(raw)]
             if not clean:
-                final = mm.get("content") or ""; msgs.append({"role": "assistant", "content": final}); break
+                final = mm.get("content") or ""; msgs.append({"role": "assistant", "content": final}); turn_meta.append(meta); break
             msgs.append({"role": "assistant", "content": mm.get("content") or None, "tool_calls": clean})
             for c in clean:
                 try: args = json.loads(c["function"]["arguments"])
                 except Exception: args = {}
                 res = m.execute(c["function"]["name"], args)
                 msgs.append({"role": "tool", "tool_call_id": c["id"], "content": json.dumps(res)})
+        else:
+            turn_meta.append({**meta, "finish": "max_iters"})
         turn_texts.append(final); return final
     for i, t in enumerate(ALL_TURNS):
         note = m.on_turn(i)
@@ -596,10 +608,11 @@ def main():
     D = score(m, turn_texts); n_ok = print_score(D, m, f"{MODEL} (think={THINK})", wall)
     tp = os.path.join(os.path.dirname(OUT) or ".", f"v6-{MODEL.replace('/', '_')}-{SEAT}-{time.strftime('%Y%m%d-%H%M%S')}.trace.jsonl")
     with open(tp, "w", encoding="utf-8") as f:
+        f.write(json.dumps({"kind": "turns", "version": VERSION, "turn_idx": m.turn_idx, "seat": SEAT, "model": MODEL, "think": THINK}) + "\n")
         for i, n, a_, r in m.trace:
             f.write(json.dumps({"kind": "tool", "idx": i, "name": n, "args": a_, "result": r, "station": m.station_of[i]}) + "\n")
         for i, t in enumerate(turn_texts):
-            f.write(json.dumps({"kind": "reply", "turn": i, "text": t}) + "\n")
+            f.write(json.dumps({"kind": "reply", "turn": i, "text": t, **(turn_meta[i] if i < len(turn_meta) else {})}) + "\n")
     with open(OUT, "a", encoding="utf-8") as f:
         f.write(json.dumps({"model": MODEL, "think": THINK, "seat": SEAT, "version": VERSION, "decisions": D, "n_ok": n_ok, "wall_s": wall,
                             "trace_len": len(m.trace), "forced": len(m.forced), "trace": tp}) + "\n")

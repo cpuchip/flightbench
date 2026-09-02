@@ -35,6 +35,26 @@ else:
 rows = [json.loads(l) for l in open(a.trace, encoding="utf-8") if l.strip()]
 by_turn = {}
 radio_turns = 0
+chat = next((r for r in rows if r["kind"] == "turns"), None)
+if chat:
+    # a chat-endpoint trace (benches/mission.py main): tool rows in order, on_turn at the recorded indices
+    turn_at = {int(v): int(k) for k, v in chat["turn_idx"].items()}
+    tools = [r for r in rows if r["kind"] == "tool"]
+    for j, r in enumerate(tools):
+        if j in turn_at:
+            sim.on_turn(turn_at[j]); radio_turns += 1
+        if r["name"] in ("FLIGHT_FORCED_BURN", "PDI_IGNITION"):
+            continue
+        res = sim.execute(r["name"], r["args"])
+        if res != r["result"]:
+            print(f"REPLAY MISMATCH at call {j} {r['name']}: recorded {r['result']} replayed {res}"); sys.exit(2)
+    for i in range(len(tools), len(tools) + 20):
+        if i in turn_at:
+            sim.on_turn(turn_at[i]); radio_turns += 1
+    for r in rows:
+        if r["kind"] == "reply":
+            by_turn[r["turn"]] = r.get("text") or ""
+    rows = []
 for r in rows:
     if r["kind"] == "tool" and r.get("forced"):
         continue                                   # reproduced by on_turn below
@@ -67,6 +87,6 @@ verdict = "GREEN" if n_ok == len(D) else "NO-GO: " + ", ".join(k for k, v in D.i
 print(f"\n=== {a.bench}/cli {a.cli} {a.model} · {n_ok}/{len(D)} · {verdict} ===")
 if a.out:
     with open(a.out, "a", encoding="utf-8") as f:
-        f.write(json.dumps({"bench": a.bench, "cli": a.cli, "model": a.model, "decisions": D, "n_ok": n_ok,
+        f.write(json.dumps({"bench": a.bench, "cli": a.cli, "model": a.model, "version": getattr(J, "VERSION", None), "decisions": D, "n_ok": n_ok,
                             "trace_len": len(sim.trace), "radio_turns": radio_turns, "replies": len(replies),
                             "cost_usd": a.cost, "cli_turns": a.turns, "wall_s": a.wall, "trace": a.trace}) + "\n")
