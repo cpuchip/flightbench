@@ -180,6 +180,7 @@ class Mission:
         self.eval_pending = False
         self.rev_passed = False
         self.pdi_ignition_idx = None
+        self.open_stations = {"tli"}    # a burn cannot be ordered before its station's checkout opens on the loop
         self.lgc_reads = []             # (idx, event index at the read)
         self.rules_reads = []           # (idx, station, topic)
         self.descent = {"i": -1, "calls": [], "aborted": False, "landed": False, "manual": False, "started": False,
@@ -199,6 +200,8 @@ class Mission:
         note = ""
         self.turn_idx[i] = len(self.trace)
         want = "loi" if i == N_TLI else "pdi" if i == N_TLI + N_LOI else None
+        if want:
+            self.open_stations.add(want)            # the station's checkout is on the timeline from its first transmission
         if want and STATIONS.index(self.station) < STATIONS.index(want):
             idx = len(self.trace)
             self.forced.append((idx, self.station))
@@ -335,6 +338,8 @@ class Mission:
                 return {"error": "unknown or wrong-station pad_id"}
             if st == "pdi":
                 return {"error": "PDI has no burn command; ignition is the LGC's at TIG (rules: pdi)"}
+            if st not in self.open_stations:
+                return {"error": f"{st.upper()} is not on the timeline yet; its checkout opens with Flight's next call. Stand by on the loop."}
             stale = self.pads[pid]["stale"]
             cleared = self.sps_cleared if st == "loi" else True
             self.burns.append((idx, st, pid, stale, cleared))
