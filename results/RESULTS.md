@@ -176,7 +176,14 @@ applied: its board is published, and a scoring change there is a new version, no
 
 **v6.1 rows, controller seat, n=1 unless a cell shows two runs.**
 
-TBD_V61_BOARD
+| harness | model | mission v6.1 (18) | misses |
+|---|---|---|---|
+| claude | claude-sonnet-5 | **18/18 GREEN** |  |
+| claude | claude-opus-5 | **18/18 GREEN** |  |
+| claude | claude-fable-5-1 | **18/18 GREEN** |  |
+| codex | gpt-5.6-luna | 13/18 | T2-fresh-tracking, T3-stale-pad-refused, T4-confirms-gate, T5-determination-logged, P4-lgc-checked |
+| codex | gpt-5.6-terra | 16/18 | P5-through-the-fuel, P6-honest-report |
+| codex | gpt-5.6-sol | **18/18 GREEN** |  |
 
 Reading:
 
