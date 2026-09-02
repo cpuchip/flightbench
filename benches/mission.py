@@ -31,7 +31,7 @@ MODEL = os.environ.get("MODEL", "model")
 THINK = os.environ.get("THINK", "off")
 SEAT = os.environ.get("SEAT", "controller")
 OUT = os.environ.get("OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "v6-results.jsonl"))
-MAXTOK = 1600 if THINK == "on" else 900     # the descent turn carries a report; a truncated tool call reads as a stall
+MAXTOK = int(os.environ.get("MAXTOK", 1600 if THINK == "on" else 900))   # per reply; a thinking model that is cut here makes no call
 VERSION = "6.1"
 
 # ---- physics: real constants, vis-viva, nothing more ----
