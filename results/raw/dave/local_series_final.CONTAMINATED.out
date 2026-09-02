@@ -9,3 +9,6 @@
 0.00.103.949 W srv  llama_server: -----------------
 0.00.106.429 I srv    load_model: loading model 'C:/Users/cpuch/.lmstudio/models/unsloth/gemma-4-26B-A4B-it-GGUF/gemma-4-26B-A4B-it-UD-Q4_K_XL.gguf'
 ########## 17:03:51Z ARM gemma-31b ctx=16384 think=none ##########
+########## 17:04:59Z ARM qwen-q4km-off ctx=16384 think=off ##########
+=== V4 qwen-q4km-off (think=off) · 6/8 · wall 25.8s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller qwen-q4km-off (think=off) · 15/18 · wall 102.1s · NO-GO — L1-status-read, L6-burn-after-clearance, P6-honest-report ===
