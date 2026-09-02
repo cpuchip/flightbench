@@ -26,6 +26,46 @@ def log(kind, **kw):
         f.write(json.dumps(kw) + "\n")
 
 
+_PY = {"string": "str", "number": "float", "integer": "int", "boolean": "bool"}
+
+
+def mount_tools(server, tools, call):
+    """Expose a bench's OpenAI-style TOOLS list as MCP tools: one function per tool, typed from its
+    JSON schema, each routed through call(name, args) -> str."""
+    for t in tools:
+        f = t["function"]; name = f["name"]; props = f["parameters"].get("properties", {}); req = set(f["parameters"].get("required", []))
+        params = ", ".join(f"{p}: {_PY.get(s.get('type', 'string'), 'str')}" + ("" if p in req else " = None") for p, s in props.items())
+        body = "{" + ", ".join(f"'{p}': {p}" for p in props) + "}"
+        src = f"def {name}({params}) -> str:\n    return _call('{name}', {{k: v for k, v in {body}.items() if v is not None}})\n"
+        ns = {"_call": call}; exec(src, ns)
+        fn = ns[name]; fn.__doc__ = f["description"]
+        server.tool()(fn)
+
+
+def mount_radio(server, turns, state, log):
+    """Scripted transmissions, pulled one per radio_next; replies via radio_reply."""
+    @server.tool()
+    def radio_next() -> str:
+        """Receive the next transmission on the loop. Call it to start, and again after each radio_reply. Returns END OF SCENARIO when there is nothing more."""
+        i = state["turn"]
+        if i >= len(turns):
+            log("radio_next", turn=i, text=None)
+            return "END OF SCENARIO. No further transmissions; stop and give a one-line final status."
+        if not state["replied"]:
+            log("radio_next", turn=i, text=None, note="reply pending")
+            return "The loop is waiting for your reply to the last transmission. Use radio_reply first."
+        state["turn"] = i + 1; state["replied"] = False
+        log("radio_next", turn=i, text=turns[i])
+        return turns[i]
+
+    @server.tool()
+    def radio_reply(text: str) -> str:
+        """Transmit your reply to the last transmission (what you would say on the loop). Then call radio_next."""
+        state["replied"] = True
+        log("radio_reply", turn=state["turn"] - 1, text=text)
+        return "transmitted"
+
+
 if BENCH == "judgment":
     ROOT = os.environ.get("FLIGHTBENCH", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     sys.path.insert(0, os.path.join(ROOT, "benches"))
@@ -101,6 +141,23 @@ if BENCH == "judgment":
         state["replied"] = True
         log("radio_reply", turn=state["turn"] - 1, text=text)
         return "transmitted"
+
+elif BENCH == "mission":
+    ROOT = os.environ.get("FLIGHTBENCH", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    sys.path.insert(0, os.path.join(ROOT, "benches"))
+    import mission as M
+
+    server = MCPServer("flightbench", instructions=M.SYS)
+    sim = M.Mission(os.environ.get("SEAT", "controller"))
+    state = {"turn": 0, "replied": True}
+
+    def call(name, args):
+        res = sim.execute(name, args)
+        log("tool", name=name, args=args, result=res, station=sim.station)
+        return json.dumps(res)
+
+    mount_tools(server, M.TOOLS, call)
+    mount_radio(server, M.ALL_TURNS, state, log)
 
 elif BENCH == "dsky":
     LAB = os.environ["AGC_LAB"]
