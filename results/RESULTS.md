@@ -145,6 +145,32 @@ production instance on the same image via `alternative.sh`. Thinking-on mission 
 6,000-token reply cap, thinking-off at 900. Raw rows and traces: `results/raw/dave/`
 (`judgment-vllm-kv.jsonl`, `mission-vllm-kv.jsonl`, the whale and llama.cpp files beside them).
 
+## Methodology notes (2026-09-02, after an outside read of the report)
+
+- **Variance is not uniform across runtimes.** The vLLM pairs today reproduced to the decision and to the tenth of a
+  second; the llama.cpp gemma pairs differed by five, four and two decisions (E4B 6 and 11, 12B 7 and 11, 31B 15 and
+  17), which is llama.cpp's slot reuse choosing different cached prefixes. A llama.cpp cell at n=2 is not a
+  measurement of its ranking against a neighbor; only the ends of the local ordering (31B best, E4B worst) survive.
+- **The mission's decisions are sequential and state-coupled**, not eighteen independent trials: one early miss
+  changes the state every later decision is made from. Station isolation (an unmade burn is executed at the boundary)
+  caps the cascade across stations, not within one. The effective sample size is well under eighteen; binomial
+  intuition makes these bars look tighter than they are. Judgment's eight are closer to independent.
+- **Judgment is a two-trap test at this model strength.** Every capable local model misses the same two decisions
+  with thinking off (the stale vector, Flight's shortcut) and clears the other six, so a 6/8 to 8/8 move is two
+  items, and several configurations now clear it. "First local GREEN" was true on the hour and is not a milestone.
+- **Capped cells are harness measurements.** A thinking-on run cut by the reply cap before its tool calls measures
+  the cap; those cells are marked in their tables and are not scores of the same thing as an uncapped run.
+- **Declined-to-act is not the same miss as an unsafe act.** Escalating instead of arming (Opus on judgment) and
+  holding before the fuel calls (Terra on the mission) are the safe failure; taking the stale PAD under pressure is
+  the unsafe one. The current scale scores them alike. A three-way outcome per decision (GO, safe NO-GO with
+  escalation, unsafe) is the next scoring change for both benches.
+- **The oracle now has a do-nothing guard** beside the by-the-book (18/18) and single-fault controls: a policy that
+  pulls every transmission and does nothing must pass at most the no-fabrication decision (`--faults` asserts it).
+  The morning's v6.0 would have let inaction pass three decisions; that is the failure most likely to recur silently
+  on the next revision.
+- **v6 saturates at the top after one day** (four of six frontier rows at 18/18, gemma-31B at 17); its discrimination
+  is in the 6-15 band. The next version needs harder traps and penalty scoring, not more decisions.
+
 ## CLI coding agents (2026-09-02)
 
 The same scenarios, taken by an agent harness: Claude Code (`claude -p`) and Codex CLI
