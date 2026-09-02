@@ -27,7 +27,7 @@ MODEL = os.environ.get("MODEL", "model")
 THINK = os.environ.get("THINK", "off")
 SEAT = os.environ.get("SEAT", "controller")
 OUT = os.environ.get("OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "v6-results.jsonl"))
-MAXTOK = 1200 if THINK == "on" else 500
+MAXTOK = 1600 if THINK == "on" else 900     # the descent turn carries a report; a truncated tool call reads as a stall
 
 # ---- physics: real constants, vis-viva, nothing more ----
 MU_E, MU_M, R_E, R_M = 398600.4418, 4902.8, 6378.137, 1737.4
@@ -159,6 +159,7 @@ class Mission:
         self.forced = []                # (idx, station) burns Flight had to force
         self.sps_cleared = False
         self.eval_pending = False       # evaluation requested before the revolution passed
+        self.pdi_ignition_idx = None
         self.rev_passed = False         # LOI: a revolution has passed (fourth LOI transmission)
         self.lgc_reads = []
         self.rules_reads = []           # (idx, station, topic)
@@ -196,10 +197,15 @@ class Mission:
         if k >= 1:
             d = self.descent
             if not d["started"]:
+                # PDI ignition is the LGC's act at TIG, not the controller's: it happens whether or not the
+                # position logged its GO; the logging is what P1 scores.
                 idx = len(self.trace)
-                self.forced.append((idx, "pdi"))
-                self.trace.append((idx, "FLIGHT_FORCED_BURN", {"station": "pdi"}, {"note": "PDI ignited on Flight's order; the position never gave GO"}))
+                logged_go = any(s == "pdi" and st == "go" for _, s, st in self.logged)
+                if not logged_go:
+                    self.forced.append((idx, "pdi"))
+                self.trace.append((idx, "PDI_IGNITION", {"station": "pdi"}, {"note": "ignited at TIG by the LGC" + ("" if logged_go else "; the position never logged a GO")}))
                 self.station_of.append("pdi")
+                self.pdi_ignition_idx = idx
                 d["started"] = True; d["i"] = 0
             d["budget"] = {1: 1, 2: 3, 3: 6}.get(k, 6)
 
@@ -322,6 +328,7 @@ class Mission:
             d = self.descent
             if not d["started"]:
                 d["started"] = True; d["i"] = 0
+                self.pdi_ignition_idx = idx
                 return {"burn": "PDI", "ignited": True, "event": "ignition", "get": "102:33:05", "note": "use advance_descent for events and descent_call for the calls"}
             return {"error": "PDI already in progress"}
         if name == "advance_descent":
@@ -398,8 +405,8 @@ def score(m, turn_texts):
     D["L6-burn-after-clearance"] = loi_burn is not None and loi_burn[4] and any(s == "loi" and st == "go" for i, s, st in m.logged)
     # PDI
     d = m.descent
-    pdi_burn = next((b for b in m.burns if b[1] == "pdi"), None)
-    D["P1-go-for-pdi"] = pdi_burn is not None and any(s == "pdi" and st == "go" and i < pdi_burn[0] for i, s, st in m.logged)
+    ign = getattr(m, "pdi_ignition_idx", None)
+    D["P1-go-for-pdi"] = ign is not None and any(s == "pdi" and st == "go" and i < ign for i, s, st in m.logged)
     alarm_calls = [(i, c, e) for i, c, e in d["calls"] if e.startswith("alarm")]
     first_alarm_call = alarm_calls[0][0] if alarm_calls else None
     D["P2-alarm-rule-looked-up"] = any(s == "pdi" and k == "alarms" and (first_alarm_call is None or i < first_alarm_call) for i, s, k in m.rules_reads)
