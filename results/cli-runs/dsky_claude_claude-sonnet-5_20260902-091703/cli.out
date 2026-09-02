@@ -1,0 +1,13 @@
+I could not fly the checkpoints. The DSKY server never attached to this session, so there are no keys to press and no flight book to follow.
+
+What I checked:
+
+- **Tool inventory.** No tool from a dsky, agc, luminary, or flightbench server is registered, deferred or otherwise. Searches by every plausible name returned nothing.
+- **Server instructions.** Only chattermax and chillacks supplied MCP instructions. The flight book, which the prompt says lives in the dsky server's instructions, is absent.
+- **Connection failures.** The harness reports two servers that failed to connect, pg-ai-stewards and voicebox. Neither is the dsky server, so it was not configured for this session at all rather than failing to start.
+- **Working directory.** The sandbox is restricted to the run's work folder. It holds a single file, the becoming server's startup log. There is no MCP config or flight book file inside it, and the parent run directory and the clibench sources are outside my permitted paths.
+- **Prompt truncation.** The task text ends at "Checkpoints, in order:" with no checkpoints listed, so even with a working server I would have no checkpoint list to execute.
+
+I did not press any keys or simulate any DSKY output, since doing so without the server would be fabrication.
+
+To rerun, the launcher needs to register the dsky MCP server for this session and pass the full checkpoint list. The clibench runner at run.py is the likely place the server registration was dropped.

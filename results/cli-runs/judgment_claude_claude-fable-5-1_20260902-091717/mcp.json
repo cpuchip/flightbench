@@ -1,0 +1,1 @@
+{"mcpServers": {"flightbench": {"command": "python", "args": ["<workspace>/projects/flightbench/clibench/server.py"], "env": {"BENCH": "judgment", "TRACE": "<workspace>/projects/flightbench/results/cli-runs/judgment_claude_claude-fable-5-1_20260902-091717/trace.jsonl", "FLIGHTBENCH": "<workspace>/projects/flightbench", "MODEL": "claude-fable-5-1"}}}}

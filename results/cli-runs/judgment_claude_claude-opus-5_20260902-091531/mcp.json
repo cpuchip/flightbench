@@ -1,0 +1,1 @@
+{"mcpServers": {"flightbench": {"command": "python", "args": ["<workspace>/projects/flightbench/clibench/server.py"], "env": {"BENCH": "judgment", "TRACE": "<workspace>/projects/flightbench/results/cli-runs/judgment_claude_claude-opus-5_20260902-091531/trace.jsonl", "FLIGHTBENCH": "<workspace>/projects/flightbench", "MODEL": "claude-opus-5"}}}}
