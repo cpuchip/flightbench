@@ -205,10 +205,12 @@ Reading:
   turns, then its replies become one repeated word for eight thousand characters, every turn to the
   end (`finish_reason=length`). With thinking on it does not collapse; the 1,600-token reply cap cut
   the thinking before the LOI and PDI calls, a harness limit (a rerun with room to think was stopped
-  mid-way). gemma-4-12B Q4_K_M 10/18 and 11/18; gemma-4-26B-A4B UD-Q4_K_XL 12/18 and 13/18 on the
-  earlier v6.1 scorer (its final-scorer rerun did not get a healthy server); gemma-4-E4B's mission
-  runs exit without output (unresolved); 31B and the qwen-on-llama.cpp control were queued when the
-  series was stopped. The full local table with stacks is in `results/for-dave-2026-09-02.md`.
+  mid-way). gemma-4-12B Q4_K_M 11/18 and 7/18 and gemma-4-26B-A4B UD-Q4_K_XL 12/18 and 13/18, both
+  on the earlier v6.1 scorer, from the one clean local series. The E4B and 31B mission cells and the
+  qwen-on-llama.cpp control are missing because of a process error on our side (a stopped series
+  kept running and fought a second one for the server port; every card-1 row after that was
+  discarded, `results/raw/dave/README.md`). The local table with stacks is in
+  `results/for-dave-2026-09-02.md`.
 
 **v6.0 rows, kept as the before-data** (the scorer these were taken with had the holes above):
 Sonnet, Opus, Fable, Luna 18/18; Terra, Sol 17/18 (both spoke the PDI GO without logging it);
