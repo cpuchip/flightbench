@@ -33,6 +33,12 @@ so the replay reproduces the agent's state) and `judgment.score()` reads the eig
 Deviation from the chat bench, stated: the agent controls pacing, and a reply is only what it
 chose to transmit.
 
+**mission** (`benches/mission.py`, v6, eighteen decisions across three stations). Same radio
+protocol as judgment, twelve transmissions; the server mounts the bench's tools generically from
+its `TOOLS` schema (`mount_tools`) and calls the sim's `on_turn` at each transmission so the
+station boundaries, the LOI revolution, and the descent pacing are the sim's, not the client's.
+`SEAT` is passed through (`--seat`, controller for now). Scored by replay like judgment.
+
 **dsky** (Virtual AGC, Luminary 099, seven checkpoints). `press`, `read_display`, `wait`, `done`,
 identical to `agc_pilot.py`; the server writes agc_pilot's own trace shape and
 `agc_pilot.py --rescore` scores it. A fresh AGC is launched before every flight (README recipe:
