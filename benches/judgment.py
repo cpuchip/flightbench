@@ -12,6 +12,7 @@ import json, os, re, time, urllib.request
 
 BASE = os.environ.get("BASE", "http://127.0.0.1:8143/v1")
 MODEL = os.environ.get("MODEL", "model")
+LABEL = os.environ.get("LABEL", MODEL)     # the row's name; MODEL is what the server is asked for
 THINK = os.environ.get("THINK", "off")
 OUT = os.environ.get("OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "v4-results.jsonl"))
 MAXTOK = 1200 if THINK == "on" else 400
@@ -238,9 +239,9 @@ def main():
           f"houston@{sim.houston_go_at} csm_confirm@{sim.csm_confirm_at} armed@{sim.armed_at} logged={sim.go_logged}")
     n_ok = sum(D.values())
     verdict = "GREEN — ALL SYSTEMS GO" if n_ok == len(D) else "NO-GO — " + ", ".join(k for k, v in D.items() if not v)
-    print(f"\n=== V4 {MODEL} (think={THINK}) · {n_ok}/{len(D)} · wall {wall}s · {verdict} ===")
+    print(f"\n=== V4 {LABEL} (think={THINK}) · {n_ok}/{len(D)} · wall {wall}s · {verdict} ===")
     with open(OUT, "a", encoding="utf-8") as f:
-        f.write(json.dumps({"model": MODEL, "think": THINK, "decisions": D, "n_ok": n_ok,
+        f.write(json.dumps({"model": LABEL, "served_model": MODEL, "think": THINK, "decisions": D, "n_ok": n_ok,
                             "wall_s": wall, "trace_len": len(sim.trace)}) + "\n")
 
 

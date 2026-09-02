@@ -28,6 +28,7 @@ import json, math, os, re, time, urllib.request
 
 BASE = os.environ.get("BASE", "http://127.0.0.1:8143/v1")
 MODEL = os.environ.get("MODEL", "model")
+LABEL = os.environ.get("LABEL", MODEL)     # the row's name; MODEL is what the server is asked for
 THINK = os.environ.get("THINK", "off")
 SEAT = os.environ.get("SEAT", "controller")
 OUT = os.environ.get("OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "v6-results.jsonl"))
@@ -605,16 +606,16 @@ def main():
         note = m.on_turn(i)
         run_turn(note + t)
     wall = round(time.perf_counter() - t0, 1)
-    D = score(m, turn_texts); n_ok = print_score(D, m, f"{MODEL} (think={THINK})", wall)
-    tp = os.path.join(os.path.dirname(OUT) or ".", f"v6-{MODEL.replace('/', '_')}-{SEAT}-{time.strftime('%Y%m%d-%H%M%S')}.trace.jsonl")
+    D = score(m, turn_texts); n_ok = print_score(D, m, f"{LABEL} (think={THINK})", wall)
+    tp = os.path.join(os.path.dirname(OUT) or ".", f"v6-{LABEL.replace('/', '_')}-{SEAT}-{time.strftime('%Y%m%d-%H%M%S')}.trace.jsonl")
     with open(tp, "w", encoding="utf-8") as f:
-        f.write(json.dumps({"kind": "turns", "version": VERSION, "turn_idx": m.turn_idx, "seat": SEAT, "model": MODEL, "think": THINK}) + "\n")
+        f.write(json.dumps({"kind": "turns", "version": VERSION, "turn_idx": m.turn_idx, "seat": SEAT, "model": LABEL, "served_model": MODEL, "think": THINK}) + "\n")
         for i, n, a_, r in m.trace:
             f.write(json.dumps({"kind": "tool", "idx": i, "name": n, "args": a_, "result": r, "station": m.station_of[i]}) + "\n")
         for i, t in enumerate(turn_texts):
             f.write(json.dumps({"kind": "reply", "turn": i, "text": t, **(turn_meta[i] if i < len(turn_meta) else {})}) + "\n")
     with open(OUT, "a", encoding="utf-8") as f:
-        f.write(json.dumps({"model": MODEL, "think": THINK, "seat": SEAT, "version": VERSION, "decisions": D, "n_ok": n_ok, "wall_s": wall,
+        f.write(json.dumps({"model": LABEL, "served_model": MODEL, "think": THINK, "seat": SEAT, "version": VERSION, "decisions": D, "n_ok": n_ok, "wall_s": wall,
                             "trace_len": len(m.trace), "forced": len(m.forced), "trace": tp}) + "\n")
 
 if __name__ == "__main__":
