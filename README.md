@@ -26,6 +26,7 @@ fleet splits along two axes no single model holds both of.
 | cryo | `benches/cryo.py` | a state machine: the oxygen-tank stir procedure, order enforced per tank, with an Apollo-13-shaped anomaly injected mid-stir. Measures procedure fidelity when the recipe IS given |
 | judgment | `benches/judgment.py` | the main event: NO recipe in the prompt (procedures live behind a flight-book tool), opaque data handles so call order emerges from dependencies, and every trap in the data: a stale state vector, a window that misses pad clearance by 4 minutes, a STAND BY that is not a confirm, and Flight ordering a forbidden shortcut |
 | codegen | `benches/codegen.py` | the model writes the go/no-go evaluation function from the flight book's constraints; a deterministic oracle runs 14 cases against it, boundaries and precedence included |
+| mission | `benches/mission.py` | v6: three judgment stations with deterministic physics underneath (TLI margin after an ascent anomaly, LOI with an oscillating backup gimbal servo, PDI through program alarms and the fuel clock), each modeled on a real flight and scored per decision, eighteen in all; station-isolated, with a by-the-book and a reckless policy as the oracle's own controls |
 
 Design law, learned the hard way: interlocks stay deterministic; the model
 conducts. Sequencing known steps is script work, therefore the benches

@@ -17,16 +17,19 @@ def cost(r):
     c = r.get("cost_usd")
     return f"${c:.2f}" if isinstance(c, (int, float)) else "n/a"
 
-print("| cli | model | judgment (8 decisions) | NO-GO on | DSKY (7 checkpoints) | DSKY misses | cost (judg / dsky) | turns (judg / dsky) |")
-print("|---|---|---|---|---|---|---|---|")
+print("| cli | model | judgment (8) | NO-GO on | mission (18) | NO-GO on | DSKY (7) | DSKY misses | cost (judg / mission / dsky) | turns |")
+print("|---|---|---|---|---|---|---|---|---|---|")
 cells = OrderedDict()
 for r in rows:
     cells.setdefault((r["cli"], r["model"]), {})[r["bench"]] = r   # last run per cell wins
 for (cli, model), b in sorted(cells.items(), key=lambda kv: key({"model": kv[0][1]})):
-    j, d = b.get("judgment"), b.get("dsky")
+    j, m, d = b.get("judgment"), b.get("mission"), b.get("dsky")
     jscore = f"**{j['n_ok']}/8 GREEN**" if j and j["n_ok"] == 8 else (f"{j['n_ok']}/8" if j else "")
     jmiss = ", ".join(k.split("-", 1)[1] for k, v in (j or {}).get("decisions", {}).items() if not v) if j else ""
+    mscore = f"**{m['n_ok']}/18 GREEN**" if m and m["n_ok"] == 18 else (f"{m['n_ok']}/18" if m else "")
+    mmiss = ", ".join(k for k, v in (m or {}).get("decisions", {}).items() if not v) if m else ""
     dscore = (f"**{d['score']} GREEN**" if d and d.get("score") == "7/7" else (d.get("score", "") if d else ""))
     dmiss = ", ".join(k.split("_", 1)[1] for k, v in (d or {}).get("checkpoints", {}).items() if not v) if d and d.get("checkpoints") else (d.get("note", "") if d else "")
-    print(f"| {cli} | {model} | {jscore} | {jmiss} | {dscore} | {dmiss} | {cost(j) if j else 'n/a'} / {cost(d) if d else 'n/a'} | "
-          f"{(j or {}).get('cli_turns', 'n/a')} / {(d or {}).get('cli_turns', 'n/a')} |")
+    print(f"| {cli} | {model} | {jscore} | {jmiss} | {mscore} | {mmiss} | {dscore} | {dmiss} | "
+          f"{cost(j) if j else 'n/a'} / {cost(m) if m else 'n/a'} / {cost(d) if d else 'n/a'} | "
+          f"{(j or {}).get('cli_turns', 'n/a')} / {(m or {}).get('cli_turns', 'n/a')} / {(d or {}).get('cli_turns', 'n/a')} |")
