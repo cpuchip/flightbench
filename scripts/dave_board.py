@@ -27,9 +27,9 @@ ORDER = ["qwen3.8-27b", "qwen-q4km-off", "qwen-q4km-on", "gemma-e4b", "gemma-12b
 judg = defaultdict(list); miss = defaultdict(list)
 # the clean local rows are the first v6.1 series (before 16:45Z); the "final" local files are contaminated
 # by a stopped series that kept running (see results/raw/dave/README.md)
-for r in rows("judgment-whale.jsonl") + rows("judgment-local-v61.jsonl"):
+for r in rows("judgment-whale.jsonl") + rows("judgment-local-v61.jsonl") + rows("judgment-gaps.jsonl"):
     judg[(r["model"], r.get("think"))].append(r)
-for r in rows("mission-whale-final.jsonl") + rows("mission-local-v61.jsonl"):
+for r in rows("mission-whale-final.jsonl") + rows("mission-whale-final-think6k.jsonl") + rows("mission-local-v61.jsonl") + rows("mission-gaps.jsonl"):
     miss[(r["model"], r.get("think"))].append(r)
 
 def fmt_j(rs): return ", ".join(f"{r['n_ok']}/8" for r in rs) if rs else "n/a"

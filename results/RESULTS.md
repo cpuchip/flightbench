@@ -205,12 +205,13 @@ Reading:
   turns, then its replies become one repeated word for eight thousand characters, every turn to the
   end (`finish_reason=length`). With thinking on it does not collapse; the 1,600-token reply cap cut
   the thinking before the LOI and PDI calls, a harness limit (a rerun with room to think was stopped
-  mid-way). gemma-4-12B Q4_K_M 11/18 and 7/18 and gemma-4-26B-A4B UD-Q4_K_XL 12/18 and 13/18, both
-  on the earlier v6.1 scorer, from the one clean local series. The E4B and 31B mission cells and the
-  qwen-on-llama.cpp control are missing because of a process error on our side (a stopped series
-  kept running and fought a second one for the server port; every card-1 row after that was
-  discarded, `results/raw/dave/README.md`). The local table with stacks is in
-  `results/for-dave-2026-09-02.md`.
+  mid-way); with a 6,000-token cap the thinking itself runs away, the same 53,995 characters of
+  reasoning every turn from the fourth transmission on, 6/18 twice. **The control implicates the
+  stack, not the model:** qwen3.8-27B as a Q4_K_M GGUF on llama.cpp scores 15/18 twice (thinking
+  off) and 14/18 twice (on) with no loop, no collapse, no runaway; quantizations differ, so the
+  next control is our stack with speculation off. gemma-4 on llama.cpp: E4B 6 and 11; 12B 11 and 7
+  (earlier v6.1 scorer); 26B-A4B 12 and 13; **31B 15 and 17**, the best local row. The local table
+  with stacks, and the provenance of every row, is in `results/for-dave-2026-09-02.md`.
 
 **v6.0 rows, kept as the before-data** (the scorer these were taken with had the holes above):
 Sonnet, Opus, Fable, Luna 18/18; Terra, Sol 17/18 (both spoke the PDI GO without logging it);
