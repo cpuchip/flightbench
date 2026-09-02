@@ -1,0 +1,9 @@
+[kv_int4_2d] SERVING at ~220s: GPU KV cache size: 252,573 tokens | kv_cache_dtype': 'int4_per_token_head' | 3D lines: 0
+=== V4 qwen3.8-27b-int4-2d (think=off) · 8/8 · wall 19.3s · GREEN — ALL SYSTEMS GO ===
+=== V4 qwen3.8-27b-int4-2d (think=on) · 6/8 · wall 36.7s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller qwen3.8-27b-int4-2d (think=off) · 14/18 · wall 73.4s · NO-GO — P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked, P5-through-the-fuel ===
+=== V6.1 mission/controller qwen3.8-27b-int4-2d (think=off) · 14/18 · wall 73.5s · NO-GO — P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked, P5-through-the-fuel ===
+=== V6.1 mission/controller qwen3.8-27b-int4-2d (think=on) · 18/18 · wall 535.4s · GREEN — ALL SYSTEMS GO ===
+=== V6.1 mission/controller qwen3.8-27b-int4-2d (think=on) · 18/18 · wall 534.4s · GREEN — ALL SYSTEMS GO ===
+[kv_int4_2d] torn down 21:09:34Z
+INT4-2D ARM DONE

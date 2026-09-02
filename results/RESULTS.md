@@ -102,8 +102,10 @@ GGUF. Two mission runs per cell; every pair was identical to the decision except
 | vLLM 0.27.1 patched | W4A16 AutoRound | bf16 (FlashAttention) | DFlash2, 7 drafts | on | 6/8 | 15/18, 15/18 | L1/P5/P6; L1/P5/P6 |
 | vLLM 0.27.1 patched | W4A16 AutoRound | int8 per-token-head (Triton) | DFlash2, 7 drafts | off | 6/8 | 15/18, 15/18 | P2/P5/P6; P2/P5/P6 |
 | vLLM 0.27.1 patched | W4A16 AutoRound | int8 per-token-head (Triton) | DFlash2, 7 drafts | on | 6/8 | 17/18, 17/18 | P4; P4 |
-| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head (Triton) | DFlash2, 7 drafts | off | 6/8 | 10/18, 10/18 | L3/L6/P1/P2/P3/P4/P5/P6; L3/L6/P1/P2/P3/P4/P5/P6 |
-| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head (Triton) | DFlash2, 7 drafts | on | 8/8 | 6/18, 6/18 | L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6; L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6 |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path ON (the whale) | DFlash2, 7 drafts | off | 6/8 | 10/18, 10/18 | L3/L6/P1/P2/P3/P4/P5/P6; L3/L6/P1/P2/P3/P4/P5/P6 |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path ON (the whale) | DFlash2, 7 drafts | on | 8/8 | 6/18, 6/18 | L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6; L1/L2/L3/L4/L5/L6/P1/P2/P3/P4/P5/P6 |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path OFF | DFlash2, 7 drafts | off | 8/8 | 14/18, 14/18 | P2/P3/P4/P5; P2/P3/P4/P5 |
+| vLLM 0.27.1 patched | W4A16 AutoRound | int4 per-token-head, 3D verify path OFF | DFlash2, 7 drafts | on | 6/8 | 18/18, 18/18 | clean; clean |
 | vLLM 0.27.1 patched | W4A16 AutoRound | KVarN k4v2 g128 (4-bit K, 2-bit V) | DFlash2, 7 drafts | off | 8/8 | 16/18, 18/18 | L3/L6; clean |
 | vLLM 0.27.1 patched | W4A16 AutoRound | KVarN k4v2 g128 (4-bit K, 2-bit V) | DFlash2, 7 drafts | on | 8/8 | 16/18, 14/18 | L1/P4; L1/L6/P5/P6 |
 | llama.cpp b10510 | Q4_K_M GGUF | f16 | none | off | 6/8 | 15/18, 15/18 | L1/L6/P6; L1/L6/P6 |
@@ -111,12 +113,16 @@ GGUF. Two mission runs per cell; every pair was identical to the decision except
 
 Reading:
 
-- **The collapse is the int4 per-token-head KV cache.** bf16, int8 and KVarN all fly the mission
-  on the same stack, same speculation, same weights, in both thinking modes. int4 collapses in
-  both: with thinking off it polls the pending LOI evaluation until its replies become one
-  repeated word (`finish_reason=length`) for the rest of the run; with thinking on and room to
-  think, the reasoning itself runs away (the same 53,995 characters every turn, no tool call).
-  The whole day's whale rows on the mission are that one defect.
+- **The collapse is the multi-query 3D verify path under the int4 KV cache, and nothing else.**
+  bf16, int8 and KVarN all fly the mission on the same stack, same speculation, same weights, in
+  both thinking modes. int4 with the 3D path on (the production instance) collapses in both: with
+  thinking off it polls the pending LOI evaluation until its replies become one repeated word
+  (`finish_reason=length`) for the rest of the run; with thinking on and room to think, the
+  reasoning itself runs away (the same 53,995 characters every turn, no tool call). One bug, two
+  faces. The same int4 cache with the 3D path off (`VLLM_INT4_MQ_3D=0`, the base kernel, speculation
+  still on) scores 14/18 twice with thinking off and 18/18 twice with thinking on. The 3D path is
+  an opt-in extension this fork contributed (issue #46 lineage); the day's whale rows are that one
+  defect, and it now has a reproduction: this bench, this conversation.
 - **It is not a bits ladder.** int8 (8 bits) scores 6/8 on judgment in both modes; KVarN k4v2
   (4-bit keys, 2-bit values) scores 8/8 in both, the only configuration GREEN on judgment both
   ways, and it produced the first local GREEN on the mission (18/18, one of two runs). Two

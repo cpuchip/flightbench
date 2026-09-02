@@ -19,10 +19,12 @@ CONFIG = {
     "qwen3.8-27b-kv-fast":  ("vLLM 0.27.1 patched", "W4A16 AutoRound", "bf16 (FlashAttention)", "DFlash2, 7 drafts"),
     "qwen3.8-27b-kv-long":  ("vLLM 0.27.1 patched", "W4A16 AutoRound", "int8 per-token-head (Triton)", "DFlash2, 7 drafts"),
     "qwen3.8-27b-kv-huge":  ("vLLM 0.27.1 patched", "W4A16 AutoRound", "KVarN k4v2 g128 (4-bit K, 2-bit V)", "DFlash2, 7 drafts"),
+    "qwen3.8-27b-int4-2d":  ("vLLM 0.27.1 patched", "W4A16 AutoRound", "int4 per-token-head, 3D verify path OFF", "DFlash2, 7 drafts"),
     "qwen-q4km-off":        ("llama.cpp b10510", "Q4_K_M GGUF", "f16", "none"),
     "qwen-q4km-on":         ("llama.cpp b10510", "Q4_K_M GGUF", "f16", "none"),
 }
-ORDER = ["qwen3.8-27b-kv-fast", "qwen3.8-27b-kv-long", "qwen3.8-27b", "qwen3.8-27b-kv-huge", "qwen-q4km-off", "qwen-q4km-on"]
+CONFIG["qwen3.8-27b"] = ("vLLM 0.27.1 patched", "W4A16 AutoRound", "int4 per-token-head, 3D verify path ON (the whale)", "DFlash2, 7 drafts")
+ORDER = ["qwen3.8-27b-kv-fast", "qwen3.8-27b-kv-long", "qwen3.8-27b", "qwen3.8-27b-int4-2d", "qwen3.8-27b-kv-huge", "qwen-q4km-off", "qwen-q4km-on"]
 
 judg = defaultdict(list); miss = defaultdict(list)
 for r in rows("judgment-whale.jsonl") + rows("judgment-vllm-kv.jsonl") + rows("judgment-gaps.jsonl"):
