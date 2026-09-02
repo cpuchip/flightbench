@@ -33,7 +33,7 @@ else:
     n_turns = len(J.TURNS)
 
 rows = [json.loads(l) for l in open(a.trace, encoding="utf-8") if l.strip()]
-replies = []
+by_turn = {}
 radio_turns = 0
 for r in rows:
     if r["kind"] == "tool" and r.get("forced"):
@@ -46,9 +46,10 @@ for r in rows:
             print(f"REPLAY MISMATCH at call {len(sim.trace)-1} {r['name']}: recorded {r['result']} replayed {res}")
             sys.exit(2)
     elif r["kind"] == "radio_reply":
-        replies.append(r.get("text") or "")
+        by_turn[r.get("turn", len(by_turn))] = r.get("text") or ""
     elif r["kind"] == "radio_next" and r.get("text"):
         radio_turns += 1
+replies = [by_turn.get(i, "") for i in range(n_turns)]
 
 D = J.score(sim, replies)
 for k, v in D.items():
