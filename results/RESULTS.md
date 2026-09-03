@@ -141,7 +141,9 @@ Reading:
   branch beside that assert accepts such a hit silently when the connector reports external tokens.
   That is the current candidate for the collapse. It needs prefix caching, the connector's reloads
   and a diverged hit at once, which is why a fresh instance rarely shows it. Whether the KV tier is
-  in the chain at all is one arm away (bf16 under the connector, running). The judgment column is
+  in the chain at all is one arm away (bf16 under the connector, running). The same family is
+  already on vLLM's tracker as issue #53505 (this model, this drafter, a KV connector, Mamba align
+  mode); vLLM 0.28.0 removes the assert by construction and the silent corruption is still open there. The judgment column is
   unaffected by this note. Raw rows and server logs: `results/raw/dave/mission-matrix.jsonl`,
   `results/raw/dave/server-off_*.log`; the fork-side write-up is `docs/mq3d-collapse.md` on branch
   `mq3d-collapse` of the qwen38-27b-rtx3090 fork.
