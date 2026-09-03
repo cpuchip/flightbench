@@ -1,1 +1,9 @@
 ########## 01:30:36Z ARM off_specoff_b ##########
+[off_specoff_b] SERVING at ~200s: GPU KV cache size: 42,449 tokens | connector: 3 | kv dtype: kv_cache_dtype=int4_per_token_head
+[off_specoff_b] CPU->GPU load batches during run 1: 0.0 -> 0.0
+[off_specoff_b] CPU->GPU load batches during run 2: 0.0 -> 0.0
+[churn] stopped after 300 requests
+[off_specoff_b] torn down 02:54:08Z
+swept vllm_offload_420c2734-c9fe-45be-bc22-01fa1710d7e2.mmap
+none             23G   21G  2.9G  88% /dev/shm
+SPECOFF2 ARM DONE 02:54:08Z
