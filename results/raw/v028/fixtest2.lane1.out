@@ -1,0 +1,19 @@
+LADDER k_df7_c2nograph serving (start_qwen.sh huge dflash2  patch=yes) marker=1 blocks=
+LADDER k_df7_c2nograph === V6.1 mission/controller v028-kvarn-df7-c2nograph (think=off) · 9/18 · wall 1380.9s · NO-GO — L1-status-read, L3-no-burn-uncleared, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-ch
+LADDER v028-kvarn-df7-c2nograph: tool calls total 28, capped turns 0/12, length-cut turns 8/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_c2nograph debug lines: 0 patch lines: 2
+LADDER k_df7_c2nograph torn down 09:39:08Z
+LADDER k_df7_sweep serving (start_qwen.sh huge dflash2  patch=) sweep start 09:44:18Z
+LADDER k_df7_sweep sweep: 0 broken lines; Traceback (most recent call last): FileNotFoundError: [Errno 2] No such file or directory: 'C:/Users/cpuch/AppData/Local/Temp/labd_corpus.txt' 
+LADDER k_df7_sweep debug lines: 0 patch lines: 0
+LADDER k_df7_sweep torn down 09:44:20Z
+LADDER k_df7_longverify serving (start_qwen.sh huge dflash2  patch=yes) marker=1 blocks=
+LADDER k_df7_longverify === V6.1 mission/controller v028-kvarn-df7-longverify (think=off) · 7/18 · wall 987.1s · NO-GO — L1-status-read, L3-no-burn-uncleared, L4-authority-held, L5-evaluation-requested, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rul
+LADDER v028-kvarn-df7-longverify: tool calls total 19, capped turns 0/12, length-cut turns 10/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_longverify debug lines: 0 patch lines: 1
+LADDER k_df7_longverify torn down 10:05:58Z
+LADDER k_df7_r3r4 serving (start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1 patch=yes) marker=1 blocks=
+LADDER k_df7_r3r4 === V6.1 mission/controller v028-kvarn-df7-r3r4 (think=off) · 5/18 · wall 2019.2s · NO-GO — T6-no-fabrication, L1-status-read, L2-rule-applied, L3-no-burn-uncleared, L4-authority-held, L5-evaluation-requested, L6-burn-after-clearance, P1
+LADDER v028-kvarn-df7-r3r4: tool calls total 24, capped turns 0/12, length-cut turns 9/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_r3r4 debug lines: 522 patch lines: 4
+LADDER k_df7_r3r4 torn down 10:44:50Z

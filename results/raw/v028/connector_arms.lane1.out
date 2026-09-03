@@ -1,0 +1,10 @@
+ARM c_int8 serving: GPU KV cache size: 31,200 tokens | connector: 3
+=== V6.1 mission/controller v028-int8-connector (think=off) · 15/18 · wall 388.0s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+ARM c_int8 CPU->GPU load batches: 0.0 -> 40.0 | engine alive: 1 | fatal: 0
+swept vllm_offload_c2408729-31e7-41b3-ba02-3b3435e2b86d.mmap
+ARM c_int8 torn down 07:03:21Z
+ARM c_kvarn_mtp serving: GPU KV cache size: 57,079 tokens | connector: 3
+=== V6.1 mission/controller v028-kvarn-mtp-connector (think=off) · 2/18 · wall 188.7s · NO-GO — T2-fresh-tracking, T3-stale-pad-refused, T4-confirms-gate, T5-determination-logged, L1-status-read, L2-rule-applied, L3-no-burn-uncleared, L4-authority-held, L
+ARM c_kvarn_mtp CPU->GPU load batches: 0.0 -> 14.0 | engine alive: 1 | fatal: 0
+swept vllm_offload_584ba19d-513d-40b3-8067-ce015bd4564e.mmap
+ARM c_kvarn_mtp torn down 07:11:13Z

@@ -1,0 +1,19 @@
+BENCH b_fix_huge_dflash2 (fix start_qwen.sh CTX=huge SPEC=dflash2) serving: GPU KV cache size: 268,169 tokens
+BENCH b_fix_huge_dflash2 # Thu Sep  3 17:27:17 UTC 2026 mode=single server=127.0.0.1:18020
+BENCH b_fix_huge_dflash2 ROW cohort C1 real prompts T=default | e2e=20.49 tok/s | decode(C/meanTPOT)=21.4 | tok/step=2.72 | meanTTFT=1344.70 ms
+BENCH b_fix_huge_dflash2 ROW cohort C2 real prompts T=default | e2e=24.25 tok/s | decode(C/meanTPOT)=26.7 | tok/step=2.61 | meanTTFT=1871.63 ms
+BENCH b_fix_huge_dflash2 ROW cohort C4 real prompts T=default | e2e=25.26 tok/s | decode(C/meanTPOT)=55.7 | tok/step=2.71 | meanTTFT=55744.15 ms
+BENCH b_fix_huge_dflash2 torn down 17:52:19Z
+BENCH b_fix_huge_mtp (fix start_qwen.sh CTX=huge SPEC=mtp) serving: GPU KV cache size: 212,389 tokens
+BENCH b_fix_huge_mtp # Thu Sep  3 17:27:07 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_fix_huge_mtp ROW cohort C1 real prompts T=default | e2e=82.92 tok/s | decode(C/meanTPOT)=84.5 | tok/step=2.58 | meanTTFT=152.67 ms
+BENCH b_fix_huge_mtp ROW cohort C2 real prompts T=default | e2e=153.35 tok/s | decode(C/meanTPOT)=169.1 | tok/step=2.66 | meanTTFT=299.26 ms
+BENCH b_fix_huge_mtp ROW cohort C4 real prompts T=default | e2e=274.06 tok/s | decode(C/meanTPOT)=313.0 | tok/step=2.66 | meanTTFT=370.89 ms
+BENCH b_fix_huge_mtp ROW cohort C8 real prompts T=default | e2e=233.87 tok/s | decode(C/meanTPOT)=415.6 | tok/step=1.90 | meanTTFT=840.29 ms
+BENCH b_fix_huge_mtp ROW cohort C1 real prompts T=0 | e2e=92.89 tok/s | decode(C/meanTPOT)=94.5 | tok/step=2.72 | meanTTFT=144.10 ms
+BENCH b_fix_huge_mtp ROW cohort C2 real prompts T=0 | e2e=168.00 tok/s | decode(C/meanTPOT)=185.9 | tok/step=2.70 | meanTTFT=233.68 ms
+BENCH b_fix_huge_mtp ROW cohort C4 real prompts T=0 | e2e=277.34 tok/s | decode(C/meanTPOT)=327.9 | tok/step=2.62 | meanTTFT=388.45 ms
+BENCH b_fix_huge_mtp ROW cohort C8 real prompts T=0 | e2e=462.58 tok/s | decode(C/meanTPOT)=608.8 | tok/step=2.70 | meanTTFT=817.36 ms
+BENCH b_fix_huge_mtp # raw logs in /app/bench/results
+BENCH b_fix_huge_mtp torn down 17:35:07Z
+BENCH FIX DONE 17:52:19Z

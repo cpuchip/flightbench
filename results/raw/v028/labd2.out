@@ -1,0 +1,11 @@
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint l2_v27_kvarn_df7 (f9c448b5ad17d0d46c0209797f48716d71d0e2cdef4e8147395b99a939ab90d0): Bind for 127.0.0.1:18020 failed: port is already allocated
+
+Run 'docker run --help' for more information
+LADDER l2_v27_kvarn_df7: docker run failed
+LADDER l2_fix_kvarn_df7 serving (start_qwen.sh huge dflash2  patch=) sweep start 19:10:57Z
+LADDER l2_fix_kvarn_df7 labd ctx=4000: LABD --ctx summary  prompt=  4604 out= 512 steps=  236 tok/step= 2.17 decode=  27.5 e2e=  15.2 ttft=15.19s LABD --ctx qa       prompt=  4605 out= 512 steps=  249 tok/step= 2.06 decode=  26.1 e2e=  21.4 ttft= 4.32s LABD --ctx TOTAL out=3029 steps=1007 tok/step=3.01 decode=37.9 tok/s 
+LADDER l2_fix_kvarn_df7 labd ctx=16000: LABD --ctx summary  prompt= 19161 out= 512 steps=  239 tok/step= 2.14 decode=  26.1 e2e=  17.1 ttft=10.30s LABD --ctx qa       prompt= 19162 out= 512 steps=  238 tok/step= 2.16 decode=  26.3 e2e=  17.2 ttft=10.29s LABD --ctx TOTAL out=2788 steps=851 tok/step=3.29 decode=39.7 tok/s 
+LADDER l2_fix_kvarn_df7 labd ctx=32000: LABD --ctx summary  prompt= 37703 out= 512 steps=  227 tok/step= 2.25 decode=  25.8 e2e=  17.0 ttft=10.41s LABD --ctx qa       prompt= 37704 out= 512 steps=  261 tok/step= 1.97 decode=  22.5 e2e=  15.4 ttft=10.40s LABD --ctx TOTAL out=3072 steps=1017 tok/step=3.03 decode=34.4 tok/s 
+LADDER l2_fix_kvarn_df7 debug lines: 0 patch lines: 0
+LADDER l2_fix_kvarn_df7 torn down 19:21:42Z
+LABD2 DONE 19:21:42Z

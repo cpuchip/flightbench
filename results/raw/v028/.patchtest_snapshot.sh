@@ -1,7 +1,7 @@
 #!/bin/bash
 # DFlash2 on KVarN on the 0.28 port: reproduce the maintainer's wrong-output cell and localize it with his own knob ladder.
 # Reference = KVarN + MTP (character-exact per the maintainer) and KVarN + off. Each cell: greedy text probes -> jsonl.
-until grep -q "CONNECTOR ARMS DONE" results/raw/v028/connector_arms.out 2>/dev/null; do sleep 30; done
+until grep -q "LADDER DONE" results/raw/v028/ladder.out 2>/dev/null; do sleep 30; done
 IMG=qwen38-27b-rtx3090:pr43-0.28
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
@@ -52,9 +52,12 @@ SLOWPATH='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-p
 V27=qwen38-27b-rtx3090:dfee877
 # The instrument is the mission (a shared-prefix multi-turn conversation): KVarN + DFlash2 k=7 on the port collapses on turn 2
 # ("duct Register..." to the cap) while single-shot probes pass. Cells localise the layer; the 0.27.1 image is the control.
-lane0 () { PATCHFILE=$SLOWPATH mcell 0 k_df7_slowpath v028-kvarn-df7-slowpath start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1; mcell 0 d_bf16_noprefix v028-diag-bf16-noprefix start_qwen.sh fast dflash2 -e PREFIX_CACHE=0; mcell 0 d_bf16_specoff v028-diag-bf16-specoff start_qwen.sh fast off; mcell 0 k_df7_noprefix v028-kvarn-df7-noprefix start_qwen.sh huge dflash2 -e PREFIX_CACHE=0; mcell 0 k_df7_nofused v028-kvarn-df7-nofused start_qwen.sh huge dflash2 -e KVARN_FUSED_VERIFY=0; mcell 0 k_df15 v028-kvarn-df15 start_qwen.sh huge dflash2 -e DFLASH_TOKENS=15; mcell 0 k_off v028-kvarn-off start_qwen.sh huge off; }
-lane1 () { mcell 1 d_int4_noprefix v028-diag-int4-noprefix alternative.sh long dflash2 -e PREFIX_CACHE=0 -e VLLM_INT4_MQ_3D=1; mcell 1 d_bf16_mtp v028-diag-bf16-mtp start_qwen.sh fast mtp; mcell 1 k_df7_nolookup v028-kvarn-df7-nolookup start_qwen.sh huge dflash2 -e LOOKUP=0; mcell 1 k_df7_noadaptive v028-kvarn-df7-noadaptive start_qwen.sh huge dflash2 -e VLLM_DFLASH2_LOOKUP_ADAPTIVE=0; IMG=$V27 mcell 1 k_df7_v27 v027-kvarn-df7-control start_qwen.sh huge dflash2; mcell 1 k_df7_repeat v028-kvarn-df7-repeat start_qwen.sh huge dflash2; }
-lane0 > "$OUTD/ladder.lane0.out" 2>&1 &
-lane1 > "$OUTD/ladder.lane1.out" 2>&1 &
-wait; cat "$OUTD/ladder.lane0.out" "$OUTD/ladder.lane1.out"
-echo "LADDER DONE $(date -u +%H:%M:%SZ)"
+R4='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-pr43\patches\kvarn-continuation-flushed-blocks.draft.patch'
+R34='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\flightbench\results\raw\v028\.r3r4.patch'
+# Round four: re-staging made explicit (clear reused slots) alone, and stacked on the slow-path diagnostic with the pre/post debug pairing.
+lane0 () { PATCHFILE=$R4 mcell 0 k_df7_r4 v028-kvarn-df7-r4 start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1; }
+lane1 () { PATCHFILE=$R34 mcell 1 k_df7_r3r4 v028-kvarn-df7-r3r4 start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1; }
+lane0 > "$OUTD/patchtest.lane0.out" 2>&1 &
+lane1 > "$OUTD/patchtest.lane1.out" 2>&1 &
+wait; cat "$OUTD/patchtest.lane0.out" "$OUTD/patchtest.lane1.out"
+echo "PATCHTEST DONE $(date -u +%H:%M:%SZ)"

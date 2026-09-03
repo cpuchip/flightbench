@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/app/bench/residue_sweep.py", line 41, in <module>
+    DOC = open(os.path.expanduser(os.environ.get("CORPUS", "~/bench/labd_corpus.txt"))).read()[:72000]
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:/Users/cpuch/AppData/Local/Temp/labd_corpus.txt'

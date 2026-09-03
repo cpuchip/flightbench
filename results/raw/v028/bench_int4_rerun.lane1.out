@@ -1,0 +1,12 @@
+BENCH b_v27_int4_dflash2 (v27 alternative.sh CTX=long SPEC=dflash2) serving: GPU KV cache size: 243,478 tokens
+BENCH b_v27_int4_dflash2 # Thu Sep  3 17:11:50 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v27_int4_dflash2 ROW cohort C1 real prompts T=default | e2e=126.44 tok/s | decode(C/meanTPOT)=130.2 | tok/step=3.24 | meanTTFT=129.14 ms
+BENCH b_v27_int4_dflash2 ROW cohort C2 real prompts T=default | e2e=124.63 tok/s | decode(C/meanTPOT)=257.4 | tok/step=3.19 | meanTTFT=6954.27 ms
+BENCH b_v27_int4_dflash2 ROW cohort C4 real prompts T=default | e2e=123.51 tok/s | decode(C/meanTPOT)=501.3 | tok/step=3.16 | meanTTFT=19264.23 ms
+BENCH b_v27_int4_dflash2 ROW cohort C8 real prompts T=default | e2e=125.77 tok/s | decode(C/meanTPOT)=1030.9 | tok/step=3.22 | meanTTFT=29438.05 ms
+BENCH b_v27_int4_dflash2 ROW cohort C1 real prompts T=0 | e2e=139.89 tok/s | decode(C/meanTPOT)=143.3 | tok/step=3.53 | meanTTFT=117.63 ms
+BENCH b_v27_int4_dflash2 ROW cohort C2 real prompts T=0 | e2e=139.98 tok/s | decode(C/meanTPOT)=286.5 | tok/step=3.53 | meanTTFT=6213.22 ms
+BENCH b_v27_int4_dflash2 ROW cohort C4 real prompts T=0 | e2e=140.03 tok/s | decode(C/meanTPOT)=573.9 | tok/step=3.53 | meanTTFT=16464.43 ms
+BENCH b_v27_int4_dflash2 ROW cohort C8 real prompts T=0 | e2e=139.86 tok/s | decode(C/meanTPOT)=1146.1 | tok/step=3.53 | meanTTFT=26321.05 ms
+BENCH b_v27_int4_dflash2 # raw logs in /app/bench/results
+BENCH b_v27_int4_dflash2 torn down 17:21:36Z

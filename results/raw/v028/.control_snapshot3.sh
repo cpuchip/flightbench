@@ -1,8 +1,8 @@
 #!/bin/bash
 # DFlash2 on KVarN on the 0.28 port: reproduce the maintainer's wrong-output cell and localize it with his own knob ladder.
 # Reference = KVarN + MTP (character-exact per the maintainer) and KVarN + off. Each cell: greedy text probes -> jsonl.
-until grep -q "CONNECTOR ARMS DONE" results/raw/v028/connector_arms.out 2>/dev/null; do sleep 30; done
-IMG=qwen38-27b-rtx3090:pr43-0.28
+until grep -q "SWEEP DONE" results/raw/v028/sweep.out 2>/dev/null; do sleep 30; done
+IMG=qwen38-27b-rtx3090:pr43-pre   # the branch at db4a130: before the author's mamba-chunked-prefill-align and long-context verify commits
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
 cell () {  # lane name spec [extra -e ...]
@@ -52,9 +52,10 @@ SLOWPATH='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-p
 V27=qwen38-27b-rtx3090:dfee877
 # The instrument is the mission (a shared-prefix multi-turn conversation): KVarN + DFlash2 k=7 on the port collapses on turn 2
 # ("duct Register..." to the cap) while single-shot probes pass. Cells localise the layer; the 0.27.1 image is the control.
-lane0 () { PATCHFILE=$SLOWPATH mcell 0 k_df7_slowpath v028-kvarn-df7-slowpath start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1; mcell 0 d_bf16_noprefix v028-diag-bf16-noprefix start_qwen.sh fast dflash2 -e PREFIX_CACHE=0; mcell 0 d_bf16_specoff v028-diag-bf16-specoff start_qwen.sh fast off; mcell 0 k_df7_noprefix v028-kvarn-df7-noprefix start_qwen.sh huge dflash2 -e PREFIX_CACHE=0; mcell 0 k_df7_nofused v028-kvarn-df7-nofused start_qwen.sh huge dflash2 -e KVARN_FUSED_VERIFY=0; mcell 0 k_df15 v028-kvarn-df15 start_qwen.sh huge dflash2 -e DFLASH_TOKENS=15; mcell 0 k_off v028-kvarn-off start_qwen.sh huge off; }
-lane1 () { mcell 1 d_int4_noprefix v028-diag-int4-noprefix alternative.sh long dflash2 -e PREFIX_CACHE=0 -e VLLM_INT4_MQ_3D=1; mcell 1 d_bf16_mtp v028-diag-bf16-mtp start_qwen.sh fast mtp; mcell 1 k_df7_nolookup v028-kvarn-df7-nolookup start_qwen.sh huge dflash2 -e LOOKUP=0; mcell 1 k_df7_noadaptive v028-kvarn-df7-noadaptive start_qwen.sh huge dflash2 -e VLLM_DFLASH2_LOOKUP_ADAPTIVE=0; IMG=$V27 mcell 1 k_df7_v27 v027-kvarn-df7-control start_qwen.sh huge dflash2; mcell 1 k_df7_repeat v028-kvarn-df7-repeat start_qwen.sh huge dflash2; }
-lane0 > "$OUTD/ladder.lane0.out" 2>&1 &
-lane1 > "$OUTD/ladder.lane1.out" 2>&1 &
-wait; cat "$OUTD/ladder.lane0.out" "$OUTD/ladder.lane1.out"
-echo "LADDER DONE $(date -u +%H:%M:%SZ)"
+# CONTROL: does the author's newest Mamba work (db0603e, 06b3185) cause the capping / the collapse? Same cells on the branch before them.
+lane0 () { mcell 0 pre_kvarn_df7 v028pre-kvarn-df7 start_qwen.sh huge dflash2; mcell 0 pre_kvarn_mtp v028pre-kvarn-mtp start_qwen.sh huge mtp; }
+lane1 () { mcell 1 pre_int4_df7 v028pre-int4-df7 alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1; mcell 1 pre_bf16_df7 v028pre-bf16-df7 start_qwen.sh fast dflash2; }
+lane0 > "$OUTD/control.lane0.out" 2>&1 &
+lane1 > "$OUTD/control.lane1.out" 2>&1 &
+wait; cat "$OUTD/control.lane0.out" "$OUTD/control.lane1.out"
+echo "CONTROL DONE $(date -u +%H:%M:%SZ)"

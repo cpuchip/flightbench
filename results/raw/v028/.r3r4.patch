@@ -1,0 +1,160 @@
+UNAPPLIED DRAFT. Diagnostic hunk for the GPU validation boxes.
+
+Route only cached continuations wider than KVarN's reorder threshold through
+the correctness-first fp16 gather plus SDPA fallback. Also emit one aggregate
+builder line under KVARN_CONTINUATION_DEBUG=1, recording every recomputed
+continuation block's physical id, pre-flush pool slot, and flush decision.
+
+Apply with:
+  patch -p1 -d site-packages/vllm < patches/kvarn-continuation-slow-path.draft.patch
+
+--- a/v1/attention/backends/kvarn_attn.py
++++ b/v1/attention/backends/kvarn_attn.py
+@@ -370,6 +370,9 @@ class KVarNMetadata(AttentionMetadata):
+     # assumes a fresh prompt, cached_len == 0). Computed once in build() from
+     # CPU arrays (no GPU sync).
+     has_cached_multiquery: bool = False
++    # Cached continuation whose query is wider than the builder's decode
++    # reorder threshold. Diagnostic routing flag for the slow gather path.
++    wide_cached_continuation: bool = False
+     # Precomputed once per batch in the metadata builder and reused across all
+     # 28+ layer forward calls. Saves 28× .tolist() syncs per decode token.
+     seq_lens_cpu: list[int] | None = None
+@@ -842,6 +845,38 @@ class KVarNMetadataBuilder(AttentionMetadataBuilder[KVarNMetadata]):
+                     if bid < is_sink_t.shape[0]:
+                         is_sink_t[bid] = False
+ 
++            if os.environ.get("KVARN_CONTINUATION_DEBUG", "0") == "1":
++                debug_rows = []
++                for b in range(min(B, bt_rows, len(query_lens_cpu))):
++                    sl = seq_lens_cpu[b]
++                    q_len = query_lens_cpu[b]
++                    if not (q_len > self.reorder_batch_threshold
++                            and sl > q_len and bt_cols > 0):
++                        continue
++                    committed = max(sl - q_len, 0)
++                    row = block_table_np[b]
++                    first = committed // GROUP
++                    last = min((sl - 1) // GROUP, bt_cols - 1)
++                    blocks = []
++                    for k in range(first, last + 1):
++                        bid = int(row[k])
++                        if bid >= 0:
++                            blocks.append({
++                                "k": k,
++                                "block": bid,
++                                "slot": dict_map.get(bid),
++                                "flush": bid in flush_seen,
++                            })
++                    debug_rows.append({
++                        "request": b, "seq_len": sl, "query_len": q_len,
++                        "committed": committed, "blocks": blocks,
++                    })
++                if debug_rows:
++                    print(
++                        f"KVARN_CONTINUATION_DEBUG rows={debug_rows}",
++                        flush=True,
++                    )
++
+             # Trigger the flush on every layer's pool. Each impl quantises its
+             # own pool[slot] into its own kv_cache (ref cached on first
+             # forward), then frees the slot below. Runs eagerly here, before
+@@ -1001,6 +1036,11 @@ class KVarNMetadataBuilder(AttentionMetadataBuilder[KVarNMetadata]):
+             query_lens_cpu[b] > 1 and seq_lens_cpu[b] > query_lens_cpu[b]
+             for b in range(min(B, len(query_lens_cpu)))
+         )
++        wide_cached_continuation = any(
++            query_lens_cpu[b] > self.reorder_batch_threshold
++            and seq_lens_cpu[b] > query_lens_cpu[b]
++            for b in range(min(B, len(query_lens_cpu)))
++        )
+ 
+         return KVarNMetadata(
+             seq_lens=cam.seq_lens,
+@@ -1014,6 +1054,7 @@ class KVarNMetadataBuilder(AttentionMetadataBuilder[KVarNMetadata]):
+             num_decodes=num_decodes,
+             num_decode_tokens=num_decode_tokens,
+             has_cached_multiquery=has_cached_multiquery,
++            wide_cached_continuation=wide_cached_continuation,
+             seq_lens_cpu=seq_lens_cpu,
+             block_table_cpu=None,  # not consumed downstream; build() uses block_table_np
+             slot_mapping_cpu=slot_mapping_cpu,
+@@ -2258,10 +2299,14 @@ class KVarNAttentionImpl(AttentionImpl["KVarNMetadata"]):
+             attn_out = self._verify_decode_path(q, kv_cache, attn_metadata)
+         elif attn_metadata.num_decodes == 0:
+             if attn_metadata.has_cached_multiquery:
+-                # Speculative-decode verify (or chunked-prefill continuation):
+-                # the query tokens have cached history that must be attended.
+-                # _prefill_first_chunk would drop it; use the context-aware path.
+-                attn_out = self._cached_multiquery_path(q, kv_cache, attn_metadata)
++                if attn_metadata.wide_cached_continuation:
++                    attn_out = self._decode_path_slow(q, kv_cache, attn_metadata)
++                else:
++                    # Speculative-decode verify (or narrow continuation): the
++                    # query tokens have cached history that must be attended.
++                    # _prefill_first_chunk would drop it; use context-aware path.
++                    attn_out = self._cached_multiquery_path(
++                        q, kv_cache, attn_metadata)
+             else:
+                 k = key[:N].view(N, self.num_kv_heads, self.head_size)
+                 v = value[:N].view(N, self.num_kv_heads, self.head_size)
+UNAPPLIED DRAFT. Correctness/diagnostic hunk for the GPU validation box.
+
+The round-three debug line was before allocation, so slot=None described the
+old residency, not the write target. KVarN already chooses re-staging: every
+block touched by this step is in blocks_needed and receives a pool slot before
+do_kv_cache_update. Make that transition explicit and observable. Clear a
+newly assigned slot so a partial rewrite can never expose its previous owner's
+rows, and report the post-allocation slot under the existing debug gate.
+
+Apply after patches/kvarn-continuation-slow-path.draft.patch with:
+  patch -p1 -d site-packages/vllm < patches/kvarn-continuation-flushed-blocks.draft.patch
+
+--- a/v1/attention/backends/kvarn_attn.py
++++ b/v1/attention/backends/kvarn_attn.py
+@@ -876,6 +876,7 @@ class KVarNMetadataBuilder(AttentionMetadataBuilder[KVarNMetadata]):
+                     if bid < b2s_t.shape[0]:
+                         b2s_t[bid] = -1
+ 
++            newly_staged: dict[int, int] = {}
+             # (3) Allocate slots for any new block_ids (sinks + new tails).
+             for bid in blocks_needed:
+                 if bid not in dict_map:
+@@ -907,10 +908,36 @@ class KVarNMetadataBuilder(AttentionMetadataBuilder[KVarNMetadata]):
+                         )
+                     slot = free_slots.pop()
+                     dict_map[bid] = slot
++                    newly_staged[bid] = slot
+                     if bid < b2s_t.shape[0]:
+                         b2s_t[bid] = slot
+                     KVarNAttentionImpl._max_known_block_id[gk] = max(
+                         KVarNAttentionImpl._max_known_block_id.get(gk, 0), bid
+                     )
++
++            # A slot can contain the previous owner's fp16 rows. Current rows
++            # are scattered below by do_kv_cache_update; zeroing makes the
++            # slot's ownership transition complete before that captured write.
++            # It is cheap on the rare prefix-continuation allocation path and
++            # harmless for a full rewrite.
++            if newly_staged:
++                slots = list(newly_staged.values())
++                for impl in group_impls:
++                    tail_k = getattr(impl, "_tail_K_pool", None)
++                    tail_v = getattr(impl, "_tail_V_pool", None)
++                    if tail_k is not None:
++                        tail_k[slots].zero_()
++                        tail_v[slots].zero_()
++
++            if (newly_staged
++                    and os.environ.get("KVARN_CONTINUATION_DEBUG", "0") == "1"):
++                post_rows = [
++                    {"block": bid, "slot": dict_map.get(bid)}
++                    for bid in newly_staged
++                ]
++                print(
++                    f"KVARN_CONTINUATION_DEBUG post_allocate={post_rows}",
++                    flush=True,
++                )
+ 
+         # ── Persistent cu_seqlens buffers (in-place updated) ─────────────
+         # A captured graph bakes in tensor addresses, so cu_seqlens MUST live

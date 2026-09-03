@@ -1,0 +1,7 @@
+LADDER l3_v27_kvarn_df7 serving (start_qwen.sh huge dflash2  patch=) sweep start 19:26:35Z
+LADDER l3_v27_kvarn_df7 labd ctx=4000: LABD --ctx summary  prompt=  4604 out= 512 steps=  214 tok/step= 2.39 decode=  30.0 e2e=  10.2 ttft=33.01s LABD --ctx qa       prompt=  4605 out= 512 steps=  252 tok/step= 2.03 decode=  25.6 e2e=  21.7 ttft= 3.63s LABD --ctx TOTAL out=2814 steps=903 tok/step=3.12 decode=39.0 tok/s 
+LADDER l3_v27_kvarn_df7 labd ctx=16000: LABD --ctx summary  prompt= 19161 out= 512 steps=  255 tok/step= 2.01 decode=  24.4 e2e=  13.5 ttft=16.91s LABD --ctx qa       prompt= 19162 out= 512 steps=  263 tok/step= 1.94 decode=  23.7 e2e=  13.3 ttft=16.96s LABD --ctx TOTAL out=2788 steps=948 tok/step=2.95 decode=35.6 tok/s 
+LADDER l3_v27_kvarn_df7 labd ctx=32000: LABD --ctx summary  prompt= 37703 out= 512 steps=  211 tok/step= 2.43 decode=  27.6 e2e=  15.9 ttft=13.58s LABD --ctx qa       prompt= 37704 out= 512 steps=  242 tok/step= 2.13 decode=  24.1 e2e=  14.7 ttft=13.58s LABD --ctx TOTAL out=2801 steps=950 tok/step=2.96 decode=33.4 tok/s 
+LADDER l3_v27_kvarn_df7 debug lines: 0 patch lines: 0
+LADDER l3_v27_kvarn_df7 torn down 19:46:08Z
+LABD3 DONE 19:46:08Z
