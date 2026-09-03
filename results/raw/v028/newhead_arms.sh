@@ -1,6 +1,6 @@
 #!/bin/bash
 # The new #43 head (e34afaf: regenerated DFlash2 series, integrity CI, accounting split out; still no SW page padding hunk),
-# built as pr43-e34afaf. Same cells as the validated tree: KVarN+DFlash2 baseline (marker expected) and with the restored hunk;
+# built as pr43-e34afaf; and the fix branch pr43-swpad (e34afaf + the hunk restored inside the runner patch), built as pr43-swpad. Same cells as the validated tree: KVarN+DFlash2 baseline (marker expected) and with the restored hunk;
 # the int4 and bf16 DFlash2 tiers and KVarN+MTP. Runs after the fix test; the control and bench stages wait on NEWHEAD DONE.
 until grep -q "PATCHTEST DONE" results/raw/v028/fixtest.out 2>/dev/null; do sleep 30; done
 IMG=qwen38-27b-rtx3090:pr43-e34afaf
@@ -79,10 +79,14 @@ lane0 () {
   mcell 0 n_kvarn_df7 v028new-kvarn-df7 start_qwen.sh huge dflash2
   PATCHFILE=$SWPAD mcell 0 n_kvarn_df7_swpad v028new-kvarn-df7-swpad start_qwen.sh huge dflash2
   mcell 0 n_kvarn_mtp v028new-kvarn-mtp start_qwen.sh huge mtp
+  IMG=qwen38-27b-rtx3090:pr43-swpad mcell 0 f_kvarn_df7_built v028fix-kvarn-df7-built start_qwen.sh huge dflash2
+  IMG=qwen38-27b-rtx3090:pr43-swpad mcell 0 f_kvarn_df7_built_noprefix v028fix-kvarn-df7-built-noprefix start_qwen.sh huge dflash2 -e PREFIX_CACHE=0
 }
 lane1 () {
   mcell 1 n_int4_df7 v028new-int4-df7 alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1
   mcell 1 n_bf16_df7 v028new-bf16-df7 start_qwen.sh fast dflash2
+  IMG=qwen38-27b-rtx3090:pr43-swpad mcell 1 f_int4_df7_built v028fix-int4-df7-built alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1
+  IMG=qwen38-27b-rtx3090:pr43-swpad mcell 1 f_kvarn_mtp_built v028fix-kvarn-mtp-built start_qwen.sh huge mtp
 }
 lane0 > "$OUTD/newhead.lane0.out" 2>&1 &
 lane1 > "$OUTD/newhead.lane1.out" 2>&1 &
