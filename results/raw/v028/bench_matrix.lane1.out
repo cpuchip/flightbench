@@ -1,0 +1,100 @@
+BENCH b_v28_long_mtp (v28 start_qwen.sh CTX=long SPEC=mtp) serving: GPU KV cache size: 159,183 tokens
+BENCH b_v28_long_mtp # Thu Sep  3 14:17:06 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v28_long_mtp ROW cohort C1 real prompts T=default | e2e=91.76 tok/s | decode(C/meanTPOT)=93.2 | tok/step=2.66 | meanTTFT=131.06 ms
+BENCH b_v28_long_mtp ROW cohort C2 real prompts T=default | e2e=161.70 tok/s | decode(C/meanTPOT)=183.3 | tok/step=2.61 | meanTTFT=297.91 ms
+BENCH b_v28_long_mtp ROW cohort C4 real prompts T=default | e2e=297.02 tok/s | decode(C/meanTPOT)=347.5 | tok/step=2.63 | meanTTFT=320.46 ms
+BENCH b_v28_long_mtp ROW cohort C8 real prompts T=default | e2e=526.25 tok/s | decode(C/meanTPOT)=661.7 | tok/step=2.66 | meanTTFT=766.50 ms
+BENCH b_v28_long_mtp ROW cohort C1 real prompts T=0 | e2e=99.85 tok/s | decode(C/meanTPOT)=101.9 | tok/step=2.70 | meanTTFT=138.71 ms
+BENCH b_v28_long_mtp ROW cohort C2 real prompts T=0 | e2e=178.93 tok/s | decode(C/meanTPOT)=198.6 | tok/step=2.68 | meanTTFT=189.77 ms
+BENCH b_v28_long_mtp ROW cohort C4 real prompts T=0 | e2e=314.02 tok/s | decode(C/meanTPOT)=369.3 | tok/step=2.63 | meanTTFT=331.65 ms
+BENCH b_v28_long_mtp ROW cohort C8 real prompts T=0 | e2e=559.34 tok/s | decode(C/meanTPOT)=709.8 | tok/step=2.72 | meanTTFT=651.05 ms
+BENCH b_v28_long_mtp # raw logs in /app/bench/results
+BENCH b_v28_long_mtp torn down 14:24:30Z
+BENCH b_v28_long_dflash2 (v28 start_qwen.sh CTX=long SPEC=dflash2) serving: GPU KV cache size: 136,429 tokens
+BENCH b_v28_long_dflash2 # Thu Sep  3 14:28:07 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v28_long_dflash2 ROW cohort C1 real prompts T=default | e2e=114.63 tok/s | decode(C/meanTPOT)=118.3 | tok/step=2.82 | meanTTFT=143.83 ms
+BENCH b_v28_long_dflash2 ROW cohort C2 real prompts T=default | e2e=174.82 tok/s | decode(C/meanTPOT)=199.8 | tok/step=2.68 | meanTTFT=247.36 ms
+BENCH b_v28_long_dflash2 ROW cohort C4 real prompts T=default | e2e=292.63 tok/s | decode(C/meanTPOT)=328.9 | tok/step=2.64 | meanTTFT=318.16 ms
+BENCH b_v28_long_dflash2 ROW cohort C8 real prompts T=default | e2e=269.49 tok/s | decode(C/meanTPOT)=681.4 | tok/step=2.67 | meanTTFT=7016.12 ms
+BENCH b_v28_long_dflash2 ROW cohort C1 real prompts T=0 | e2e=137.93 tok/s | decode(C/meanTPOT)=142.7 | tok/step=3.37 | meanTTFT=147.12 ms
+BENCH b_v28_long_dflash2 ROW cohort C2 real prompts T=0 | e2e=233.66 tok/s | decode(C/meanTPOT)=259.4 | tok/step=3.43 | meanTTFT=218.08 ms
+BENCH b_v28_long_dflash2 ROW cohort C4 real prompts T=0 | e2e=357.57 tok/s | decode(C/meanTPOT)=434.3 | tok/step=3.42 | meanTTFT=359.89 ms
+BENCH b_v28_long_dflash2 ROW cohort C8 real prompts T=0 | e2e=360.51 tok/s | decode(C/meanTPOT)=873.4 | tok/step=3.44 | meanTTFT=5636.81 ms
+BENCH b_v28_long_dflash2 # raw logs in /app/bench/results
+BENCH b_v28_long_dflash2 torn down 14:34:36Z
+BENCH b_v28_long_off (v28 start_qwen.sh CTX=long SPEC=off) serving: GPU KV cache size: 186,340 tokens
+BENCH b_v28_long_off # Thu Sep  3 14:37:31 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v28_long_off ROW cohort C1 real prompts T=default | e2e=55.51 tok/s | decode(C/meanTPOT)=55.8 | tok/step=- | meanTTFT=104.16 ms
+BENCH b_v28_long_off ROW cohort C2 real prompts T=default | e2e=100.98 tok/s | decode(C/meanTPOT)=104.1 | tok/step=- | meanTTFT=178.36 ms
+BENCH b_v28_long_off ROW cohort C4 real prompts T=default | e2e=192.39 tok/s | decode(C/meanTPOT)=203.1 | tok/step=- | meanTTFT=331.41 ms
+BENCH b_v28_long_off ROW cohort C8 real prompts T=default | e2e=382.65 tok/s | decode(C/meanTPOT)=408.0 | tok/step=- | meanTTFT=703.45 ms
+BENCH b_v28_long_off ROW cohort C1 real prompts T=0 | e2e=56.40 tok/s | decode(C/meanTPOT)=56.7 | tok/step=- | meanTTFT=95.44 ms
+BENCH b_v28_long_off ROW cohort C2 real prompts T=0 | e2e=100.44 tok/s | decode(C/meanTPOT)=105.8 | tok/step=- | meanTTFT=207.23 ms
+BENCH b_v28_long_off ROW cohort C4 real prompts T=0 | e2e=192.44 tok/s | decode(C/meanTPOT)=205.7 | tok/step=- | meanTTFT=338.44 ms
+BENCH b_v28_long_off ROW cohort C8 real prompts T=0 | e2e=381.88 tok/s | decode(C/meanTPOT)=414.3 | tok/step=- | meanTTFT=628.35 ms
+BENCH b_v28_long_off # raw logs in /app/bench/results
+BENCH b_v28_long_off torn down 14:48:16Z
+BENCH b_v28_int4_dflash2: exited during boot
+BENCH b_v28_int4_dflash2 torn down 14:51:43Z
+BENCH b_v28_int4_off (v28 alternative.sh CTX=long SPEC=off) serving: GPU KV cache size: 387,742 tokens
+BENCH b_v28_int4_off # Thu Sep  3 14:54:49 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v28_int4_off ROW cohort C1 real prompts T=default | e2e=53.64 tok/s | decode(C/meanTPOT)=53.9 | tok/step=- | meanTTFT=106.74 ms
+BENCH b_v28_int4_off ROW cohort C2 real prompts T=default | e2e=53.82 tok/s | decode(C/meanTPOT)=108.2 | tok/step=- | meanTTFT=15819.72 ms
+BENCH b_v28_int4_off ROW cohort C4 real prompts T=default | e2e=53.92 tok/s | decode(C/meanTPOT)=216.7 | tok/step=- | meanTTFT=42203.09 ms
+BENCH b_v28_int4_off ROW cohort C8 real prompts T=default | e2e=53.80 tok/s | decode(C/meanTPOT)=432.7 | tok/step=- | meanTTFT=64982.61 ms
+BENCH b_v28_int4_off ROW cohort C1 real prompts T=0 | e2e=54.71 tok/s | decode(C/meanTPOT)=55.0 | tok/step=- | meanTTFT=107.48 ms
+BENCH b_v28_int4_off ROW cohort C2 real prompts T=0 | e2e=54.65 tok/s | decode(C/meanTPOT)=109.8 | tok/step=- | meanTTFT=15421.19 ms
+BENCH b_v28_int4_off ROW cohort C4 real prompts T=0 | e2e=54.66 tok/s | decode(C/meanTPOT)=219.8 | tok/step=- | meanTTFT=41197.84 ms
+BENCH b_v28_int4_off ROW cohort C8 real prompts T=0 | e2e=54.74 tok/s | decode(C/meanTPOT)=439.8 | tok/step=- | meanTTFT=64539.98 ms
+BENCH b_v28_int4_off # raw logs in /app/bench/results
+BENCH b_v28_int4_off torn down 15:16:28Z
+BENCH b_v27_long_mtp (v27 start_qwen.sh CTX=long SPEC=mtp) serving: GPU KV cache size: 159,183 tokens
+BENCH b_v27_long_mtp # Thu Sep  3 15:20:16 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v27_long_mtp ROW cohort C1 real prompts T=default | e2e=87.22 tok/s | decode(C/meanTPOT)=88.9 | tok/step=2.57 | meanTTFT=130.84 ms
+BENCH b_v27_long_mtp ROW cohort C2 real prompts T=default | e2e=163.39 tok/s | decode(C/meanTPOT)=181.8 | tok/step=2.61 | meanTTFT=269.80 ms
+BENCH b_v27_long_mtp ROW cohort C4 real prompts T=default | e2e=287.34 tok/s | decode(C/meanTPOT)=344.5 | tok/step=2.63 | meanTTFT=353.69 ms
+BENCH b_v27_long_mtp ROW cohort C8 real prompts T=default | e2e=509.71 tok/s | decode(C/meanTPOT)=638.5 | tok/step=2.61 | meanTTFT=767.74 ms
+BENCH b_v27_long_mtp ROW cohort C1 real prompts T=0 | e2e=97.72 tok/s | decode(C/meanTPOT)=99.9 | tok/step=2.67 | meanTTFT=143.78 ms
+BENCH b_v27_long_mtp ROW cohort C2 real prompts T=0 | e2e=174.92 tok/s | decode(C/meanTPOT)=198.4 | tok/step=2.65 | meanTTFT=218.40 ms
+BENCH b_v27_long_mtp ROW cohort C4 real prompts T=0 | e2e=320.82 tok/s | decode(C/meanTPOT)=374.5 | tok/step=2.63 | meanTTFT=338.22 ms
+BENCH b_v27_long_mtp ROW cohort C8 real prompts T=0 | e2e=517.88 tok/s | decode(C/meanTPOT)=708.0 | tok/step=2.69 | meanTTFT=772.49 ms
+BENCH b_v27_long_mtp # raw logs in /app/bench/results
+BENCH b_v27_long_mtp torn down 15:27:40Z
+BENCH b_v27_long_dflash2 (v27 start_qwen.sh CTX=long SPEC=dflash2) serving: GPU KV cache size: 136,429 tokens
+BENCH b_v27_long_dflash2 # Thu Sep  3 15:31:28 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v27_long_dflash2 ROW cohort C1 real prompts T=default | e2e=130.64 tok/s | decode(C/meanTPOT)=133.7 | tok/step=3.23 | meanTTFT=138.33 ms
+BENCH b_v27_long_dflash2 ROW cohort C2 real prompts T=default | e2e=205.66 tok/s | decode(C/meanTPOT)=233.9 | tok/step=3.15 | meanTTFT=212.04 ms
+BENCH b_v27_long_dflash2 ROW cohort C4 real prompts T=default | e2e=319.41 tok/s | decode(C/meanTPOT)=404.9 | tok/step=3.20 | meanTTFT=340.99 ms
+BENCH b_v27_long_dflash2 ROW cohort C8 real prompts T=default | e2e=334.29 tok/s | decode(C/meanTPOT)=820.5 | tok/step=3.21 | meanTTFT=6005.98 ms
+BENCH b_v27_long_dflash2 ROW cohort C1 real prompts T=0 | e2e=136.15 tok/s | decode(C/meanTPOT)=140.6 | tok/step=3.34 | meanTTFT=151.68 ms
+BENCH b_v27_long_dflash2 ROW cohort C2 real prompts T=0 | e2e=221.83 tok/s | decode(C/meanTPOT)=255.1 | tok/step=3.36 | meanTTFT=237.68 ms
+BENCH b_v27_long_dflash2 ROW cohort C4 real prompts T=0 | e2e=381.98 tok/s | decode(C/meanTPOT)=469.5 | tok/step=3.68 | meanTTFT=327.06 ms
+BENCH b_v27_long_dflash2 ROW cohort C8 real prompts T=0 | e2e=363.98 tok/s | decode(C/meanTPOT)=902.9 | tok/step=3.54 | meanTTFT=5418.08 ms
+BENCH b_v27_long_dflash2 # raw logs in /app/bench/results
+BENCH b_v27_long_dflash2 torn down 15:37:42Z
+BENCH b_v27_long_off (v27 start_qwen.sh CTX=long SPEC=off) serving: GPU KV cache size: 186,340 tokens
+BENCH b_v27_long_off # Thu Sep  3 15:40:59 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v27_long_off ROW cohort C1 real prompts T=default | e2e=55.47 tok/s | decode(C/meanTPOT)=55.7 | tok/step=- | meanTTFT=103.49 ms
+BENCH b_v27_long_off ROW cohort C2 real prompts T=default | e2e=100.39 tok/s | decode(C/meanTPOT)=104.0 | tok/step=- | meanTTFT=205.40 ms
+BENCH b_v27_long_off ROW cohort C4 real prompts T=default | e2e=190.53 tok/s | decode(C/meanTPOT)=203.0 | tok/step=- | meanTTFT=306.95 ms
+BENCH b_v27_long_off ROW cohort C8 real prompts T=default | e2e=377.87 tok/s | decode(C/meanTPOT)=407.1 | tok/step=- | meanTTFT=634.12 ms
+BENCH b_v27_long_off ROW cohort C1 real prompts T=0 | e2e=56.41 tok/s | decode(C/meanTPOT)=56.7 | tok/step=- | meanTTFT=111.27 ms
+BENCH b_v27_long_off ROW cohort C2 real prompts T=0 | e2e=100.18 tok/s | decode(C/meanTPOT)=105.7 | tok/step=- | meanTTFT=211.70 ms
+BENCH b_v27_long_off ROW cohort C4 real prompts T=0 | e2e=193.06 tok/s | decode(C/meanTPOT)=206.2 | tok/step=- | meanTTFT=319.03 ms
+BENCH b_v27_long_off ROW cohort C8 real prompts T=0 | e2e=382.79 tok/s | decode(C/meanTPOT)=415.2 | tok/step=- | meanTTFT=628.59 ms
+BENCH b_v27_long_off # raw logs in /app/bench/results
+BENCH b_v27_long_off torn down 15:51:56Z
+BENCH b_v27_int4_dflash2: exited during boot
+BENCH b_v27_int4_dflash2 torn down 15:55:23Z
+BENCH b_v27_int4_off (v27 alternative.sh CTX=long SPEC=off) serving: GPU KV cache size: 387,742 tokens
+BENCH b_v27_int4_off # Thu Sep  3 15:58:09 UTC 2026 mode=single server=127.0.0.1:18025
+BENCH b_v27_int4_off ROW cohort C1 real prompts T=default | e2e=53.92 tok/s | decode(C/meanTPOT)=54.2 | tok/step=- | meanTTFT=118.13 ms
+BENCH b_v27_int4_off ROW cohort C2 real prompts T=default | e2e=53.92 tok/s | decode(C/meanTPOT)=108.4 | tok/step=- | meanTTFT=16023.38 ms
+BENCH b_v27_int4_off ROW cohort C4 real prompts T=default | e2e=53.96 tok/s | decode(C/meanTPOT)=216.9 | tok/step=- | meanTTFT=42661.18 ms
+BENCH b_v27_int4_off ROW cohort C8 real prompts T=default | e2e=54.01 tok/s | decode(C/meanTPOT)=434.3 | tok/step=- | meanTTFT=65675.35 ms
+BENCH b_v27_int4_off ROW cohort C1 real prompts T=0 | e2e=54.85 tok/s | decode(C/meanTPOT)=55.1 | tok/step=- | meanTTFT=108.87 ms
+BENCH b_v27_int4_off ROW cohort C2 real prompts T=0 | e2e=54.77 tok/s | decode(C/meanTPOT)=110.1 | tok/step=- | meanTTFT=15682.82 ms
+BENCH b_v27_int4_off ROW cohort C4 real prompts T=0 | e2e=54.89 tok/s | decode(C/meanTPOT)=220.5 | tok/step=- | meanTTFT=41288.56 ms
+BENCH b_v27_int4_off ROW cohort C8 real prompts T=0 | e2e=54.84 tok/s | decode(C/meanTPOT)=440.8 | tok/step=- | meanTTFT=64683.96 ms
+BENCH b_v27_int4_off # raw logs in /app/bench/results
+BENCH b_v27_int4_off torn down 16:20:08Z

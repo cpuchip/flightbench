@@ -1,0 +1,6 @@
+BENCH b_fix_huge_dflash2 (fix start_qwen.sh CTX=huge SPEC=dflash2) serving: GPU KV cache size: 268,169 tokens
+BENCH b_fix_huge_dflash2 # Thu Sep  3 17:27:17 UTC 2026 mode=single server=127.0.0.1:18020
+BENCH b_fix_huge_dflash2 ROW cohort C1 real prompts T=default | e2e=20.49 tok/s | decode(C/meanTPOT)=21.4 | tok/step=2.72 | meanTTFT=1344.70 ms
+BENCH b_fix_huge_dflash2 ROW cohort C2 real prompts T=default | e2e=24.25 tok/s | decode(C/meanTPOT)=26.7 | tok/step=2.61 | meanTTFT=1871.63 ms
+BENCH b_fix_huge_dflash2 ROW cohort C4 real prompts T=default | e2e=25.26 tok/s | decode(C/meanTPOT)=55.7 | tok/step=2.71 | meanTTFT=55744.15 ms
+BENCH b_fix_huge_dflash2 torn down 17:52:19Z

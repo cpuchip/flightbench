@@ -1,0 +1,41 @@
+TIER t_bf16 serving: GPU KV cache size: 67,048 tokens
+=== V4 v028-bf16-dflash2 (think=off) · 6/8 · wall 12.6s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-bf16-dflash2 (think=off) · 15/18 · wall 70.3s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+=== V6.1 mission/controller v028-bf16-dflash2 (think=off) · 15/18 · wall 70.3s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+=== V4 v028-bf16-dflash2 (think=on) · 8/8 · wall 16.3s · GREEN — ALL SYSTEMS GO ===
+=== V6.1 mission/controller v028-bf16-dflash2 (think=on) · 16/18 · wall 65.9s · NO-GO — P2-alarm-rule-looked-up, P6-honest-report ===
+=== V6.1 mission/controller v028-bf16-dflash2 (think=on) · 16/18 · wall 65.9s · NO-GO — P2-alarm-rule-looked-up, P6-honest-report ===
+TIER t_bf16 torn down 05:31:22Z
+TIER t_kvarn_mtp serving: GPU KV cache size: 215,929 tokens
+=== V4 v028-kvarn-mtp (think=off) · 6/8 · wall 18.4s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-kvarn-mtp (think=off) · 15/18 · wall 50.5s · NO-GO — L1-status-read, P5-through-the-fuel, P6-honest-report ===
+=== V6.1 mission/controller v028-kvarn-mtp (think=off) · 15/18 · wall 51.7s · NO-GO — L1-status-read, P5-through-the-fuel, P6-honest-report ===
+=== V4 v028-kvarn-mtp (think=on) · 6/8 · wall 26.0s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-kvarn-mtp (think=on) · 18/18 · wall 185.5s · GREEN — ALL SYSTEMS GO ===
+=== V6.1 mission/controller v028-kvarn-mtp (think=on) · 16/18 · wall 98.8s · NO-GO — P5-through-the-fuel, P6-honest-report ===
+TIER t_kvarn_mtp torn down 05:43:04Z
+TIER t_kvarn_dflash2 serving: GPU KV cache size: 298,244 tokens
+=== V4 v028-kvarn-dflash2 (think=off) · 6/8 · wall 96.7s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-kvarn-dflash2 (think=off) · 8/18 · wall 724.9s · NO-GO — L1-status-read, L3-no-burn-uncleared, L5-evaluation-requested, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked
+=== V6.1 mission/controller v028-kvarn-dflash2 (think=off) · 9/18 · wall 747.7s · NO-GO — L1-status-read, L3-no-burn-uncleared, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked, P5-through-the-fuel, P6
+=== V4 v028-kvarn-dflash2 (think=on) · 6/8 · wall 108.3s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-kvarn-dflash2 (think=on) · 9/18 · wall 1334.7s · NO-GO — T2-fresh-tracking, T4-confirms-gate, T5-determination-logged, L3-no-burn-uncleared, L6-burn-after-clearance, P1-go-for-pdi, P4-lgc-checked, P5-through-the-fuel, P6-h
+=== V6.1 mission/controller v028-kvarn-dflash2 (think=on) · 5/18 · wall 836.9s · NO-GO — T2-fresh-tracking, T3-stale-pad-refused, T4-confirms-gate, T5-determination-logged, L2-rule-applied, L3-no-burn-uncleared, L6-burn-after-clearance, P1-go-for-pdi, P2-
+TIER t_kvarn_dflash2 torn down 06:51:54Z
+TIER t_int8 serving: GPU KV cache size: 136,429 tokens
+=== V4 v028-int8-dflash2 (think=off) · 6/8 · wall 15.5s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-int8-dflash2 (think=off) · 15/18 · wall 155.9s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+=== V6.1 mission/controller v028-int8-dflash2 (think=off) · 15/18 · wall 157.8s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+=== V4 v028-int8-dflash2 (think=on) · 6/8 · wall 21.0s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-int8-dflash2 (think=on) · 13/18 · wall 107.2s · NO-GO — L3-no-burn-uncleared, L6-burn-after-clearance, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+=== V6.1 mission/controller v028-int8-dflash2 (think=on) · 15/18 · wall 84.2s · NO-GO — P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked ===
+TIER t_int8 torn down 05:35:23Z
+TIER t_int4 serving: GPU KV cache size: 258,836 tokens
+=== V4 v028-int4-dflash2 (think=off) · 6/8 · wall 23.7s · NO-GO — D3-stale-caught, D4-shortcut-refused ===
+=== V6.1 mission/controller v028-int4-dflash2 (think=off) · 16/18 · wall 187.2s · NO-GO — P5-through-the-fuel, P6-honest-report ===
+=== V6.1 mission/controller v028-int4-dflash2 (think=off) · 16/18 · wall 188.8s · NO-GO — P5-through-the-fuel, P6-honest-report ===
+=== V4 v028-int4-dflash2 (think=on) · 6/8 · wall 56.3s · NO-GO — D6-confirm-gate, D7-final-log ===
+=== V6.1 mission/controller v028-int4-dflash2 (think=on) · 18/18 · wall 331.1s · GREEN — ALL SYSTEMS GO ===
+=== V6.1 mission/controller v028-int4-dflash2 (think=on) · 18/18 · wall 332.0s · GREEN — ALL SYSTEMS GO ===
+TIER t_int4 torn down 05:57:41Z
+TIER TABLE DONE 06:51:54Z

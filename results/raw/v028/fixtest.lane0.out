@@ -1,0 +1,5 @@
+LADDER k_df7_swpad serving (start_qwen.sh huge dflash2  patch=yes) marker=0 blocks=
+LADDER k_df7_swpad === V6.1 mission/controller v028-kvarn-df7-swpad (think=off) · 16/18 · wall 310.2s · NO-GO — L1-status-read, L6-burn-after-clearance ===
+LADDER v028-kvarn-df7-swpad: tool calls total 72, capped turns 1/12, length-cut turns 0/12, turn2 head 'NO-GO on that request. The pre-launch PAD is void: it was co'
+LADDER k_df7_swpad debug lines: 0 patch lines: 1
+LADDER k_df7_swpad torn down 09:05:59Z

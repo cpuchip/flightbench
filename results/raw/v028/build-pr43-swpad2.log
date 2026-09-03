@@ -1,0 +1,275 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.07kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/nvidia/cuda:13.0.1-base-ubuntu24.04
+#2 DONE 0.5s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 326B done
+#3 DONE 0.0s
+
+#4 [1/9] FROM docker.io/nvidia/cuda:13.0.1-base-ubuntu24.04@sha256:f8ef28f579ea42a44b415d2c5d46f788e6a9b395c6c83f2929416e1fc192c143
+#4 resolve docker.io/nvidia/cuda:13.0.1-base-ubuntu24.04@sha256:f8ef28f579ea42a44b415d2c5d46f788e6a9b395c6c83f2929416e1fc192c143 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 17.86kB 0.0s done
+#5 DONE 0.0s
+
+#6 [3/9] WORKDIR /app
+#6 CACHED
+
+#7 [2/9] RUN apt-get update && apt-get install -y --no-install-recommends       python3.12 python3.12-venv python3.12-dev       cuda-nvcc-13-0 cuda-cudart-dev-13-0 libcurand-dev-13-0       build-essential patch curl ca-certificates     && rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [4/9] RUN python3.12 -m venv venv && venv/bin/pip install --upgrade pip
+#8 CACHED
+
+#9 [5/9] COPY docker/requirements.txt docker/requirements.txt
+#9 CACHED
+
+#10 [6/9] RUN venv/bin/pip install -r docker/requirements.txt
+#10 CACHED
+
+#11 [7/9] COPY . .
+#11 DONE 0.1s
+
+#12 [8/9] RUN set -e; SP=$(venv/bin/python -c 'import vllm, os; print(os.path.dirname(vllm.__file__))' | tail -n1);     for p in patches/*.patch; do       case "$p" in         patches/dflash2-backport.patch) echo "== skip $p (DFlash2 is native in vLLM 0.28.0)"; continue ;;       esac;       echo "== $p"; patch -p1 -d "$SP" < "$p";     done;     bash kvarn/install.sh;     bash verify.sh --install
+#12 6.121 == skip patches/dflash2-backport.patch (DFlash2 is native in vLLM 0.28.0)
+#12 6.121 == patches/dflash2-lookup-drafting.patch
+#12 6.126 patching file model_executor/models/qwen3_dflash.py
+#12 6.126 patching file model_executor/models/qwen3_dflash.py.orig
+#12 6.127 patching file model_executor/models/qwen3_dflash2.py
+#12 6.128 patching file v1/worker/gpu/cudagraph_utils.py
+#12 6.129 patching file v1/worker/gpu/model_runner.py
+#12 6.129 patching file v1/worker/gpu/model_runner.py.orig
+#12 6.130 patching file v1/worker/gpu/spec_decode/dflash/speculator.py
+#12 6.130 patching file v1/worker/gpu/spec_decode/dflash2/lookup.py
+#12 6.131 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 6.131 patching file v1/worker/gpu/spec_decode/utils.py
+#12 6.131 == patches/dflash2-ngram-chains.patch
+#12 6.132 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 6.132 == patches/dflash2-prewarm.patch
+#12 6.133 patching file v1/worker/gpu/spec_decode/dflash/speculator.py
+#12 6.133 patching file v1/worker/gpu/spec_decode/dflash/speculator.py.orig
+#12 6.133 == patches/dflash2-z-adaptive-emitted.patch
+#12 6.134 patching file v1/worker/gpu/spec_decode/dflash/speculator.py
+#12 6.134 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 6.134 == patches/hybrid-kv-groups-v2-cudagraph.patch
+#12 6.136 patching file v1/core/kv_cache_utils.py
+#12 6.136 Hunk #1 succeeded at 1103 (offset -34 lines).
+#12 6.136 Hunk #2 succeeded at 1265 (offset -34 lines).
+#12 6.139 patching file v1/worker/gpu/model_runner.py
+#12 6.139 Hunk #2 succeeded at 849 (offset 97 lines).
+#12 6.140 == patches/hybrid-sw-block-promote.patch
+#12 6.141 patching file v1/core/kv_cache_utils.py
+#12 6.141 Hunk #1 succeeded at 1033 with fuzz 1 (offset -34 lines).
+#12 6.141 Hunk #2 succeeded at 1189 (offset -34 lines).
+#12 6.141 == patches/int4-kv-per-token-head.patch
+#12 6.142 patching file v1/worker/gpu/attn_utils.py
+#12 6.142 Hunk #1 succeeded at 338 (offset 79 lines).
+#12 6.145 patching file v1/attention/ops/triton_unified_attention.py
+#12 6.146 patching file v1/attention/ops/int4_per_token_head.py
+#12 6.146 == patches/mamba-align-checkpoint-order.patch
+#12 6.147 patching file v1/core/single_type_kv_cache_manager.py
+#12 6.147 Hunk #2 succeeded at 1301 (offset -7 lines).
+#12 6.147 Hunk #3 succeeded at 1472 (offset -7 lines).
+#12 6.148 Hunk #4 succeeded at 1704 (offset -6 lines).
+#12 6.148 Hunk #5 succeeded at 1757 (offset -6 lines).
+#12 6.150 == patches/mamba-chunked-prefill-align.patch
+#12 6.151 patching file third_party/flash_linear_attention/ops/chunk_o.py
+#12 6.152 patching file v1/worker/mamba_utils.py
+#12 6.152 == patches/marlin-int8-layer-select.patch
+#12 6.154 patching file envs.py
+#12 6.154 Hunk #1 succeeded at 184 (offset 7 lines).
+#12 6.154 Hunk #2 succeeded at 1516 (offset 59 lines).
+#12 6.157 patching file model_executor/layers/quantization/utils/marlin_utils.py
+#12 6.157 == patches/marlin-int8-negative-scales.patch
+#12 6.158 patching file model_executor/kernels/linear/mixed_precision/marlin.py
+#12 6.158 == patches/marlin-repack-staged-sm80.patch
+#12 6.159 patching file model_executor/kernels/linear/mixed_precision/marlin.py
+#12 6.159 == patches/marlin-tune-table.patch
+#12 6.161 patching file _custom_ops.py
+#12 6.161 == patches/offload-dflash-eagle-groups.patch
+#12 6.163 patching file distributed/kv_transfer/kv_connector/v1/offloading/scheduler.py
+#12 6.163 Hunk #1 succeeded at 228 (offset 12 lines).
+#12 6.163 Hunk #2 succeeded at 301 with fuzz 2 (offset 63 lines).
+#12 6.166 == patches/offload-wsl2-devptr.patch
+#12 6.167 patching file v1/kv_offload/cpu/gpu_worker.py
+#12 6.167 Hunk #1 succeeded at 102 (offset 3 lines).
+#12 6.167 Hunk #2 succeeded at 220 (offset 70 lines).
+#12 6.167 Hunk #3 succeeded at 851 with fuzz 2.
+#12 6.169 == patches/qwen3_5-embed-quant.patch
+#12 6.170 patching file model_executor/models/qwen3_5.py
+#12 6.170 Hunk #1 succeeded at 244 (offset 1 line).
+#12 6.172 patching file model_executor/models/qwen3_5_mtp.py
+#12 6.173 == patches/qwen3_5-mtp-draft-vocab.patch
+#12 6.173 patching file model_executor/models/qwen3_5_mtp.py
+#12 6.173 Hunk #2 succeeded at 271 (offset -2 lines).
+#12 6.173 Hunk #3 succeeded at 323 (offset -2 lines).
+#12 6.174 == patches/sampler-small-topk-fast-softmax.patch
+#12 6.175 patching file v1/sample/metadata.py
+#12 6.175 patching file v1/sample/ops/row_softmax.py
+#12 6.176 patching file v1/sample/ops/topk_topp_sampler.py
+#12 6.176 patching file v1/sample/rejection_sampler.py
+#12 6.176 patching file v1/sample/sampler.py
+#12 6.176 Hunk #1 succeeded at 289 (offset 1 line).
+#12 6.178 patching file v1/spec_decode/llm_base_proposer.py
+#12 6.178 Hunk #1 succeeded at 1851 (offset 6 lines).
+#12 6.178 Hunk #2 succeeded at 1877 (offset 6 lines).
+#12 6.178 patching file v1/worker/gpu_input_batch.py
+#12 6.182 == patches/spec-decode-attn.patch
+#12 6.183 patching file v1/attention/backends/flash_attn.py
+#12 6.183 Hunk #1 succeeded at 1118 (offset 80 lines).
+#12 6.183 Hunk #2 succeeded at 1821 (offset 102 lines).
+#12 6.185 patching file v1/attention/ops/spec_decode_attn.py
+#12 6.186 == patches/spec-decode-int4-kv-mq3d.patch
+#12 6.186 patching file v1/attention/ops/int4_per_token_head.py
+#12 6.186 patching file v1/attention/ops/triton_unified_attention.py
+#12 6.187 == patches/spec-decode-int8-kv.patch
+#12 6.187 patching file v1/attention/backends/flash_attn.py
+#12 6.187 Hunk #1 succeeded at 1859 (offset 102 lines).
+#12 6.187 Hunk #2 succeeded at 1878 (offset 102 lines).
+#12 6.188 patching file v1/attention/backends/triton_attn.py
+#12 6.188 Hunk #2 succeeded at 712 (offset 19 lines).
+#12 6.190 patching file v1/attention/ops/spec_decode_attn.py
+#12 6.190 == patches/spec-decode-scratch-token-units.patch
+#12 6.191 patching file v1/attention/backends/triton_attn.py
+#12 6.191 Hunk #3 succeeded at 166 (offset 2 lines).
+#12 6.191 Hunk #4 succeeded at 221 (offset 2 lines).
+#12 6.191 Hunk #5 succeeded at 307 (offset 2 lines).
+#12 6.191 Hunk #6 succeeded at 766 (offset 19 lines).
+#12 6.191 Hunk #7 succeeded at 833 (offset 19 lines).
+#12 6.191 patching file v1/attention/ops/int4_per_token_head.py
+#12 6.191 patching file v1/attention/ops/triton_unified_attention.py
+#12 6.191 == patches/spec-decode-scratch-within-budget.patch
+#12 6.192 patching file v1/attention/backends/triton_attn.py
+#12 6.192 Hunk #3 succeeded at 312 (offset 2 lines).
+#12 6.192 Hunk #4 succeeded at 333 (offset 2 lines).
+#12 6.192 Hunk #5 succeeded at 780 (offset 19 lines).
+#12 6.192 == patches/spec-sampler-prewarm.patch
+#12 6.194 patching file model_executor/warmup/kernel_warmup.py
+#12 6.194 Hunk #2 succeeded at 95 (offset 1 line).
+#12 6.194 Hunk #3 succeeded at 175 with fuzz 2 (offset 4 lines).
+#12 6.196 == patches/speed-knobs-envs.patch
+#12 6.196 patching file envs.py
+#12 6.196 Hunk #1 succeeded at 189 (offset 7 lines).
+#12 6.197 Hunk #2 succeeded at 1534 (offset 59 lines).
+#12 6.197 == patches/triton-prefill-attn-int8.patch
+#12 6.197 patching file v1/attention/backends/prefill_attn_hd256.py
+#12 6.198 patching file v1/attention/backends/flash_attn.py
+#12 6.198 Hunk #1 succeeded at 1118 (offset 80 lines).
+#12 6.198 == patches/vision-tower-cpu-offload.patch
+#12 6.199 patching file envs.py
+#12 6.200 patching file model_executor/models/qwen3_vl.py
+#12 6.200 Hunk #4 succeeded at 663 with fuzz 2.
+#12 6.202 == patches/vllm-pr50021-gdn-spec-bounds.patch
+#12 6.204 patching file model_executor/layers/mamba/ops/causal_conv1d.py
+#12 6.204 patching file model_executor/layers/mamba/ops/mamba_ssm.py
+#12 6.204 patching file third_party/flash_linear_attention/ops/fused_recurrent.py
+#12 6.205 patching file third_party/flash_linear_attention/ops/fused_sigmoid_gating.py
+#12 6.205 == patches/xgrammar-spec-terminated.patch
+#12 6.206 patching file v1/structured_output/backend_xgrammar.py
+#12 6.206 Hunk #1 succeeded at 157 (offset 5 lines).
+#12 6.206 Hunk #2 succeeded at 176 (offset 5 lines).
+#12 9.111 patching file config/cache.py
+#12 9.112 patching file model_executor/layers/attention/attention.py
+#12 9.113 patching file platforms/cuda.py
+#12 9.113 patching file platforms/interface.py
+#12 9.114 patching file utils/torch_utils.py
+#12 9.114 patching file v1/attention/backends/registry.py
+#12 9.114 patching file v1/kv_cache_interface.py
+#12 9.114 patching file v1/worker/gpu/attn_utils.py
+#12 9.114 Hunk #1 succeeded at 308 (offset 3 lines).
+#12 9.116 patching file model_executor/models/qwen3_dflash.py
+#12 9.116 patching file model_executor/layers/attention/attention.py
+#12 9.116 patching file v1/core/kv_cache_utils.py
+#12 9.116 Hunk #3 succeeded at 666 with fuzz 2 (offset -1 lines).
+#12 9.116 Hunk #4 succeeded at 670 with fuzz 1 (offset -10 lines).
+#12 9.117 patching file v1/core/kv_cache_coordinator.py
+#12 9.117 Hunk #1 succeeded at 87 with fuzz 2 (offset 1 line).
+#12 9.120 patching file v1/core/single_type_kv_cache_manager.py
+#12 9.120 Hunk #1 succeeded at 929 (offset 11 lines).
+#12 9.120 Hunk #2 succeeded at 1121 (offset 11 lines).
+#12 9.121 patching file v1/worker/gpu/model_states/mamba_hybrid.py
+#12 9.121 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 9.121 Hunk #3 succeeded at 718 (offset -2 lines).
+#12 9.121 patching file v1/worker/gpu/model_runner.py
+#12 10.04 WARNING 09-03 15:09:03 [interface.py:1018] Using 'pin_memory=False' as WSL is detected. This may slow down performance.
+#12 14.79 INFO 09-03 15:09:07 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+#12 14.79 INFO 09-03 15:09:07 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+#12 14.87 W0903 15:09:07.925000 116 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+#12 14.90 KVarN backend: KVARN
+#12 14.90 tile bytes 26880 -> per token per head 210 B (fp8: 256 B)
+#12 14.90 kvarn-v2 runner port complete (1 markers across 8 files)
+#12 15.98 kvarn installed
+#12 15.99 == environment
+#12 15.99   PASS  chat template: /app/chat_template-froggeric-v22.4.jinja (Froggeric v22.4)
+#12 15.99   PASS  python: /app/venv/bin/python
+#12 18.74   PASS  vllm 0.28.0
+#12 21.56   PASS  vllm package at /app/venv/lib/python3.12/site-packages/vllm
+#12 21.66   PASS  python module triton
+#12 25.80   PASS  python module compressed_tensors
+#12 26.59 WARNING 09-03 15:09:19 [interface.py:1018] Using 'pin_memory=False' as WSL is detected. This may slow down performance.
+#12 28.70   PASS  flashinfer usable by vLLM (nvcc or flashinfer-cubin present)
+#12 28.70 == vLLM patches (patches/*.patch)
+#12 28.70   PASS  dflash2-backport.patch retired (DFlash2 is native in vLLM 0.28.0)
+#12 28.72   PASS  dflash2-lookup-drafting.patch applied (content check; hunks overlap another patch)
+#12 28.73   PASS  dflash2-ngram-chains.patch applied (content check; hunks overlap another patch)
+#12 28.73   PASS  dflash2-prewarm.patch applied
+#12 28.73   PASS  dflash2-z-adaptive-emitted.patch applied
+#12 28.74   PASS  hybrid-kv-groups-v2-cudagraph.patch applied
+#12 28.74   PASS  hybrid-sw-block-promote.patch applied
+#12 28.74   PASS  int4-kv-per-token-head.patch applied
+#12 28.74   PASS  mamba-align-checkpoint-order.patch applied
+#12 28.75   PASS  mamba-chunked-prefill-align.patch applied
+#12 28.75   PASS  marlin-int8-layer-select.patch applied
+#12 28.75   PASS  marlin-int8-negative-scales.patch applied
+#12 28.75   PASS  marlin-repack-staged-sm80.patch applied
+#12 28.75   PASS  marlin-tune-table.patch applied
+#12 28.76   PASS  offload-dflash-eagle-groups.patch applied
+#12 28.76   PASS  offload-wsl2-devptr.patch applied
+#12 28.76   PASS  qwen3_5-embed-quant.patch applied
+#12 28.76   PASS  qwen3_5-mtp-draft-vocab.patch applied
+#12 28.76   PASS  sampler-small-topk-fast-softmax.patch applied
+#12 28.78   PASS  spec-decode-attn.patch applied (content check; hunks overlap another patch)
+#12 28.79   PASS  spec-decode-int4-kv-mq3d.patch applied (content check; hunks overlap another patch)
+#12 28.79   PASS  spec-decode-int8-kv.patch applied
+#12 28.82   PASS  spec-decode-scratch-token-units.patch applied (superseded by spec-decode-scratch-within-budget.patch, which is applied)
+#12 28.82   PASS  spec-decode-scratch-within-budget.patch applied
+#12 28.82   PASS  spec-sampler-prewarm.patch applied
+#12 28.83   PASS  speed-knobs-envs.patch applied (content check; hunks overlap another patch)
+#12 28.83   PASS  triton-prefill-attn-int8.patch applied
+#12 28.83   PASS  vision-tower-cpu-offload.patch applied
+#12 28.84   PASS  vllm-pr50021-gdn-spec-bounds.patch applied
+#12 28.84   PASS  xgrammar-spec-terminated.patch applied
+#12 28.84   PASS  int8 layer-select env vars registered in envs.py
+#12 28.84 == KVarN (optional, kvarn/)
+#12 29.61 WARNING 09-03 15:09:22 [interface.py:1018] Using 'pin_memory=False' as WSL is detected. This may slow down performance.
+#12 32.80 INFO 09-03 15:09:25 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+#12 32.80 INFO 09-03 15:09:25 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+#12 33.97   PASS  KVarN backend importable, patch applied (KV=kvarn / CTX=huge available)
+#12 33.98   PASS  kvarn-v2-runner-0.28.0.patch applied (SPEC=dflash2 + CTX=huge available)
+#12 33.98 
+#12 33.98 verify: OK (0 failures)
+#12 DONE 34.0s
+
+#13 [9/9] RUN mkdir -p /cache /app/models && chmod 1777 /cache
+#13 DONE 0.3s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.2s done
+#14 exporting manifest sha256:728f947203116dfc563645cc93a81c88b5294785763b9587c19dd1f3632a295c 0.0s done
+#14 exporting config sha256:9b5ac97050ae6131f74ffd8a870c91b13eb88156d1844c1fe41faa19d7d5a778 0.0s done
+#14 exporting attestation manifest sha256:70c00e766ee10e30c56cfc2a7473f351fcceb193656d364d49b05866f97b8b6b 0.0s done
+#14 exporting manifest list sha256:04aae9b90411e961263860cddc2921cbf134388caeaaff6213d589952ec2a965 done
+#14 naming to docker.io/library/qwen38-27b-rtx3090:pr43-swpad done
+#14 unpacking to docker.io/library/qwen38-27b-rtx3090:pr43-swpad 0.1s done
+#14 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/tulci7x5rxegxp13ihdp5fone
+BUILD2 exit=0

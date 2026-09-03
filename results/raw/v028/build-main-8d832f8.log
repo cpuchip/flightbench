@@ -1,0 +1,234 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.90kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/nvidia/cuda:13.0.1-base-ubuntu24.04
+#2 DONE 0.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 326B done
+#3 DONE 0.0s
+
+#4 [1/9] FROM docker.io/nvidia/cuda:13.0.1-base-ubuntu24.04@sha256:f8ef28f579ea42a44b415d2c5d46f788e6a9b395c6c83f2929416e1fc192c143
+#4 resolve docker.io/nvidia/cuda:13.0.1-base-ubuntu24.04@sha256:f8ef28f579ea42a44b415d2c5d46f788e6a9b395c6c83f2929416e1fc192c143 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 8.58MB 0.4s done
+#5 DONE 0.4s
+
+#6 [2/9] RUN apt-get update && apt-get install -y --no-install-recommends       python3.12 python3.12-venv python3.12-dev       cuda-nvcc-13-0 cuda-cudart-dev-13-0 libcurand-dev-13-0       build-essential patch curl ca-certificates     && rm -rf /var/lib/apt/lists/*
+#6 CACHED
+
+#7 [3/9] WORKDIR /app
+#7 CACHED
+
+#8 [4/9] RUN python3.12 -m venv venv && venv/bin/pip install --upgrade pip
+#8 CACHED
+
+#9 [5/9] COPY docker/requirements.txt docker/requirements.txt
+#9 CACHED
+
+#10 [6/9] RUN venv/bin/pip install -r docker/requirements.txt
+#10 CACHED
+
+#11 [7/9] COPY . .
+#11 DONE 0.1s
+
+#12 [8/9] RUN set -e; SP=$(venv/bin/python -c 'import vllm, os; print(os.path.dirname(vllm.__file__))' | tail -n1);     for p in patches/*.patch; do echo "== $p"; patch -p1 -d "$SP" < "$p"; done;     bash kvarn/install.sh;     bash verify.sh --install
+#12 5.047 == patches/dflash2-backport.patch
+#12 5.049 patching file config/vllm.py
+#12 5.050 patching file config/speculative.py
+#12 5.051 patching file model_executor/models/qwen3_dflash.py
+#12 5.052 patching file model_executor/models/registry.py
+#12 5.053 patching file v1/worker/gpu/model_runner.py
+#12 5.053 patching file v1/worker/gpu/spec_decode/__init__.py
+#12 5.054 patching file v1/worker/gpu/spec_decode/dflash/speculator.py
+#12 5.055 patching file v1/worker/gpu/spec_decode/rejection_sampler_utils.py
+#12 5.055 patching file v1/worker/gpu/sample/states.py
+#12 5.056 patching file v1/worker/gpu/sample/sampler.py
+#12 5.056 patching file model_executor/models/qwen3_dflash2.py
+#12 5.056 patching file v1/worker/gpu/spec_decode/dflash2/__init__.py
+#12 5.056 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 5.056 == patches/dflash2-lookup-drafting.patch
+#12 5.057 patching file model_executor/models/qwen3_dflash2.py
+#12 5.057 patching file v1/worker/gpu/spec_decode/dflash/speculator.py
+#12 5.058 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 5.058 patching file v1/worker/gpu/spec_decode/dflash2/lookup.py
+#12 5.058 patching file v1/worker/gpu/spec_decode/utils.py
+#12 5.058 patching file v1/worker/gpu/model_runner.py
+#12 5.058 Hunk #1 succeeded at 243 (offset -1 lines).
+#12 5.058 Hunk #2 succeeded at 1594 (offset -14 lines).
+#12 5.059 patching file v1/worker/gpu/cudagraph_utils.py
+#12 5.059 == patches/dflash2-ngram-chains.patch
+#12 5.060 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 5.060 == patches/dflash2-prewarm.patch
+#12 5.061 patching file v1/worker/gpu/spec_decode/dflash/speculator.py
+#12 5.061 == patches/hybrid-kv-groups-v2-cudagraph.patch
+#12 5.063 patching file v1/core/kv_cache_utils.py
+#12 5.063 patching file v1/worker/gpu/model_runner.py
+#12 5.063 Hunk #2 succeeded at 755 (offset 3 lines).
+#12 5.064 == patches/hybrid-sw-block-promote.patch
+#12 5.064 patching file v1/core/kv_cache_utils.py
+#12 5.065 == patches/int4-kv-per-token-head.patch
+#12 5.065 patching file v1/worker/gpu/attn_utils.py
+#12 5.066 patching file v1/attention/ops/triton_unified_attention.py
+#12 5.067 patching file v1/attention/ops/int4_per_token_head.py
+#12 5.067 == patches/mamba-align-checkpoint-order.patch
+#12 5.068 patching file v1/core/single_type_kv_cache_manager.py
+#12 5.068 Hunk #2 succeeded at 1286 (offset -22 lines).
+#12 5.068 Hunk #3 succeeded at 1457 (offset -22 lines).
+#12 5.068 Hunk #4 succeeded at 1688 (offset -22 lines).
+#12 5.068 Hunk #5 succeeded at 1741 (offset -22 lines).
+#12 5.072 == patches/marlin-int8-layer-select.patch
+#12 5.072 patching file envs.py
+#12 5.074 patching file model_executor/layers/quantization/utils/marlin_utils.py
+#12 5.074 == patches/marlin-int8-negative-scales.patch
+#12 5.075 patching file model_executor/kernels/linear/mixed_precision/marlin.py
+#12 5.075 == patches/marlin-repack-staged-sm80.patch
+#12 5.076 patching file model_executor/kernels/linear/mixed_precision/marlin.py
+#12 5.076 == patches/marlin-tune-table.patch
+#12 5.077 patching file _custom_ops.py
+#12 5.077 == patches/offload-dflash-eagle-groups.patch
+#12 5.079 patching file distributed/kv_transfer/kv_connector/v1/offloading/scheduler.py
+#12 5.079 == patches/offload-wsl2-devptr.patch
+#12 5.080 patching file v1/kv_offload/cpu/gpu_worker.py
+#12 5.081 == patches/qwen3_5-embed-quant.patch
+#12 5.081 patching file model_executor/models/qwen3_5.py
+#12 5.082 patching file model_executor/models/qwen3_5_mtp.py
+#12 5.082 == patches/qwen3_5-mtp-draft-vocab.patch
+#12 5.082 patching file model_executor/models/qwen3_5_mtp.py
+#12 5.083 == patches/sampler-small-topk-fast-softmax.patch
+#12 5.084 patching file v1/sample/metadata.py
+#12 5.084 patching file v1/sample/ops/row_softmax.py
+#12 5.085 patching file v1/sample/ops/topk_topp_sampler.py
+#12 5.085 patching file v1/sample/rejection_sampler.py
+#12 5.085 patching file v1/sample/sampler.py
+#12 5.086 patching file v1/spec_decode/llm_base_proposer.py
+#12 5.087 patching file v1/worker/gpu_input_batch.py
+#12 5.087 == patches/spec-decode-attn.patch
+#12 5.088 patching file v1/attention/backends/flash_attn.py
+#12 5.088 patching file v1/attention/ops/spec_decode_attn.py
+#12 5.088 == patches/spec-decode-int4-kv-mq3d.patch
+#12 5.089 patching file v1/attention/ops/int4_per_token_head.py
+#12 5.089 patching file v1/attention/ops/triton_unified_attention.py
+#12 5.089 == patches/spec-decode-int8-kv.patch
+#12 5.090 patching file v1/attention/backends/flash_attn.py
+#12 5.090 patching file v1/attention/backends/triton_attn.py
+#12 5.091 patching file v1/attention/ops/spec_decode_attn.py
+#12 5.091 == patches/spec-decode-scratch-token-units.patch
+#12 5.091 patching file v1/attention/backends/triton_attn.py
+#12 5.092 patching file v1/attention/ops/int4_per_token_head.py
+#12 5.092 patching file v1/attention/ops/triton_unified_attention.py
+#12 5.092 == patches/spec-decode-scratch-within-budget.patch
+#12 5.093 patching file v1/attention/backends/triton_attn.py
+#12 5.093 == patches/spec-sampler-prewarm.patch
+#12 5.094 patching file model_executor/warmup/kernel_warmup.py
+#12 5.094 == patches/speed-knobs-envs.patch
+#12 5.095 patching file envs.py
+#12 5.095 == patches/triton-prefill-attn-int8.patch
+#12 5.096 patching file v1/attention/backends/prefill_attn_hd256.py
+#12 5.096 patching file v1/attention/backends/flash_attn.py
+#12 5.096 == patches/vision-tower-cpu-offload.patch
+#12 5.097 patching file envs.py
+#12 5.097 patching file model_executor/models/qwen3_vl.py
+#12 5.098 == patches/vllm-pr50021-gdn-spec-bounds.patch
+#12 5.099 patching file model_executor/layers/mamba/ops/causal_conv1d.py
+#12 5.099 patching file model_executor/layers/mamba/ops/mamba_ssm.py
+#12 5.100 patching file third_party/flash_linear_attention/ops/fused_recurrent.py
+#12 5.101 patching file third_party/flash_linear_attention/ops/fused_sigmoid_gating.py
+#12 5.101 == patches/xgrammar-spec-terminated.patch
+#12 5.102 patching file v1/structured_output/backend_xgrammar.py
+#12 7.846 patching file config/cache.py
+#12 7.847 patching file model_executor/layers/attention/attention.py
+#12 7.847 patching file platforms/cuda.py
+#12 7.848 patching file platforms/interface.py
+#12 7.848 patching file utils/torch_utils.py
+#12 7.848 patching file v1/attention/backends/registry.py
+#12 7.849 patching file v1/kv_cache_interface.py
+#12 7.850 patching file model_executor/models/qwen3_dflash.py
+#12 7.850 patching file model_executor/layers/attention/attention.py
+#12 7.850 patching file v1/core/kv_cache_utils.py
+#12 7.851 patching file v1/core/kv_cache_coordinator.py
+#12 7.851 patching file v1/core/single_type_kv_cache_manager.py
+#12 7.851 Hunk #1 succeeded at 926 (offset 11 lines).
+#12 7.851 Hunk #2 succeeded at 1110 (offset 11 lines).
+#12 7.852 patching file v1/worker/gpu/model_states/mamba_hybrid.py
+#12 7.852 patching file v1/worker/gpu/spec_decode/dflash2/speculator.py
+#12 7.852 Hunk #1 succeeded at 110 (offset 4 lines).
+#12 7.852 Hunk #2 succeeded at 170 (offset 4 lines).
+#12 7.852 Hunk #3 succeeded at 735 (offset 304 lines).
+#12 7.852 patching file v1/worker/gpu/model_runner.py
+#12 8.718 WARNING 09-03 08:47:07 [interface.py:1029] Using 'pin_memory=False' as WSL is detected. This may slow down performance.
+#12 13.05 INFO 09-03 08:47:11 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+#12 13.05 INFO 09-03 08:47:11 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+#12 13.13 W0903 08:47:11.799000 115 torch/utils/cpp_extension.py:178] No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+#12 13.15 KVarN backend: KVARN
+#12 13.15 tile bytes 26880 -> per token per head 210 B (fp8: 256 B)
+#12 13.16 kvarn-v2 runner port complete (15 markers across 8 files)
+#12 14.17 kvarn installed
+#12 14.17 == environment
+#12 14.17   PASS  python: /app/venv/bin/python
+#12 16.86   PASS  vllm 0.27.1
+#12 19.51   PASS  vllm package at /app/venv/lib/python3.12/site-packages/vllm
+#12 19.61   PASS  python module triton
+#12 23.43   PASS  python module compressed_tensors
+#12 24.14 WARNING 09-03 08:47:22 [interface.py:1029] Using 'pin_memory=False' as WSL is detected. This may slow down performance.
+#12 26.07   PASS  flashinfer usable by vLLM (nvcc or flashinfer-cubin present)
+#12 26.07 == vLLM patches (patches/*.patch)
+#12 26.08   PASS  dflash2-backport.patch applied (content check; hunks overlap another patch)
+#12 26.09   PASS  dflash2-lookup-drafting.patch applied (content check; hunks overlap another patch)
+#12 26.09   PASS  dflash2-ngram-chains.patch applied
+#12 26.09   PASS  dflash2-prewarm.patch applied
+#12 26.09   PASS  hybrid-kv-groups-v2-cudagraph.patch applied
+#12 26.10   PASS  hybrid-sw-block-promote.patch applied
+#12 26.10   PASS  int4-kv-per-token-head.patch applied
+#12 26.10   PASS  mamba-align-checkpoint-order.patch applied
+#12 26.10   PASS  marlin-int8-layer-select.patch applied
+#12 26.10   PASS  marlin-int8-negative-scales.patch applied
+#12 26.10   PASS  marlin-repack-staged-sm80.patch applied
+#12 26.10   PASS  marlin-tune-table.patch applied
+#12 26.11   PASS  offload-dflash-eagle-groups.patch applied
+#12 26.11   PASS  offload-wsl2-devptr.patch applied
+#12 26.11   PASS  qwen3_5-embed-quant.patch applied
+#12 26.11   PASS  qwen3_5-mtp-draft-vocab.patch applied
+#12 26.11   PASS  sampler-small-topk-fast-softmax.patch applied
+#12 26.12   PASS  spec-decode-attn.patch applied (content check; hunks overlap another patch)
+#12 26.13   PASS  spec-decode-int4-kv-mq3d.patch applied (content check; hunks overlap another patch)
+#12 26.13   PASS  spec-decode-int8-kv.patch applied
+#12 26.16   PASS  spec-decode-scratch-token-units.patch applied (superseded by spec-decode-scratch-within-budget.patch, which is applied)
+#12 26.16   PASS  spec-decode-scratch-within-budget.patch applied
+#12 26.16   PASS  spec-sampler-prewarm.patch applied
+#12 26.17   PASS  speed-knobs-envs.patch applied (content check; hunks overlap another patch)
+#12 26.17   PASS  triton-prefill-attn-int8.patch applied
+#12 26.17   PASS  vision-tower-cpu-offload.patch applied
+#12 26.18   PASS  vllm-pr50021-gdn-spec-bounds.patch applied
+#12 26.18   PASS  xgrammar-spec-terminated.patch applied
+#12 26.18   PASS  int8 layer-select env vars registered in envs.py
+#12 26.18 == KVarN (optional, kvarn/)
+#12 26.92 WARNING 09-03 08:47:25 [interface.py:1029] Using 'pin_memory=False' as WSL is detected. This may slow down performance.
+#12 29.98 INFO 09-03 08:47:28 [importing.py:53] Triton is installed but 0 active driver(s) found (expected 1). Disabling Triton to prevent runtime errors.
+#12 29.98 INFO 09-03 08:47:28 [importing.py:88] Triton not installed or not compatible; certain GPU-related functions will not be available.
+#12 31.04   PASS  KVarN backend importable, patch applied (KV=kvarn / CTX=huge available)
+#12 31.05   PASS  kvarn-v2-runner.patch applied (SPEC=dflash2 + CTX=huge available)
+#12 31.05 
+#12 31.05 verify: OK (0 failures)
+#12 DONE 31.1s
+
+#13 [9/9] RUN mkdir -p /cache /app/models && chmod 1777 /cache
+#13 DONE 0.2s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.2s done
+#14 exporting manifest sha256:31ef12308fa99e32c14bb6b2bea46e9b595f70a8e641dd054d7cdfc517efbdf7 done
+#14 exporting config sha256:2c6f35357f1cf8b0ce38d6864050ef6ce8046e14257a9deb9f3b01456dd5d4d4 done
+#14 exporting attestation manifest sha256:1a9aeedb7a6375eab63c6461a31308fc43456d2aca992f178b54b7939c481242 done
+#14 exporting manifest list sha256:8a10c52dfe4c919c8e766b33d8e581e28ccee3762256911f2f8e492d7606ecf8 done
+#14 naming to docker.io/library/qwen38-27b-rtx3090:main-8d832f8 done
+#14 unpacking to docker.io/library/qwen38-27b-rtx3090:main-8d832f8 0.1s done
+#14 DONE 0.4s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/ne53rp3hsy094cvxdn87tw63c

@@ -1,0 +1,6 @@
+LADDER l_v27_kvarn_df7 serving (start_qwen.sh huge dflash2  patch=) sweep start 18:07:35Z
+LADDER l_v27_kvarn_df7 labd ctx=4000:   File "/usr/lib/python3.12/urllib/request.py", line 1347, in do_open     raise URLError(err) urllib.error.URLError: <urlopen error [Errno 111] Connection refused> 
+LADDER l_v27_kvarn_df7 labd ctx=16000:   File "/usr/lib/python3.12/urllib/request.py", line 1347, in do_open     raise URLError(err) urllib.error.URLError: <urlopen error [Errno 111] Connection refused> 
+LADDER l_v27_kvarn_df7 labd ctx=32000:   File "/usr/lib/python3.12/urllib/request.py", line 1347, in do_open     raise URLError(err) urllib.error.URLError: <urlopen error [Errno 111] Connection refused> 
+LADDER l_v27_kvarn_df7 debug lines: 0 patch lines: 0
+LADDER l_v27_kvarn_df7 torn down 18:07:38Z

@@ -1,0 +1,7 @@
+LABD --ctx copy     prompt= 19168 out= 512 steps=   69 tok/step= 7.51 decode= 139.7 e2e=  13.4 ttft=34.41s
+LABD --ctx code     prompt= 19165 out= 512 steps=   90 tok/step= 5.71 decode= 107.9 e2e=  50.5 ttft= 5.41s
+LABD --ctx edit     prompt= 19168 out= 228 steps=   82 tok/step= 2.78 decode=  53.9 e2e=  23.7 ttft= 5.42s
+LABD --ctx quote    prompt= 19167 out= 512 steps=  199 tok/step= 2.58 decode=  49.9 e2e=  32.7 ttft= 5.42s
+LABD --ctx summary  prompt= 19161 out= 512 steps=  233 tok/step= 2.19 decode=  42.8 e2e=  29.5 ttft= 5.41s
+LABD --ctx qa       prompt= 19162 out= 512 steps=  257 tok/step= 1.99 decode=  38.8 e2e=  27.6 ttft= 5.39s
+LABD --ctx TOTAL out=2788 steps=930 tok/step=3.01 decode=58.2 tok/s

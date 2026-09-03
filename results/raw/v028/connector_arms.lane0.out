@@ -1,0 +1,10 @@
+ARM c_int4 serving: GPU KV cache size: 36,739 tokens | connector: 3
+=== V6.1 mission/controller v028-int4-connector (think=off) · 12/18 · wall 455.3s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+ARM c_int4 CPU->GPU load batches: 0.0 -> 73.0 | engine alive: 1 | fatal: 0
+swept vllm_offload_89df8610-5717-46c9-bcb4-d4a8702b54d5.mmap
+ARM c_int4 torn down 07:03:49Z
+ARM c_bf16 serving: GPU KV cache size: 20,264 tokens | connector: 3
+=== V6.1 mission/controller v028-bf16-connector (think=off) · 15/18 · wall 149.1s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+ARM c_bf16 CPU->GPU load batches: 0.0 -> 21.0 | engine alive: 1 | fatal: 0
+swept vllm_offload_c98f46fe-39fa-4b4f-9db3-044be90e952c.mmap
+ARM c_bf16 torn down 07:10:05Z

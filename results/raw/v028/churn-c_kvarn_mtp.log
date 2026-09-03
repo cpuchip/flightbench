@@ -1,0 +1,4 @@
+[churn] #1 prompt_tokens=21000 9.8s
+[churn] #6 prompt_tokens=21000 9.6s
+[churn] #11 prompt_tokens=21000 9.6s
+[churn] stopped after 15 requests

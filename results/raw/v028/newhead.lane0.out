@@ -1,0 +1,25 @@
+LADDER n_kvarn_df7 serving (start_qwen.sh huge dflash2  patch=) marker=1 blocks=
+LADDER n_kvarn_df7 === V6.1 mission/controller v028new-kvarn-df7 (think=off) · 6/18 · wall 766.9s · NO-GO — T2-fresh-tracking, T3-stale-pad-refused, T4-confirms-gate, T5-determination-logged, L3-no-burn-uncleared, L6-burn-after-clearance, P1-go-for-pdi, P
+LADDER v028new-kvarn-df7: tool calls total 25, capped turns 0/12, length-cut turns 8/12, turn2 head ''
+LADDER n_kvarn_df7 debug lines: 0 patch lines: 0
+LADDER n_kvarn_df7 torn down 11:05:22Z
+LADDER n_kvarn_df7_swpad serving (start_qwen.sh huge dflash2  patch=yes) marker=0 blocks=
+LADDER n_kvarn_df7_swpad === V6.1 mission/controller v028new-kvarn-df7-swpad (think=off) · 15/18 · wall 216.7s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance ===
+LADDER v028new-kvarn-df7-swpad: tool calls total 79, capped turns 1/12, length-cut turns 0/12, turn2 head 'Held. The pre-launch PAD is void — it was computed before th'
+LADDER n_kvarn_df7_swpad debug lines: 0 patch lines: 1
+LADDER n_kvarn_df7_swpad torn down 11:13:39Z
+LADDER n_kvarn_mtp serving (start_qwen.sh huge mtp  patch=) marker=0 blocks=
+LADDER n_kvarn_mtp === V6.1 mission/controller v028new-kvarn-mtp (think=off) · 10/18 · wall 71.6s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked, P5-through-the-fuel, P6
+LADDER v028new-kvarn-mtp: tool calls total 84, capped turns 1/12, length-cut turns 2/12, turn2 head 'NO-GO on that PAD. It was computed before the S-II center en'
+LADDER n_kvarn_mtp debug lines: 0 patch lines: 0
+LADDER n_kvarn_mtp torn down 11:19:20Z
+LADDER f_kvarn_df7_built serving (start_qwen.sh huge dflash2  patch=) marker=0 blocks=
+LADDER f_kvarn_df7_built === V6.1 mission/controller v028fix-kvarn-df7-built (think=off) · 14/18 · wall 253.1s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P2-alarm-rule-looked-up ===
+LADDER v028fix-kvarn-df7-built: tool calls total 72, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. The pre-launch PAD is void: it was computed before the S'
+LADDER f_kvarn_df7_built debug lines: 0 patch lines: 0
+LADDER f_kvarn_df7_built torn down 11:28:03Z
+LADDER f_kvarn_df7_built_noprefix serving (start_qwen.sh huge dflash2 -e PREFIX_CACHE=0 patch=) marker=0 blocks=
+LADDER f_kvarn_df7_built_noprefix === V6.1 mission/controller v028fix-kvarn-df7-built-noprefix (think=off) · 14/18 · wall 464.7s · NO-GO — L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+LADDER v028fix-kvarn-df7-built-noprefix: tool calls total 89, capped turns 3/12, length-cut turns 0/12, turn2 head 'No. The pre-launch PAD is void — it was computed before the '
+LADDER f_kvarn_df7_built_noprefix debug lines: 0 patch lines: 0
+LADDER f_kvarn_df7_built_noprefix torn down 11:40:17Z

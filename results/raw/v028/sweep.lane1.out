@@ -1,0 +1,4 @@
+LADDER s_kvarn_df7_swpad serving (start_qwen.sh huge dflash2  patch=yes) sweep start 11:45:18Z
+LADDER s_kvarn_df7_swpad sweep: 0 broken lines; [sweep-v028-kvarn-df7-swpad] neighbourhood coverage (median of 128): 1.00 [sweep-v028-kvarn-df7-swpad] DONE: 0 broken of 128 residues 
+LADDER s_kvarn_df7_swpad debug lines: 0 patch lines: 1
+LADDER s_kvarn_df7_swpad torn down 12:57:17Z

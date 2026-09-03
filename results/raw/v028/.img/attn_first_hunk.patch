@@ -1,0 +1,29 @@
+--- a/model_executor/layers/attention/attention.py
++++ b/model_executor/layers/attention/attention.py
+@@ -110,8 +110,25 @@
+ 
+     sizes = attn_backend.get_supported_kernel_block_sizes()
+     candidates = [s for s in sizes if isinstance(s, int)]
++    mults = [s.base for s in sizes if isinstance(s, MultipleOf)]
++    if mults and page_budget and per_token_bytes > 0:
++        base = min(mults)
++        budget_tokens = page_budget // per_token_bytes
++        scaled = budget_tokens // base * base
++        if fallback and fallback > 0:
++            for step in (128, base):
++                found = 0
++                for d in range(budget_tokens, step - 1, -1):
++                    if fallback % d == 0 and d % step == 0:
++                        found = d
++                        break
++                if found:
++                    scaled = found
++                    break
++        if scaled >= base:
++            candidates.append(scaled)
+     if not candidates:
+-        candidates = [s.base for s in sizes if isinstance(s, MultipleOf)]
++        candidates = mults
+     if not candidates:
+         return fallback
+     smallest = min(candidates)

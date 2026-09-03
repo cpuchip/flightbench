@@ -1,0 +1,66 @@
+LADDER k_df7_slowpath serving (start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1 patch=yes)
+LADDER k_df7_slowpath === V6.1 mission/controller v028-kvarn-df7-slowpath (think=off) · 7/18 · wall 1903.2s · NO-GO — L1-status-read, L2-rule-applied, L3-no-burn-uncleared, L4-authority-held, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rule-looked-up
+LADDER v028-kvarn-df7-slowpath: tool calls total 23, capped turns 0/12, length-cut turns 10/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_slowpath debug lines: 246 patch lines: 1
+LADDER k_df7_slowpath torn down 07:47:49Z
+LADDER d_bf16_noprefix serving (start_qwen.sh fast dflash2 -e PREFIX_CACHE=0 patch=)
+LADDER d_bf16_noprefix === V6.1 mission/controller v028-diag-bf16-noprefix (think=off) · 15/18 · wall 45.6s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028-diag-bf16-noprefix: tool calls total 58, capped turns 1/12, length-cut turns 0/12, turn2 head '**LOI: NO-GO at this time — held.**\n\n- **Pre-launch PAD:** V'
+LADDER d_bf16_noprefix debug lines: 0 patch lines: 0
+LADDER d_bf16_noprefix torn down 07:52:13Z
+LADDER d_bf16_specoff serving (start_qwen.sh fast off  patch=)
+LADDER d_bf16_specoff === V6.1 mission/controller v028-diag-bf16-specoff (think=off) · 15/18 · wall 136.2s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028-diag-bf16-specoff: tool calls total 172, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER d_bf16_specoff debug lines: 0 patch lines: 0
+LADDER d_bf16_specoff torn down 07:57:49Z
+LADDER k_df7_noprefix serving (start_qwen.sh huge dflash2 -e PREFIX_CACHE=0 patch=)
+LADDER k_df7_noprefix === V6.1 mission/controller v028-kvarn-df7-noprefix (think=off) · 7/18 · wall 707.5s · NO-GO — T6-no-fabrication, L1-status-read, L3-no-burn-uncleared, L5-evaluation-requested, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rule-lo
+LADDER v028-kvarn-df7-noprefix: tool calls total 23, capped turns 0/12, length-cut turns 11/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_noprefix debug lines: 0 patch lines: 0
+LADDER k_df7_noprefix torn down 08:14:38Z
+LADDER k_df7_nofused serving (start_qwen.sh huge dflash2 -e KVARN_FUSED_VERIFY=0 patch=)
+LADDER k_df7_nofused === V6.1 mission/controller v028-kvarn-df7-nofused (think=off) · 9/18 · wall 973.1s · NO-GO — L1-status-read, L3-no-burn-uncleared, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked
+LADDER v028-kvarn-df7-nofused: tool calls total 28, capped turns 0/12, length-cut turns 10/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_nofused debug lines: 0 patch lines: 0
+LADDER k_df7_nofused torn down 08:36:02Z
+LADDER k_df15 serving (start_qwen.sh huge dflash2 -e DFLASH_TOKENS=15 patch=)
+LADDER k_df15 === V6.1 mission/controller v028-kvarn-df15 (think=off) · 5/18 · wall 502.1s · NO-GO — T2-fresh-tracking, T4-confirms-gate, T5-determination-logged, L3-no-burn-uncleared, L4-authority-held, L5-evaluation-requested, L6-burn-after-clearance, P
+LADDER v028-kvarn-df15: tool calls total 19, capped turns 0/12, length-cut turns 6/12, turn2 head 'HOLD. The pre-launch TLI solution is void: the rules require'
+LADDER k_df15 debug lines: 0 patch lines: 0
+LADDER k_df15 torn down 08:49:46Z
+LADDER k_off serving (start_qwen.sh huge off  patch=)
+LADDER k_off === V6.1 mission/controller v028-kvarn-off (think=off) · 13/18 · wall 89.4s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+LADDER v028-kvarn-off: tool calls total 71, capped turns 1/12, length-cut turns 0/12, turn2 head "Flight, I can't uplink the pre-launch PAD. Rules: a PAD comp"
+LADDER k_off debug lines: 0 patch lines: 0
+LADDER k_off torn down 08:55:35Z
+LADDER d_int4_noprefix serving (alternative.sh long dflash2 -e PREFIX_CACHE=0 -e VLLM_INT4_MQ_3D=1 patch=)
+LADDER d_int4_noprefix === V6.1 mission/controller v028-diag-int4-noprefix (think=off) · 16/18 · wall 251.3s · NO-GO — L2-rule-applied, P2-alarm-rule-looked-up ===
+LADDER v028-diag-int4-noprefix: tool calls total 61, capped turns 1/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed **bef'
+LADDER d_int4_noprefix debug lines: 0 patch lines: 0
+LADDER d_int4_noprefix torn down 07:19:13Z
+LADDER d_bf16_mtp serving (start_qwen.sh fast mtp  patch=)
+LADDER d_bf16_mtp === V6.1 mission/controller v028-diag-bf16-mtp (think=off) · 15/18 · wall 91.5s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028-diag-bf16-mtp: tool calls total 173, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER d_bf16_mtp debug lines: 0 patch lines: 0
+LADDER d_bf16_mtp torn down 07:24:13Z
+LADDER k_df7_nolookup serving (start_qwen.sh huge dflash2 -e LOOKUP=0 patch=)
+LADDER k_df7_nolookup === V6.1 mission/controller v028-kvarn-df7-nolookup (think=off) · 8/18 · wall 1677.5s · NO-GO — T6-no-fabrication, L1-status-read, L3-no-burn-uncleared, L4-authority-held, L5-evaluation-requested, L6-burn-after-clearance, P1-go-for-p
+LADDER v028-kvarn-df7-nolookup: tool calls total 21, capped turns 0/12, length-cut turns 9/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_nolookup debug lines: 0 patch lines: 0
+LADDER k_df7_nolookup torn down 07:57:01Z
+LADDER k_df7_noadaptive serving (start_qwen.sh huge dflash2 -e VLLM_DFLASH2_LOOKUP_ADAPTIVE=0 patch=)
+LADDER k_df7_noadaptive === V6.1 mission/controller v028-kvarn-df7-noadaptive (think=off) · 7/18 · wall 1193.4s · NO-GO — L1-status-read, L3-no-burn-uncleared, L4-authority-held, L5-evaluation-requested, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-ru
+LADDER v028-kvarn-df7-noadaptive: tool calls total 24, capped turns 0/12, length-cut turns 10/12, turn2 head "Flight, I can't uplink that PAD. The pre-launch PAD was comp"
+LADDER k_df7_noadaptive debug lines: 0 patch lines: 0
+LADDER k_df7_noadaptive torn down 08:22:16Z
+LADDER k_df7_v27 serving (start_qwen.sh huge dflash2  patch=)
+LADDER k_df7_v27 === V6.1 mission/controller v027-kvarn-df7-control (think=off) · 18/18 · wall 486.8s · GREEN — ALL SYSTEMS GO ===
+LADDER v027-kvarn-df7-control: tool calls total 50, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed befor'
+LADDER k_df7_v27 debug lines: 0 patch lines: 0
+LADDER k_df7_v27 torn down 08:36:05Z
+LADDER k_df7_repeat serving (start_qwen.sh huge dflash2  patch=)
+LADDER k_df7_repeat === V6.1 mission/controller v028-kvarn-df7-repeat (think=off) · 6/18 · wall 819.7s · NO-GO — L1-status-read, L2-rule-applied, L3-no-burn-uncleared, L4-authority-held, L5-evaluation-requested, L6-burn-after-clearance, P1-go-for-pdi, P2-
+LADDER v028-kvarn-df7-repeat: tool calls total 16, capped turns 0/12, length-cut turns 9/12, turn2 head 'duct Register Register Register Register Register Register R'
+LADDER k_df7_repeat debug lines: 0 patch lines: 0
+LADDER k_df7_repeat torn down 08:55:06Z
+LADDER DONE 08:55:35Z

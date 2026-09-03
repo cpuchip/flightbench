@@ -1,0 +1,4 @@
+LADDER s_kvarn_df7 serving (start_qwen.sh huge dflash2  patch=) sweep start 11:45:08Z
+LADDER s_kvarn_df7 sweep: 46 broken lines; 
+LADDER s_kvarn_df7 debug lines: 0 patch lines: 0
+LADDER s_kvarn_df7 torn down 13:49:38Z
