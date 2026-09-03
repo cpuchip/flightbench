@@ -29,3 +29,64 @@ urllib.error.URLError: <urlopen error [WinError 10061] No connection could be ma
 (APIServer pid=1)     raise RuntimeError(
 (APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
 ########## 23:21:09Z ARM off_int4_3d_b ##########
+[off_int4_3d_b] SERVING at ~210s: GPU KV cache size: 35,313 tokens | connector: 3 | kv dtype: kv_cache_dtype=int4_per_token_head
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_int4_3d_b] CPU->GPU load batches during run 1: 0.0 -> 
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_int4_3d_b] CPU->GPU load batches during run 2:  -> 
+[churn] stopped after 18 requests
+[off_int4_3d_b] torn down 23:29:18Z
+########## 23:29:18Z ARM off_int4_2d ##########
+[off_int4_2d] SERVING at ~210s: GPU KV cache size: 35,313 tokens | connector: 3 | kv dtype: kv_cache_dtype=int4_per_token_head
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_int4_2d] CPU->GPU load batches during run 1: 0.0 -> 
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_int4_2d] CPU->GPU load batches during run 2:  -> 
+[churn] stopped after 14 requests
+[off_int4_2d] torn down 23:36:55Z
+########## 23:36:55Z ARM off_int8 ##########
+########## 23:37:00Z ARM off_int8 ##########
+[off_int8] SERVING at ~210s: GPU KV cache size: 31,200 tokens | connector: 3 | kv dtype: kv_cache_dtype=int8_per_token_head
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_int8] CPU->GPU load batches during run 1: 0.0 -> 
+[churn] stopped after 24 requests
+[off_int8] torn down 23:44:29Z
+########## 23:44:29Z ARM off_new_3d ##########
+[off_new_3d] SERVING at ~210s: GPU KV cache size: 35,313 tokens | connector: 3 | kv dtype: kv_cache_dtype=int4_per_token_head
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_new_3d] CPU->GPU load batches during run 1: 0.0 -> 
+[churn] stopped after 17 requests
+[off_new_3d] torn down 23:52:13Z
+########## 23:52:13Z ARM off_bf16 ##########
+!!! off_bf16 exited during boot
+(EngineCore pid=197) Traceback (most recent call last):
+(EngineCore pid=197)     raise ValueError(
+(EngineCore pid=197) ValueError: To serve at least one request with the model's max seq len (18000), (2.06 GiB KV cache is needed, which is larger than the available KV cache memory (2.05 GiB). Based 
+(APIServer pid=1) Traceback (most recent call last):
+(APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+OFFLOAD ARMS DONE 23:55:29Z

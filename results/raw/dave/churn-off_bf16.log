@@ -1,0 +1,4 @@
+[churn] #1 prompt_tokens=10000 3.8s
+[churn] #6 prompt_tokens=10000 4.1s
+[churn] error URLError(ConnectionRefusedError(10061, 'No connection could be made because the target machine activ
+[churn] stopped after 6 requests

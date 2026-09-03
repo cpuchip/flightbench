@@ -1,0 +1,13 @@
+########## 00:56:43Z ARM off_bf16 ##########
+[off_bf16] SERVING at ~240s: GPU KV cache size: 20,264 tokens | connector: 3 | kv dtype: kv_cache_dtype=bfloat16
+Traceback (most recent call last):
+ConnectionRefusedError: [WinError 10061] No connection could be made because the target machine actively refused it
+Traceback (most recent call last):
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>
+[off_bf16] CPU->GPU load batches during run 1: 0.0 -> 
+[churn] stopped after 6 requests
+[off_bf16] torn down 01:01:33Z
+swept vllm_offload_f9d8f618-d0ee-4436-8981-c1e05817a75c.mmap
+none             23G   21G  2.9G  88% /dev/shm
+BF16 ARM DONE 01:01:34Z

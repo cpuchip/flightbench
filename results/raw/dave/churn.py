@@ -5,6 +5,7 @@ conversation's oldest blocks out to the offload connector and the next turn must
 import os, random, sys, time, json, urllib.request
 sys.stdout.reconfigure(encoding="utf-8")
 words, gap, stop = int(sys.argv[1]), float(sys.argv[2]), sys.argv[3]
+offset = int(sys.argv[4]) if len(sys.argv) > 4 else 0   # seed offset, so parallel churners send distinct prompts
 base, key = os.environ["BASE"], os.environ["KEY"]
 # common English words tokenize at ~1 token each on this model (measured: 21,000 words -> 21,000 prompt
 # tokens); random letter strings cost ~3.4 tokens a word and overran max_model_len (HTTP 400).
@@ -14,7 +15,7 @@ vocab = ("the of and to in is that for it as with on be by this from at or an ar
          "these give day most us time year people just know take good back think come".split())
 n = 0
 while not os.path.exists(stop):
-    random.seed(n)
+    random.seed(n + offset)
     prompt = " ".join(random.choice(vocab) for _ in range(words))
     body = json.dumps({"model": "qwen3.8-27b", "prompt": prompt, "max_tokens": 1, "temperature": 0}).encode()
     req = urllib.request.Request(base + "/completions", data=body, headers={"Authorization": "Bearer " + key, "Content-Type": "application/json"})

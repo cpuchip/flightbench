@@ -140,8 +140,10 @@ Reading:
   model is a Mamba and attention hybrid, its two KV groups do not hit to the same depth, and the
   branch beside that assert accepts such a hit silently when the connector reports external tokens.
   That is the current candidate for the collapse. It needs prefix caching, the connector's reloads
-  and a diverged hit at once, which is why a fresh instance rarely shows it. Whether the KV tier is
-  in the chain at all is one arm away (bf16 under the connector, running). The same family is
+  and a diverged hit at once, which is why a fresh instance rarely shows it. The KV tier is not in
+  the chain: under the connector with reloads, the engine died the same way on int4 (3D on and off), int8,
+  bf16 with stock FlashAttention, and the current image, and once more on a second machine without a
+  container. The same family is
   already on vLLM's tracker as issue #53505 (this model, this drafter, a KV connector, Mamba align
   mode); vLLM 0.28.0 removes the assert by construction and the silent corruption is still open there. The judgment column is
   unaffected by this note. Raw rows and server logs: `results/raw/dave/mission-matrix.jsonl`,
