@@ -3,8 +3,9 @@
 # The rebased #43 (910bbf2, 'long verify split') drops the 'NQ * Hk <= sm_count' condition from KVarN's verify auto-split; the
 # installed kernel already warns the one-stage kernel 'can return finite but incorrect logits' at long context on sm86. Cells:
 # 08:40Z re-point: 0.27.1 control 18/18, fused-verify-off still collapses, NQ*Hk=32 already splits => the split-K line is a formality.
-# Lane 0: draft-width dose-response (k=1, 3), the shared-dequant verify kernel (Sol r5 cut 2), round-four r4.
-# Lane 1: the maintainer's residue sweep unpatched, the split-K line once, round-four r3r4.
+# 09:15Z re-point: the other seat's static bisect found the regenerated runner patch DROPPED the attention.py hunk that pads the
+# drafter's sliding-window pages to the mamba page under KVarN dtypes (0.27.1 kvarn-v2-runner.patch @643). .swpad.patch restores it.
+# Lane 0: swpad, then k=1, k=3, shared-dequant verify, round-four r4. Lane 1: swpad replicate, residue sweep, split-K line, r3r4.
 until grep -q "LADDER DONE" results/raw/v028/ladder.out 2>/dev/null; do sleep 30; done
 IMG=qwen38-27b-rtx3090:pr43-0.28
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
@@ -38,7 +39,8 @@ mcell () {  # lane name label launcher ctx spec [extra -e ...]: one mission run,
     --entrypoint bash "$IMG" -c "$CMD" >/dev/null || { echo "LADDER $NAME: docker run failed"; return; }
   ok=0; for i in $(seq 1 90); do docker ps --format '{{.Names}}' | grep -q "^$NAME$" || { echo "LADDER $NAME: exited during boot: $(docker logs "$NAME" 2>&1 | grep -E 'PATCH-FAILED|Hunk|Error' | tail -2 | cut -c1-120)"; break; }; [ "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TK" http://127.0.0.1:$PORT/health)" = 200 ] && docker logs "$NAME" 2>&1 | grep -q 'GPU KV cache size' && { ok=1; break; }; sleep 10; done
   if [ $ok = 1 ]; then
-    echo "LADDER $NAME serving ($LAUNCH $CTX $SPEC $* patch=${PATCHFILE:+yes})"
+    echo "LADDER $NAME serving ($LAUNCH $CTX $SPEC $* patch=${PATCHFILE:+yes}) marker=$(docker logs "$NAME" 2>&1 | grep -c 'Disabling fine-grained') blocks=$(docker logs "$NAME" 2>&1 | grep -oE 'block_size[= ]+[0-9]+' | sort | uniq -c | tr -s ' ' | tr '
+' ';')"
     MODEL=qwen3.8-27b THINK=off MAXTOK=900 SEAT=controller OUT="$OUTD/mission-v028-diag.jsonl" LABEL="$LABEL" timeout 2400 python benches/mission.py 2>&1 | grep -E "=== V6|Traceback|Error" | sed "s/^/LADDER $NAME /" | cut -c1-260
     python - "$LABEL" <<'PY'
 import json, glob, os, sys; sys.stdout.reconfigure(encoding="utf-8")
@@ -76,13 +78,16 @@ CORPUSF="$(cygpath -w "$PWD/results/raw/v028/labd_corpus.txt")"
 LV="$(cygpath -w "$PWD/results/raw/v028/.longverify.patch")"
 R4='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-pr43\patches\kvarn-continuation-flushed-blocks.draft.patch'
 R34='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\flightbench\results\raw\v028\.r3r4.patch'
+SWPAD="$(cygpath -w "$PWD/results/raw/v028/.swpad.patch")"
 lane0 () {
+  PATCHFILE=$SWPAD mcell 0 k_df7_swpad v028-kvarn-df7-swpad start_qwen.sh huge dflash2
   mcell 0 k_df1 v028-kvarn-df1 start_qwen.sh huge dflash2 -e DFLASH_TOKENS=1
   mcell 0 k_df3 v028-kvarn-df3 start_qwen.sh huge dflash2 -e DFLASH_TOKENS=3
   mcell 0 k_df7_sharedverify v028-kvarn-df7-sharedverify start_qwen.sh huge dflash2 -e KVARN_SHARED_VERIFY=1
   PATCHFILE=$R4 mcell 0 k_df7_r4 v028-kvarn-df7-r4 start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1
 }
 lane1 () {
+  PATCHFILE=$SWPAD mcell 1 k_df7_swpad_b v028-kvarn-df7-swpad-b start_qwen.sh huge dflash2
   scell 1 k_df7_sweep sweep-v028-kvarn-df7 start_qwen.sh huge dflash2
   PATCHFILE=$LV mcell 1 k_df7_longverify v028-kvarn-df7-longverify start_qwen.sh huge dflash2
   PATCHFILE=$R34 mcell 1 k_df7_r3r4 v028-kvarn-df7-r3r4 start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1
