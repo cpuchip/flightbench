@@ -1,0 +1,7 @@
+[churn] #1 prompt_tokens=12000 5.4s
+[churn] #6 prompt_tokens=12000 5.0s
+[churn] #11 prompt_tokens=12000 5.7s
+[churn] #16 prompt_tokens=12000 6.1s
+[churn] #21 prompt_tokens=12000 6.2s
+[churn] error URLError(ConnectionRefusedError(10061, 'No connection could be made because the target machine activ
+[churn] stopped after 24 requests

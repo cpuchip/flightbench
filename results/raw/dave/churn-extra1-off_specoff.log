@@ -1,0 +1,16 @@
+[churn] #1 prompt_tokens=21000 23.5s
+[churn] #6 prompt_tokens=21000 30.4s
+[churn] #11 prompt_tokens=21000 33.4s
+[churn] #16 prompt_tokens=21000 30.6s
+[churn] #21 prompt_tokens=21000 30.5s
+[churn] #26 prompt_tokens=21000 30.5s
+[churn] #31 prompt_tokens=21000 33.9s
+[churn] #36 prompt_tokens=21000 30.5s
+[churn] #41 prompt_tokens=21000 30.6s
+[churn] #46 prompt_tokens=21000 34.4s
+[churn] #51 prompt_tokens=21000 30.6s
+[churn] #56 prompt_tokens=21000 34.8s
+[churn] #61 prompt_tokens=21000 34.8s
+[churn] #66 prompt_tokens=21000 35.0s
+[churn] #71 prompt_tokens=21000 30.6s
+[churn] stopped after 73 requests

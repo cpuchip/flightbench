@@ -1,0 +1,8 @@
+########## 23:55:40Z ARM off_specoff ##########
+[off_specoff] SERVING at ~180s: GPU KV cache size: 71,387 tokens | connector: 3 | kv dtype: kv_cache_dtype=int4_per_token_head
+[off_specoff] CPU->GPU load batches during run 1: 0.0 -> 0.0
+=== V6.1 mission/controller int4-specoff-offload (think=off) · 14/18 · wall 1078.3s · NO-GO — L1-status-read, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+[off_specoff] CPU->GPU load batches during run 2: 0.0 -> 0.0
+[churn] stopped after 140 requests
+[off_specoff] torn down 00:56:40Z
+SPECOFF ARM DONE 00:56:40Z

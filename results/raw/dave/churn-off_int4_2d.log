@@ -1,0 +1,7 @@
+[churn] #1 prompt_tokens=21000 10.3s
+[churn] #6 prompt_tokens=21000 10.8s
+[churn] #11 prompt_tokens=21000 12.8s
+[churn] error <HTTPError 500: 'Internal Server Error'>
+[churn] error URLError(ConnectionRefusedError(10061, 'No connection could be made because the target machine activ
+[churn] error URLError(ConnectionRefusedError(10061, 'No connection could be made because the target machine activ
+[churn] stopped after 14 requests
