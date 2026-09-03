@@ -145,7 +145,9 @@ Reading:
   bf16 with stock FlashAttention, and the current image, and once more on a second machine without a
   container. The same family is
   already on vLLM's tracker as issue #53505 (this model, this drafter, a KV connector, Mamba align
-  mode); vLLM 0.28.0 removes the assert by construction and the silent corruption is still open there. The judgment column is
+  mode); vLLM 0.28.0 removes the assert by construction, and measured here on the fork's 0.28.0 branch under
+  the same connector and side-load: two runs, 13/18 and 13/18, 212 reload batches, no assert, no
+  repetition; the silent corruption reported upstream on longer multi-session soaks is still open there. The judgment column is
   unaffected by this note. Raw rows and server logs: `results/raw/dave/mission-matrix.jsonl`,
   `results/raw/dave/server-off_*.log`; the fork-side write-up is `docs/mq3d-collapse.md` on branch
   `mq3d-collapse` of the qwen38-27b-rtx3090 fork.
