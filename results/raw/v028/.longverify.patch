@@ -1,0 +1,11 @@
+--- a/v1/attention/ops/triton_kvarn_decode.py
++++ b/v1/attention/ops/triton_kvarn_decode.py
+@@ -992,7 +992,7 @@
+         device).multi_processor_count
+     _sw = int(getattr(impl, "sliding_window", 0) or 0)
+     _sk_env = os.environ.get("KVARN_SPLIT_K")
+-    auto_split = (_sw <= 0) and (max_ctx_blocks >= 16) and (NQ * Hk <= sm_count)
++    auto_split = (_sw <= 0) and (max_ctx_blocks >= 16)
+     split_k = _sk_env == "1" or auto_split
+ 
+     if not split_k:
