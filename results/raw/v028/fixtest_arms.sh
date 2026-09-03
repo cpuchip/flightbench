@@ -2,7 +2,9 @@
 # Fix test for KVarN + DFlash2 on the 0.28 port. The collapse survives PREFIX_CACHE=0, so it is not the continuation path.
 # The rebased #43 (910bbf2, 'long verify split') drops the 'NQ * Hk <= sm_count' condition from KVarN's verify auto-split; the
 # installed kernel already warns the one-stage kernel 'can return finite but incorrect logits' at long context on sm86. Cells:
-# the mission with that one-line change (lane 0); the maintainer's residue sweep unpatched, then patched (lane 1); then round four.
+# 08:40Z re-point: 0.27.1 control 18/18, fused-verify-off still collapses, NQ*Hk=32 already splits => the split-K line is a formality.
+# Lane 0: draft-width dose-response (k=1, 3), the shared-dequant verify kernel (Sol r5 cut 2), round-four r4.
+# Lane 1: the maintainer's residue sweep unpatched, the split-K line once, round-four r3r4.
 until grep -q "LADDER DONE" results/raw/v028/ladder.out 2>/dev/null; do sleep 30; done
 IMG=qwen38-27b-rtx3090:pr43-0.28
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
@@ -75,13 +77,14 @@ LV="$(cygpath -w "$PWD/results/raw/v028/.longverify.patch")"
 R4='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-pr43\patches\kvarn-continuation-flushed-blocks.draft.patch'
 R34='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\flightbench\results\raw\v028\.r3r4.patch'
 lane0 () {
-  PATCHFILE=$LV mcell 0 k_df7_longverify v028-kvarn-df7-longverify start_qwen.sh huge dflash2
-  PATCHFILE=$LV mcell 0 k_df7_longverify_b v028-kvarn-df7-longverify-b start_qwen.sh huge dflash2
+  mcell 0 k_df1 v028-kvarn-df1 start_qwen.sh huge dflash2 -e DFLASH_TOKENS=1
+  mcell 0 k_df3 v028-kvarn-df3 start_qwen.sh huge dflash2 -e DFLASH_TOKENS=3
+  mcell 0 k_df7_sharedverify v028-kvarn-df7-sharedverify start_qwen.sh huge dflash2 -e KVARN_SHARED_VERIFY=1
   PATCHFILE=$R4 mcell 0 k_df7_r4 v028-kvarn-df7-r4 start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1
 }
 lane1 () {
   scell 1 k_df7_sweep sweep-v028-kvarn-df7 start_qwen.sh huge dflash2
-  PATCHFILE=$LV scell 1 k_df7_sweep_lv sweep-v028-kvarn-df7-longverify start_qwen.sh huge dflash2
+  PATCHFILE=$LV mcell 1 k_df7_longverify v028-kvarn-df7-longverify start_qwen.sh huge dflash2
   PATCHFILE=$R34 mcell 1 k_df7_r3r4 v028-kvarn-df7-r3r4 start_qwen.sh huge dflash2 -e KVARN_CONTINUATION_DEBUG=1
 }
 lane0 > "$OUTD/fixtest.lane0.out" 2>&1 &
