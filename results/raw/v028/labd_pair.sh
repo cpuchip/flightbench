@@ -1,6 +1,6 @@
 #!/bin/bash
 # Size the fixed tier's slowdown with the maintainer's own long-context bench: KVarN + DFlash2 k=7 on the fix branch (lane 0)
-# and on current main 0.27.1 (lane 1), bench/labd_bench.py at 4,000 / 16,000 / 48,000 tokens of context, corpus mounted.
+# and on current main 0.27.1 (lane 1), bench/labd_bench.py at 4,000 / 16,000 / 32,000 tokens of context, corpus mounted (48,000 overran the cell's max length; the 0.27.1 script reads the key from ~/qwen-serving).
 IMG=qwen38-27b-rtx3090:pr43-0.28
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
@@ -63,7 +63,8 @@ lcell () {  # lane name label launcher ctx spec [extra -e ...]: boot, then the m
   ok=0; for i in $(seq 1 90); do docker ps --format '{{.Names}}' | grep -q "^$NAME$" || { echo "LADDER $NAME: exited during boot: $(docker logs "$NAME" 2>&1 | grep -E 'PATCH-FAILED|Hunk|Error' | tail -2 | cut -c1-120)"; break; }; [ "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TK" http://127.0.0.1:$PORT/health)" = 200 ] && docker logs "$NAME" 2>&1 | grep -q 'GPU KV cache size' && { ok=1; break; }; sleep 10; done
   if [ $ok = 1 ]; then
     echo "LADDER $NAME serving ($LAUNCH $CTX $SPEC $* patch=${PATCHFILE:+yes}) sweep start $(date -u +%H:%M:%SZ)"
-    for C in 4000 16000 48000; do
+    MSYS_NO_PATHCONV=1 docker exec "$NAME" bash -c "mkdir -p /cache/qwen-serving && cp /app/api_key.txt /cache/qwen-serving/api_key.txt" >/dev/null 2>&1
+    for C in 4000 16000 32000; do
       MSYS_NO_PATHCONV=1 docker exec -e PORT=$PORT -e VLLM_API_KEY=$TK "$NAME" bash -c "cd /app && venv/bin/python bench/labd_bench.py --ctx $C --corpus /tmp/labd_corpus.txt" > "$OUTD/labd-$NAME-$C.out" 2>&1
       echo "LADDER $NAME labd ctx=$C: $(grep -vE '^\s*$' "$OUTD/labd-$NAME-$C.out" | tail -3 | tr '
 ' ' ' | cut -c1-300)"
