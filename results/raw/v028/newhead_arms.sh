@@ -75,6 +75,7 @@ LV="$(cygpath -w "$PWD/results/raw/v028/.longverify.patch")"
 R4='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-pr43\patches\kvarn-continuation-flushed-blocks.draft.patch'
 R34='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\flightbench\results\raw\v028\.r3r4.patch'
 SWPAD="$(cygpath -w "$PWD/results/raw/v028/.swpad.patch")"
+NOPARTIAL="$(cygpath -w "$PWD/results/raw/v028/.nopartial.patch")"
 lane0 () {
   mcell 0 n_kvarn_df7 v028new-kvarn-df7 start_qwen.sh huge dflash2
   PATCHFILE=$SWPAD mcell 0 n_kvarn_df7_swpad v028new-kvarn-df7-swpad start_qwen.sh huge dflash2
@@ -87,6 +88,8 @@ lane1 () {
   mcell 1 n_bf16_df7 v028new-bf16-df7 start_qwen.sh fast dflash2
   IMG=qwen38-27b-rtx3090:pr43-swpad mcell 1 f_int4_df7_built v028fix-int4-df7-built alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1
   IMG=qwen38-27b-rtx3090:pr43-swpad mcell 1 f_kvarn_mtp_built v028fix-kvarn-mtp-built start_qwen.sh huge mtp
+  IMG=qwen38-27b-rtx3090:pr43-0.28 PATCHFILE=$NOPARTIAL mcell 1 d_bf16_specoff_nopartial v028-diag-bf16-specoff-nopartial start_qwen.sh fast off
+  IMG=qwen38-27b-rtx3090:pr43-0.28 PATCHFILE=$NOPARTIAL mcell 1 d_bf16_df7_nopartial v028-diag-bf16-df7-nopartial start_qwen.sh fast dflash2
 }
 lane0 > "$OUTD/newhead.lane0.out" 2>&1 &
 lane1 > "$OUTD/newhead.lane1.out" 2>&1 &
