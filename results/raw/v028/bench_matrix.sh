@@ -1,8 +1,8 @@
 #!/bin/bash
 # A/B throughput: the fork's own bench (bench/run_benchmarks.sh single, inside the container: real-prompt cohorts C1..C8,
-# T=default and greedy) on every cell, on two images: 0.27.1 current main (dfee877) and the 0.28 port (pr43). Two lanes.
+# T=default and greedy) on every cell, on two images: 0.27.1 current main (8d832f8) and the 0.28 port's current head (pr43 e34afaf). Two lanes.
 # One run per cell with the script's built-in warmup (the README says a second run reads higher; noted as a caveat).
-until grep -q "LADDER DONE" results/raw/v028/ladder.out 2>/dev/null; do sleep 30; done
+until grep -q "CONTROL DONE" results/raw/v028/control.out 2>/dev/null; do sleep 30; done
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
 bcell () {  # lane version image name launcher ctx spec [extra -e ...]
@@ -22,7 +22,7 @@ bcell () {  # lane version image name launcher ctx spec [extra -e ...]
   fi
   docker logs "$NAME" > "$OUTD/server-$NAME.log" 2>&1; docker rm -f "$NAME" >/dev/null 2>&1; echo "BENCH $NAME torn down $(date -u +%H:%M:%SZ)"
 }
-V27=qwen38-27b-rtx3090:dfee877; V28=qwen38-27b-rtx3090:pr43-0.28
+V27=qwen38-27b-rtx3090:main-8d832f8; V28=qwen38-27b-rtx3090:pr43-e34afaf
 F=(-e MAX_LEN=57344 -e DFLASH_MAX_LEN=57344)
 cells_lane0 () { V=$1; I=$2; bcell 0 $V $I fast_mtp start_qwen.sh fast mtp "${F[@]}"; bcell 0 $V $I fast_dflash2 start_qwen.sh fast dflash2 "${F[@]}"; bcell 0 $V $I fast_off start_qwen.sh fast off "${F[@]}"; bcell 0 $V $I huge_mtp start_qwen.sh huge mtp; bcell 0 $V $I huge_dflash2 start_qwen.sh huge dflash2; bcell 0 $V $I huge_off start_qwen.sh huge off; }
 cells_lane1 () { V=$1; I=$2; bcell 1 $V $I long_mtp start_qwen.sh long mtp; bcell 1 $V $I long_dflash2 start_qwen.sh long dflash2; bcell 1 $V $I long_off start_qwen.sh long off; bcell 1 $V $I int4_dflash2 alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1; bcell 1 $V $I int4_off alternative.sh long off -e VLLM_INT4_MQ_3D=1; }
