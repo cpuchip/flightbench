@@ -1,0 +1,11 @@
+########## 01:03:52Z ARM v28_int4_3d ##########
+[v28_int4_3d] SERVING at ~300s: GPU KV cache size: 36,739 tokens | connector: 3 | kv dtype: kv_cache_dtype=int4_per_token_head
+=== V6.1 mission/controller int4-3d-offload-v0.28 (think=off) · 13/18 · wall 631.0s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+[v28_int4_3d] CPU->GPU load batches during run 1: 0.0 -> 106.0
+=== V6.1 mission/controller int4-3d-offload-v0.28 (think=off) · 13/18 · wall 633.5s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+[v28_int4_3d] CPU->GPU load batches during run 2: 106.0 -> 212.0
+[churn] stopped after 90 requests
+[v28_int4_3d] torn down 01:30:35Z
+swept vllm_offload_8bd5d499-b69b-4501-a4d7-2e2a65be3afc.mmap
+none             23G   21G  2.9G  88% /dev/shm
+V28 ARM DONE 01:30:36Z
