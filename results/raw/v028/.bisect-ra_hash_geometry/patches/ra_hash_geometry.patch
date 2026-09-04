@@ -1,0 +1,107 @@
+--- a/v1/core/kv_cache_utils.py
++++ b/v1/core/kv_cache_utils.py
+@@ -635,7 +635,19 @@
+         if isinstance(g.kv_cache_spec, AttentionSpec)
+         else g.kv_cache_spec.block_size
+         for g in groups
++    ]
++    _all_group_block_sizes = list(group_block_sizes)
++    # Sliding-window groups do not participate in prefix matching. Excluding
++    # them keeps their small rolling-window block from skewing the scheduler
++    # LCM and the prefix-hash GCD used by the target group.
++    non_sw = [
++        bs
++        for g, bs in zip(groups, group_block_sizes)
++        if not isinstance(g.kv_cache_spec, SlidingWindowSpec)
+     ]
++    _hash_gcd_all = math.gcd(*_all_group_block_sizes)
++    if non_sw:
++        group_block_sizes = non_sw
+     scheduler_block_size = math.lcm(*group_block_sizes)
+ 
+     # Block hashes are only consumed by prefix caching and KV connectors
+@@ -648,7 +658,7 @@
+     # Mamba groups outside align mode break divisibility; back off to the
+     # scheduler block size. Read the mode from the resolved group spec because
+     # its block size may have been updated independently of cache_config.
+-    if any(
++    if cache_config.prefix_match_unit is None and any(
+         isinstance(g.kv_cache_spec, MambaSpec)
+         and g.kv_cache_spec.mamba_cache_mode != "align"
+         for g in groups
+@@ -655,3 +667,3 @@
+         for g in groups
+     ):
+-        return scheduler_block_size, scheduler_block_size
++        return scheduler_block_size, _hash_gcd_all
+@@ -668,4 +680,4 @@
+     requested = cache_config.prefix_match_unit
+     hash_block_size = (
+-        requested if requested is not None else math.gcd(*group_block_sizes)
++        requested if requested is not None else _hash_gcd_all
+     )
+--- a/v1/core/kv_cache_coordinator.py
++++ b/v1/core/kv_cache_coordinator.py
+@@ -86,7 +86,8 @@
+         self.enable_caching = enable_caching
+         # The scheduling granularity (LCM of all group block sizes), must be a multiple
+         # of the hash_block_size and the block size of each group.
+         assert scheduler_block_size % hash_block_size == 0 and all(
+-            scheduler_block_size % g.kv_cache_spec.block_size == 0
++            isinstance(g.kv_cache_spec, SlidingWindowSpec)
++            or scheduler_block_size % g.kv_cache_spec.block_size == 0
+             for g in kv_cache_config.kv_cache_groups
+         )
+@@ -601,7 +601,12 @@
+             manager.block_size for manager in self.single_type_managers
+         ]
+         assert all(
+-            block_size % hash_block_size == 0 for block_size in group_block_sizes
++            isinstance(g.kv_cache_spec, SlidingWindowSpec)
++            or block_size % hash_block_size == 0
++            or hash_block_size % block_size == 0
++            for g, block_size in zip(
++                kv_cache_config.kv_cache_groups, group_block_sizes
++            )
+         ), (
+             "Each KV cache group's real block_size must be divisible by "
+             f"hash_block_size. block_sizes={group_block_sizes}, "
+--- a/v1/core/single_type_kv_cache_manager.py
++++ b/v1/core/single_type_kv_cache_manager.py
+@@ -918,6 +918,11 @@
+         assert dcp_world_size == 1, "DCP not support sliding window attn now."
+         assert pcp_world_size == 1, "PCP not support sliding window attn now."
+         # Fine-grained partial hits are not supported for sliding window now
++        if (
++            kv_cache_spec.block_size % block_pool.hash_block_size != 0
++            or alignment_tokens % kv_cache_spec.block_size != 0
++        ):
++            return tuple([] for _ in kv_cache_group_ids), 0
+         assert alignment_tokens % kv_cache_spec.block_size == 0, (
+             "SlidingWindowManager does not support fine-grained (partial) cache hits"
+         )
+@@ -1105,6 +1110,24 @@
+         window in the future.
+         """
+         return 0
++
++    def cache_blocks(
++        self,
++        request: Request,
++        num_tokens: int,
++        retention_interval: int | None = None,
++    ) -> None:
++        # Prefix reuse is not meaningful for a rolling window. Skip the write
++        # path when the SW block and hash unit are not divisible in either
++        # direction, or when the scheduler boundary is finer than the SW
++        # block. The latter would make reachable_block_mask assert before
++        # resolve_block_hashes is reached.
++        if (
++            self.block_size % self.block_pool.hash_block_size != 0
++            or self.scheduler_block_size % self.block_size != 0
++        ):
++            return
++        super().cache_blocks(request, num_tokens, retention_interval=retention_interval)
+ 
+ 
+ class ChunkedLocalAttentionManager(SingleTypeKVCacheManager):

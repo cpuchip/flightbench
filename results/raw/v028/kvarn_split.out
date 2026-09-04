@@ -1,0 +1,134 @@
+BUILD k1_kvarn_backend ok
+BUILD k2_runner_only FAILED
+BISECT k1_kvarn_backend serving at ~240s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT k1_kvarn_backend === V6.1 mission/controller bis-k1_kvarn_backend (think=off) · 13/18 · wall 81.2s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+BISECT k1_kvarn_backend: tool calls total 65, capped turns 1/12, length-cut turns 0/12
+BISECT k1_kvarn_backend DONE 21:49:31Z
+KVARN SPLIT DONE 21:49:31Z
+BUILD k2b ok
+BISECT k2b_runner_nospec serving at ~240s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT k2b_runner_nospec === V6.1 mission/controller bis-k2b_runner_nospec (think=off) · 17/18 · wall 127.6s · NO-GO — P2-alarm-rule-looked-up ===
+BISECT k2b_runner_nospec: tool calls total 158, capped turns 7/12, length-cut turns 0/12
+BISECT k2b_runner_nospec DONE 21:56:16Z
+K2B DONE 21:56:16Z
+BUILD ra_hash_geometry ok
+BUILD rb_mamba_state ok
+BUILD rc_model_runner ok
+BUILD rd_attn_dflash ok
+BISECT l3b0_noflashinfer_sampler serving at ~250s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT l3b0_noflashinfer_sampler === V6.1 mission/controller bis-l3b0_noflashinfer_sampler (think=off) · 14/18 · wall 89.5s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l3b0_noflashinfer_sampler: tool calls total 68, capped turns 1/12, length-cut turns 0/12
+BISECT l3b0_noflashinfer_sampler DONE 22:02:01Z
+BISECT l3a0_lmonly serving at ~230s: GPU KV cache size: 99,013 tokens; marker=0
+BISECT l3a0_lmonly === V6.1 mission/controller bis-l3a0_lmonly (think=off) · 18/18 · wall 125.0s · GREEN — ALL SYSTEMS GO ===
+BISECT l3a0_lmonly: tool calls total 50, capped turns 0/12, length-cut turns 0/12
+BISECT l3a0_lmonly DONE 22:07:55Z
+L3 LANE0 DONE 22:07:55Z
+BISECT ra_hash_geometry serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT ra_hash_geometry === V6.1 mission/controller bis-ra_hash_geometry (think=off) · 13/18 · wall 75.4s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+BISECT ra_hash_geometry: tool calls total 65, capped turns 1/12, length-cut turns 0/12
+BISECT ra_hash_geometry DONE 22:13:43Z
+BISECT rb_mamba_state serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT rb_mamba_state === V6.1 mission/controller bis-rb_mamba_state (think=off) · 15/18 · wall 133.2s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT rb_mamba_state: tool calls total 172, capped turns 9/12, length-cut turns 0/12
+BISECT rb_mamba_state DONE 22:20:17Z
+BUILD nomamba ok
+BISECT rc_model_runner serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT rc_model_runner === V6.1 mission/controller bis-rc_model_runner (think=off) · 15/18 · wall 117.1s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT rc_model_runner: tool calls total 144, capped turns 7/12, length-cut turns 0/12
+BISECT rc_model_runner DONE 22:26:34Z
+BISECT rd_attn_dflash serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT rd_attn_dflash === V6.1 mission/controller bis-rd_attn_dflash (think=off) · 15/18 · wall 84.0s · NO-GO — L1-status-read, P5-through-the-fuel, P6-honest-report ===
+BISECT rd_attn_dflash: tool calls total 80, capped turns 3/12, length-cut turns 0/12
+BISECT rd_attn_dflash DONE 22:32:19Z
+RUNNER SPLIT DONE 22:32:19Z
+LADDER nm_bf16_off_1 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER nm_bf16_off_1 === V6.1 mission/controller v028nomamba-bf16-off-1 (think=off) · 15/18 · wall 134.5s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028nomamba-bf16-off-1: tool calls total 172, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER nm_bf16_off_1 debug lines: 0 patch lines: 0
+LADDER nm_bf16_off_1 torn down 22:37:40Z
+LADDER nm_bf16_off_2 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER nm_bf16_off_2 === V6.1 mission/controller v028nomamba-bf16-off-2 (think=off) · 15/18 · wall 135.0s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028nomamba-bf16-off-2: tool calls total 172, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER nm_bf16_off_2 debug lines: 0 patch lines: 0
+LADDER nm_bf16_off_2 torn down 22:42:42Z
+LADDER nm_kvarn_df7 serving (start_qwen.sh huge dflash2  patch=) marker=0 blocks=
+LADDER nm_kvarn_df7 === V6.1 mission/controller v028nomamba-kvarn-df7 (think=off) · 10/18 · wall 175.3s · NO-GO — L3-no-burn-uncleared, L6-burn-after-clearance, P1-go-for-pdi, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked, P5-through-the-
+LADDER v028nomamba-kvarn-df7: tool calls total 27, capped turns 0/12, length-cut turns 5/12, turn2 head "HOLD. I can't uplink that pre-launch PAD or give GO. It was "
+LADDER nm_kvarn_df7 debug lines: 0 patch lines: 0
+LADDER nm_kvarn_df7 torn down 22:50:29Z
+NOMAMBA DONE 22:50:29Z
+BISECT rb_rep2 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT rb_rep2 === V6.1 mission/controller bis-rb_rep2 (think=off) · 17/18 · wall 127.7s · NO-GO — P2-alarm-rule-looked-up ===
+BISECT rb_rep2: tool calls total 158, capped turns 7/12, length-cut turns 0/12
+BISECT rb_rep2 DONE 22:57:08Z
+BISECT rb_rep3 serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT rb_rep3 === V6.1 mission/controller bis-rb_rep3 (think=off) · 15/18 · wall 116.9s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT rb_rep3: tool calls total 144, capped turns 7/12, length-cut turns 0/12
+BISECT rb_rep3 DONE 23:03:26Z
+BISECT k2b_rep2 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT k2b_rep2 === V6.1 mission/controller bis-k2b_rep2 (think=off) · 16/18 · wall 125.5s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up ===
+BISECT k2b_rep2: tool calls total 151, capped turns 7/12, length-cut turns 0/12
+BISECT k2b_rep2 DONE 23:10:02Z
+BISECT k2b_rep3 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT k2b_rep3 === V6.1 mission/controller bis-k2b_rep3 (think=off) · 14/18 · wall 89.6s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT k2b_rep3: tool calls total 68, capped turns 1/12, length-cut turns 0/12
+BISECT k2b_rep3 DONE 23:16:03Z
+BISECT stock_rep2 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock_rep2 === V6.1 mission/controller bis-stock_rep2 (think=off) · 15/18 · wall 117.1s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT stock_rep2: tool calls total 144, capped turns 7/12, length-cut turns 0/12
+BISECT stock_rep2 DONE 23:22:31Z
+LADDER dist_fork_bf16_off_4 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER dist_fork_bf16_off_4 === V6.1 mission/controller v028dist-fork-bf16-off-4 (think=off) · 15/18 · wall 135.2s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028dist-fork-bf16-off-4: tool calls total 172, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER dist_fork_bf16_off_4 debug lines: 0 patch lines: 0
+LADDER dist_fork_bf16_off_4 torn down 23:27:54Z
+LADDER dist_fork_bf16_off_5 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER dist_fork_bf16_off_5 === V6.1 mission/controller v028dist-fork-bf16-off-5 (think=off) · 15/18 · wall 134.8s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028dist-fork-bf16-off-5: tool calls total 172, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER dist_fork_bf16_off_5 debug lines: 0 patch lines: 0
+LADDER dist_fork_bf16_off_5 torn down 23:33:06Z
+LADDER dist_fork_bf16_off_6 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER dist_fork_bf16_off_6 === V6.1 mission/controller v028dist-fork-bf16-off-6 (think=off) · 15/18 · wall 134.5s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028dist-fork-bf16-off-6: tool calls total 172, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER dist_fork_bf16_off_6 debug lines: 0 patch lines: 0
+LADDER dist_fork_bf16_off_6 torn down 23:38:19Z
+BISECT stock_rep6 serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock_rep6 === V6.1 mission/controller bis-stock_rep6 (think=off) · 15/18 · wall 82.1s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT stock_rep6: tool calls total 57, capped turns 1/12, length-cut turns 0/12
+BISECT stock_rep6 DONE 23:44:01Z
+BISECT stock_rep7 serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock_rep7 === V6.1 mission/controller bis-stock_rep7 (think=off) · 15/18 · wall 99.7s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT stock_rep7: tool calls total 41, capped turns 1/12, length-cut turns 0/12
+BISECT stock_rep7 DONE 23:50:01Z
+BISECT stock_rep8 serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock_rep8 === V6.1 mission/controller bis-stock_rep8 (think=off) · 15/18 · wall 82.5s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT stock_rep8: tool calls total 57, capped turns 1/12, length-cut turns 0/12
+BISECT stock_rep8 DONE 23:55:44Z
+GPU0 CHAIN DONE 23:55:44Z
+LADDER v27_bf16_off_1 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER v27_bf16_off_1 === V6.1 mission/controller v027dist-fork-bf16-off-1 (think=off) · 15/18 · wall 128.0s · NO-GO — P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked ===
+LADDER v027dist-fork-bf16-off-1: tool calls total 75, capped turns 2/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed befor'
+LADDER v27_bf16_off_1 debug lines: 0 patch lines: 0
+LADDER v27_bf16_off_1 torn down 00:01:31Z
+LADDER v27_bf16_off_2 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER v27_bf16_off_2 === V6.1 mission/controller v027dist-fork-bf16-off-2 (think=off) · 15/18 · wall 103.7s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v027dist-fork-bf16-off-2: tool calls total 38, capped turns 1/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER v27_bf16_off_2 debug lines: 0 patch lines: 0
+LADDER v27_bf16_off_2 torn down 00:06:34Z
+LADDER v27_bf16_off_3 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER v27_bf16_off_3 === V6.1 mission/controller v027dist-fork-bf16-off-3 (think=off) · 14/18 · wall 160.0s · NO-GO — P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked, P5-through-the-fuel ===
+LADDER v027dist-fork-bf16-off-3: tool calls total 81, capped turns 2/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER v27_bf16_off_3 debug lines: 0 patch lines: 0
+LADDER v27_bf16_off_3 torn down 00:12:22Z
+V27 BF16 OFF DONE 00:12:22Z
+LADDER a_kvarn_df7 serving (start_qwen.sh huge dflash2  patch=) marker=0 blocks=
+LADDER a_kvarn_df7 === V6.1 mission/controller v028author-kvarn-df7 (think=off) · 16/18 · wall 340.1s · NO-GO — P5-through-the-fuel, P6-honest-report ===
+LADDER v028author-kvarn-df7: tool calls total 63, capped turns 1/12, length-cut turns 0/12, turn2 head 'No. That PAD is **void** — it was computed before the S-II c'
+LADDER a_kvarn_df7 debug lines: 0 patch lines: 0
+LADDER a_kvarn_df7 torn down 00:24:00Z
+LADDER a_kvarn_df7_sweep serving (start_qwen.sh huge dflash2  patch=) sweep start 00:28:38Z
+LADDER a_kvarn_df7_sweep sweep: 0 broken lines; [sweep-v028author-kvarn-df7] neighbourhood coverage (median of 128): 1.00 [sweep-v028author-kvarn-df7] DONE: 0 broken of 128 residues 
+LADDER a_kvarn_df7_sweep debug lines: 0 patch lines: 0
+LADDER a_kvarn_df7_sweep torn down 01:09:50Z
+AUTHOR HEAD DONE 01:09:50Z

@@ -1,0 +1,61 @@
+--- a/model_executor/models/qwen3_dflash.py
++++ b/model_executor/models/qwen3_dflash.py
+@@ -244,6 +244,15 @@
+         )
+ 
+         self.sliding_window = sliding_window
++        # KVarN has no sliding-window backend; keep the drafter's SW layers in
++        # the native cache dtype while the target full-attention layers use KVarN.
++        if cache_config is not None and str(
++            getattr(cache_config, "cache_dtype", "auto")
++        ).startswith("kvarn"):
++            from copy import copy as _kv_copy
++
++            cache_config = _kv_copy(cache_config)
++            cache_config.cache_dtype = "auto"
+         self.attn = Attention(
+             self.num_heads,
+             self.head_dim,
+--- a/model_executor/layers/attention/attention.py
++++ b/model_executor/layers/attention/attention.py
+@@ -110,8 +110,25 @@
+ 
+     sizes = attn_backend.get_supported_kernel_block_sizes()
+     candidates = [s for s in sizes if isinstance(s, int)]
++    mults = [s.base for s in sizes if isinstance(s, MultipleOf)]
++    if mults and page_budget and per_token_bytes > 0:
++        base = min(mults)
++        budget_tokens = page_budget // per_token_bytes
++        scaled = budget_tokens // base * base
++        if fallback and fallback > 0:
++            for step in (128, base):
++                found = 0
++                for d in range(budget_tokens, step - 1, -1):
++                    if fallback % d == 0 and d % step == 0:
++                        found = d
++                        break
++                if found:
++                    scaled = found
++                    break
++        if scaled >= base:
++            candidates.append(scaled)
+     if not candidates:
+-        candidates = [s.base for s in sizes if isinstance(s, MultipleOf)]
++        candidates = mults
+     if not candidates:
+         return fallback
+     smallest = min(candidates)
+@@ -619,6 +636,13 @@
+             # bytes per block. Otherwise (page_size_padded is None) the smallest
+             # block is fine — ``unify`` scales it up by an integer ratio.
+             shared_page = vllm_config.cache_config.skip_page_size_padded
++            # port(kvarn-v2): hybrid without skip layers: pad the drafter's
++            # SW pages to the mamba/primary page instead of wasting 16-token
++            # blocks inside 1.8 MB uniform pages (26x overhead).
++            if shared_page is None and str(
++                vllm_config.cache_config.cache_dtype
++            ).startswith("kvarn"):
++                shared_page = vllm_config.cache_config.mamba_page_size_padded
+             # The backend owns its packing
+             sw_per_token = self.attn_backend.customize_spec(
+                 SlidingWindowSpec(

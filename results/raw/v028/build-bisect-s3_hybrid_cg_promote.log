@@ -1,0 +1,49 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 308B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/qwen38-27b-rtx3090:stock028-embed
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 17.89kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60
+#5 resolve docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60 0.0s done
+#5 CACHED
+
+#6 [2/3] COPY patches /tmp/patches
+#6 DONE 0.0s
+
+#7 [3/3] RUN SP=$(python3 -c "import importlib.util as u; print(u.find_spec('vllm').submodule_search_locations[0])") && for p in /tmp/patches/*.patch; do echo "== $p"; patch -p1 -N -d "$SP" < "$p" || exit 1; done
+#7 0.209 == /tmp/patches/hybrid-kv-groups-v2-cudagraph.patch
+#7 0.210 patching file v1/core/kv_cache_utils.py
+#7 0.210 Hunk #1 succeeded at 1103 (offset -34 lines).
+#7 0.210 Hunk #2 succeeded at 1265 (offset -34 lines).
+#7 0.213 patching file v1/worker/gpu/model_runner.py
+#7 0.213 Hunk #2 succeeded at 843 (offset 91 lines).
+#7 0.216 == /tmp/patches/hybrid-sw-block-promote.patch
+#7 0.216 patching file v1/core/kv_cache_utils.py
+#7 0.216 Hunk #1 succeeded at 1033 with fuzz 1 (offset -34 lines).
+#7 0.216 Hunk #2 succeeded at 1189 (offset -34 lines).
+#7 DONE 0.2s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 0.2s done
+#8 exporting manifest sha256:72ce8e97349939676b08cddfbfb265f08549dc401c1a92779063deca90b5c877 0.0s done
+#8 exporting config sha256:5f8154560d31f79cfca320f41f9ae9e302fa3fe84fcaba93b98dbf0a8af65b09 0.0s done
+#8 exporting attestation manifest sha256:a1654da882dbfcbae54e093c81701e547caeaf8b73e8ebffb62dd7b21de8d878 0.0s done
+#8 exporting manifest list sha256:3ed481c2f55231cb795659a383dd39d49eb42c52874184e76c025d890b3b5edb 0.0s done
+#8 naming to docker.io/library/qwen38-27b-rtx3090:stock028-s3_hybrid_cg_promote done
+#8 unpacking to docker.io/library/qwen38-27b-rtx3090:stock028-s3_hybrid_cg_promote 0.1s done
+#8 DONE 0.4s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/dei0yid5qb5jamheu7u9xv0z2
