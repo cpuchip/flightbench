@@ -1,0 +1,68 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 308B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/qwen38-27b-rtx3090:stock028-embed
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60
+#5 resolve docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60 0.0s done
+#5 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 24.80kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60
+#5 CACHED
+
+#6 [2/3] COPY patches /tmp/patches
+#6 DONE 0.0s
+
+#7 [3/3] RUN SP=$(python3 -c "import importlib.util as u; print(u.find_spec('vllm').submodule_search_locations[0])") && for p in /tmp/patches/*.patch; do echo "== $p"; patch -p1 -N -d "$SP" < "$p" || exit 1; done
+#7 0.212 == /tmp/patches/sampler-small-topk-fast-softmax.patch
+#7 0.213 patching file v1/sample/metadata.py
+#7 0.213 patching file v1/sample/ops/row_softmax.py
+#7 0.213 patching file v1/sample/ops/topk_topp_sampler.py
+#7 0.213 patching file v1/sample/rejection_sampler.py
+#7 0.214 patching file v1/sample/sampler.py
+#7 0.214 Hunk #1 succeeded at 289 (offset 1 line).
+#7 0.214 patching file v1/spec_decode/llm_base_proposer.py
+#7 0.214 Hunk #1 succeeded at 1851 (offset 6 lines).
+#7 0.214 Hunk #2 succeeded at 1877 (offset 6 lines).
+#7 0.215 patching file v1/worker/gpu_input_batch.py
+#7 0.219 == /tmp/patches/spec-sampler-prewarm.patch
+#7 0.220 patching file model_executor/warmup/kernel_warmup.py
+#7 0.220 Hunk #2 succeeded at 95 (offset 1 line).
+#7 0.220 Hunk #3 succeeded at 175 with fuzz 2 (offset 4 lines).
+#7 0.222 == /tmp/patches/speed-knobs-envs.patch
+#7 0.223 patching file envs.py
+#7 0.223 Hunk #1 succeeded at 187 (offset 5 lines).
+#7 0.223 Hunk #2 succeeded at 1524 (offset 49 lines).
+#7 0.226 == /tmp/patches/xgrammar-spec-terminated.patch
+#7 0.227 patching file v1/structured_output/backend_xgrammar.py
+#7 0.227 Hunk #1 succeeded at 157 (offset 5 lines).
+#7 0.227 Hunk #2 succeeded at 176 (offset 5 lines).
+#7 DONE 0.2s
+
+#8 exporting to image
+#8 exporting layers
+#8 exporting layers 0.2s done
+#8 exporting manifest sha256:bf1c8ccb354d2411b660173715fc8a44e98f1869a02cd2c8fd3ff7d50fdb2838 0.0s done
+#8 exporting config sha256:cc848258fbba1854f3b2911cb20cae7a48fea695dde74e5bc2bc2d93e2fd9857 0.0s done
+#8 exporting attestation manifest sha256:49fa94397ee037cb0cda4e3c256830a397ede1a40f40ba319310d6b22d5c0618 0.0s done
+#8 exporting manifest list sha256:8ea498ec20e9bd084215b079669f5280afe90532f656ea4b3dac31ed0195b998 0.0s done
+#8 naming to docker.io/library/qwen38-27b-rtx3090:stock028-s4_sampler_knobs done
+#8 unpacking to docker.io/library/qwen38-27b-rtx3090:stock028-s4_sampler_knobs 0.1s done
+#8 DONE 0.4s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/6h7mg7dgwobgt3a76213mvrk5

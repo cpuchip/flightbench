@@ -1,0 +1,42 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 421B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/vllm/vllm-openai:v0.27.1
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 1.45kB done
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/vllm/vllm-openai:v0.27.1@sha256:0a51ea5b4ae2dc5d81890e5173f54203d2a3ae0cfffe51b8fd2afd4391bfd967
+#5 resolve docker.io/vllm/vllm-openai:v0.27.1@sha256:0a51ea5b4ae2dc5d81890e5173f54203d2a3ae0cfffe51b8fd2afd4391bfd967 0.0s done
+#5 DONE 0.7s
+
+#6 [2/3] COPY qwen3_5-embed-quant.patch /tmp/
+#6 DONE 0.0s
+
+#7 [3/3] RUN SP=$(python3 -c "import importlib.util as u; print(u.find_spec('vllm').submodule_search_locations[0])") && echo "site-packages: $SP" && patch -p1 -d "$SP" < /tmp/qwen3_5-embed-quant.patch
+#7 0.323 site-packages: /usr/local/lib/python3.12/dist-packages/vllm
+#7 0.327 patching file model_executor/models/qwen3_5.py
+#7 0.328 patching file model_executor/models/qwen3_5_mtp.py
+#7 DONE 0.5s
+
+#8 exporting to image
+#8 exporting layers 0.1s done
+#8 exporting manifest sha256:61b1b8ca05d8cc1c6e99919c7735ddb924a6a7d7c05d6b278ab7ff637312e678
+#8 exporting manifest sha256:61b1b8ca05d8cc1c6e99919c7735ddb924a6a7d7c05d6b278ab7ff637312e678 0.0s done
+#8 exporting config sha256:ea0eeba71891c80cc547371aec3c938c3d618eb9f49d45f28491a8b049584093 0.0s done
+#8 exporting attestation manifest sha256:3715c751c54778206b73c23ec97392d9b2076f60e85c160d669c44c82f794578 0.0s done
+#8 exporting manifest list sha256:b0b7639a34032918a90e2978760d09114d21d33e73fbcd6fb0496a9cb570e8eb 0.0s done
+#8 naming to docker.io/library/qwen38-27b-rtx3090:stock027-embed done
+#8 unpacking to docker.io/library/qwen38-27b-rtx3090:stock027-embed 0.1s done
+#8 DONE 0.5s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/pognn4u975qhzlhg62p14a83l

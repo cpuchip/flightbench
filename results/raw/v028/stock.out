@@ -1,0 +1,4 @@
+STOCK serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+STOCK === V6.1 mission/controller stock028-bf16-specoff (think=off) · 18/18 · wall 130.3s · GREEN — ALL SYSTEMS GO ===
+STOCK stock028-bf16-specoff: tool calls total 57, capped turns 0/12, length-cut turns 0/12
+STOCK DONE 21:03:57Z

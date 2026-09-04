@@ -1,0 +1,21 @@
+BISECT s1_runner serving at ~250s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT s1_runner === V6.1 mission/controller bis-s1_runner (think=off) · 15/18 · wall 83.9s · NO-GO — L1-status-read, P5-through-the-fuel, P6-honest-report ===
+BISECT s1_runner: tool calls total 80, capped turns 3/12, length-cut turns 0/12
+BISECT s1_runner DONE 21:19:02Z
+BISECT s2_mamba_align serving at ~250s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT s2_mamba_align === V6.1 mission/controller bis-s2_mamba_align (think=off) · 15/18 · wall 82.1s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT s2_mamba_align: tool calls total 57, capped turns 1/12, length-cut turns 0/12
+BISECT s2_mamba_align DONE 21:24:34Z
+BISECT s3_hybrid_cg_promote serving at ~250s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT s3_hybrid_cg_promote === V6.1 mission/controller bis-s3_hybrid_cg_promote (think=off) · 18/18 · wall 130.4s · GREEN — ALL SYSTEMS GO ===
+BISECT s3_hybrid_cg_promote: tool calls total 57, capped turns 0/12, length-cut turns 0/12
+BISECT s3_hybrid_cg_promote DONE 21:30:54Z
+BISECT s4_sampler_knobs serving at ~250s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT s4_sampler_knobs === V6.1 mission/controller bis-s4_sampler_knobs (think=off) · 13/18 · wall 80.8s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+BISECT s4_sampler_knobs: tool calls total 65, capped turns 1/12, length-cut turns 0/12
+BISECT s4_sampler_knobs DONE 21:36:24Z
+BISECT f0_fork_plainargs serving at ~280s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT f0_fork_plainargs === V6.1 mission/controller bis-f0_fork_plainargs (think=off) · 15/18 · wall 83.9s · NO-GO — L1-status-read, P5-through-the-fuel, P6-honest-report ===
+BISECT f0_fork_plainargs: tool calls total 80, capped turns 3/12, length-cut turns 0/12
+BISECT f0_fork_plainargs DONE 21:42:28Z
+BISECT QUEUE2 DONE 21:42:28Z

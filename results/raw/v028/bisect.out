@@ -1,0 +1,27 @@
+BISECT f0_fork_plainargs exited during boot: (APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+BISECT f0_fork_plainargs DONE 21:08:42Z
+results/raw/v028/stock_bisect.sh: line 13: syntax error near unexpected token `|'
+results/raw/v028/stock_bisect.sh: line 13: `|error:' | tail -2 | cut -c1-200)"; break; }; [ "$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $TK" http://127.0.0.1:$PORT/health)" = 200 ] && { ok=1; break; }; sleep 10; done'
+BISECT s1_runner skipped (no image)
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_s2_mamba_align (f3956e79c2cc51d4aa0430051be41f74b4dfc8bf66d0d1481a909e9dea5059df): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT s2_mamba_align docker run failed
+BISECT s2_mamba_align skipped (no image)
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_s3_hybrid_cg_promote (57404c8e75b2fd8159f62459ed106d22b6de55edf851382f0659c00a808e33e7): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT s3_hybrid_cg_promote docker run failed
+BISECT s3_hybrid_cg_promote skipped (no image)
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_s4_sampler_knobs (5db20f6d731fd984c0906d05e50961dac3aa0a535e253d7a26a8966230652003): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT s4_sampler_knobs docker run failed
+BISECT s4_sampler_knobs skipped (no image)
+BISECT QUEUE DONE 21:13:04Z
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_f0_fork_plainargs (bcf378852d9bb55ef2874a86b3a07745159f744d2c385a15e4a70a8ca1e79278): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT f0_fork_plainargs docker run failed
+BISECT F0 DONE 21:13:08Z

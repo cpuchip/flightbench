@@ -1,0 +1,169 @@
+BISECT l1_async serving at ~280s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT l1_async === V6.1 mission/controller bis-l1_async (think=off) · 15/18 · wall 82.5s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l1_async: tool calls total 57, capped turns 1/12, length-cut turns 0/12
+BISECT l1_async DONE 21:50:11Z
+BISECT l2_compile exited during boot: vllm serve: error: argument --compilation-config/-cc: 1 validation error for CompilationConfig
+BISECT l2_compile DONE 21:50:23Z
+BISECT l3_lmonly_sampler serving at ~190s: GPU KV cache size: 99,013 tokens; marker=0
+BISECT l3_lmonly_sampler === V6.1 mission/controller bis-l3_lmonly_sampler (think=off) · 15/18 · wall 116.1s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l3_lmonly_sampler: tool calls total 144, capped turns 7/12, length-cut turns 0/12
+BISECT l3_lmonly_sampler DONE 21:55:27Z
+LAUNCHER QUEUE DONE 21:55:27Z
+BISECT l2_compile serving at ~290s: GPU KV cache size: 73,782 tokens; marker=0
+BISECT l2_compile === V6.1 mission/controller bis-l2_compile (think=off) · 15/18 · wall 82.0s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l2_compile: tool calls total 55, capped turns 1/12, length-cut turns 0/12
+BISECT l2_compile DONE 22:01:53Z
+L2 AGAIN DONE 22:01:53Z
+BISECT l3a_lmonly serving at ~230s: GPU KV cache size: 99,013 tokens; marker=0
+BISECT l3a_lmonly === V6.1 mission/controller bis-l3a_lmonly (think=off) · 15/18 · wall 82.5s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l3a_lmonly: tool calls total 55, capped turns 1/12, length-cut turns 0/12
+BISECT l3a_lmonly DONE 22:07:07Z
+BISECT l3b_noflashinfer_sampler serving at ~250s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT l3b_noflashinfer_sampler === V6.1 mission/controller bis-l3b_noflashinfer_sampler (think=off) · 15/18 · wall 116.6s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l3b_noflashinfer_sampler: tool calls total 144, capped turns 7/12, length-cut turns 0/12
+BISECT l3b_noflashinfer_sampler DONE 22:13:13Z
+BISECT l3c_apiservers serving at ~290s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT l3c_apiservers === V6.1 mission/controller bis-l3c_apiservers (think=off) · 16/18 · wall 125.8s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up ===
+BISECT l3c_apiservers: tool calls total 151, capped turns 7/12, length-cut turns 0/12
+BISECT l3c_apiservers DONE 22:20:10Z
+L3 SPLIT DONE 22:20:10Z
+BISECT l3_group_rep2 serving at ~200s: GPU KV cache size: 99,013 tokens; marker=0
+BISECT l3_group_rep2 === V6.1 mission/controller bis-l3_group_rep2 (think=off) · 15/18 · wall 125.0s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l3_group_rep2: tool calls total 166, capped turns 9/12, length-cut turns 0/12
+BISECT l3_group_rep2 DONE 22:25:36Z
+BISECT l3_group_rep3 serving at ~200s: GPU KV cache size: 99,013 tokens; marker=0
+BISECT l3_group_rep3 === V6.1 mission/controller bis-l3_group_rep3 (think=off) · 15/18 · wall 116.0s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT l3_group_rep3: tool calls total 144, capped turns 7/12, length-cut turns 0/12
+BISECT l3_group_rep3 DONE 22:30:50Z
+BISECT f0_plain_rep2 serving at ~290s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT f0_plain_rep2 === V6.1 mission/controller bis-f0_plain_rep2 (think=off) · 15/18 · wall 82.2s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT f0_plain_rep2: tool calls total 57, capped turns 1/12, length-cut turns 0/12
+BISECT f0_plain_rep2 DONE 22:37:03Z
+REPLICATES GPU1 DONE 22:37:03Z
+BISECT bi_stock_1 exited during boot: (APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+BISECT bi_stock_1 DONE 22:39:11Z
+BISECT bi_stock_2 exited during boot: (APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+BISECT bi_stock_2 DONE 22:41:37Z
+BISECT bi_fork_plain_1 exited during boot: (APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+BISECT bi_fork_plain_1 DONE 22:43:52Z
+BISECT bi_fork_plain_2 exited during boot: (APIServer pid=1)     raise RuntimeError(
+(APIServer pid=1) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
+BISECT bi_fork_plain_2 DONE 22:46:08Z
+BATCH INVARIANT PAIRS DONE 22:46:08Z
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_s5_marlin_1 (8dbe762d1d18fbf562a8e3784fd01807abc499be2d4955d5f0e416e40ac9f128): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT s5_marlin_1 docker run failed
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_s5_marlin_2 (4bdec465903a115173074a06237bd5af4fa8cb9420162a65db1a21b47d608fa7): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT s5_marlin_2 docker run failed
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_s5_marlin_3 (6113108625b85e205d8e268ca60e8b9fc55dcdc07c1008727e3d48c825830923): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT s5_marlin_3 docker run failed
+S5 DONE 22:46:17Z
+LADDER dist_fork_bf16_off_1 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER dist_fork_bf16_off_1 === V6.1 mission/controller v028dist-fork-bf16-off-1 (think=off) · 15/18 · wall 135.0s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028dist-fork-bf16-off-1: tool calls total 172, capped turns 9/12, length-cut turns 0/12, turn2 head ''
+LADDER dist_fork_bf16_off_1 debug lines: 0 patch lines: 0
+LADDER dist_fork_bf16_off_1 torn down 22:51:21Z
+LADDER dist_fork_bf16_off_2 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER dist_fork_bf16_off_2 === V6.1 mission/controller v028dist-fork-bf16-off-2 (think=off) · 15/18 · wall 118.8s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028dist-fork-bf16-off-2: tool calls total 144, capped turns 7/12, length-cut turns 0/12, turn2 head ''
+LADDER dist_fork_bf16_off_2 debug lines: 0 patch lines: 0
+LADDER dist_fork_bf16_off_2 torn down 22:56:18Z
+LADDER dist_fork_bf16_off_3 serving (start_qwen.sh fast off  patch=) marker=0 blocks=
+LADDER dist_fork_bf16_off_3 === V6.1 mission/controller v028dist-fork-bf16-off-3 (think=off) · 15/18 · wall 84.3s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028dist-fork-bf16-off-3: tool calls total 55, capped turns 1/12, length-cut turns 0/12, turn2 head '**NO-GO on that order — LOI held.**\n\n- **Pre-launch PAD:** v'
+LADDER dist_fork_bf16_off_3 debug lines: 0 patch lines: 0
+LADDER dist_fork_bf16_off_3 torn down 23:00:41Z
+BISECT stock_rep3 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock_rep3 === V6.1 mission/controller bis-stock_rep3 (think=off) · 15/18 · wall 116.8s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT stock_rep3: tool calls total 144, capped turns 7/12, length-cut turns 0/12
+BISECT stock_rep3 DONE 23:07:08Z
+BISECT stock_rep4 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock_rep4 === V6.1 mission/controller bis-stock_rep4 (think=off) · 13/18 · wall 81.0s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+BISECT stock_rep4: tool calls total 65, capped turns 1/12, length-cut turns 0/12
+BISECT stock_rep4 DONE 23:13:00Z
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_attn_triton_1 (41e723fb2f9c229362e41a7d433ad489326a4558c8d829e3800c013810b44d80): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT attn_triton_1 docker run failed
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_attn_triton_2 (f4b99eceb8b9a600fae555766a374514bac0f118fbd6255afec84c03275fd0be): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT attn_triton_2 docker run failed
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_attn_flashinfer_1 (ca40970d7741f1f50640b751c91b8bd678ebe2857198e6fca2dd31ef662491fa): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT attn_flashinfer_1 docker run failed
+docker: Error response from daemon: failed to set up container networking: driver failed programming external connectivity on endpoint bis_attn_flashinfer_2 (e72bb88ba4d92301e6005438db68b9208105432f38c0fc4b23e312f8ba95b5e0): Bind for 127.0.0.1:18025 failed: port is already allocated
+
+Run 'docker run --help' for more information
+BISECT attn_flashinfer_2 docker run failed
+ATTN BACKEND DONE 23:14:40Z
+BISECT stock_rep5 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock_rep5 === V6.1 mission/controller bis-stock_rep5 (think=off) · 14/18 · wall 89.3s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT stock_rep5: tool calls total 68, capped turns 1/12, length-cut turns 0/12
+BISECT stock_rep5 DONE 23:19:00Z
+DIST GPU1 DONE 23:19:00Z
+BISECT stock027_1 serving at ~270s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock027_1 === V6.1 mission/controller bis-stock027_1 (think=off) · 15/18 · wall 82.5s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+BISECT stock027_1: tool calls total 55, capped turns 1/12, length-cut turns 0/12
+BISECT stock027_1 DONE 23:25:01Z
+BISECT stock027_2 serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock027_2 === V6.1 mission/controller bis-stock027_2 (think=off) · 13/18 · wall 75.9s · NO-GO — T6-no-fabrication, L1-status-read, L6-burn-after-clearance, P5-through-the-fuel, P6-honest-report ===
+BISECT stock027_2: tool calls total 65, capped turns 1/12, length-cut turns 0/12
+BISECT stock027_2 DONE 23:30:37Z
+BISECT stock027_3 serving at ~260s: GPU KV cache size: 74,547 tokens; marker=0
+BISECT stock027_3 === V6.1 mission/controller bis-stock027_3 (think=off) · 16/18 · wall 124.7s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up ===
+BISECT stock027_3: tool calls total 151, capped turns 7/12, length-cut turns 0/12
+BISECT stock027_3 DONE 23:37:02Z
+STOCK027 DONE 23:37:02Z
+BISECT s5_marlin_1 exited during boot: Error response from daemon: No such container: bis_s5_marlin_1
+BISECT s5_marlin_1 DONE 23:37:45Z
+LADDER pd_int4_df7_1 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd_int4_df7_1 === V6.1 mission/controller v028prod-int4-df7-1 (think=off) · 18/18 · wall 127.7s · GREEN — ALL SYSTEMS GO ===
+LADDER v028prod-int4-df7-1: tool calls total 75, capped turns 1/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER pd_int4_df7_1 debug lines: 0 patch lines: 0
+LADDER pd_int4_df7_1 torn down 23:43:25Z
+LADDER pd_int4_df7_2 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd_int4_df7_2 === V6.1 mission/controller v028prod-int4-df7-2 (think=off) · 14/18 · wall 115.9s · NO-GO — L1-status-read, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028prod-int4-df7-2: tool calls total 71, capped turns 2/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER pd_int4_df7_2 debug lines: 0 patch lines: 0
+LADDER pd_int4_df7_2 torn down 23:49:00Z
+LADDER pd_int4_df7_3 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd_int4_df7_3 === V6.1 mission/controller v028prod-int4-df7-3 (think=off) · 10/18 · wall 106.4s · NO-GO — L1-status-read, L3-no-burn-uncleared, L6-burn-after-clearance, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked, P5-through-the-
+LADDER v028prod-int4-df7-3: tool calls total 49, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER pd_int4_df7_3 debug lines: 0 patch lines: 0
+LADDER pd_int4_df7_3 torn down 23:54:15Z
+LADDER pd_int4_df7_4 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd_int4_df7_4 === V6.1 mission/controller v028prod-int4-df7-4 (think=off) · 18/18 · wall 109.5s · GREEN — ALL SYSTEMS GO ===
+LADDER v028prod-int4-df7-4: tool calls total 55, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER pd_int4_df7_4 debug lines: 0 patch lines: 0
+LADDER pd_int4_df7_4 torn down 23:59:55Z
+LADDER pd_int4_df7_5 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd_int4_df7_5 === V6.1 mission/controller v028prod-int4-df7-5 (think=off) · 18/18 · wall 108.5s · GREEN — ALL SYSTEMS GO ===
+LADDER v028prod-int4-df7-5: tool calls total 59, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER pd_int4_df7_5 debug lines: 0 patch lines: 0
+LADDER pd_int4_df7_5 torn down 00:05:34Z
+LADDER pd27_int4_df7_1 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd27_int4_df7_1 === V6.1 mission/controller v027prod-int4-df7-1 (think=off) · 18/18 · wall 76.7s · GREEN — ALL SYSTEMS GO ===
+LADDER v027prod-int4-df7-1: tool calls total 55, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed **bef'
+LADDER pd27_int4_df7_1 debug lines: 0 patch lines: 0
+LADDER pd27_int4_df7_1 torn down 00:10:39Z
+LADDER pd27_int4_df7_2 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd27_int4_df7_2 === V6.1 mission/controller v027prod-int4-df7-2 (think=off) · 18/18 · wall 75.4s · GREEN — ALL SYSTEMS GO ===
+LADDER v027prod-int4-df7-2: tool calls total 54, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed befor'
+LADDER pd27_int4_df7_2 debug lines: 0 patch lines: 0
+LADDER pd27_int4_df7_2 torn down 00:15:23Z
+LADDER pd27_int4_df7_3 serving (alternative.sh long dflash2 -e VLLM_INT4_MQ_3D=1 patch=) marker=0 blocks=
+LADDER pd27_int4_df7_3 === V6.1 mission/controller v027prod-int4-df7-3 (think=off) · 17/18 · wall 84.8s · NO-GO — P2-alarm-rule-looked-up ===
+LADDER v027prod-int4-df7-3: tool calls total 59, capped turns 0/12, length-cut turns 0/12, turn2 head 'No. That PAD is void.\n\nThe pre-launch PAD was computed from '
+LADDER pd27_int4_df7_3 debug lines: 0 patch lines: 0
+LADDER pd27_int4_df7_3 torn down 00:20:27Z
+PROD DIST DONE 00:20:27Z

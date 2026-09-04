@@ -1,0 +1,52 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 308B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/qwen38-27b-rtx3090:stock028-embed
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/3] FROM docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60
+#4 resolve docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 17.54kB done
+#5 DONE 0.0s
+
+#4 [1/3] FROM docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60
+#4 CACHED
+
+#6 [2/3] COPY patches /tmp/patches
+#6 DONE 0.1s
+
+#7 [3/3] RUN SP=$(python3 -c "import importlib.util as u; print(u.find_spec('vllm').submodule_search_locations[0])") && for p in /tmp/patches/*.patch; do echo "== $p"; patch -p1 -N -d "$SP" < "$p" || exit 1; done
+#7 0.220 == /tmp/patches/marlin-int8-layer-select.patch
+#7 0.221 patching file envs.py
+#7 0.221 Hunk #1 succeeded at 184 (offset 7 lines).
+#7 0.222 Hunk #2 succeeded at 1516 (offset 59 lines).
+#7 0.225 patching file model_executor/layers/quantization/utils/marlin_utils.py
+#7 0.225 == /tmp/patches/marlin-int8-negative-scales.patch
+#7 0.226 patching file model_executor/kernels/linear/mixed_precision/marlin.py
+#7 0.226 == /tmp/patches/marlin-repack-staged-sm80.patch
+#7 0.227 patching file model_executor/kernels/linear/mixed_precision/marlin.py
+#7 0.227 == /tmp/patches/marlin-tune-table.patch
+#7 0.228 patching file _custom_ops.py
+#7 DONE 0.2s
+
+#8 exporting to image
+#8 exporting layers 0.1s done
+#8 exporting manifest sha256:0f27b9213ef5ffee385b8ccc6387ab443fc934979d565f91decf0cc41e71c02c 0.0s done
+#8 exporting config sha256:d539cba0561da09fd246b78a085dff31a1bfeb4256c1926535faaae9a66a9628 0.0s done
+#8 exporting attestation manifest sha256:45f9c808084bb84607fc2aed48312cb460283e58288fd5a8d99f1b246059805f 0.0s done
+#8 exporting manifest list sha256:b3a87a118fd5692b5b7156cf74d61e9e666a898b1e342e7535317953ab407dd1 0.0s done
+#8 naming to docker.io/library/qwen38-27b-rtx3090:stock028-s5_marlin done
+#8 unpacking to docker.io/library/qwen38-27b-rtx3090:stock028-s5_marlin 0.1s done
+#8 DONE 0.3s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/9ua6glwlnjo66mwqdgj5q552o

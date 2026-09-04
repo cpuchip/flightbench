@@ -1,0 +1,39 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 308B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/qwen38-27b-rtx3090:stock028-embed
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/3] FROM docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60
+#4 resolve docker.io/library/qwen38-27b-rtx3090:stock028-embed@sha256:aca5e2e9ad4868b8e2167a1d4021239d2e983512d58a1af26f7dae1070544f60 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 75B done
+#5 DONE 0.0s
+
+#6 [2/3] COPY patches /tmp/patches
+#6 CACHED
+
+#7 [3/3] RUN SP=$(python3 -c "import importlib.util as u; print(u.find_spec('vllm').submodule_search_locations[0])") && for p in /tmp/patches/*.patch; do echo "== $p"; patch -p1 -N -d "$SP" < "$p" || exit 1; done
+#7 CACHED
+
+#8 exporting to image
+#8 exporting layers 0.0s done
+#8 exporting manifest sha256:b45703ee0dfe7f6a10844a9f2da8050c119bdf0e449b537a59e7484d3cad8600 done
+#8 exporting config sha256:89c4c12bf8ed4c89663c50581b64f92c420fadfa22cae70acc9ed21fc1373697 done
+#8 exporting attestation manifest sha256:5632ae9f4755bc93672ec5b188032bd92fccd5194fbd4968d790b1078dd677a0 0.0s done
+#8 exporting manifest list sha256:8476c0bcedfe53b334ef4f8ab208651174456f51ff5249c30bc3f406a43a0f35
+#8 exporting manifest list sha256:8476c0bcedfe53b334ef4f8ab208651174456f51ff5249c30bc3f406a43a0f35 done
+#8 naming to docker.io/library/qwen38-27b-rtx3090:stock028-k1_kvarn_backend done
+#8 unpacking to docker.io/library/qwen38-27b-rtx3090:stock028-k1_kvarn_backend 0.0s done
+#8 DONE 0.2s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/my4v1k1wpt3so3by86abbpiij
