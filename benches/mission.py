@@ -33,6 +33,11 @@ THINK = os.environ.get("THINK", "off")
 SEAT = os.environ.get("SEAT", "controller")
 OUT = os.environ.get("OUT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "v6-results.jsonl"))
 MAXTOK = int(os.environ.get("MAXTOK", 1600 if THINK == "on" else 900))   # per reply; a thinking model that is cut here makes no call
+# NB: not TEMP -- that is the Windows temp-directory variable and is always set.
+TEMP = float(os.environ.get("TEMPERATURE", "0"))
+TOP_P = float(os.environ["TOP_P"]) if os.environ.get("TOP_P") else None
+TOP_K = int(os.environ["TOP_K"]) if os.environ.get("TOP_K") else None
+SEED = int(os.environ["SEED"]) if os.environ.get("SEED") else None
 VERSION = "6.1"
 
 # ---- physics: real constants, vis-viva, nothing more ----
@@ -562,7 +567,14 @@ def policy_book(m, fault=None):
 
 # ---- chat-endpoint run ----
 def call_model(msgs):
-    payload = {"model": MODEL, "messages": msgs, "max_tokens": MAXTOK, "temperature": 0, "tools": TOOLS}
+    payload = {"model": MODEL, "messages": msgs, "max_tokens": MAXTOK, "temperature": TEMP, "tools": TOOLS}
+    # Sampling defaults to greedy so rows stay comparable with every run before 2026-09-04.
+    # TEMP=1.0 TOP_P=0.95 TOP_K=20 is what this model card actually recommends; a greedy
+    # bench measures a regime the model is not shipped for, and on a knife-edge model it
+    # also makes the score a function of which kernels the autotuner happened to pick.
+    if TOP_P is not None: payload["top_p"] = TOP_P
+    if TOP_K is not None: payload["top_k"] = TOP_K
+    if SEED is not None: payload["seed"] = SEED
     if THINK in ("on", "off"):
         payload["chat_template_kwargs"] = {"enable_thinking": THINK == "on"}
     req = urllib.request.Request(f"{BASE}/chat/completions", data=json.dumps(payload).encode(),
