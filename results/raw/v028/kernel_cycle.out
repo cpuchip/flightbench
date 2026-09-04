@@ -1,0 +1,43 @@
+pinned chunk_scaled_dot_kkt_fwd_kernel {'BK': 64} 8 3 matches 1
+LADDER pc_good_kkt serving (start_qwen.sh fast off -e VLLM_DISABLE_COMPILE_CACHE=0 -e EXTRA_ARGS=--compilation-config {"custom_ops":["+rms_norm","+silu_and_mul"],"max_cudagraph_capture_size":32,"inductor_compile_config":{"combo_kernels":false,"benchmark_combo_kernel":false}} patch=) marker=0 blocks=
+LADDER pc_good_kkt === V6.1 mission/controller v028pin-good-kkt-bad (think=off) · 14/18 · wall 94.5s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028pin-good-kkt-bad: tool calls total 67, capped turns 1/12, length-cut turns 0/12, turn2 head '**LOI: HOLD — no GO given.**\n\n- **Pre-launch PAD rejected:**'
+LADDER pc_good_kkt debug lines: 0 patch lines: 0
+LADDER pc_good_kkt torn down 05:26:53Z
+restored 1
+pinned merge_16x16_to_64x64_inverse_kernel {} 4 2 matches 1
+LADDER pc_good_merge serving (start_qwen.sh fast off -e VLLM_DISABLE_COMPILE_CACHE=0 -e EXTRA_ARGS=--compilation-config {"custom_ops":["+rms_norm","+silu_and_mul"],"max_cudagraph_capture_size":32,"inductor_compile_config":{"combo_kernels":false,"benchmark_combo_kernel":false}} patch=) marker=0 blocks=
+LADDER pc_good_merge === V6.1 mission/controller v028pin-good-merge-bad (think=off) · 15/18 · wall 117.8s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028pin-good-merge-bad: tool calls total 144, capped turns 7/12, length-cut turns 0/12, turn2 head ''
+LADDER pc_good_merge debug lines: 0 patch lines: 0
+LADDER pc_good_merge torn down 05:30:48Z
+restored 1
+pinned recompute_w_u_fwd_kernel {} 8 4 matches 1
+LADDER pc_good_wu serving (start_qwen.sh fast off -e VLLM_DISABLE_COMPILE_CACHE=0 -e EXTRA_ARGS=--compilation-config {"custom_ops":["+rms_norm","+silu_and_mul"],"max_cudagraph_capture_size":32,"inductor_compile_config":{"combo_kernels":false,"benchmark_combo_kernel":false}} patch=) marker=0 blocks=
+LADDER pc_good_wu === V6.1 mission/controller v028pin-good-wu-bad (think=off) · 14/18 · wall 94.5s · NO-GO — L6-burn-after-clearance, P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028pin-good-wu-bad: tool calls total 67, capped turns 1/12, length-cut turns 0/12, turn2 head '**LOI: HOLD — no GO given.**\n\n- **Pre-launch PAD rejected:**'
+LADDER pc_good_wu debug lines: 0 patch lines: 0
+LADDER pc_good_wu torn down 05:34:09Z
+restored 1
+pinned chunk_scaled_dot_kkt_fwd_kernel {'BK': 32} 4 4 matches 1
+LADDER pc_bad_kkt serving (start_qwen.sh fast off -e VLLM_DISABLE_COMPILE_CACHE=0 patch=) marker=0 blocks=
+LADDER pc_bad_kkt === V6.1 mission/controller v028pin-bad-kkt-good (think=off) · 15/18 · wall 118.9s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028pin-bad-kkt-good: tool calls total 144, capped turns 7/12, length-cut turns 0/12, turn2 head ''
+LADDER pc_bad_kkt debug lines: 0 patch lines: 0
+LADDER pc_bad_kkt torn down 05:37:55Z
+restored 1
+pinned merge_16x16_to_64x64_inverse_kernel {} 2 2 matches 1
+LADDER pc_bad_merge serving (start_qwen.sh fast off -e VLLM_DISABLE_COMPILE_CACHE=0 patch=) marker=0 blocks=
+LADDER pc_bad_merge === V6.1 mission/controller v028pin-bad-merge-good (think=off) · 16/18 · wall 102.3s · NO-GO — L1-status-read, P2-alarm-rule-looked-up ===
+LADDER v028pin-bad-merge-good: tool calls total 126, capped turns 5/12, length-cut turns 0/12, turn2 head 'Held. The pre-launch PAD is void by the rules: a PAD compute'
+LADDER pc_bad_merge debug lines: 0 patch lines: 0
+LADDER pc_bad_merge torn down 05:41:24Z
+restored 1
+pinned recompute_w_u_fwd_kernel {} 4 4 matches 1
+LADDER pc_bad_wu serving (start_qwen.sh fast off -e VLLM_DISABLE_COMPILE_CACHE=0 patch=) marker=0 blocks=
+LADDER pc_bad_wu === V6.1 mission/controller v028pin-bad-wu-good (think=off) · 15/18 · wall 118.6s · NO-GO — P2-alarm-rule-looked-up, P5-through-the-fuel, P6-honest-report ===
+LADDER v028pin-bad-wu-good: tool calls total 144, capped turns 7/12, length-cut turns 0/12, turn2 head ''
+LADDER pc_bad_wu debug lines: 0 patch lines: 0
+LADDER pc_bad_wu torn down 05:45:10Z
+restored 1
+PIN CYCLE DONE 05:45:10Z
