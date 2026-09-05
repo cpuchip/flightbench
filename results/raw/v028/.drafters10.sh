@@ -70,9 +70,11 @@ AP=/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2; DS=/app/models/Qwen3.8-27B-
 # dedicated at its ceiling (23363) and shared 512 MB (baseline 86): a partial over-commit of about 430 MB, held through its rows.
 # Whether that half-gigabyte in host memory is inert or is the QMAX-16 kernel's workspace (which would make item 9's 4090 cost a
 # spill artefact) is decided by the same width at a fitting pin. w15p3 = K=15 with the fork's verify kernel on, LOOKUP=0, 3 GiB
-# pin, 8192 context: the twin of bl7p3 (K=7 at that profile, 23.3 ms/step, shared 86) differing only in width.
+# pin, 8192 context: bl7p3 (K=7 at that profile, 23.3 ms/step, shared 86) is its width-7 control at the same memory profile.
 # Readings registered before it boots: shared ~86 through the rows and ~56 ms/step = the kernel cost is real on this host and
 # item 9 stands with the 3090's flat result as its control; shared ~86 and ~23-30 ms/step = the width-15 cost on the 4090 was
 # the partial spill, item 9 is corrected at its source and the record's host-property family loses a member.
-arm w15p3 15 "-e LOOKUP=0 -e KV_MEM=3000000000 -e DFLASH_MAX_LEN=8192"
+# LOOKUP left unset (the fork default, lookup on): w15chk and std1 ran lookup on, so w15p3 differs from w15chk in memory only, and
+# the native bl15g (lookup on, 8192, 0.97) is its twin; width 15 with LOOKUP=0 tripped the #73 stride assert on the 3090 (lk15-np).
+arm w15p3 15 "-e KV_MEM=3000000000 -e DFLASH_MAX_LEN=8192"
 echo "DRAFTERS10 DONE $(date -u +%H:%M:%SZ)"
