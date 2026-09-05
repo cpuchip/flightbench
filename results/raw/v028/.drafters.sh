@@ -52,8 +52,15 @@ arm () {  # name tokens extra-docker-args [launcher-sed] [nofield]
 }
 DSPARK_SED='sed -i "s|\\\\\"method\\\\\":\\\\\"dflash\\\\\"|\\\\\"method\\\\\":\\\\\"dspark\\\\\"|" /app/single-user/start_qwen.sh; '
 AP=/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2; DS=/app/models/Qwen3.8-27B-DSpark
-arm ap7 7 "-e DRAFT=$AP -e LOOKUP=0"
-arm ap11 11 "-e DRAFT=$AP -e LOOKUP=0 -e KV_MEM=5851892940"
-arm ap15sa0 15 "-e DRAFT=$AP -e LOOKUP=0 -e SPEC_ATTN=0 -e KV_MEM=5851892940"
+# 13:20Z: ap7 (kernel on, default memory) died at engine start with "Triton Error [CUDA]: an illegal memory access" after
+# loading 18.09 GiB and capturing graphs (drf-ap7-void.txt). Re-armed as diagnostics: ap7sa0 turns the fork's split-KV verify
+# kernel off (if it boots, the kernel is incompatible with the plain DFlash class); ap7lite keeps the kernel on with a light
+# memory profile (MAX_LEN=16384, KV_MEM= falls back to GPU_UTIL sizing) to separate a memory fault from a kernel fault;
+# bl7off is the DFlash2 baseline with lookup drafting off, so ap7 has a like-for-like baseline (the 23.2 / 3.798 boots ran
+# at the launcher default, LOOKUP=1); ds7 as registered. Readings: ap7sa0 boots and ap7lite does not -> kernel; both boot ->
+# memory; neither -> the DFlash path itself in this fork, FAILLOG is the reading.
+arm ap7sa0 7 "-e DRAFT=$AP -e LOOKUP=0 -e SPEC_ATTN=0"
+arm ap7lite 7 "-e DRAFT=$AP -e LOOKUP=0 -e MAX_LEN=16384 -e KV_MEM="
+arm bl7off 7 "-e LOOKUP=0"
 arm ds7 7 "-e DRAFT=$DS -e LOOKUP=0" "$DSPARK_SED" nofield
 echo "DRAFTERS DONE $(date -u +%H:%M:%SZ)"
