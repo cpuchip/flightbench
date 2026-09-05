@@ -1,0 +1,61 @@
+# engine error lines from ds7sa0's /tmp/server.log, read live at 14:46:49Z
+(EngineCore pid=204) ERROR 09-05 14:46:43 [core.py:1346]     quant_config = get_quant_config(model_config, load_config)
+(EngineCore pid=204) ERROR 09-05 14:46:43 [core.py:1346]                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204) ERROR 09-05 14:46:43 [core.py:1346]   File "/app/venv/lib/python3.12/site-packages/vllm/model_executor/model_loader/weight_utils.py", line 293, in get_quant_config
+(EngineCore pid=204) ERROR 09-05 14:46:43 [core.py:1346]     raise ValueError(
+(EngineCore pid=204) ERROR 09-05 14:46:43 [core.py:1346] ValueError: hf_overrides must be a dict for get_quant_config to get the quantization config from it.
+(EngineCore pid=204) Process EngineCore:
+(EngineCore pid=204) Traceback (most recent call last):
+(EngineCore pid=204)   File "/usr/lib/python3.12/multiprocessing/process.py", line 314, in _bootstrap
+(EngineCore pid=204)     self.run()
+(EngineCore pid=204)   File "/usr/lib/python3.12/multiprocessing/process.py", line 108, in run
+(EngineCore pid=204)     self._target(*self._args, **self._kwargs)
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1350, in run_engine_core
+(EngineCore pid=204)     raise e
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1315, in run_engine_core
+(EngineCore pid=204)     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=204)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=204)     return func(*args, **kwargs)
+(EngineCore pid=204)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1073, in __init__
+(EngineCore pid=204)     super().__init__(
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 133, in __init__
+(EngineCore pid=204)     self.model_executor = executor_class(vllm_config)
+(EngineCore pid=204)                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=204)     return func(*args, **kwargs)
+(EngineCore pid=204)            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/executor/abstract.py", line 110, in __init__
+(EngineCore pid=204)     self._init_executor()
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/executor/uniproc_executor.py", line 74, in _init_executor
+(EngineCore pid=204)     self.driver_worker.load_model()
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/worker/gpu_worker.py", line 457, in load_model
+(EngineCore pid=204)     self.model_runner.load_model(load_dummy_weights=load_dummy_weights)
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/worker/gpu/model_runner.py", line 377, in load_model
+(EngineCore pid=204)     self.speculator.load_model(self.model)
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/worker/gpu/spec_decode/speculator.py", line 165, in load_model
+(EngineCore pid=204)     self.model = self.load_draft_model(target_model, target_attn_layer_names)
+(EngineCore pid=204)                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/worker/gpu/spec_decode/dspark/speculator.py", line 94, in load_draft_model
+(EngineCore pid=204)     model = load_dspark_model(target_model, self.vllm_config)
+(EngineCore pid=204)             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/worker/gpu/spec_decode/dspark/utils.py", line 48, in load_dspark_model
+(EngineCore pid=204)     draft_vllm_config.quant_config = get_draft_quant_config(vllm_config)
+(EngineCore pid=204)                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/model_executor/models/utils.py", line 899, in get_draft_quant_config
+(EngineCore pid=204)     VllmConfig.get_quantization_config(draft_model_config, draft_load_config)
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/config/vllm.py", line 804, in get_quantization_config
+(EngineCore pid=204)     return VllmConfig._get_quantization_config(
+(EngineCore pid=204)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/config/vllm.py", line 769, in _get_quantization_config
+(EngineCore pid=204)     quant_config = get_quant_config(model_config, load_config)
+(EngineCore pid=204)                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=204)   File "/app/venv/lib/python3.12/site-packages/vllm/model_executor/model_loader/weight_utils.py", line 293, in get_quant_config
+(EngineCore pid=204)     raise ValueError(
+(EngineCore pid=204) ValueError: hf_overrides must be a dict for get_quant_config to get the quantization config from it.
+(APIServer pid=13) INFO 09-05 14:46:45 [utils.py:615] [shutdown] Process manager: send sigterm to process EngineCore
+(APIServer pid=13) Traceback (most recent call last):
+(APIServer pid=13)     self.engine_core = EngineCoreClient.make_async_mp_client(
+(APIServer pid=13)     raise RuntimeError(
+(APIServer pid=13) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}
