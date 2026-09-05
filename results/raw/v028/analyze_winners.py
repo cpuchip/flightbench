@@ -18,7 +18,10 @@ def winners(path):
     for m in re.finditer(r"Triton autotuning for function (\w+),?\s*(?:finished after [0-9.]+s;)?\s*best config selected: ([^;]+);", ex):
         out.setdefault(m.group(1), m.group(2).strip())
     fails = len(re.findall(r"Autotuning failed with out of resource", ex))
-    return out, fails
+    first = {}  # the first-listed configuration per kernel: the first "Autotuning kernel K with config C" line
+    for m in re.finditer(r"Autotuning kernel (\w+) with config (.+?)(?= Autotuning| Triton| \(EngineCore| INFO| WARNING|$)", ex):
+        first.setdefault(m.group(1), m.group(2).strip())
+    return out, fails, first
 
 def steady(path):
     r = []
@@ -33,18 +36,21 @@ rows = []
 for f in files:
     p = os.path.join(HERE, f)
     if not os.path.exists(p): continue
-    w, fails = winners(p); ms, n = steady(p)
-    rows.append((f, ms, n, w, fails))
+    w, fails, first = winners(p); ms, n = steady(p)
+    rows.append((f, ms, n, w, fails, first))
     side = "slow" if ms > 35 else "fast"
     print(f"{f:<24} steady {ms:5.1f} ms/step ({side}, {n} rows)  kernels autotuned: {len(w)}  OOR fails: {fails}")
-kernels = sorted({k for _, _, _, w, _ in rows for k in w})
+kernels = sorted({k for r in rows for k in r[3]})
 print()
 for k in kernels:
     print(f"== {k}")
-    for f, ms, n, w, _ in rows:
-        print(f"   {f:<24} {ms:5.1f}  {w.get(k, '(not autotuned in this boot)')}")
+    for f, ms, n, w, _, first in rows:
+        mark = ' [= first-listed]' if k in w and first.get(k) == w[k] else ''
+        print(f"   {f:<24} {ms:5.1f}  {w.get(k, '(not autotuned in this boot)')}{mark}")
 # the registered test: a kernel whose winner separates fast from slow boots
 fast = [r for r in rows if r[1] <= 35 and r[3]]; slow = [r for r in rows if r[1] > 35 and r[3]]
+for f, ms, n, w, _, first in rows:
+    if w: print(f"{f}: winner equals the first-listed config on {sum(1 for k in w if first.get(k) == w[k])} of {len(w)} kernels")
 if fast and slow:
     print("\nkernels whose winner sets separate fast from slow boots:")
     for k in kernels:
