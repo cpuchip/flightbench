@@ -71,11 +71,16 @@ print("registered: tok/step up at unchanged round with no wall-clock penalty lar
 # blk vs std identity far below it = block verification changes acceptance decisions, and only then
 # do the aggregates above mean anything. Rows are compared on (drafts, acc, dtok, out).
 names = [n for n in ("std1", "blk1", "blk2", "std2") if n in boots]
-def key(r): return (r["drafts"], r["acc"], r["dtok"], r["out"])
+# trajectory signature: what was generated and accepted. Drafted tokens (dtok) are EXCLUDED: the adaptive
+# block-length policy carries state between requests (the sticky coast), so dtok can differ between two
+# boots that generated identical text; a signature holding it reports order effects as divergence.
+def key(r): return (r["drafts"], r["acc"], r["out"])
+def dtok_only(a, b): return key(a) == key(b) and a["dtok"] != b["dtok"]
 print("row identity matrix (identical / shared):")
 for i, a in enumerate(names):
     for b in names[i+1:]:
         ra, rb = boots[a][2], boots[b][2]; ks = set(ra) & set(rb)
         same = sum(1 for k in ks if key(ra[k]) == key(rb[k]))
         tag = "control (same config)" if a[:3] == b[:3] else "treatment vs control"
-        print(f"  {a} vs {b}: {same}/{len(ks)}  [{tag}]")
+        donly = sum(1 for k in ks if dtok_only(ra[k], rb[k]))
+        print(f"  {a} vs {b}: {same}/{len(ks)} identical trajectories  (+{donly} rows equal except drafted tokens)  [{tag}]")
