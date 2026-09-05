@@ -52,3 +52,6 @@ for seed in SEEDS:
         print(f"ROW arm={ARM} seed={seed} prompt={pi} drafts={dr:.0f} dtok={dt:.0f} acc={ac:.0f} round={dt/dr:.3f} "
               f"tok_per_step={1+ac/dr:.3f} out={out} wall={wall:.1f} tok_s={out/wall:.1f} "
               f"distinct={dist:.3f} gzip={comp:.3f} {pp}", flush=True)
+        if os.environ.get("GREEDY") == "1":  # greedy cells: the completion text itself, for cross-box first-divergence comparison
+            txt = d["choices"][0].get("text", "") or ""
+            print(f"TEXT arm={ARM} seed={seed} prompt={pi} sha={hashlib.sha256(txt.encode()).hexdigest()[:16]} b64={base64.b64encode(txt.encode()).decode()}", flush=True)
