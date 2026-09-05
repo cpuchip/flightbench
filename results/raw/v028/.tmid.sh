@@ -1,9 +1,15 @@
 #!/bin/bash
-# LOCATE THE WIDTH STEP: t8 (width 8) costs 23.2 ms/step like width 7; width 15 costs 56.5. The penalty is
-# a step between configured widths 9 and 15, or a ramp flat through 8. Two cells: t11 and t13, lookup on
-# (sync by the launcher rule), winners printed, and the full non-default args line saved (NONDEFAULT_LINE).
-# Registered: both at 23 puts the step at 14 or 15 (a shape or tile boundary at 16 queries); both at 56 puts
-# it at 9 or 10; one of each brackets it. Waits on the graphs-off pair.
+# ISOLATE QMAX. Source read (spec_decode_attn.py in the image, sha 53ee3e78, unpatched on the other box
+# too): the split-KV verify kernel plans its tiles on the ACTUAL max_query_len per step (line 217), not
+# on qmax, so a tile or 16-query shape boundary is excluded by source; qmax enters as the partial-buffer
+# size (linear, line 183) and as a tl.constexpr in both kernels (separate compilation, lines 67, 147).
+# t8 (qmax 9) at 23.2 argues against the linear half. The launcher exports VLLM_SPEC_DECODE_ATTN_QMAX
+# from an inherited value if set (line 223): q16_7 = DFLASH_TOKENS=7 with QMAX=16, identical width,
+# positions per step and tile plan, only qmax changed (raising it above the need is safe; the kernel
+# asserts max_query_len <= qmax, so the reverse would trip). Registered: q16_7 near 56 means qmax alone
+# is the mechanism (that kernel compiled at that constexpr on this card); near 23 exonerates qmax, and
+# t11 behind it brackets the width step. The native box runs the same cell as control (expected flat).
+#!/bin/bash
 LOCK=/tmp/tmid.lock
 if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo "REFUSING: live run $(cat "$LOCK")"; exit 3; fi
 echo $$ > "$LOCK"; trap 'rm -f "$LOCK"' EXIT
@@ -32,7 +38,7 @@ arm () {  # name tokens extra-docker-args
       nohup bash single-user/start_qwen.sh > /tmp/server.log 2>&1 &
       for i in $(seq 1 180); do sleep 5; curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health && break; done
       curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health || { echo "NO HEALTH"; echo "FAILLOG_BEGIN"; grep -n -m1 -B3 -A40 -iE "Traceback|Error|error|assert" /tmp/server.log | cut -c1-300 | head -80; echo "FAILLOG_END"; tail -15 /tmp/server.log | cut -c1-300; exit 1; }
-      echo "RESOLVED DFLASH_TOKENS=$DFLASH_TOKENS SPEC_ATTN=${SPEC_ATTN:-unset} VLLM_SPEC_DECODE_ATTN=${VLLM_SPEC_DECODE_ATTN:-unset} FORCE_FIRST=${VLLM_TRITON_FORCE_FIRST_CONFIG:-unset} ASYNC_SCHED=${ASYNC_SCHED:-unset} $(grep -oE "async_scheduling[=: ]+(True|False)" /tmp/server.log | head -1) $(grep -oE "\-\-(no-)?async-scheduling" /tmp/server.log | head -1) $(grep -oE "num_speculative_tokens[^,]{0,10}" /tmp/server.log | head -1) $(grep -oE "draft_logits=(True|False)" /tmp/server.log | head -1) $(grep -oiE "rejection_sample_method[=: ]+[a-z]+|use_block_verification[=: ]+[A-Za-z]+" /tmp/server.log | head -2 | tr "\n" " ") $(grep -oE "drafting [0-9]+ tokens per step" /tmp/server.log | head -1)"
+      echo "RESOLVED DFLASH_TOKENS=$DFLASH_TOKENS QMAX=${VLLM_SPEC_DECODE_ATTN_QMAX:-unset} SPEC_ATTN=${SPEC_ATTN:-unset} VLLM_SPEC_DECODE_ATTN=${VLLM_SPEC_DECODE_ATTN:-unset} FORCE_FIRST=${VLLM_TRITON_FORCE_FIRST_CONFIG:-unset} ASYNC_SCHED=${ASYNC_SCHED:-unset} $(grep -oE "async_scheduling[=: ]+(True|False)" /tmp/server.log | head -1) $(grep -oE "\-\-(no-)?async-scheduling" /tmp/server.log | head -1) $(grep -oE "num_speculative_tokens[^,]{0,10}" /tmp/server.log | head -1) $(grep -oE "draft_logits=(True|False)" /tmp/server.log | head -1) $(grep -oiE "rejection_sample_method[=: ]+[a-z]+|use_block_verification[=: ]+[A-Za-z]+" /tmp/server.log | head -2 | tr "\n" " ") $(grep -oE "drafting [0-9]+ tokens per step" /tmp/server.log | head -1)"
       echo "SERVERLOG_BEGIN"; grep -aiE "speculative_config|SpeculativeConfig|rejection_sample|num_speculative_tokens|async_scheduling|async-scheduling|enable_prefix_caching|Capturing CUDA graph|cudagraph|force.first|first valid config|draft_logits|max_num_seqs|max_model_len|autotun|best config" /tmp/server.log | head -400 | cut -c1-600; echo "SERVERLOG_END"
       echo "NONDEFAULT_LINE $(grep -m1 "non-default args" /tmp/server.log | cut -c1-3000)"
       echo "$CLIENT_B64" | base64 -d > /tmp/perpos_client.py
@@ -42,6 +48,6 @@ arm () {  # name tokens extra-docker-args
   echo "LKCOST $NAME exit=$? $(grep -aE 'RESOLVED|NO HEALTH|SPEC_CFG_LINE' "$OUTD/tmid-$NAME.txt" | head -2 | tr '\n' ' ' | cut -c1-300)"
   echo "LKCOST $NAME rows=$(grep -ac '^ROW ' "$OUTD/tmid-$NAME.txt")"
 }
+arm q16_7 7 "-e VLLM_SPEC_DECODE_ATTN_QMAX=16"
 arm t11 11
-arm t13 13
 echo "LKCOST TMID DONE $(date -u +%H:%M:%SZ)"
