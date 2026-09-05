@@ -27,3 +27,41 @@ DRAFTERS4 DONE 15:15:42Z
 DRAFTERS ap11sa0b exit=1 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L D:dflash_head C  
 DRAFTERS ap11sa0b rows=13
 DRAFTERS5 DONE 15:31:38Z
+DRAFTERS ds7r exit=137 SPEC_CFG_LINE  
+DRAFTERS ds7r rows=0
+DRAFTERS ds7rsa0 exit=137 SPEC_CFG_LINE  
+DRAFTERS ds7rsa0 rows=0
+DRAFTERS6 DONE 15:46:44Z
+IDLE_GATE 15:47:38Z card0_used=0MiB counters: 15:47:36 | 5c7c_phys_0 ded=1921 shr=1287 com=5958 || 0, 0 MiB; 1, 0 MiB
+CHK w15chk exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L L L  
+CHK w15chk rows=32
+IDLE_GATE 15:58:56Z card0_used=0MiB counters: 15:58:44 | 5c7c_phys_0 ded=1959 shr=1251 com=5962 || 0, 0 MiB; 1, 0 MiB
+CHK d7chk exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L L L  
+CHK d7chk rows=32
+HELD 75da78594620167c51af389e7c81d710f438ac7722692f474444a0873a8ecaa3
+IDLE_GATE 16:05:05Z card0_used=0MiB counters: 16:05:02 | 5c7c_phys_0 ded=1943 shr=1319 com=5954 || 0, 0 MiB; 1, 0 MiB
+CHK mix7chk exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L D:dflash_head C L  
+CHK mix7chk rows=32
+CHK DONE 16:14:14Z
+IDLE_GATE 16:15:09Z card0_used=0MiB counters: 16:15:05 | 5c7c_phys_0 ded=1943 shr=1231 com=5954 || 0, 0 MiB; 1, 0 MiB
+CHK ap11p3 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C  
+CHK ap11p3 rows=32
+CHK8 DONE 16:28:35Z
+DRAFTERS ds7rp3 exit=0 SPEC_CFG_LINE  SEQUENCE D:backbone C D:dspark_head C  
+DRAFTERS ds7rp3 rows=32
+DRAFTERS9 DONE 16:38:00Z
+DRAFTERS w15p3 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C D:dflash2_candidate_selector C  
+DRAFTERS w15p3 rows=32
+DRAFTERS10 DONE 16:46:30Z
+DRAFTERS ap7p3b exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L L  
+DRAFTERS ap7p3b rows=32
+DRAFTERS11 DONE 16:57:52Z
+DRAFTERS ap11p3sa0 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C  
+DRAFTERS ap11p3sa0 rows=32
+DRAFTERS12 DONE 17:09:12Z
+DRAFTERS q16p3 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L D:dflash_head C D:dflash2_candidate_selector C  
+DRAFTERS q16p3 rows=32
+DRAFTERS13 DONE 17:15:35Z
+DRAFTERS ap7p2 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L L  
+DRAFTERS ap7p2 rows=32
+DRAFTERS14 DONE 17:24:58Z
