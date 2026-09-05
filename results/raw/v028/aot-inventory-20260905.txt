@@ -1,4 +1,4 @@
-# volume qwen-cache-lane0, inventory taken 2026-09-05T11:56Z (UTC); entries as: mtime(UTC) size-bytes name (directory inode size; recursive sizes are in aot-sizeclass-20260905.txt)
+# volume qwen-cache-lane0, inventory taken 2026-09-05T11:58Z (UTC); entries as: mtime(UTC) size-bytes name (directory inode size; recursive sizes in aot-sizeclass-20260905.txt). held-20260905/ holds artefacts moved aside for the r7e cell (mv keeps their original mtime), listed so every boot window can be classified.
 ## /cache/.cache/vllm/torch_compile_cache: 24 entries
 2026-09-05 01:22:58.792205698 +0000 4096 c9564646d0
 2026-09-05 01:33:01.537075169 +0000 4096 2f07cd4dbc
@@ -87,7 +87,10 @@
 2026-09-05 10:55:27.252337588 +0000 4096 torch_aot_compile/04cf860e483a8315252ccec6d645181cd86fb72690fe08f37b0563dc63f90248
 2026-09-05 11:28:55.963282530 +0000 4096 torch_aot_compile/e5fd490371552863973232caa8fd930395c98491ec9911c55ec32f3b5bce92fe
 2026-09-05 11:28:58.043385946 +0000 4096 torch_aot_compile/28ca4f4efb0dccaaf3060dd84b775cbfa9af40c5d5bb83f6cf6c2e5a36e3e2e4
-# volume qwen-cache-lane1, inventory taken 2026-09-05T11:56Z (UTC); entries as: mtime(UTC) size-bytes name (directory inode size; recursive sizes are in aot-sizeclass-20260905.txt)
+## /cache/.cache/vllm/held-20260905: 2 entries
+2026-09-05 07:20:46.829888422 +0000 4096 torch_aot_compile/75da78594620167c51af389e7c81d710f438ac7722692f474444a0873a8ecaa3
+2026-09-05 07:29:54.875438974 +0000 4096 torch_aot_compile/04cf860e483a8315252ccec6d645181cd86fb72690fe08f37b0563dc63f90248
+# volume qwen-cache-lane1, inventory taken 2026-09-05T11:58Z (UTC); entries as: mtime(UTC) size-bytes name (directory inode size; recursive sizes in aot-sizeclass-20260905.txt). held-20260905/ holds artefacts moved aside for the r7e cell (mv keeps their original mtime), listed so every boot window can be classified.
 ## /cache/.cache/vllm/torch_compile_cache: 17 entries
 2026-09-04 14:01:09.396085131 +0000 4096 b9ca2e649e
 2026-09-04 14:06:56.929909043 +0000 4096 67fff85350
