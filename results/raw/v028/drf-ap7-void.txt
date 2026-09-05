@@ -1,1 +1,27 @@
 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+
+# Appended by the presiding seat from a docker exec read of the container log at 13:1xZ, before the container was removed (the cell's own FAILLOG excerpt ended before these lines):
+ap7 boot state at 13:14:34Z:
+      1 Compiling a graph for compile range (1, 2048) takes 56.78 s
+      1 Compiling a graph for compile range (1, 2048) takes 7.74 s
+      1 DFlashDraftModel
+      2 Traceback (most rece
+      1 Using cache directory: /cache/.cache/vllm/torch_compile_cache/4dc64327a8/rank_0_0/backbone
+      1 Using cache directory: /cache/.cache/vllm/torch_compile_cache/4dc64327a8/rank_0_0/dflash_head
+(EngineCore pid=272) INFO 09-05 13:14:32 [model_runner.py:926] Graph capturing finished in 7 secs, took 0.00 GiB
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346] EngineCore failed to start.
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346] Traceback (most recent call last):
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1315, in run_engine_core
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]     engine_core = EngineCoreProc(*args, engine_index=dp_rank, **kwargs)
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]     return func(*args, **kwargs)
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]            ^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 1073, in __init__
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]     super().__init__(
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core.py", line 144, in __init__
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]     kv_cache_config = self._initialize_kv_caches(vllm_config)
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(EngineCore pid=272) ERROR 09-05 13:14:32 [core.py:1346]   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+
+(EngineCore) INFO 13:12:13 Model loading took 18.09 GiB memory and 108.35 s; INFO 13:14:23 Initial free memory 22.45 GiB, reserved 5.2 GiB for KV cache as specified by kv_cache_memory_bytes; INFO 13:14:32 Graph capturing finished in 7 secs, took 0.00 GiB; ERROR 13:14:32 RuntimeError: Triton Error [CUDA]: an illegal memory access was encountered (in EngineCore init, _initialize_kv_caches)
