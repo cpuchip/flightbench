@@ -57,3 +57,21 @@ for s, b in pairs:
         d = [(1 + rb[k]["acc"] / rb[k]["drafts"]) - (1 + rs[k]["acc"] / rs[k]["drafts"]) for k in keys]
         print(f"within-pair rows ({s},{b}), n={len(d)}: mean {st.mean(d):+.3f} sd {st.stdev(d):.3f} positive {sum(1 for x in d if x>0)}/{len(d)}  [rows share a boot: not independent replicates]")
 print("registered: tok/step up at unchanged round with no wall-clock penalty larger than the gain; falsifier: flat or down on both pairs.")
+
+# ---- boot replay check (threadchip 2026-09-05: on the other box two boots of one config were
+# bit-identical on every counter). Here boots of one config replay MOST rows and diverge on a few
+# (cc0 vs coh-flag 28/32, pol-sticky0 vs pol-zrev 20/32), consistent with the autotune winner set
+# changing per boot (#75) and flipping a rounding tie somewhere in a minority of trajectories.
+# So the reading is: std1 vs std2 identity = the box's replay rate (control); blk vs std identity
+# near that rate = block verification is a NO-OP on this path (the finding would be the null);
+# blk vs std identity far below it = block verification changes acceptance decisions, and only then
+# do the aggregates above mean anything. Rows are compared on (drafts, acc, dtok, out).
+names = [n for n in ("std1", "blk1", "blk2", "std2") if n in boots]
+def key(r): return (r["drafts"], r["acc"], r["dtok"], r["out"])
+print("row identity matrix (identical / shared):")
+for i, a in enumerate(names):
+    for b in names[i+1:]:
+        ra, rb = boots[a][2], boots[b][2]; ks = set(ra) & set(rb)
+        same = sum(1 for k in ks if key(ra[k]) == key(rb[k]))
+        tag = "control (same config)" if a[:3] == b[:3] else "treatment vs control"
+        print(f"  {a} vs {b}: {same}/{len(ks)}  [{tag}]")
