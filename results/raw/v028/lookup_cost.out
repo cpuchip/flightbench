@@ -1,0 +1,30 @@
+bash: results/raw/v028/.lookup_cost.sh: No such file or directory
+RESTART 06:08:17Z: step-cost cells redesigned around the async-scheduling confound (start_qwen.sh:291-296); t8/t11 dropped; one chain: lookup_cost2 -> block7 -> ffc_card0 after the redo
+LKCOST a7off exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=7 VLLM_DFLASH2_LOOKUP=unset ASYNC_SCHED=0   num_speculative_tokens': 7 draft_logits=True   
+LKCOST a7off rows=32
+LKCOST a15on exit=1 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" NO HEALTH 
+LKCOST a15on rows=0
+LKCOST lk15off exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=15 VLLM_DFLASH2_LOOKUP=0 ASYNC_SCHED=unset   num_speculative_tokens': 15 draft_logits=True  drafting 7 tokens per step
+LKCOST lk15off rows=32
+LKCOST DONE 07:18:32Z
+LKCOST a7off2 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=7 VLLM_DFLASH2_LOOKUP=unset ASYNC_SCHED=0   num_speculative_tokens': 7 draft_logits=True   
+LKCOST a7off2 rows=32
+LKCOST A7OFF2 DONE 08:18:54Z
+LKCOST a15on2 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=15 VLLM_DFLASH2_LOOKUP=unset ASYNC_SCHED=1   num_speculative_tokens': 15 draft_logits=True  drafting 7 tokens per step
+LKCOST a15on2 rows=32
+LKCOST A15ON2 DONE 08:34:04Z
+LKCOST t8 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=8 SPEC_ATTN=unset VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens': 8 draft_l
+LKCOST t8 rows=32
+LKCOST ff15 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=15 SPEC_ATTN=unset VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=1 ASYNC_SCHED=unset   num_speculative_tokens': 15 draft_log
+LKCOST ff15 rows=32
+LKCOST sa0_15 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=15 SPEC_ATTN=0 VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens': 15 draft_log
+LKCOST sa0_15 rows=32
+LKCOST W15CAUSE DONE 09:01:38Z
+LKCOST q16_7 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=7 QMAX=16 SPEC_ATTN=unset VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens': 7
+LKCOST q16_7 rows=32
+LKCOST t11 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=11 QMAX=unset SPEC_ATTN=unset VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens
+LKCOST t11 rows=32
+LKCOST TMID DONE 10:09:09Z
+LKCOST sa0_7a exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=7 QMAX=unset SPEC_ATTN=0 VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens': 7 
+LKCOST sa0_7a rows=32
+LKCOST SA07 DONE 10:17:09Z

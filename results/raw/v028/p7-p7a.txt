@@ -1,0 +1,44 @@
+RESOLVED draft_logits=True enable_prefix_caching=False card1 pcie_x8
+SERVERLOG_BEGIN
+(APIServer pid=8) INFO 09-05 11:06:11 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18021, 'model': '/app/models/Q
+(APIServer pid=8) WARNING 09-05 11:06:11 [envs.py:2239] Unknown vLLM environment variable detected: VLLM_V2_CUDAGRAPH_MEM_MIB
+(APIServer pid=8) WARNING 09-05 11:06:13 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative
+(EngineCore pid=197) INFO 09-05 11:06:20 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Qwen3.8-27B-DFlash2-W4A16', num_spec_tokens=7), tokenizer='/app/mo
+(EngineCore pid=197) WARNING 09-05 11:07:38 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculat
+(EngineCore pid=197) INFO 09-05 11:10:07 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=7, draft_logits=True)
+(EngineCore pid=197) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:01<00:10,  1.06s/it]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:01<00:05,  1.74it/s]Capturing CUDA graphs (PIECEWISE):
+(EngineCore pid=197) Capturing CUDA graphs (FULL):   0%|          | 0/8 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  12%|█▎        | 1/8 [00:00<00:02,  3.09it/s]Capturing CUDA graphs (FULL):  38%|███▊      | 3/8 [00:00<00:00,  7.73it/s]Capturing CUDA graphs (FULL):  62%|███�
+SERVERLOG_END
+PERPOS arm=p7a prompts=8 seeds=[1, 2, 3, 4]
+ROW arm=p7a seed=1 prompt=0 drafts=277 dtok=1939 acc=746 round=7.000 tok_per_step=3.693 out=1024 wall=7.5 tok_s=136.3 distinct=0.600 gzip=0.464 p0=208 p1=161 p2=126 p3=95 p4=67 p5=50 p6=39
+ROW arm=p7a seed=1 prompt=1 drafts=372 dtok=2604 acc=651 round=7.000 tok_per_step=2.750 out=1024 wall=9.1 tok_s=113.0 distinct=0.626 gzip=0.514 p0=255 p1=146 p2=89 p3=60 p4=41 p5=35 p6=25
+ROW arm=p7a seed=1 prompt=2 drafts=558 dtok=3906 acc=472 round=7.000 tok_per_step=1.846 out=1024 wall=12.6 tok_s=81.2 distinct=0.610 gzip=0.502 p0=195 p1=98 p2=59 p3=47 p4=35 p5=24 p6=14
+ROW arm=p7a seed=1 prompt=3 drafts=266 dtok=1862 acc=757 round=7.000 tok_per_step=3.846 out=1024 wall=6.1 tok_s=168.4 distinct=0.577 gzip=0.456 p0=221 p1=167 p2=130 p3=86 p4=65 p5=48 p6=40
+ROW arm=p7a seed=1 prompt=4 drafts=237 dtok=1659 acc=788 round=7.000 tok_per_step=4.325 out=1024 wall=5.4 tok_s=189.0 distinct=0.408 gzip=0.450 p0=196 p1=157 p2=131 p3=102 p4=79 p5=68 p6=55
+ROW arm=p7a seed=1 prompt=5 drafts=202 dtok=1414 acc=824 round=7.000 tok_per_step=5.079 out=1024 wall=4.6 tok_s=223.2 distinct=0.409 gzip=0.360 p0=180 p1=151 p2=136 p3=113 p4=97 p5=78 p6=69
+ROW arm=p7a seed=1 prompt=6 drafts=304 dtok=2128 acc=721 round=7.000 tok_per_step=3.372 out=1024 wall=6.9 tok_s=148.4 distinct=0.622 gzip=0.447 p0=221 p1=153 p2=111 p3=82 p4=66 p5=49 p6=39
+ROW arm=p7a seed=1 prompt=7 drafts=180 dtok=1260 acc=528 round=7.000 tok_per_step=3.933 out=709 wall=4.1 tok_s=171.8 distinct=0.438 gzip=0.380 p0=143 p1=106 p2=79 p3=69 p4=54 p5=45 p6=32
+ROW arm=p7a seed=2 prompt=0 drafts=258 dtok=1806 acc=765 round=7.000 tok_per_step=3.965 out=1024 wall=5.9 tok_s=174.5 distinct=0.585 gzip=0.458 p0=214 p1=162 p2=128 p3=101 p4=75 p5=52 p6=33
+ROW arm=p7a seed=2 prompt=1 drafts=290 dtok=2030 acc=734 round=7.000 tok_per_step=3.531 out=1024 wall=6.6 tok_s=155.6 distinct=0.557 gzip=0.479 p0=241 p1=172 p2=121 p3=90 p4=55 p5=34 p6=21
+ROW arm=p7a seed=2 prompt=2 drafts=531 dtok=3717 acc=493 round=7.000 tok_per_step=1.928 out=1024 wall=12.0 tok_s=85.2 distinct=0.580 gzip=0.515 p0=207 p1=102 p2=59 p3=45 p4=36 p5=25 p6=19
+ROW arm=p7a seed=2 prompt=3 drafts=243 dtok=1701 acc=782 round=7.000 tok_per_step=4.218 out=1024 wall=5.5 tok_s=184.8 distinct=0.476 gzip=0.416 p0=208 p1=164 p2=130 p3=98 p4=73 p5=62 p6=47
+ROW arm=p7a seed=2 prompt=4 drafts=185 dtok=1295 acc=841 round=7.000 tok_per_step=5.546 out=1024 wall=4.2 tok_s=241.2 distinct=0.348 gzip=0.399 p0=167 p1=147 p2=131 p3=119 p4=104 p5=91 p6=82
+ROW arm=p7a seed=2 prompt=5 drafts=198 dtok=1386 acc=825 round=7.000 tok_per_step=5.167 out=1024 wall=4.5 tok_s=227.8 distinct=0.494 gzip=0.275 p0=167 p1=145 p2=126 p3=110 p4=103 p5=96 p6=78
+ROW arm=p7a seed=2 prompt=6 drafts=328 dtok=2296 acc=696 round=7.000 tok_per_step=3.122 out=1024 wall=7.4 tok_s=137.6 distinct=0.625 gzip=0.492 p0=230 p1=166 p2=110 p3=83 p4=53 p5=33 p6=21
+ROW arm=p7a seed=2 prompt=7 drafts=97 dtok=679 acc=270 round=7.000 tok_per_step=3.784 out=368 wall=2.3 tok_s=162.3 distinct=0.639 gzip=0.496 p0=71 p1=57 p2=42 p3=36 p4=27 p5=22 p6=15
+ROW arm=p7a seed=3 prompt=0 drafts=231 dtok=1617 acc=797 round=7.000 tok_per_step=4.450 out=1024 wall=5.3 tok_s=194.4 distinct=0.587 gzip=0.448 p0=201 p1=159 p2=127 p3=104 p4=87 p5=68 p6=51
+ROW arm=p7a seed=3 prompt=1 drafts=358 dtok=2506 acc=665 round=7.000 tok_per_step=2.858 out=1024 wall=8.1 tok_s=126.1 distinct=0.608 gzip=0.510 p0=250 p1=156 p2=106 p3=75 p4=43 p5=22 p6=13
+ROW arm=p7a seed=3 prompt=2 drafts=642 dtok=4494 acc=382 round=7.000 tok_per_step=1.595 out=1024 wall=14.5 tok_s=70.5 distinct=0.693 gzip=0.539 p0=187 p1=80 p2=40 p3=30 p4=22 p5=14 p6=9
+ROW arm=p7a seed=3 prompt=3 drafts=255 dtok=1785 acc=768 round=7.000 tok_per_step=4.012 out=1024 wall=5.8 tok_s=175.4 distinct=0.486 gzip=0.424 p0=204 p1=163 p2=126 p3=95 p4=76 p5=59 p6=45
+ROW arm=p7a seed=3 prompt=4 drafts=24 dtok=168 acc=25 round=7.000 tok_per_step=2.042 out=50 wall=0.6 tok_s=81.4 distinct=0.861 gzip=0.861 p0=15 p1=6 p2=2 p3=2 p4=0 p5=0 p6=0
+ROW arm=p7a seed=3 prompt=5 drafts=200 dtok=1400 acc=828 round=7.000 tok_per_step=5.140 out=1024 wall=4.6 tok_s=224.8 distinct=0.420 gzip=0.226 p0=165 p1=137 p2=124 p3=112 p4=103 p5=97 p6=90
+ROW arm=p7a seed=3 prompt=6 drafts=358 dtok=2506 acc=671 round=7.000 tok_per_step=2.874 out=1024 wall=8.1 tok_s=126.0 distinct=0.586 gzip=0.475 p0=247 p1=162 p2=104 p3=65 p4=46 p5=28 p6=19
+ROW arm=p7a seed=3 prompt=7 drafts=102 dtok=714 acc=301 round=7.000 tok_per_step=3.951 out=404 wall=2.4 tok_s=170.6 distinct=0.592 gzip=0.475 p0=82 p1=64 p2=48 p3=37 p4=28 p5=23 p6=19
+ROW arm=p7a seed=4 prompt=0 drafts=283 dtok=1981 acc=746 round=7.000 tok_per_step=3.636 out=1024 wall=6.4 tok_s=159.2 distinct=0.540 gzip=0.456 p0=225 p1=173 p2=132 p3=94 p4=63 p5=36 p6=23
+ROW arm=p7a seed=4 prompt=1 drafts=357 dtok=2499 acc=666 round=7.000 tok_per_step=2.866 out=1024 wall=8.1 tok_s=126.5 distinct=0.588 gzip=0.494 p0=255 p1=170 p2=105 p3=67 p4=36 p5=19 p6=14
+ROW arm=p7a seed=4 prompt=2 drafts=589 dtok=4123 acc=435 round=7.000 tok_per_step=1.739 out=1024 wall=13.3 tok_s=76.8 distinct=0.651 gzip=0.546 p0=197 p1=92 p2=52 p3=36 p4=28 p5=19 p6=11
+ROW arm=p7a seed=4 prompt=3 drafts=230 dtok=1610 acc=798 round=7.000 tok_per_step=4.470 out=1024 wall=5.3 tok_s=194.6 distinct=0.463 gzip=0.392 p0=206 p1=156 p2=124 p3=102 p4=91 p5=69 p6=50
+ROW arm=p7a seed=4 prompt=4 drafts=206 dtok=1442 acc=824 round=7.000 tok_per_step=5.000 out=1024 wall=4.7 tok_s=217.2 distinct=0.417 gzip=0.423 p0=177 p1=155 p2=134 p3=114 p4=95 p5=79 p6=70
+ROW arm=p7a seed=4 prompt=5 drafts=186 dtok=1302 acc=842 round=7.000 tok_per_step=5.527 out=1024 wall=4.2 tok_s=241.7 distinct=0.356 gzip=0.200 p0=159 p1=139 p2=126 p3=112 p4=108 p5=103 p6=95
+ROW arm=p7a seed=4 prompt=6 drafts=319 dtok=2233 acc=706 round=7.000 tok_per_step=3.213 out=1024 wall=7.3 tok_s=141.2 distinct=0.645 gzip=0.487 p0=226 p1=165 p2=116 p3=83 p4=52 p5=39 p6=25
+ROW arm=p7a seed=4 prompt=7 drafts=94 dtok=658 acc=271 round=7.000 tok_per_step=3.883 out=366 wall=2.2 tok_s=167.3 distinct=0.638 gzip=0.501 p0=73 p1=56 p2=44 p3=34 p4=26 p5=21 p6=17

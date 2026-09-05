@@ -1,0 +1,63 @@
+SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+NO HEALTH
+FAILLOG_BEGIN
+14-(APIServer pid=12) WARNING 09-05 13:33:03 [envs.py:2239] Unknown vLLM environment variable detected: VLLM_SPEC_DECODE_ATTN_QMAX
+15-(APIServer pid=12) INFO 09-05 13:33:03 [model.py:672] Resolved architecture: Qwen3_5ForConditionalGeneration
+16-(APIServer pid=12) INFO 09-05 13:33:03 [model.py:1965] Using max model len 16384
+17:(APIServer pid=12) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+18-(APIServer pid=12) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+19-(APIServer pid=12) INFO 09-05 13:33:05 [registry.py:141] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+20-(APIServer pid=12) INFO 09-05 13:33:05 [model.py:875] Disabled mm_prefix attention mode because multimodal inputs are configuration-disabled. Attention backends without mm_prefix support may now be selected.
+21-(APIServer pid=12) INFO 09-05 13:33:05 [model.py:672] Resolved architecture: DFlashDraftModel
+22-(APIServer pid=12) INFO 09-05 13:33:05 [model.py:1965] Using max model len 262144
+23-(APIServer pid=12) INFO 09-05 13:33:05 [speculative.py:1220] Overriding draft model max model len from 262144 to 16384
+24-(APIServer pid=12) WARNING 09-05 13:33:05 [config.py:799] Qwen3.5 model specifies mamba_ssm_dtype='float32' in its config, but --mamba-ssm-cache-dtype='float16' was passed. Using the user-specified value.
+25-(APIServer pid=12) INFO 09-05 13:33:05 [kernel.py:308] Final IR op priority after setting platform defaults: IrOpPriorityConfig(rms_norm=['native'], fused_add_rms_norm=['native'])
+26-(APIServer pid=12) WARNING 09-05 13:33:05 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_specula
+27-(APIServer pid=12) INFO 09-05 13:33:05 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+28-/app/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:310: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https:/
+29-  warnings.warn(
+30-(EngineCore pid=207) INFO 09-05 13:33:12 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2', num_spec_tokens=7), toke
+31-(EngineCore pid=207) [ERROR] `min_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+32-(EngineCore pid=207) [ERROR] `max_frames` is part of Qwen3VLVideoProcessorInitKwargs, but not documented. Make sure to add it to the docstring of the function in /app/venv/lib/python3.12/site-packages/transformers/models/qwen3_vl/video_processing_qwen3_vl.py.
+33-(EngineCore pid=207) INFO 09-05 13:33:14 [registry.py:141] All limits of multimodal modalities supported by the model are set to 0, running in text-only mode.
+34-(EngineCore pid=207) INFO 09-05 13:33:14 [parallel_state.py:1638] world_size=1 rank=0 local_rank=0 distributed_init_method=file:///tmp/vllm_dist_434b9cba54d54b08ba1dc26ec4bc37d1 backend=nccl
+35-(EngineCore pid=207) INFO 09-05 13:33:14 [parallel_state.py:1982] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, PCP rank 0, TP rank 0, EP rank N/A, EPLB rank N/A
+36-(EngineCore pid=207) INFO 09-05 13:33:14 [gpu_worker.py:396] Using V2 Model Runner
+37-(EngineCore pid=207) INFO 09-05 13:33:14 [model_runner.py:362] Loading model from scratch...
+38-(EngineCore pid=207) INFO 09-05 13:33:14 [cuda.py:611] Using backend AttentionBackendEnum.FLASH_ATTN for vit attention
+39-(EngineCore pid=207) INFO 09-05 13:33:14 [mm_encoder_attention.py:375] Using AttentionBackendEnum.FLASH_ATTN for MMEncoderAttention.
+40-(EngineCore pid=207) INFO 09-05 13:33:14 [compressed_tensors_wNa16.py:137] Using MarlinLinearKernel for CompressedTensorsWNA16
+41-(EngineCore pid=207) INFO 09-05 13:33:14 [qwen_gdn_linear_attn.py:158] Using Triton/FLA GDN prefill kernel (requested=auto, head_k_dim=128).
+42-(EngineCore pid=207) INFO 09-05 13:33:14 [qwen_gdn_linear_attn.py:500] Falling back to the Triton GDN decode path: the fused CUDA kernel requires a BF16 GDN model with K=V=128, SiLU gating, non-interleaved GQA layout, BF16 convolution cache, BF16 or FP32 recurrent state, and a GPU with compute ca
+43-(EngineCore pid=207) INFO 09-05 13:33:14 [qwen_gdn_linear_attn.py:505] GDN decode kernel: triton
+44-(EngineCore pid=207) INFO 09-05 13:33:15 [cuda.py:492] Using AttentionBackendEnum.FLASH_ATTN backend.
+45-(EngineCore pid=207) INFO 09-05 13:33:15 [flash_attn.py:866] Using FlashAttention version 2
+46-(EngineCore pid=207) WARNING 09-05 13:33:15 [compilation.py:1348] Op 'rms_norm' not present in model, enabling with '+rms_norm' has no effect
+47-(EngineCore pid=207) INFO 09-05 13:33:15 [weight_utils.py:858] Filesystem type for checkpoints: 9P. Checkpoint size: 14.71 GiB. Available RAM: 41.04 GiB.
+48-(EngineCore pid=207) INFO 09-05 13:33:15 [weight_utils.py:881] Auto-prefetch is disabled because the filesystem (9P) is not a recognized network FS (NFS/Lustre). If you want to force prefetching, start vLLM with --safetensors-load-strategy=prefetch.
+49-(EngineCore pid=207) Loading safetensors checkpoint shards:   0% Completed | 0/8 [00:00<?, ?it/s]
+50-(EngineCore pid=207) Loading safetensors checkpoint shards:  12% Completed | 1/8 [00:16<01:52, 16.02s/it]
+51-(EngineCore pid=207) Loading safetensors checkpoint shards:  25% Completed | 2/8 [00:32<01:37, 16.22s/it]
+52-(EngineCore pid=207) Loading safetensors checkpoint shards:  38% Completed | 3/8 [00:48<01:20, 16.11s/it]
+53-(EngineCore pid=207) Loading safetensors checkpoint shards:  50% Completed | 4/8 [01:03<01:03, 15.88s/it]
+54-(EngineCore pid=207) Loading safetensors checkpoint shards:  62% Completed | 5/8 [01:04<00:30, 10.22s/it]
+55-(EngineCore pid=207) Loading safetensors checkpoint shards:  75% Completed | 6/8 [01:10<00:17,  8.96s/it]
+56-(EngineCore pid=207) Loading safetensors checkpoint shards:  88% Completed | 7/8 [01:13<00:07,  7.02s/it]
+57-(EngineCore pid=207) Loading safetensors checkpoint shards: 100% Completed | 8/8 [01:13<00:00,  9.20s/it]
+FAILLOG_END
+(APIServer pid=12)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=12)   File "/app/venv/lib/python3.12/site-packages/vllm/tracing/otel.py", line 178, in sync_wrapper
+(APIServer pid=12)     return func(*args, **kwargs)
+(APIServer pid=12)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=12)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 990, in __init__
+(APIServer pid=12)     super().__init__(
+(APIServer pid=12)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/core_client.py", line 609, in __init__
+(APIServer pid=12)     with launch_core_engines(
+(APIServer pid=12)   File "/usr/lib/python3.12/contextlib.py", line 144, in __exit__
+(APIServer pid=12)     next(self.gen)
+(APIServer pid=12)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1206, in launch_core_engines
+(APIServer pid=12)     wait_for_engine_startup(
+(APIServer pid=12)   File "/app/venv/lib/python3.12/site-packages/vllm/v1/engine/utils.py", line 1286, in wait_for_engine_startup
+(APIServer pid=12)     raise RuntimeError(
+(APIServer pid=12) RuntimeError: Engine core initialization failed. See root cause above. Failed core proc(s): {}

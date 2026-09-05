@@ -1,0 +1,16 @@
+.sa015b.sh: line 32: results/raw/v028/sa015b-sa0_15b.txt: No such file or directory
+grep: results/raw/v028/sa015b-sa0_15b.txt: No such file or directory
+LKCOST sa0_15b exit=1 
+grep: results/raw/v028/sa015b-sa0_15b.txt: No such file or directory
+LKCOST sa0_15b rows=
+grep: results/raw/v028/sa015b-sa0_15b.txt: No such file or directory
+awk: cmd. line:1:  != "out=1024"
+awk: cmd. line:1:  ^ syntax error
+LENGTHS 
+LKCOST SA015B DONE 10:35:17Z
+LKCOST sa0_15b exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DFLASH_TOKENS=15 QMAX=unset SPEC_ATTN=0 VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens': 1
+LKCOST sa0_15b rows=32
+LENGTHS 
+results/raw/v028/.sa015b.sh: line 60:  : command not found
+results/raw/v028/.sa015b.sh: line 60: ): command not found
+LKCOST SA015B DONE 11:32:26Z

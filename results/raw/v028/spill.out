@@ -1,0 +1,5 @@
+SPILL spillA exit=137 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C  
+SPILL spillA rows=6
+SPILL spillB exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C  
+SPILL spillB rows=32
+SPILL DONE 15:29:55Z
