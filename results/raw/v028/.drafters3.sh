@@ -72,7 +72,7 @@ AP=/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2; DS=/app/models/Qwen3.8-27B-
 # the honest value is None. ds7q patches one line in the container (models/utils.py:900) so get_draft_quant_config returns
 # None when the draft config carries no quantization_config; ds7qsa0 is the same with the verify kernel off. Void if a cell
 # dies elsewhere; the FAILLOG is the reading.
-DSQUANT_SED='sed -i "900s|if draft_model_config$|if draft_model_config and getattr(draft_model_config.hf_config, \\"quantization_config\\", None) is not None|" /app/venv/lib/python3.12/site-packages/vllm/model_executor/models/utils.py; '
+DSQUANT_SED='sed -i "900s|if draft_model_config$|if draft_model_config and getattr(draft_model_config.hf_config, \"quantization_config\", None) is not None|" /app/venv/lib/python3.12/site-packages/vllm/model_executor/models/utils.py; '
 arm ds7q 7 "-e DRAFT=$DS -e LOOKUP=0" "$DSPARK_SED$DSQUANT_SED" nofield
 arm ds7qsa0 7 "-e DRAFT=$DS -e LOOKUP=0 -e SPEC_ATTN=0" "$DSPARK_SED$DSQUANT_SED" nofield
 echo "DRAFTERS3 DONE $(date -u +%H:%M:%SZ)"
