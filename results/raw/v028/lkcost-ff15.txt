@@ -1,0 +1,84 @@
+SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+RESOLVED DFLASH_TOKENS=15 SPEC_ATTN=unset VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=1 ASYNC_SCHED=unset   num_speculative_tokens': 15 draft_logits=True  drafting 7 tokens per step
+SERVERLOG_BEGIN
+(APIServer pid=12) INFO 09-05 08:42:34 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18020, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 57344, 'served_model_name': ['qwen3.8-27b'], 'attention_backend': 'FLASH_ATTN', 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.9, 'kv_cache_memory_bytes': 5583457484, 'kv_cache_dtype': 'bfloat16', 'enable_prefix_caching': True, 'mamba_ssm
+(APIServer pid=12) WARNING 09-05 08:42:34 [envs.py:2239] Unknown vLLM environment variable detected: VLLM_V2_CUDAGRAPH_MEM_MIB
+(APIServer pid=12) WARNING 09-05 08:42:36 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=202) INFO 09-05 08:42:43 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Qwen3.8-27B-DFlash2-W4A16', num_spec_tokens=15), tokenizer='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=57344, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size
+(EngineCore pid=202) WARNING 09-05 08:44:03 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=202) INFO 09-05 08:45:32 [force_first_config.py:76] [triton-autotune-disabled] kernel=chunk_local_cumsum_scalar_kernel configs=4 picked_index=0 picked=num_warps: 1, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=202) INFO 09-05 08:45:32 [force_first_config.py:76] [triton-autotune-disabled] kernel=chunk_scaled_dot_kkt_fwd_kernel configs=27 picked_index=0 picked=BK: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=202) INFO 09-05 08:45:33 [force_first_config.py:76] [triton-autotune-disabled] kernel=merge_16x16_to_64x64_inverse_kernel configs=12 picked_index=0 picked=num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=202) INFO 09-05 08:45:33 [force_first_config.py:76] [triton-autotune-disabled] kernel=recompute_w_u_fwd_kernel configs=9 picked_index=0 picked=num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=202) INFO 09-05 08:45:33 [force_first_config.py:76] [triton-autotune-disabled] kernel=chunk_gated_delta_rule_fwd_kernel_h_blockdim64 configs=12 picked_index=0 picked=BV: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=202) INFO 09-05 08:45:34 [force_first_config.py:76] [triton-autotune-disabled] kernel=chunk_fwd_kernel_o configs=36 picked_index=0 picked=BK: 32, BV: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=202) INFO 09-05 08:45:55 [cudagraph_utils.py:240] Capturing decode graphs for query lengths [16, 8] (the drafter's block and the full verify block).
+(EngineCore pid=202) INFO 09-05 08:45:56 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=15, draft_logits=True)
+(EngineCore pid=202) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:01<00:10,  1.09s/it]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:01<00:05,  1.80it/s]Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 3/11 [00:01<00:03,  2.64it/s]Capturing CUDA graphs (PIECEWISE):  36%|███▋      | 4/11 [00:02<00:03,  1.93it/s]Capturing CUDA graphs (PIECEWISE):  45%|████▌     | 5/11 [00:02<00:02,  2.57it/s]Capturing CUDA graphs (PIECEWISE):  55%|█████▍    | 
+(EngineCore pid=202) Capturing CUDA graphs (FULL):   0%|          | 0/8 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  12%|█▎        | 1/8 [00:00<00:02,  2.80it/s]Capturing CUDA graphs (FULL):  38%|███▊      | 3/8 [00:00<00:00,  6.37it/s]Capturing CUDA graphs (FULL):  62%|██████▎   | 5/8 [00:00<00:00,  9.14it/s]Capturing CUDA graphs (FULL):  88%|████████▊ | 7/8 [00:00<00:00,  8.73it/s]Capturing CUDA graphs (FULL): 100%|██████████| 8/8 [00:00<00:00,  8.25it/s]
+SERVERLOG_END
+PERPOS arm=ff15 prompts=8 seeds=[1, 2, 3, 4]
+LINK 08:46:14 8, 4, 240 MHz, 16.22 W, 0 %
+4, 4, 210 MHz, 18.25 W, 0 %
+ROW arm=ff15 seed=1 prompt=0 drafts=252 dtok=1764 acc=771 round=7.000 tok_per_step=4.060 out=1024 wall=13.8 tok_s=74.5 distinct=0.621 gzip=0.455 p0=202 p1=163 p2=128 p3=96 p4=72 p5=60 p6=50 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:46:44 8, 4, 2745 MHz, 175.45 W, 98 %
+4, 4, 210 MHz, 18.45 W, 0 %
+ROW arm=ff15 seed=1 prompt=1 drafts=352 dtok=2504 acc=671 round=7.114 tok_per_step=2.906 out=1024 wall=18.0 tok_s=56.8 distinct=0.638 gzip=0.520 p0=250 p1=163 p2=99 p3=62 p4=46 p5=31 p6=20 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:47:14 8, 4, 2745 MHz, 176.09 W, 98 %
+4, 4, 210 MHz, 18.35 W, 0 %
+ROW arm=ff15 seed=1 prompt=2 drafts=594 dtok=4158 acc=429 round=7.000 tok_per_step=1.722 out=1024 wall=29.3 tok_s=34.9 distinct=0.722 gzip=0.554 p0=213 p1=96 p2=56 p3=33 p4=20 p5=9 p6=2 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=1 prompt=3 drafts=254 dtok=1810 acc=775 round=7.126 tok_per_step=4.051 out=1024 wall=12.6 tok_s=81.2 distinct=0.577 gzip=0.464 p0=212 p1=159 p2=127 p3=95 p4=74 p5=63 p6=45 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=1 prompt=4 drafts=230 dtok=1706 acc=793 round=7.417 tok_per_step=4.448 out=1024 wall=11.4 tok_s=89.6 distinct=0.411 gzip=0.454 p0=188 p1=155 p2=130 p3=107 p4=82 p5=71 p6=60 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:47:44 8, 4, 2745 MHz, 178.88 W, 98 %
+4, 4, 210 MHz, 18.26 W, 0 %
+ROW arm=ff15 seed=1 prompt=5 drafts=202 dtok=1574 acc=824 round=7.792 tok_per_step=5.079 out=1024 wall=10.0 tok_s=102.2 distinct=0.409 gzip=0.360 p0=180 p1=151 p2=136 p3=113 p4=97 p5=78 p6=69 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=1 prompt=6 drafts=314 dtok=2198 acc=710 round=7.000 tok_per_step=3.261 out=1024 wall=15.5 tok_s=66.1 distinct=0.634 gzip=0.466 p0=241 p1=172 p2=116 p3=76 p4=50 p5=33 p6=22 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:48:14 8, 4, 2745 MHz, 178.78 W, 97 %
+4, 4, 210 MHz, 18.32 W, 0 %
+ROW arm=ff15 seed=1 prompt=7 drafts=248 dtok=1768 acc=777 round=7.129 tok_per_step=4.133 out=1024 wall=12.3 tok_s=83.1 distinct=0.403 gzip=0.357 p0=200 p1=164 p2=128 p3=98 p4=79 p5=63 p6=45 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=2 prompt=0 drafts=269 dtok=1883 acc=754 round=7.000 tok_per_step=3.803 out=1024 wall=13.3 tok_s=77.1 distinct=0.604 gzip=0.475 p0=212 p1=169 p2=119 p3=94 p4=69 p5=50 p6=41 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:48:44 8, 4, 2745 MHz, 179.17 W, 98 %
+4, 4, 210 MHz, 18.45 W, 0 %
+ROW arm=ff15 seed=2 prompt=1 drafts=316 dtok=2212 acc=707 round=7.000 tok_per_step=3.237 out=1024 wall=15.6 tok_s=65.7 distinct=0.564 gzip=0.485 p0=234 p1=170 p2=120 p3=82 p4=51 p5=30 p6=20 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=2 prompt=2 drafts=514 dtok=3598 acc=512 round=7.000 tok_per_step=1.996 out=1024 wall=25.3 tok_s=40.4 distinct=0.581 gzip=0.469 p0=188 p1=104 p2=68 p3=58 p4=42 p5=29 p6=23 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:49:14 8, 4, 2730 MHz, 178.72 W, 98 %
+4, 4, 210 MHz, 18.61 W, 0 %
+ROW arm=ff15 seed=2 prompt=3 drafts=244 dtok=1708 acc=780 round=7.000 tok_per_step=4.197 out=1024 wall=12.1 tok_s=84.6 distinct=0.478 gzip=0.423 p0=207 p1=166 p2=124 p3=97 p4=72 p5=63 p6=51 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=2 prompt=4 drafts=185 dtok=1343 acc=841 round=7.259 tok_per_step=5.546 out=1024 wall=9.2 tok_s=111.3 distinct=0.348 gzip=0.399 p0=167 p1=147 p2=131 p3=119 p4=104 p5=91 p6=82 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=2 prompt=5 drafts=196 dtok=1628 acc=828 round=8.306 tok_per_step=5.224 out=1024 wall=9.7 tok_s=105.1 distinct=0.402 gzip=0.264 p0=166 p1=143 p2=126 p3=114 p4=105 p5=90 p6=79 p7=4 p8=1 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:49:44 8, 4, 2730 MHz, 180.29 W, 98 %
+4, 4, 210 MHz, 18.63 W, 0 %
+ROW arm=ff15 seed=2 prompt=6 drafts=339 dtok=2373 acc=685 round=7.000 tok_per_step=3.021 out=1024 wall=16.7 tok_s=61.2 distinct=0.587 gzip=0.491 p0=234 p1=163 p2=109 p3=76 p4=52 p5=32 p6=19 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=2 prompt=7 drafts=112 dtok=784 acc=303 round=7.000 tok_per_step=3.705 out=416 wall=5.6 tok_s=74.1 distinct=0.638 gzip=0.498 p0=88 p1=67 p2=49 p3=36 p4=27 p5=19 p6=17 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:50:14 8, 4, 2730 MHz, 180.54 W, 97 %
+4, 4, 210 MHz, 18.95 W, 0 %
+ROW arm=ff15 seed=3 prompt=0 drafts=231 dtok=1649 acc=797 round=7.139 tok_per_step=4.450 out=1024 wall=11.4 tok_s=89.6 distinct=0.587 gzip=0.448 p0=201 p1=159 p2=127 p3=104 p4=87 p5=68 p6=51 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=3 prompt=1 drafts=376 dtok=2632 acc=650 round=7.000 tok_per_step=2.729 out=1024 wall=18.6 tok_s=55.2 distinct=0.608 gzip=0.518 p0=255 p1=161 p2=102 p3=61 p4=37 p5=21 p6=13 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:50:44 8, 4, 2730 MHz, 180.61 W, 98 %
+4, 4, 210 MHz, 18.86 W, 0 %
+ROW arm=ff15 seed=3 prompt=2 drafts=633 dtok=4431 acc=390 round=7.000 tok_per_step=1.616 out=1024 wall=31.2 tok_s=32.8 distinct=0.690 gzip=0.547 p0=191 p1=85 p2=43 p3=29 p4=21 p5=14 p6=7 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:51:14 8, 4, 2730 MHz, 181.29 W, 98 %
+4, 4, 210 MHz, 17.92 W, 0 %
+ROW arm=ff15 seed=3 prompt=3 drafts=238 dtok=1666 acc=789 round=7.000 tok_per_step=4.315 out=1024 wall=11.8 tok_s=86.6 distinct=0.508 gzip=0.426 p0=202 p1=159 p2=129 p3=101 p4=82 p5=66 p6=50 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=3 prompt=4 drafts=191 dtok=1577 acc=833 round=8.257 tok_per_step=5.361 out=1024 wall=9.5 tok_s=107.5 distinct=0.382 gzip=0.429 p0=163 p1=138 p2=120 p3=107 p4=97 p5=88 p6=80 p7=7 p8=6 p9=6 p10=5 p11=4 p12=4 p13=4 p14=4
+ROW arm=ff15 seed=3 prompt=5 drafts=193 dtok=1623 acc=845 round=8.409 tok_per_step=5.378 out=1024 wall=9.6 tok_s=106.6 distinct=0.403 gzip=0.217 p0=166 p1=142 p2=127 p3=106 p4=97 p5=85 p6=78 p7=8 p8=8 p9=6 p10=5 p11=5 p12=4 p13=4 p14=4
+LINK 08:51:44 8, 4, 2730 MHz, 180.67 W, 98 %
+4, 4, 210 MHz, 19.09 W, 0 %
+ROW arm=ff15 seed=3 prompt=6 drafts=343 dtok=2433 acc=681 round=7.093 tok_per_step=2.985 out=1024 wall=16.9 tok_s=60.4 distinct=0.622 gzip=0.485 p0=236 p1=165 p2=110 p3=70 p4=50 p5=30 p6=20 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=3 prompt=7 drafts=102 dtok=714 acc=301 round=7.000 tok_per_step=3.951 out=404 wall=5.1 tok_s=78.9 distinct=0.592 gzip=0.475 p0=82 p1=64 p2=48 p3=37 p4=28 p5=23 p6=19 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=4 prompt=0 drafts=242 dtok=1726 acc=782 round=7.132 tok_per_step=4.231 out=1024 wall=12.0 tok_s=85.5 distinct=0.604 gzip=0.447 p0=201 p1=163 p2=134 p3=105 p4=75 p5=58 p6=46 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:52:14 8, 4, 2730 MHz, 178.28 W, 98 %
+4, 4, 210 MHz, 18.98 W, 0 %
+ROW arm=ff15 seed=4 prompt=1 drafts=362 dtok=2534 acc=661 round=7.000 tok_per_step=2.826 out=1024 wall=17.9 tok_s=57.3 distinct=0.581 gzip=0.492 p0=259 p1=167 p2=107 p3=71 p4=34 p5=16 p6=7 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:52:44 8, 4, 2730 MHz, 178.07 W, 98 %
+4, 4, 210 MHz, 18.75 W, 0 %
+ROW arm=ff15 seed=4 prompt=2 drafts=587 dtok=4109 acc=436 round=7.000 tok_per_step=1.743 out=1024 wall=28.9 tok_s=35.4 distinct=0.684 gzip=0.524 p0=197 p1=94 p2=49 p3=37 p4=30 p5=18 p6=11 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=4 prompt=3 drafts=232 dtok=1624 acc=792 round=7.000 tok_per_step=4.414 out=1024 wall=11.5 tok_s=88.9 distinct=0.501 gzip=0.410 p0=196 p1=160 p2=132 p3=109 p4=82 p5=65 p6=48 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:53:14 8, 4, 2730 MHz, 178.32 W, 97 %
+4, 4, 210 MHz, 18.57 W, 0 %
+ROW arm=ff15 seed=4 prompt=4 drafts=189 dtok=1419 acc=834 round=7.508 tok_per_step=5.413 out=1024 wall=9.4 tok_s=108.9 distinct=0.373 gzip=0.406 p0=170 p1=150 p2=132 p3=114 p4=98 p5=86 p6=79 p7=1 p8=1 p9=1 p10=1 p11=1 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=4 prompt=5 drafts=133 dtok=1027 acc=487 round=7.722 tok_per_step=4.662 out=620 wall=6.6 tok_s=93.8 distinct=0.600 gzip=0.344 p0=107 p1=93 p2=73 p3=64 p4=54 p5=50 p6=44 p7=2 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+ROW arm=ff15 seed=4 prompt=6 drafts=318 dtok=2226 acc=712 round=7.000 tok_per_step=3.239 out=1024 wall=15.7 tok_s=65.2 distinct=0.628 gzip=0.469 p0=241 p1=165 p2=118 p3=76 p4=52 p5=35 p6=25 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
+LINK 08:53:44 8, 4, 2730 MHz, 178.00 W, 97 %
+4, 4, 210 MHz, 18.74 W, 0 %
+ROW arm=ff15 seed=4 prompt=7 drafts=116 dtok=844 acc=301 round=7.276 tok_per_step=3.595 out=418 wall=5.8 tok_s=71.9 distinct=0.613 gzip=0.482 p0=92 p1=64 p2=51 p3=37 p4=27 p5=17 p6=13 p7=0 p8=0 p9=0 p10=0 p11=0 p12=0 p13=0 p14=0
