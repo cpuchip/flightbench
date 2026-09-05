@@ -1,0 +1,18 @@
+RESOLVED draft_logits=True GREEDY=1 DFLASH_TOKENS=7 card1 pcie_x8
+SERVERLOG_BEGIN
+(APIServer pid=8) INFO 09-05 07:11:29 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18021, 'model': '/app/models/Q
+(APIServer pid=8) WARNING 09-05 07:11:29 [envs.py:2239] Unknown vLLM environment variable detected: VLLM_V2_CUDAGRAPH_MEM_MIB
+(APIServer pid=8) WARNING 09-05 07:11:32 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative
+(EngineCore pid=199) INFO 09-05 07:11:39 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Qwen3.8-27B-DFlash2-W4A16', num_spec_tokens=7), tokenizer='/app/mo
+(EngineCore pid=199) WARNING 09-05 07:13:01 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculat
+(EngineCore pid=199) INFO 09-05 07:15:38 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=7, draft_logits=True)
+(EngineCore pid=199) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:01<00:11,  1.18s/it]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:01<00:05,  1.58it/s]Capturing CUDA graphs (PIECEWISE):
+(EngineCore pid=199) Capturing CUDA graphs (FULL):   0%|          | 0/8 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  12%|█▎        | 1/8 [00:00<00:02,  2.83it/s]Capturing CUDA graphs (FULL):  38%|███▊      | 3/8 [00:00<00:00,  6.94it/s]Capturing CUDA graphs (FULL):  62%|███�
+SERVERLOG_END
+PERPOS arm=g7 prompts=8 seeds=[1, 2, 3, 4]
+ROW arm=g7 seed=1 prompt=0 drafts=272 dtok=1904 acc=755 round=7.000 tok_per_step=3.776 out=1024 wall=7.5 tok_s=135.7 distinct=0.572 gzip=0.462 p0=212 p1=162 p2=128 p3=96 p4=72 p5=50 p6=35
+Traceback (most recent call last):
+  File "/tmp/perpos_client.py", line 57, in <module>
+    print(f"TEXT arm={ARM} seed={seed} prompt={pi} sha={hashlib.sha256(txt.encode()).hexdigest()[:16]} b64={base64.b64encode(txt.encode()).decode()}", flush=True)
+                                                        ^^^^^^^
+NameError: name 'hashlib' is not defined. Did you forget to import 'hashlib'?
