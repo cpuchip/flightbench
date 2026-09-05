@@ -1,0 +1,25 @@
+(APIServer pid=12) INFO 09-05 09:40:15 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18020, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 65536, 'served_model_name': ['qwen3.8-27b'], 'at
+(APIServer pid=12) INFO 09-05 09:40:17 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=209) INFO 09-05 09:40:24 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Qwen3.8-27B-DFlash2-W4A16', num_spec_tokens=7), tokenizer='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', skip_tokenizer_init=False, tokenizer_mode=auto, revision=Non
+(EngineCore pid=209) WARNING 09-05 09:40:27 [compilation.py:1348] Op 'rms_norm' not present in model, enabling with '+rms_norm' has no effect
+(EngineCore pid=209) INFO 09-05 09:41:46 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=209) INFO 09-05 09:42:02 [caching.py:343] reconstructed serializable fn from standalone compile artifacts. num_artifacts=65 num_submods=65
+(EngineCore pid=209) INFO 09-05 09:42:02 [decorators.py:311] Directly load AOT compilation from path /cache/.cache/vllm/torch_compile_cache/torch_aot_compile/6cfcec202067fbb3997d7aed189668eccdca9c841a5bab0beab24f746a95614d/rank_0_0/model
+(EngineCore pid=209) INFO 09-05 09:42:02 [monitor.py:53] torch.compile took 3.05 s in total
+(EngineCore pid=209) INFO 09-05 09:42:06 [backends.py:1094] Using cache directory: /cache/.cache/vllm/torch_compile_cache/1dd25bbc2d/rank_0_0/dflash_head for vLLM's torch.compile
+(EngineCore pid=209) INFO 09-05 09:42:06 [backends.py:1155] Dynamo bytecode transform time: 1.83 s
+(EngineCore pid=209) INFO 09-05 09:42:15 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 8.68 s
+(EngineCore pid=209) INFO 09-05 09:42:16 [decorators.py:708] saved AOT compiled function to /cache/.cache/vllm/torch_compile_cache/torch_aot_compile/3debd9671b8ee0f1d6137668207f3fc7b52166b4a48cc11c964f5e55bb824939/rank_0_0/model
+(EngineCore pid=209) INFO 09-05 09:42:16 [monitor.py:53] torch.compile took 12.01 s in total
+(EngineCore pid=209) INFO 09-05 09:42:16 [backends.py:1094] Using cache directory: /cache/.cache/vllm/torch_compile_cache/1dd25bbc2d/rank_0_0/dflash2_candidate_selector for vLLM's torch.compile
+(EngineCore pid=209) INFO 09-05 09:42:16 [backends.py:1155] Dynamo bytecode transform time: 0.12 s
+(EngineCore pid=209) INFO 09-05 09:42:17 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 0.45 s
+(EngineCore pid=209) INFO 09-05 09:42:18 [decorators.py:708] saved AOT compiled function to /cache/.cache/vllm/torch_compile_cache/torch_aot_compile/7aebd1d2d4ee9910f6e19c2f01702d97d659fd2b1acd4791c7d63d8e2a19f03b/rank_0_0/model
+(EngineCore pid=209) INFO 09-05 09:42:18 [monitor.py:53] torch.compile took 1.21 s in total
+(EngineCore pid=209) INFO 09-05 09:42:18 [gpu_worker.py:722] Compile and warming up model for size 2048
+(EngineCore pid=209) INFO 09-05 09:42:19 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=7, draft_logits=True)
+(EngineCore pid=209) INFO 09-05 09:42:20 [jit_monitor.py:85] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=209) INFO 09-05 09:42:21 [core.py:347] init engine (profile, create kv cache, warmup model) took 21.86 s (compilation: 16.28 s)
+(EngineCore pid=209) WARNING 09-05 09:42:25 [jit_monitor.py:141] Triton kernel JIT compilation during inference: _k_stats_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=209) WARNING 09-05 09:42:25 [jit_monitor.py:141] Triton kernel JIT compilation during inference: _k_quant_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=209) WARNING 09-05 09:42:25 [jit_monitor.py:141] Triton kernel JIT compilation during inference: _prefill_attn_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
