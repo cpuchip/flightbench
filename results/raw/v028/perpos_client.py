@@ -33,7 +33,10 @@ def stats(s):
 print(f"PERPOS arm={ARM} prompts={len(prompts)} seeds={SEEDS}", flush=True)
 for seed in SEEDS:
     for pi, p in enumerate(prompts):
-        b, bp = metrics()
+        try:
+            b, bp = metrics()
+        except Exception as e:
+            print(f'SERVER_GONE arm={ARM} seed={seed} prompt={pi} err={str(e)[:80]}', flush=True); break
         payload = {"model": "qwen3.8-27b", "prompt": p, "max_tokens": 1024, "seed": seed}
         if os.environ.get("GREEDY") == "1": payload["temperature"] = 0  # greedy cell: the bonus token is the argmax
         body = json.dumps(payload).encode()
@@ -42,7 +45,9 @@ for seed in SEEDS:
         t0 = time.perf_counter()
         try:
             d = json.load(urllib.request.urlopen(rq, timeout=1800))
-        except urllib.error.HTTPError as e:
+        except urllib.error.URLError as e:
+            if not isinstance(e, urllib.error.HTTPError):
+                print(f'SERVER_GONE arm={ARM} seed={seed} prompt={pi} err={str(e)[:80]}', flush=True); break
             # 2026-09-05: a 500 mid-run ended ap11sa0 at 13 rows with the engine's error uncaptured. Print the server log's
             # error lines once, record the row as failed, and go on, so the cell keeps its other rows and the cause.
             print(f'ROW_ERROR arm={ARM} seed={seed} prompt={pi} http={e.code}', flush=True)
