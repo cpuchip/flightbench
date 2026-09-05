@@ -13,7 +13,7 @@ for line in open(p, encoding="utf-8", errors="replace"):
         d = dict(re.findall(r"(\w+)=([0-9.]+)", line)); rows.append({k: float(v) for k, v in d.items()})
 t = open(p, encoding="utf-8", errors="replace").read()
 m = re.search(r"RESOLVED[^\n]{0,160}", t)
-steady = [x for x in rows if not (x["seed"] == 1 and x["prompt"] in (0, 1))]
+steady = [x for x in rows if not (x["seed"] == 1 and x["prompt"] in (0, 1)) and x["out"] >= 16]  # boundary rows excluded from the step cost
 ms = [1000 * x["wall"] / x["drafts"] for x in steady]
 print(f"{stem}: rows {len(rows)}, steady ms/step {st.mean(ms):.1f} (min {min(ms):.1f}, max {max(ms):.1f}, median {st.median(ms):.1f}), "
       f"tok/step {st.mean(x['acc']/x['drafts']+1 for x in rows):.3f}, tok/s {st.mean(x['tok_s'] for x in rows):.1f}, short rows {[(int(x['prompt']), int(x['seed']), int(x['out'])) for x in rows if x['out'] < 1024]}")
