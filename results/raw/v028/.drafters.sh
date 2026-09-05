@@ -14,6 +14,7 @@
 LOCK=/tmp/drafters.lock
 if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo "REFUSING: live run $(cat "$LOCK")"; exit 3; fi
 echo $$ > "$LOCK"; trap 'rm -f "$LOCK"' EXIT
+while docker ps --format "{{.Names}}" | grep -qx ap7sa0; do sleep 20; done  # ap7sa0 was detached from the first chain (13:5xZ) when MAX_LEN was found to be overwritten by the launcher
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
 CARD=GPU-206a1b8d-47c3-0dba-4ddb-e61c58306387; PORT=18020
@@ -40,7 +41,7 @@ arm () {  # name tokens extra-docker-args [launcher-sed] [nofield]
       curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health || { echo "NO HEALTH"; echo "FAILLOG_BEGIN"; grep -n -m1 -B3 -A40 -iE "Traceback|Error|error|assert" /tmp/server.log | cut -c1-300 | head -80; echo "FAILLOG_END"; tail -15 /tmp/server.log | cut -c1-300; exit 1; }
       echo "SEQUENCE $(grep -oE "Directly load AOT compilation|Compiling a graph for compile range|Using cache directory: [^ ]*rank_0_0/[a-z0-9_]+" /tmp/server.log | sed -E "s|Directly load AOT compilation|L|; s|Compiling a graph for compile range|C|; s|Using cache directory: [^ ]*rank_0_0/|D:|" | tr "
 " " ")"
-      echo "RESOLVED DFLASH_TOKENS=$DFLASH_TOKENS DRAFT=${DRAFT:-default} LOOKUP=${LOOKUP:-unset} QMAX=${VLLM_SPEC_DECODE_ATTN_QMAX:-unset} SPEC_ATTN=${SPEC_ATTN:-unset} VLLM_SPEC_DECODE_ATTN=${VLLM_SPEC_DECODE_ATTN:-unset} FORCE_FIRST=${VLLM_TRITON_FORCE_FIRST_CONFIG:-unset} ASYNC_SCHED=${ASYNC_SCHED:-unset} $(grep -oE "async_scheduling[=: ]+(True|False)" /tmp/server.log | head -1) $(grep -oE "\-\-(no-)?async-scheduling" /tmp/server.log | head -1) $(grep -oE "num_speculative_tokens[^,]{0,10}" /tmp/server.log | head -1) $(grep -oE "draft_logits=(True|False)" /tmp/server.log | head -1) $(grep -oiE "rejection_sample_method[=: ]+[a-z]+|use_block_verification[=: ]+[A-Za-z]+" /tmp/server.log | head -2 | tr "\n" " ") $(grep -oE "drafting [0-9]+ tokens per step" /tmp/server.log | head -1)"
+      echo "RESOLVED $(grep -oE "max_model_len.: [0-9]+" /tmp/server.log | head -1) $(grep -oE "kv_cache_memory_bytes.: [0-9]+" /tmp/server.log | head -1) DFLASH_TOKENS=$DFLASH_TOKENS DRAFT=${DRAFT:-default} LOOKUP=${LOOKUP:-unset} QMAX=${VLLM_SPEC_DECODE_ATTN_QMAX:-unset} SPEC_ATTN=${SPEC_ATTN:-unset} VLLM_SPEC_DECODE_ATTN=${VLLM_SPEC_DECODE_ATTN:-unset} FORCE_FIRST=${VLLM_TRITON_FORCE_FIRST_CONFIG:-unset} ASYNC_SCHED=${ASYNC_SCHED:-unset} $(grep -oE "async_scheduling[=: ]+(True|False)" /tmp/server.log | head -1) $(grep -oE "\-\-(no-)?async-scheduling" /tmp/server.log | head -1) $(grep -oE "num_speculative_tokens[^,]{0,10}" /tmp/server.log | head -1) $(grep -oE "draft_logits=(True|False)" /tmp/server.log | head -1) $(grep -oiE "rejection_sample_method[=: ]+[a-z]+|use_block_verification[=: ]+[A-Za-z]+" /tmp/server.log | head -2 | tr "\n" " ") $(grep -oE "drafting [0-9]+ tokens per step" /tmp/server.log | head -1)"
       echo "SERVERLOG_BEGIN"; grep -aiE "speculative_config|SpeculativeConfig|rejection_sample|num_speculative_tokens|async_scheduling|async-scheduling|enable_prefix_caching|Capturing CUDA graph|cudagraph|force.first|first valid config|draft_logits|max_num_seqs|max_model_len|autotun|best config" /tmp/server.log | head -400 | cut -c1-600; echo "SERVERLOG_END"
       echo "NONDEFAULT_LINE $(grep -m1 "non-default args" /tmp/server.log | cut -c1-3000)"
       echo "$CLIENT_B64" | base64 -d > /tmp/perpos_client.py
@@ -59,8 +60,9 @@ AP=/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2; DS=/app/models/Qwen3.8-27B-
 # bl7off is the DFlash2 baseline with lookup drafting off, so ap7 has a like-for-like baseline (the 23.2 / 3.798 boots ran
 # at the launcher default, LOOKUP=1); ds7 as registered. Readings: ap7sa0 boots and ap7lite does not -> kernel; both boot ->
 # memory; neither -> the DFlash path itself in this fork, FAILLOG is the reading.
-arm ap7sa0 7 "-e DRAFT=$AP -e LOOKUP=0 -e SPEC_ATTN=0"
-arm ap7lite 7 "-e DRAFT=$AP -e LOOKUP=0 -e MAX_LEN=16384 -e KV_MEM="
+# 13:5xZ: MAX_LEN is overwritten on the DFlash path by DFLASH_MAX_LEN (launcher :360), found by threadchip on his ap7c; ap7lite
+# re-armed with the variable the launcher honours. ap7sa0 ran in the first chain (detached, its file is drf-ap7sa0.txt).
+arm ap7lite 7 "-e DRAFT=$AP -e LOOKUP=0 -e DFLASH_MAX_LEN=16384 -e KV_MEM="
 arm bl7off 7 "-e LOOKUP=0"
 arm ds7 7 "-e DRAFT=$DS -e LOOKUP=0" "$DSPARK_SED" nofield
 echo "DRAFTERS DONE $(date -u +%H:%M:%SZ)"
