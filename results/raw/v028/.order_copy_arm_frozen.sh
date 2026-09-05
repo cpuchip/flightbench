@@ -1,0 +1,33 @@
+#!/bin/bash
+# Gotchas 55, second attempt with a context-reproducing prompt so the long block engages; queued behind card 1. Prediction registered:
+# drafts and accepted identical per seed across orders; drafted tokens may differ; tok/step identical.
+set -u
+LOCK=/tmp/order_copy.lock
+if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo "REFUSING: live run $(cat "$LOCK")"; exit 3; fi
+echo $$ > "$LOCK"; trap 'rm -f "$LOCK"' EXIT
+MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
+OUTD="results/raw/v028"; TK=kv-probe-key
+CARD=GPU-9d0861d3-75b2-b317-87c0-695bba368f1b; PORT=18021
+VOL=qwen-cache-lane1; IMG=qwen38-27b-rtx3090:pr43-6869c80
+NAME=order-copy
+until [ -z "$(docker ps --format '{{.Names}}' | grep -E '^(fb-|coh|sweep|order-arm)')" ]; do sleep 30; done
+docker rm -f "$NAME" >/dev/null 2>&1
+MSYS_NO_PATHCONV=1 docker run --rm --name "$NAME" --gpus "\"device=$CARD\"" --ipc host \
+  -v "$VOL":/cache -v "$MODELS":/app/models \
+  -e CUDA_VISIBLE_DEVICES=$CARD -e HOME=/cache -e VLLM_API_KEY=$TK -e PORT=$PORT \
+  -e SPEC=dflash2 -e CTX=fast -e DFLASH_TOKENS=15 -e PREFIX_CACHE=1 \
+  -e INT8_ACT=int8 -e "INT8_LAYERS=mlp|linear_attn|self_attn" -e PREFILL_ATTN=int8 \
+  -e GPU_UTIL=0.90 -e VLLM_WSL2_ENABLE_PIN_MEMORY=1 -e VLLM_NO_USAGE_STATS=1 -e CLIENT_B64="IiIiR290Y2hhcyBlbnRyeSA1NSwgc2Vjb25kIGF0dGVtcHQuIFRoZSBmaXJzdCByZXBsaWNhdGlvbiBzdGF5ZWQgYXQgNy4wMDAgZHJhZnRlZCB0b2tlbnMgcGVyCnJvdW5kIG9uIGV2ZXJ5IHJlcXVlc3QsIHNvIG5vIHJlcXVlc3QgZXZlciBlbnRlcmVkIHRoZSBsb25nIGJsb2NrIGFuZCB0aGUgc3RpY2t5IGNvYXN0IHRoYXQgdGhlCmNsYWltIGRlcGVuZHMgb24gbmV2ZXIgaGFwcGVuZWQ6IGEgY2hlY2sgdGhhdCBjb3VsZCBub3QgZmFpbC4gVGhpcyBwcm9tcHQgYXNrcyB0aGUgbW9kZWwgdG8KcmVwcm9kdWNlIGl0cyBjb250ZXh0IHZlcmJhdGltLCB3aGljaCBpcyBleGFjdGx5IHdoYXQgdGhlIGFkYXB0aXZlIHBvbGljeSBrZXlzIG9uLCBzbyB0aGUgbG9uZwpibG9jayBzaG91bGQgZW5nYWdlIG9uIGF0IGxlYXN0IHNvbWUgc2VlZHMuIFNhbWUgc2l4IHNlZWRzLCB0d28gb3JkZXJzLCBvbmUgYm9vdC4gUmVnaXN0ZXJlZDoKZHJhZnRzIGFuZCBhY2NlcHRlZCBpbnZhcmlhbnQgcGVyIHNlZWQgYWNyb3NzIG9yZGVyczsgZHJhZnRlZCB0b2tlbnMgbWF5IGRpZmZlciBvbiBzZWVkcyB0aGF0CmZvbGxvdyBhIGxvbmctYmxvY2sgc2VlZCBpbiBvbmUgb3JkZXIgYW5kIG5vdCB0aGUgb3RoZXI7IHRvay9zdGVwIGludmFyaWFudC4iIiIKaW1wb3J0IGpzb24sIG9zLCByZSwgc3lzLCB1cmxsaWIucmVxdWVzdApzeXMuc3Rkb3V0LnJlY29uZmlndXJlKGVuY29kaW5nPSJ1dGYtOCIpClBPUlQgPSBvcy5lbnZpcm9uWyJQT1JUIl07IEtFWSA9IG9zLmVudmlyb25bIlZMTE1fQVBJX0tFWSJdCkJBU0UgPSBmImh0dHA6Ly8xMjcuMC4wLjE6e1BPUlR9IgpOQU1FUyA9ICgiZHJhZnRzIiwgImRyYWZ0X3Rva2VucyIsICJhY2NlcHRlZF90b2tlbnMiKQpkb2MgPSBvcGVuKCIvYXBwL1JFQURNRS5tZCIsIGVuY29kaW5nPSJ1dGYtOCIsIGVycm9ycz0icmVwbGFjZSIpLnJlYWQoKVs6NTAwMF0KcHJvbXB0ID0gKCJEb2N1bWVudDpcblxuIiArIGRvYyArICJcblxuUmVwcm9kdWNlIHRoZSBmaXJzdCBmb3J0eSBsaW5lcyBvZiB0aGUgZG9jdW1lbnQgYWJvdmUgZXhhY3RseSwgIgogICAgICAgICAgImNoYXJhY3RlciBmb3IgY2hhcmFjdGVyLCB3aXRoIG5vIGNvbW1lbnRhcnkgYmVmb3JlIG9yIGFmdGVyLiIpCgpkZWYgY291bnRlcnMoKToKICAgIHJxID0gdXJsbGliLnJlcXVlc3QuUmVxdWVzdChCQVNFICsgIi9tZXRyaWNzIiwgaGVhZGVycz17IkF1dGhvcml6YXRpb24iOiAiQmVhcmVyICIgKyBLRVl9KQogICAgdHh0ID0gdXJsbGliLnJlcXVlc3QudXJsb3BlbihycSwgdGltZW91dD02MCkucmVhZCgpLmRlY29kZSgpCiAgICByZXR1cm4ge246IGZsb2F0KHJlLnNlYXJjaChyZiJedmxsbTpzcGVjX2RlY29kZV9udW1fe259X3RvdGFsXHt7W159fV0qXH19XHMrKFswLTkuXSspIiwgdHh0LCByZS5NKS5ncm91cCgxKSkgZm9yIG4gaW4gTkFNRVN9CgpkZWYgcnVuKHNlZWQpOgogICAgYiA9IGNvdW50ZXJzKCkKICAgIGJvZHkgPSBqc29uLmR1bXBzKHsibW9kZWwiOiAicXdlbjMuOC0yN2IiLCAicHJvbXB0IjogcHJvbXB0LCAibWF4X3Rva2VucyI6IDM4NCwgInNlZWQiOiBzZWVkfSkuZW5jb2RlKCkKICAgIHJxID0gdXJsbGliLnJlcXVlc3QuUmVxdWVzdChCQVNFICsgIi92MS9jb21wbGV0aW9ucyIsIGRhdGE9Ym9keSwKICAgICAgICBoZWFkZXJzPXsiQ29udGVudC1UeXBlIjogImFwcGxpY2F0aW9uL2pzb24iLCAiQXV0aG9yaXphdGlvbiI6ICJCZWFyZXIgIiArIEtFWX0pCiAgICBkID0ganNvbi5sb2FkKHVybGxpYi5yZXF1ZXN0LnVybG9wZW4ocnEsIHRpbWVvdXQ9OTAwKSk7IGEgPSBjb3VudGVycygpCiAgICByZXR1cm4gYVsiZHJhZnRzIl0gLSBiWyJkcmFmdHMiXSwgYVsiZHJhZnRfdG9rZW5zIl0gLSBiWyJkcmFmdF90b2tlbnMiXSwgYVsiYWNjZXB0ZWRfdG9rZW5zIl0gLSBiWyJhY2NlcHRlZF90b2tlbnMiXSwgZFsidXNhZ2UiXVsiY29tcGxldGlvbl90b2tlbnMiXQoKb3JkZXJzID0geyJBIjogWzEsIDIsIDMsIDQsIDUsIDZdLCAiQiI6IFs2LCA1LCA0LCAzLCAyLCAxXX0KcmVzID0ge30KZm9yIG5hbWUsIHNlcSBpbiBvcmRlcnMuaXRlbXMoKToKICAgIGZvciBzIGluIHNlcToKICAgICAgICBkciwgZHQsIGFjLCBvdXQgPSBydW4ocyk7IHJlc1sobmFtZSwgcyldID0gKGRyLCBkdCwgYWMpCiAgICAgICAgcHJpbnQoZiJPUkRFUlJPVyBvcmRlcj17bmFtZX0gc2VlZD17c30gZHJhZnRzPXtkcjouMGZ9IGR0b2s9e2R0Oi4wZn0gYWNjPXthYzouMGZ9ICIKICAgICAgICAgICAgICBmInJvdW5kPXtkdC9kciBpZiBkciBlbHNlIDA6LjNmfSB0b2tfcGVyX3N0ZXA9ezErYWMvZHIgaWYgZHIgZWxzZSAwOi4zZn0gb3V0PXtvdXR9IiwgZmx1c2g9VHJ1ZSkKcHJpbnQoIk9SREVSU1VNTUFSWSBzZWVkIHwgZHJhZnRzIEEvQiB8IGR0b2sgQS9CIHwgYWNjIEEvQiB8IHJvdW5kQS9CIHwgdmVyZGljdCIpCmludl9kYSA9IGludl9kdCA9IDA7IGxvbmdfc2VlbiA9IDAKZm9yIHMgaW4gb3JkZXJzWyJBIl06CiAgICBhLCBiID0gcmVzWygiQSIsIHMpXSwgcmVzWygiQiIsIHMpXQogICAgcmEgPSBhWzFdIC8gYVswXSBpZiBhWzBdIGVsc2UgMDsgcmIgPSBiWzFdIC8gYlswXSBpZiBiWzBdIGVsc2UgMAogICAgaWYgcmEgPiA3LjAwMSBvciByYiA+IDcuMDAxOiBsb25nX3NlZW4gKz0gMQogICAgdiA9ICgiZHJhZnRzPSIgaWYgYVswXSA9PSBiWzBdIGVsc2UgImRyYWZ0cyE9IikgKyAiICIgKyAoImFjYz0iIGlmIGFbMl0gPT0gYlsyXSBlbHNlICJhY2MhPSIpICsgIiAiICsgKCJkdG9rPSIgaWYgYVsxXSA9PSBiWzFdIGVsc2UgImR0b2shPSIpCiAgICBpbnZfZGEgKz0gKGFbMF0gPT0gYlswXSBhbmQgYVsyXSA9PSBiWzJdKTsgaW52X2R0ICs9IChhWzFdID09IGJbMV0pCiAgICBwcmludChmIk9SREVSU1VNTUFSWSB7c30gfCB7YVswXTouMGZ9L3tiWzBdOi4wZn0gfCB7YVsxXTouMGZ9L3tiWzFdOi4wZn0gfCB7YVsyXTouMGZ9L3tiWzJdOi4wZn0gfCB7cmE6LjNmfS97cmI6LjNmfSB8IHt2fSIsIGZsdXNoPVRydWUpCnByaW50KGYiT1JERVJWRVJESUNUIGxvbmctYmxvY2sgc2VlbiBvbiB7bG9uZ19zZWVufS82IHNlZWRzOyBkcmFmdHMrYWNjZXB0ZWQgaW52YXJpYW50IHtpbnZfZGF9LzY7IGRyYWZ0ZWQgdG9rZW5zIGludmFyaWFudCB7aW52X2R0fS82IiwgZmx1c2g9VHJ1ZSkK" \
+  --entrypoint bash "$IMG" -c '
+    cd /app && echo "$VLLM_API_KEY" > api_key.txt
+    export PATH=/app/venv/bin:$PATH
+    nohup bash single-user/start_qwen.sh > /tmp/server.log 2>&1 &
+    for i in $(seq 1 150); do sleep 5; curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health && break; done
+    curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health || { echo "NO HEALTH"; tail -15 /tmp/server.log; exit 1; }
+    grep -oE "draft_logits=(True|False)" /tmp/server.log | head -1
+    echo "$CLIENT_B64" | base64 -d > /tmp/order_client.py
+    PORT='"$PORT"' VLLM_API_KEY="$VLLM_API_KEY" python /tmp/order_client.py
+  ' > "$OUTD/order-copy.txt" 2>&1
+echo "ORDER exit=$?"
+grep -aE "draft_logits|ORDERROW|ORDERSUMMARY|ORDERVERDICT|NO HEALTH|Traceback|Error" "$OUTD/order-copy.txt" | sed "s/^/ORDER /"
+echo "ORDER COPY DONE $(date -u +%H:%M:%SZ)"
