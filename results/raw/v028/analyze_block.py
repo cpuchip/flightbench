@@ -27,17 +27,21 @@ def agg(rows):
     for r in rows.values():
         for k, v in r.items():
             if k.startswith("p") and k[1:].isdigit(): pos[int(k[1:])] = pos.get(int(k[1:]), 0) + v
-    return {"tps": 1 + A / R, "tok_s": out / wall, "round": N / R, "rows": len(rows), "R": R,
+    import statistics as _st
+    rs = list(rows.values())
+    # mean of per-row values, the same definition analyze_arc2.py uses for the width and cheapctx tables
+    return {"tps": _st.mean(1 + r["acc"] / r["drafts"] for r in rs), "tok_s": _st.mean(r["tok_s"] for r in rs),
+            "ms": _st.mean(1000 * r["wall"] / r["drafts"] for r in rs), "round": N / R, "rows": len(rows), "R": R,
             "pos": {k: 1000 * v / R for k, v in sorted(pos.items())}}
 
 boots = {}
-for n in ("std1", "blk1", "blk2", "std2"):
+for n in ("std1", "blk1", "blk2", "std2", "std1b", "std7", "blk7"):
     rows, res = load(n)
     if len(rows) >= 8: boots[n] = (agg(rows), res, rows)
 print(f"boots in: {list(boots)}")
 for n, (a, res, _) in boots.items():
-    print(f"  {n:<5} rows={a['rows']:2d} rounds={a['R']:5.0f} tok/step={a['tps']:.3f} tok/s={a['tok_s']:6.1f} round={a['round']:.3f} | {res[:110]}")
-pairs = [("std1", "blk1"), ("std2", "blk2")]
+    print(f"  {n:<5} rows={a['rows']:2d} rounds={a['R']:5.0f} tok/step={a['tps']:.3f} tok/s={a['tok_s']:6.1f} ms/step={a['ms']:5.1f} round={a['round']:.3f} | {res[:110]}")
+pairs = [("std1", "blk1"), ("std2", "blk2"), ("std7", "blk7")]
 diffs_t, diffs_s = [], []
 for s, b in pairs:
     if s in boots and b in boots:
