@@ -7,7 +7,7 @@
 # lines at all (the warm AOT cache bakes the GDN winners for warm shapes; only new shapes re-race at boot).
 PAT='autotun|best config|Warmed|rejection|draft_logits|Capturing|non-default args|AOT|compil|Dynamo'
 while true; do
-  for c in $(docker ps --format '{{.Names}}' | grep -E '^(r7[a-f]|cgn7[ab]|q16_7|t11|sa0_7[abc]|pc0[cd]|p7[ab]|g7t[123])$'); do
+  for c in $(docker ps --format '{{.Names}}' | grep -E '^(r7[a-f]|cgn7[ab]|cold7[ab]|q16_7|t11|sa0_7[abc]|pc0[cd]|p7[ab]|g7t[123])$'); do
     docker exec "$c" sh -c "grep -aiE '$PAT' /tmp/server.log | cut -c1-400" > "late-$c.tmp" 2>/dev/null && mv -f "late-$c.tmp" "late-$c.txt"
   done
   sleep 30
