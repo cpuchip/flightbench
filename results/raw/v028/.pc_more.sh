@@ -8,7 +8,7 @@
 LOCK=/tmp/pc_more.lock
 if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo "REFUSING: live run $(cat "$LOCK")"; exit 3; fi
 echo $$ > "$LOCK"; trap 'rm -f "$LOCK"' EXIT
-while kill -0 736551 2>/dev/null; do sleep 30; done  # wait for the greedy pair to exit
+while kill -0 736958 2>/dev/null; do sleep 30; done  # wait for the whole card-0 queue (lk15off2 is last) so card 0 clocks run with card 1 idle
 MODELS='<workspace>\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
 CARD=GPU-<fermion-card-1>; PORT=18021
