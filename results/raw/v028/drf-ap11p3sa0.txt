@@ -1,0 +1,189 @@
+SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+SEQUENCE D:backbone C D:dflash_head C 
+RESOLVED max_model_len': 8192 kv_cache_memory_bytes': 3000000000 DFLASH_TOKENS=11 DRAFT=/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2 LOOKUP=0 QMAX=unset SPEC_ATTN=0 VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens': 11 draft_logits=True  
+SERVERLOG_BEGIN
+(APIServer pid=12) INFO 09-05 16:58:27 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18020, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 8192, 'served_model_name': ['qwen3.8-27b'], 'attention_backend': 'FLASH_ATTN', 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.9, 'kv_cache_memory_bytes': 3000000000, 'kv_cache_dtype': 'bfloat16', 'enable_prefix_caching': True, 'mamba_ssm_
+(APIServer pid=12) WARNING 09-05 16:58:27 [envs.py:2239] Unknown vLLM environment variable detected: VLLM_V2_CUDAGRAPH_MEM_MIB
+(APIServer pid=12) WARNING 09-05 16:58:29 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=203) INFO 09-05 16:58:37 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2', num_spec_tokens=11), tokenizer='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=8192, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_par
+(EngineCore pid=203) WARNING 09-05 17:00:01 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=203) Autotuning kernel chunk_local_cumsum_scalar_kernel with config num_warps: 1, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_local_cumsum_scalar_kernel with config num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_local_cumsum_scalar_kernel with config num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_local_cumsum_scalar_kernel with config num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Triton autotuning for function chunk_local_cumsum_scalar_kernel,
+(EngineCore pid=203) best config selected: num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None;
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 32, num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 64, num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_scaled_dot_kkt_fwd_kernel with config BK: 128, num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Triton autotuning for function chunk_scaled_dot_kkt_fwd_kernel,
+(EngineCore pid=203) best config selected: BK: 32, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None;
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 2, num_ctas: 1, num_stages: 5, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 4, num_ctas: 1, num_stages: 5, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel merge_16x16_to_64x64_inverse_kernel with config num_warps: 8, num_ctas: 1, num_stages: 5, maxnreg: None
+(EngineCore pid=203) Triton autotuning for function merge_16x16_to_64x64_inverse_kernel,
+(EngineCore pid=203) best config selected: num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None;
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel recompute_w_u_fwd_kernel with config num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Triton autotuning for function recompute_w_u_fwd_kernel,
+(EngineCore pid=203) best config selected: num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None;
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 64, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 32, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 64, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 32, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning failed with out of resource: shared memory, Required: 115468, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 64, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning failed with out of resource: shared memory, Required: 131852, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 32, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 64, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 32, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 64, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 32, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning failed with out of resource: shared memory, Required: 115468, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+(EngineCore pid=203) Autotuning kernel chunk_gated_delta_rule_fwd_kernel_h_blockdim64 with config BV: 64, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning failed with out of resource: shared memory, Required: 131852, Hardware limit: 101376. Reducing block sizes or `num_stages` may help.
+(EngineCore pid=203) Triton autotuning for function chunk_gated_delta_rule_fwd_kernel_h_blockdim64,
+(EngineCore pid=203) best config selected: BV: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None;
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 32, num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 32, BV: 64, num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 32, num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 2, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 2, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 2, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 4, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 4, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 8, num_ctas: 1, num_stages: 2, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 8, num_ctas: 1, num_stages: 3, maxnreg: None
+(EngineCore pid=203) Autotuning kernel chunk_fwd_kernel_o with config BK: 64, BV: 64, num_warps: 8, num_ctas: 1, num_stages: 4, maxnreg: None
+(EngineCore pid=203) Triton autotuning for function chunk_fwd_kernel_o,
+(EngineCore pid=203) best config selected: BK: 64, BV: 64, num_warps: 4, num_ctas: 1, num_stages: 3, maxnreg: None;
+(EngineCore pid=203) INFO 09-05 17:02:41 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=11, draft_logits=True)
+(EngineCore pid=203) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/9 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):  11%|█         | 1/9 [00:00<00:04,  1.63it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 2/9 [00:00<00:02,  2.81it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 3/9 [00:00<00:01,  3.65it/s]Capturing CUDA graphs (PIECEWISE):  44%|████▍     | 4/9 [00:01<00:01,  4.27it/s]Capturing CUDA graphs (PIECEWISE):  56%|█████▌    | 5/9 [00:01<00:00,  4.71it/s]Capturing CUDA graphs (PIECEWISE):  67%|██████▋ 
+(EngineCore pid=203) Capturing CUDA graphs (FULL):   0%|          | 0/4 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  25%|██▌       | 1/4 [00:00<00:01,  2.48it/s]Capturing CUDA graphs (FULL):  50%|█████     | 2/4 [00:00<00:00,  4.38it/s]Capturing CUDA graphs (FULL):  75%|███████▌  | 3/4 [00:00<00:00,  5.70it/s]Capturing CUDA graphs (FULL): 100%|██████████| 4/4 [00:00<00:00,  5.08it/s]Capturing CUDA graphs (FULL): 100%|██████████| 4/4 [00:00<00:00,  4.70it/s]
+SERVERLOG_END
+NONDEFAULT_LINE (APIServer pid=12) INFO 09-05 16:58:27 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18020, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 8192, 'served_model_name': ['qwen3.8-27b'], 'attention_backend': 'FLASH_ATTN', 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.9, 'kv_cache_memory_bytes': 3000000000, 'kv_cache_dtype': 'bfloat16', 'enable_prefix_caching': True, 'mamba_ssm_cache_dtype': 'float16', 'mamba_cache_mode': 'align', 'language_model_only': True, 'max_num_batched_tokens': 2048, 'max_num_seqs': 4, 'async_scheduling': True, 'speculative_config': {'method': 'dflash', 'model': '/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2', 'num_speculative_tokens': 11, 'draft_sample_method': 'probabilistic'}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+rms_norm', '+silu_and_mul'], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': None, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': 48, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}}
+PERPOS arm=ap11p3sa0 prompts=8 seeds=[1, 2, 3, 4]
+LINK 17:02:57 8, 4, 240 MHz, 17.64 W, 0 %
+4, 4, 210 MHz, 16.56 W, 0 %
+ROW arm=ap11p3sa0 seed=1 prompt=0 drafts=336 dtok=3696 acc=687 round=11.000 tok_per_step=3.045 out=1024 wall=17.9 tok_s=57.3 distinct=0.621 gzip=0.430 p0=245 p1=142 p2=100 p3=60 p4=36 p5=28 p6=24 p7=20 p8=13 p9=11 p10=8
+LINK 17:03:27 8, 4, 2745 MHz, 224.83 W, 70 %
+4, 4, 210 MHz, 18.15 W, 0 %
+ROW arm=ap11p3sa0 seed=1 prompt=1 drafts=423 dtok=4653 acc=601 round=11.000 tok_per_step=2.421 out=1024 wall=17.5 tok_s=58.6 distinct=0.573 gzip=0.503 p0=292 p1=156 p2=70 p3=39 p4=18 p5=9 p6=7 p7=4 p8=3 p9=2 p10=1
+ROW arm=ap11p3sa0 seed=1 prompt=2 drafts=419 dtok=4609 acc=604 round=11.000 tok_per_step=2.442 out=1024 wall=16.7 tok_s=61.3 distinct=0.525 gzip=0.460 p0=229 p1=134 p2=83 p3=50 p4=33 p5=27 p6=17 p7=12 p8=7 p9=6 p10=6
+ROW arm=ap11p3sa0 seed=1 prompt=3 drafts=69 dtok=759 acc=180 round=11.000 tok_per_step=3.609 out=250 wall=2.8 tok_s=90.1 distinct=0.736 gzip=0.485 p0=53 p1=40 p2=27 p3=19 p4=14 p5=8 p6=5 p7=5 p8=5 p9=3 p10=1
+LINK 17:03:57 8, 4, 2745 MHz, 225.69 W, 70 %
+4, 4, 210 MHz, 18.41 W, 0 %
+ROW arm=ap11p3sa0 seed=1 prompt=4 drafts=277 dtok=3047 acc=746 round=11.000 tok_per_step=3.693 out=1024 wall=11.0 tok_s=92.9 distinct=0.377 gzip=0.412 p0=226 p1=151 p2=98 p3=71 p4=59 p5=44 p6=32 p7=21 p8=19 p9=14 p10=11
+ROW arm=ap11p3sa0 seed=1 prompt=5 drafts=171 dtok=1881 acc=852 round=11.000 tok_per_step=5.982 out=1024 wall=6.8 tok_s=150.3 distinct=0.452 gzip=0.242 p0=149 p1=125 p2=96 p3=86 p4=78 p5=69 p6=65 p7=54 p8=49 p9=43 p10=38
+ROW arm=ap11p3sa0 seed=1 prompt=6 drafts=395 dtok=4345 acc=631 round=11.000 tok_per_step=2.597 out=1024 wall=15.7 tok_s=65.3 distinct=0.664 gzip=0.494 p0=264 p1=158 p2=79 p3=52 p4=28 p5=21 p6=11 p7=10 p8=5 p9=3 p10=0
+LINK 17:04:27 8, 4, 2730 MHz, 226.15 W, 69 %
+4, 4, 210 MHz, 18.33 W, 0 %
+ROW arm=ap11p3sa0 seed=1 prompt=7 drafts=125 dtok=1375 acc=296 round=11.000 tok_per_step=3.368 out=422 wall=5.0 tok_s=83.6 distinct=0.600 gzip=0.475 p0=90 p1=69 p2=45 p3=31 p4=18 p5=12 p6=9 p7=7 p8=7 p9=4 p10=4
+ROW arm=ap11p3sa0 seed=2 prompt=0 drafts=332 dtok=3652 acc=691 round=11.000 tok_per_step=3.081 out=1024 wall=13.2 tok_s=77.7 distinct=0.587 gzip=0.470 p0=250 p1=180 p2=111 p3=57 p4=35 p5=23 p6=16 p7=9 p8=7 p9=2 p10=1
+LINK 17:04:57 8, 4, 2730 MHz, 227.08 W, 71 %
+4, 4, 210 MHz, 18.66 W, 0 %
+ROW arm=ap11p3sa0 seed=2 prompt=1 drafts=358 dtok=3938 acc=668 round=11.000 tok_per_step=2.866 out=1024 wall=14.2 tok_s=72.1 distinct=0.565 gzip=0.469 p0=276 p1=160 p2=102 p3=54 p4=27 p5=20 p6=11 p7=7 p8=5 p9=4 p10=2
+ROW arm=ap11p3sa0 seed=2 prompt=2 drafts=653 dtok=7183 acc=370 round=11.000 tok_per_step=1.567 out=1024 wall=25.8 tok_s=39.7 distinct=0.657 gzip=0.509 p0=179 p1=68 p2=38 p3=29 p4=21 p5=15 p6=10 p7=6 p8=3 p9=1 p10=0
+LINK 17:05:27 8, 4, 2730 MHz, 228.78 W, 71 %
+4, 4, 210 MHz, 18.20 W, 0 %
+ROW arm=ap11p3sa0 seed=2 prompt=3 drafts=300 dtok=3300 acc=724 round=11.000 tok_per_step=3.413 out=1024 wall=12.0 tok_s=85.6 distinct=0.512 gzip=0.437 p0=235 p1=148 p2=102 p3=75 p4=50 p5=36 p6=24 p7=17 p8=14 p9=12 p10=11
+ROW arm=ap11p3sa0 seed=2 prompt=4 drafts=216 dtok=2376 acc=816 round=11.000 tok_per_step=4.778 out=1024 wall=8.6 tok_s=119.4 distinct=0.515 gzip=0.448 p0=189 p1=149 p2=106 p3=84 p4=62 p5=53 p6=44 p7=38 p8=36 p9=30 p10=25
+ROW arm=ap11p3sa0 seed=2 prompt=5 drafts=234 dtok=2574 acc=793 round=11.000 tok_per_step=4.389 out=1024 wall=9.3 tok_s=110.1 distinct=0.504 gzip=0.400 p0=191 p1=149 p2=117 p3=90 p4=70 p5=50 p6=41 p7=30 p8=21 p9=20 p10=14
+LINK 17:05:57 8, 4, 2730 MHz, 228.53 W, 69 %
+4, 4, 210 MHz, 17.95 W, 0 %
+ROW arm=ap11p3sa0 seed=2 prompt=6 drafts=405 dtok=4455 acc=619 round=11.000 tok_per_step=2.528 out=1024 wall=16.0 tok_s=63.9 distinct=0.618 gzip=0.521 p0=280 p1=156 p2=76 p3=37 p4=24 p5=18 p6=12 p7=8 p8=5 p9=2 p10=1
+ROW arm=ap11p3sa0 seed=2 prompt=7 drafts=108 dtok=1188 acc=256 round=11.000 tok_per_step=3.370 out=365 wall=4.4 tok_s=83.8 distinct=0.647 gzip=0.499 p0=74 p1=53 p2=33 p3=28 p4=18 p5=16 p6=12 p7=8 p8=5 p9=5 p10=4
+LINK 17:06:27 8, 4, 2730 MHz, 228.43 W, 70 %
+4, 4, 210 MHz, 18.61 W, 0 %
+ROW arm=ap11p3sa0 seed=3 prompt=0 drafts=353 dtok=3883 acc=670 round=11.000 tok_per_step=2.898 out=1024 wall=14.0 tok_s=73.0 distinct=0.648 gzip=0.485 p0=263 p1=166 p2=99 p3=58 p4=34 p5=20 p6=12 p7=7 p8=6 p9=3 p10=2
+ROW arm=ap11p3sa0 seed=3 prompt=1 drafts=437 dtok=4807 acc=586 round=11.000 tok_per_step=2.341 out=1024 wall=17.3 tok_s=59.2 distinct=0.570 gzip=0.499 p0=283 p1=149 p2=73 p3=39 p4=19 p5=9 p6=6 p7=2 p8=2 p9=2 p10=2
+LINK 17:06:57 8, 4, 2730 MHz, 229.10 W, 72 %
+4, 4, 210 MHz, 18.42 W, 0 %
+ROW arm=ap11p3sa0 seed=3 prompt=2 drafts=427 dtok=4697 acc=596 round=11.000 tok_per_step=2.396 out=1024 wall=17.0 tok_s=60.4 distinct=0.574 gzip=0.486 p0=191 p1=109 p2=74 p3=50 p4=37 p5=31 p6=28 p7=25 p8=20 p9=19 p10=12
+ROW arm=ap11p3sa0 seed=3 prompt=3 drafts=279 dtok=3069 acc=744 round=11.000 tok_per_step=3.667 out=1024 wall=11.1 tok_s=92.2 distinct=0.537 gzip=0.429 p0=219 p1=157 p2=109 p3=68 p4=51 p5=36 p6=31 p7=22 p8=19 p9=18 p10=14
+ROW arm=ap11p3sa0 seed=3 prompt=4 drafts=212 dtok=2332 acc=813 round=11.000 tok_per_step=4.835 out=1024 wall=8.4 tok_s=121.3 distinct=0.355 gzip=0.406 p0=186 p1=142 p2=112 p3=93 p4=73 p5=57 p6=44 p7=33 p8=28 p9=24 p10=21
+LINK 17:07:27 8, 4, 2730 MHz, 229.32 W, 71 %
+4, 4, 210 MHz, 17.93 W, 0 %
+ROW arm=ap11p3sa0 seed=3 prompt=5 drafts=157 dtok=1727 acc=867 round=11.000 tok_per_step=6.522 out=1024 wall=6.3 tok_s=163.4 distinct=0.369 gzip=0.251 p0=140 p1=123 p2=107 p3=96 p4=83 p5=74 p6=67 p7=55 p8=45 p9=41 p10=36
+ROW arm=ap11p3sa0 seed=3 prompt=6 drafts=430 dtok=4730 acc=594 round=11.000 tok_per_step=2.381 out=1024 wall=17.0 tok_s=60.1 distinct=0.599 gzip=0.491 p0=290 p1=151 p2=72 p3=37 p4=20 p5=9 p6=7 p7=5 p8=3 p9=0 p10=0
+ROW arm=ap11p3sa0 seed=3 prompt=7 drafts=135 dtok=1485 acc=309 round=11.000 tok_per_step=3.289 out=445 wall=5.4 tok_s=82.1 distinct=0.653 gzip=0.493 p0=98 p1=66 p2=47 p3=28 p4=23 p5=15 p6=9 p7=7 p8=7 p9=6 p10=3
+LINK 17:07:57 8, 4, 2730 MHz, 228.22 W, 70 %
+4, 4, 210 MHz, 18.26 W, 0 %
+ROW arm=ap11p3sa0 seed=4 prompt=0 drafts=381 dtok=4191 acc=643 round=11.000 tok_per_step=2.688 out=1024 wall=15.1 tok_s=67.7 distinct=0.539 gzip=0.457 p0=273 p1=159 p2=95 p3=52 p4=28 p5=17 p6=9 p7=3 p8=3 p9=2 p10=2
+ROW arm=ap11p3sa0 seed=4 prompt=1 drafts=442 dtok=4862 acc=582 round=11.000 tok_per_step=2.317 out=1024 wall=17.5 tok_s=58.5 distinct=0.567 gzip=0.498 p0=312 p1=144 p2=59 p3=25 p4=14 p5=8 p6=5 p7=5 p8=4 p9=3 p10=3
+LINK 17:08:27 8, 4, 2730 MHz, 229.04 W, 71 %
+4, 4, 210 MHz, 17.32 W, 0 %
+ROW arm=ap11p3sa0 seed=4 prompt=2 drafts=333 dtok=3663 acc=690 round=11.000 tok_per_step=3.072 out=1024 wall=13.2 tok_s=77.4 distinct=0.397 gzip=0.393 p0=230 p1=155 p2=93 p3=67 p4=39 p5=30 p6=24 p7=18 p8=14 p9=11 p10=9
+ROW arm=ap11p3sa0 seed=4 prompt=3 drafts=241 dtok=2651 acc=784 round=11.000 tok_per_step=4.253 out=1024 wall=9.7 tok_s=105.9 distinct=0.520 gzip=0.405 p0=198 p1=141 p2=105 p3=81 p4=64 p5=54 p6=41 p7=34 p8=25 p9=23 p10=18
+ROW arm=ap11p3sa0 seed=4 prompt=4 drafts=201 dtok=2211 acc=830 round=11.000 tok_per_step=5.129 out=1024 wall=8.0 tok_s=127.5 distinct=0.345 gzip=0.411 p0=175 p1=143 p2=125 p3=102 p4=71 p5=57 p6=47 p7=34 p8=30 p9=25 p10=21
+ROW arm=ap11p3sa0 seed=4 prompt=5 drafts=1 dtok=11 acc=0 round=11.000 tok_per_step=1.000 out=2 wall=0.1 tok_s=16.9 distinct=0.000 gzip=11.000 p0=0 p1=0 p2=0 p3=0 p4=0 p5=0 p6=0 p7=0 p8=0 p9=0 p10=0
+LINK 17:08:57 8, 4, 2730 MHz, 229.37 W, 71 %
+4, 4, 210 MHz, 17.39 W, 0 %
+ROW arm=ap11p3sa0 seed=4 prompt=6 drafts=329 dtok=3619 acc=695 round=11.000 tok_per_step=3.112 out=1024 wall=13.0 tok_s=78.5 distinct=0.634 gzip=0.474 p0=241 p1=149 p2=93 p3=69 p4=45 p5=34 p6=25 p7=15 p8=12 p9=6 p10=6
+ROW arm=ap11p3sa0 seed=4 prompt=7 drafts=115 dtok=1265 acc=294 round=11.000 tok_per_step=3.557 out=410 wall=4.6 tok_s=88.6 distinct=0.632 gzip=0.489 p0=85 p1=63 p2=44 p3=31 p4=23 p5=17 p6=8 p7=7 p8=7 p9=6 p10=3
