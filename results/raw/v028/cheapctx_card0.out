@@ -1,0 +1,6 @@
+RESTART 05:26:36Z: std1 and c0cc0 collided on card 0 (both waiters cleared in the same window after w6); both killed; relaunched as one chain, block arms first, then the card-0 cheapctx cells
+CHEAPCTX0 c0cc0 exit=0 RESOLVED draft_logits=True CHEAP_CTX=0 card0 pcie_x8 
+CHEAPCTX0 c0cc0 rows=32
+CHEAPCTX0 c0cc16384 exit=0 RESOLVED draft_logits=True CHEAP_CTX=16384 card0 pcie_x8 
+CHEAPCTX0 c0cc16384 rows=32
+CHEAPCTX CARD0 DONE 06:33:30Z

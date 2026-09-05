@@ -1,0 +1,29 @@
+DRAFTERS ap7lite exit=1 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" NO HEALTH 
+DRAFTERS ap7lite rows=0
+DRAFTERS bl7off exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L L L  
+DRAFTERS bl7off rows=32
+DRAFTERS ds7 exit=137 SPEC_CFG_LINE  
+DRAFTERS ds7 rows=0
+DRAFTERS DONE 13:59:05Z
+DRAFTERS ap7g exit=1 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" NO HEALTH 
+DRAFTERS ap7g rows=0
+DRAFTERS ap11sa0 exit=1 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C  
+DRAFTERS ap11sa0 rows=13
+DRAFTERS ap15sa0 exit=1 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C  
+DRAFTERS ap15sa0 rows=11
+DRAFTERS ds7sa0 exit=137 SPEC_CFG_LINE  
+DRAFTERS ds7sa0 rows=0
+DRAFTERS2 DONE 14:47:22Z
+DRAFTERS ds7q exit=137 SPEC_CFG_LINE  
+DRAFTERS ds7q rows=0
+DRAFTERS ds7qsa0 exit=137 SPEC_CFG_LINE  
+DRAFTERS ds7qsa0 rows=0
+DRAFTERS3 DONE 14:55:44Z
+DRAFTERS ap7p3 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L D:dflash_head C  
+DRAFTERS ap7p3 rows=32
+DRAFTERS bl7p3 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE D:backbone C D:dflash_head C D:dflash2_candidate_selector C  
+DRAFTERS bl7p3 rows=32
+DRAFTERS4 DONE 15:15:42Z
+DRAFTERS ap11sa0b exit=1 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" SEQUENCE L D:dflash_head C  
+DRAFTERS ap11sa0b rows=13
+DRAFTERS5 DONE 15:31:38Z

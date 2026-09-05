@@ -1,0 +1,118 @@
+# continuous GPU adapter memory counters + nvidia-smi, every 10 s, started 2026-09-05T15:12:32Z; columns: utc | adapter ded/shr/com MB (adapters over 100 MB) || nvidia-smi index,used,total
+15:12:32 | 3c6c_phys_0 ded=20797 shr=86 com=20883 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1922 shr=1530 com=5959 || 0, 20792 MiB; 1, 23356 MiB
+15:12:44 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1927 shr=1530 com=5965 || 0, 20804 MiB; 1, 23356 MiB
+15:12:55 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1927 shr=1521 com=5965 || 0, 20804 MiB; 1, 23356 MiB
+15:13:06 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1921 shr=1521 com=5959 || 0, 20804 MiB; 1, 23356 MiB
+15:13:17 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1921 shr=1505 com=5971 || 0, 20804 MiB; 1, 23356 MiB
+15:13:28 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1925 shr=1497 com=5971 || 0, 20804 MiB; 1, 23356 MiB
+15:13:39 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1929 shr=1497 com=5975 || 0, 20804 MiB; 1, 23356 MiB
+15:13:51 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1931 shr=1493 com=5976 || 0, 20804 MiB; 1, 23356 MiB
+15:14:03 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1931 shr=1493 com=5976 || 0, 20804 MiB; 1, 23356 MiB
+15:14:14 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1925 shr=1493 com=5971 || 0, 20804 MiB; 1, 23356 MiB
+15:14:25 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1925 shr=1493 com=5971 || 0, 20804 MiB; 1, 23356 MiB
+15:14:36 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1931 shr=1493 com=5976 || 0, 20804 MiB; 1, 23356 MiB
+15:14:47 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1929 shr=1493 com=5975 || 0, 20804 MiB; 1, 23356 MiB
+15:14:58 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1917 shr=1463 com=5971 || 0, 20804 MiB; 1, 23356 MiB
+15:15:09 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1913 shr=1463 com=5967 || 0, 20804 MiB; 1, 23356 MiB
+15:15:20 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1919 shr=1463 com=5972 || 0, 20804 MiB; 1, 23356 MiB
+15:15:31 | 3c6c_phys_0 ded=20809 shr=86 com=20895 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1917 shr=1465 com=5967 || 0, 20804 MiB; 1, 23356 MiB
+15:15:42 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1923 shr=1465 com=5972 || 0, 0 MiB; 1, 23356 MiB
+15:15:54 | 4ca2_phys_0 ded=23364 shr=1818 com=25182 | 5c7c_phys_0 ded=1917 shr=1457 com=5967 || 0, 0 MiB; 1, 23356 MiB
+15:16:05 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1917 shr=1457 com=5967 || 0, 0 MiB; 1, 23368 MiB
+15:16:16 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1917 shr=1457 com=5967 || 0, 0 MiB; 1, 23368 MiB
+15:16:27 | 3c6c_phys_0 ded=15288 shr=86 com=15375 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1923 shr=1457 com=5972 || 0, 15284 MiB; 1, 23368 MiB
+15:16:38 | 3c6c_phys_0 ded=15288 shr=86 com=15375 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1923 shr=1457 com=5972 || 0, 15284 MiB; 1, 23368 MiB
+15:16:49 | 3c6c_phys_0 ded=15288 shr=86 com=15375 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1923 shr=1457 com=5972 || 0, 15284 MiB; 1, 23368 MiB
+15:17:00 | 3c6c_phys_0 ded=15288 shr=86 com=15375 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1923 shr=1457 com=5972 || 0, 15284 MiB; 1, 23368 MiB
+15:17:11 | 3c6c_phys_0 ded=15288 shr=86 com=15375 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1923 shr=1457 com=5972 || 0, 15284 MiB; 1, 23368 MiB
+15:17:22 | 3c6c_phys_0 ded=15288 shr=86 com=15375 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1949 shr=1425 com=5972 || 0, 15284 MiB; 1, 23368 MiB
+15:17:33 | 3c6c_phys_0 ded=15288 shr=86 com=15375 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1943 shr=1425 com=5966 || 0, 15284 MiB; 1, 23368 MiB
+15:17:44 | 3c6c_phys_0 ded=24136 shr=6174 com=30311 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1952 shr=1401 com=5963 || 0, 24120 MiB; 1, 23368 MiB
+15:17:56 | 3c6c_phys_0 ded=24136 shr=6174 com=30311 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1960 shr=1369 com=5968 || 0, 24120 MiB; 1, 23368 MiB
+15:18:07 | 3c6c_phys_0 ded=24136 shr=6174 com=30311 | 4ca2_phys_0 ded=23376 shr=1818 com=25194 | 5c7c_phys_0 ded=1955 shr=1369 com=5962 || 0, 24120 MiB; 1, 23368 MiB
+15:18:18 | 3c6c_phys_0 ded=17254 shr=2866 com=20120 | 5c7c_phys_0 ded=1960 shr=1369 com=5968 || 0, 17244 MiB; 1, 0 MiB
+15:18:29 | 3c6c_phys_0 ded=22572 shr=2738 com=25310 | 5c7c_phys_0 ded=1960 shr=1369 com=5968 || 0, 22562 MiB; 1, 0 MiB
+15:18:40 | 3c6c_phys_0 ded=22763 shr=2546 com=25310 | 4ca2_phys_0 ded=14646 shr=86 com=14733 | 5c7c_phys_0 ded=1955 shr=1369 com=5962 || 0, 22754 MiB; 1, 14642 MiB
+15:18:51 | 3c6c_phys_0 ded=23374 shr=1934 com=25308 | 4ca2_phys_0 ded=15274 shr=86 com=15361 | 5c7c_phys_0 ded=1967 shr=1329 com=5968 || 0, 23366 MiB; 1, 15270 MiB
+15:19:03 | 3c6c_phys_0 ded=23374 shr=1934 com=25308 | 4ca2_phys_0 ded=15274 shr=86 com=15361 | 5c7c_phys_0 ded=1961 shr=1329 com=5962 || 0, 23366 MiB; 1, 15270 MiB
+15:19:14 | 3c6c_phys_0 ded=23374 shr=1934 com=25308 | 4ca2_phys_0 ded=15274 shr=86 com=15361 | 5c7c_phys_0 ded=1967 shr=1329 com=5968 || 0, 23366 MiB; 1, 15270 MiB
+15:19:25 | 3c6c_phys_0 ded=23374 shr=1934 com=25308 | 4ca2_phys_0 ded=15274 shr=86 com=15361 | 5c7c_phys_0 ded=1967 shr=1329 com=5968 || 0, 23366 MiB; 1, 15270 MiB
+15:19:37 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=15274 shr=86 com=15361 | 5c7c_phys_0 ded=1961 shr=1329 com=5962 || 0, 23368 MiB; 1, 15270 MiB
+15:19:48 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=15274 shr=86 com=15361 | 5c7c_phys_0 ded=1961 shr=1329 com=5962 || 0, 23368 MiB; 1, 15270 MiB
+15:19:59 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=15274 shr=86 com=15361 | 5c7c_phys_0 ded=1961 shr=1329 com=5962 || 0, 23368 MiB; 1, 15270 MiB
+15:20:10 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=24128 shr=6104 com=30233 | 5c7c_phys_0 ded=1958 shr=1329 com=5962 || 0, 23368 MiB; 1, 24112 MiB
+15:20:21 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=24128 shr=6104 com=30233 | 5c7c_phys_0 ded=1958 shr=1329 com=5962 || 0, 23368 MiB; 1, 24112 MiB
+15:20:33 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=24128 shr=6104 com=30233 | 5c7c_phys_0 ded=1958 shr=1329 com=5962 || 0, 23368 MiB; 1, 24112 MiB
+15:20:44 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=16256 shr=2916 com=19172 | 5c7c_phys_0 ded=1967 shr=1329 com=5968 || 0, 23368 MiB; 1, 16246 MiB
+15:20:55 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=17602 shr=2856 com=20458 | 5c7c_phys_0 ded=1967 shr=1329 com=5968 || 0, 23368 MiB; 1, 17592 MiB
+15:21:06 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=16824 shr=2728 com=19552 | 5c7c_phys_0 ded=1967 shr=1329 com=5968 || 0, 23368 MiB; 1, 16814 MiB
+15:21:17 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=16951 shr=2600 com=19552 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 16942 MiB
+15:21:28 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=17249 shr=2302 com=19551 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 17240 MiB
+15:21:39 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=17313 shr=2238 com=19551 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 17304 MiB
+15:21:50 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=17478 shr=2072 com=19551 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 17470 MiB
+15:22:01 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=17478 shr=2072 com=19551 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 17470 MiB
+15:22:12 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=18030 shr=1796 com=19826 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 18022 MiB
+15:22:24 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=18202 shr=1626 com=19828 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 18194 MiB
+15:22:35 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=18325 shr=1502 com=19828 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 18318 MiB
+15:22:46 | 3c6c_phys_0 ded=23376 shr=1934 com=25310 | 4ca2_phys_0 ded=18845 shr=1246 com=20091 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23368 MiB; 1, 18838 MiB
+15:22:57 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=19581 shr=1162 com=20743 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23374 MiB; 1, 19574 MiB
+15:23:08 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=21876 shr=676 com=22552 | 5c7c_phys_0 ded=1959 shr=1329 com=5962 || 0, 23374 MiB; 1, 21870 MiB
+15:23:19 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=21908 shr=676 com=22584 | 5c7c_phys_0 ded=1953 shr=1329 com=5962 || 0, 23374 MiB; 1, 21902 MiB
+15:23:30 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22499 shr=86 com=22585 | 5c7c_phys_0 ded=1954 shr=1367 com=6000 || 0, 23374 MiB; 1, 22494 MiB
+15:23:41 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22499 shr=86 com=22585 | 5c7c_phys_0 ded=1959 shr=1367 com=6006 || 0, 23374 MiB; 1, 22494 MiB
+15:23:52 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22499 shr=86 com=22585 | 5c7c_phys_0 ded=1967 shr=1436 com=6165 || 0, 23374 MiB; 1, 22494 MiB
+15:24:03 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22499 shr=86 com=22585 | 5c7c_phys_0 ded=1965 shr=1374 com=6040 || 0, 23374 MiB; 1, 22494 MiB
+15:24:14 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22519 shr=86 com=22605 | 5c7c_phys_0 ded=1964 shr=1374 com=6027 || 0, 23374 MiB; 1, 22514 MiB
+15:24:26 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1964 shr=1386 com=6037 || 0, 23374 MiB; 1, 22526 MiB
+15:24:37 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1956 shr=1408 com=6047 || 0, 23374 MiB; 1, 22526 MiB
+15:24:48 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1952 shr=1424 com=6041 || 0, 23374 MiB; 1, 22526 MiB
+15:24:59 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1917 shr=1424 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:25:10 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1925 shr=1424 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:25:21 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1925 shr=1424 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:25:32 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1929 shr=1424 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:25:43 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1925 shr=1424 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:25:54 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1925 shr=1424 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:26:05 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1929 shr=1424 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:26:17 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1932 shr=1424 com=6009 || 0, 23374 MiB; 1, 22526 MiB
+15:26:28 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1928 shr=1424 com=6005 || 0, 23374 MiB; 1, 22526 MiB
+15:26:39 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1926 shr=1421 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:26:50 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1930 shr=1421 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:27:01 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1930 shr=1421 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:27:13 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1932 shr=1423 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:27:24 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1932 shr=1423 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:27:35 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1936 shr=1423 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:27:46 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1938 shr=1423 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:27:57 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1938 shr=1423 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:28:08 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1938 shr=1423 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:28:19 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1943 shr=1279 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:28:30 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1943 shr=1279 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:28:42 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1943 shr=1287 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:28:53 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1945 shr=1287 com=5997 || 0, 23374 MiB; 1, 22526 MiB
+15:29:04 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1949 shr=1287 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:29:15 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1949 shr=1287 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:29:26 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:29:38 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:29:49 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 4ca2_phys_0 ded=22531 shr=86 com=22617 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 22526 MiB
+15:30:00 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 0 MiB
+15:30:11 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 0 MiB
+15:30:22 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 0 MiB
+15:30:33 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 0 MiB
+15:30:44 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1957 shr=1287 com=6002 || 0, 23374 MiB; 1, 0 MiB
+15:30:55 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 0 MiB
+15:31:06 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1957 shr=1287 com=6002 || 0, 23374 MiB; 1, 0 MiB
+15:31:18 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 0 MiB
+15:31:29 | 3c6c_phys_0 ded=23382 shr=1934 com=25316 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 23374 MiB; 1, 0 MiB
+15:31:40 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 0 MiB; 1, 0 MiB
+15:31:51 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 0 MiB; 1, 0 MiB
+15:32:02 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 0 MiB; 1, 0 MiB
+15:32:14 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 0 MiB; 1, 0 MiB
+15:32:25 | 3c6c_phys_0 ded=15270 shr=88 com=15359 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 15266 MiB; 1, 0 MiB
+15:32:36 | 3c6c_phys_0 ded=15270 shr=88 com=15359 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 15266 MiB; 1, 0 MiB
+15:32:48 | 3c6c_phys_0 ded=15270 shr=88 com=15359 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 15266 MiB; 1, 0 MiB
+15:32:59 | 3c6c_phys_0 ded=15270 shr=88 com=15359 | 5c7c_phys_0 ded=1955 shr=1287 com=6001 || 0, 15266 MiB; 1, 0 MiB
+15:33:10 | 3c6c_phys_0 ded=15270 shr=88 com=15359 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 15266 MiB; 1, 0 MiB
+15:33:21 | 3c6c_phys_0 ded=15270 shr=88 com=15359 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 15266 MiB; 1, 0 MiB
+15:33:32 | 3c6c_phys_0 ded=15270 shr=88 com=15359 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 15266 MiB; 1, 0 MiB
+15:33:43 | 3c6c_phys_0 ded=24136 shr=5126 com=29263 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 24122 MiB; 1, 0 MiB
+15:33:54 | 3c6c_phys_0 ded=24136 shr=5126 com=29263 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 24122 MiB; 1, 0 MiB
+15:34:05 | 3c6c_phys_0 ded=16544 shr=2110 com=18655 | 5c7c_phys_0 ded=1951 shr=1287 com=5997 || 0, 16536 MiB; 1, 0 MiB

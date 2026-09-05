@@ -1,0 +1,37 @@
+FFC ff1 exit=0 RESOLVED draft_logits=True FORCE_FIRST_CONFIG=1 log_mentions=6 card1 pcie_x8 
+FFC ff1 rows=32
+bash: results/raw/v028/.greedy_arms.sh: No such file or directory
+FFC ff2 exit=0 RESOLVED draft_logits=True FORCE_FIRST_CONFIG=1 log_mentions=6 card1 pcie_x8 
+FFC ff2 rows=32
+FFC DONE 06:33:39Z
+FFC-PC pc0a exit=0 RESOLVED draft_logits=True enable_prefix_caching=False card1 pcie_x8 
+FFC-PC pc0a rows=32
+FFC-PC pc0b exit=0 RESOLVED draft_logits=True enable_prefix_caching=False card1 pcie_x8 
+FFC-PC pc0b rows=32
+FFC-PC DONE 07:11:08Z
+FFC-GREEDY g7 exit=1 RESOLVED draft_logits=True GREEDY=1 DFLASH_TOKENS=7 card1 pcie_x8 
+FFC-GREEDY g7 rows=1
+FFC-GREEDY DONE 07:16:02Z
+FFC-GREEDY g7r exit=0 RESOLVED draft_logits=True GREEDY=1 DFLASH_TOKENS=7 card1 pcie_x8 
+FFC-GREEDY g7r rows=32
+FFC-GREEDY g7s exit=0 RESOLVED draft_logits=True GREEDY=1 DFLASH_TOKENS=7 card1 pcie_x8 
+FFC-GREEDY g7s rows=32
+FFC-GREEDY DONE 07:34:10Z
+FFC0 ff7a exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED FORCE_FIRST_CONFIG=1 log_mentions=6 draft_logits=True   
+FFC0 ff7a rows=32
+FFC0 ff7b exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED FORCE_FIRST_CONFIG=1 log_mentions=6 draft_logits=True   
+FFC0 ff7b rows=32
+FFC0 DONE 07:52:56Z
+FFC0-GREEDY ffg7 exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED FORCE_FIRST_CONFIG=1 log_mentions=6 draft_logits=True   
+FFC0-GREEDY ffg7 rows=32
+FFC0-GREEDY DONE 09:07:08Z
+FFC-PC pc0c exit=0 RESOLVED draft_logits=True enable_prefix_caching=False card1 pcie_x8 
+FFC-PC pc0c rows=32
+FFC-PC pc0d exit=0 RESOLVED draft_logits=True enable_prefix_caching=False card1 pcie_x8 
+FFC-PC pc0d rows=32
+FFC-PC-MORE DONE 11:05:41Z
+FFC-P7 p7a exit=0 RESOLVED draft_logits=True enable_prefix_caching=False card1 pcie_x8 
+FFC-P7 p7a rows=32
+FFC-P7 p7b exit=0 RESOLVED draft_logits=True enable_prefix_caching=False card1 pcie_x8 
+FFC-P7 p7b rows=32
+FFC-P7 DONE 11:26:34Z

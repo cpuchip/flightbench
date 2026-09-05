@@ -1,0 +1,31 @@
+(APIServer pid=8) INFO 09-05 11:06:11 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18021, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 65536, 'served_model_name': ['qwen3.8-27b'], 'att
+(APIServer pid=8) INFO 09-05 11:06:13 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=197) INFO 09-05 11:06:20 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Qwen3.8-27B-DFlash2-W4A16', num_spec_tokens=7), tokenizer='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', skip_tokenizer_init=False, tokenizer_mode=auto, revision=Non
+(EngineCore pid=197) WARNING 09-05 11:06:23 [compilation.py:1348] Op 'rms_norm' not present in model, enabling with '+rms_norm' has no effect
+(EngineCore pid=197) INFO 09-05 11:07:38 [compilation.py:329] Enabled custom fusions: norm_quant, act_quant
+(EngineCore pid=197) INFO 09-05 11:08:03 [backends.py:1094] Using cache directory: /cache/.cache/vllm/torch_compile_cache/e69bddde14/rank_0_0/backbone for vLLM's torch.compile
+(EngineCore pid=197) INFO 09-05 11:08:03 [backends.py:1155] Dynamo bytecode transform time: 12.15 s
+(EngineCore pid=197) INFO 09-05 11:08:59 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 55.68 s
+(EngineCore pid=197) INFO 09-05 11:09:06 [decorators.py:708] saved AOT compiled function to /cache/.cache/vllm/torch_compile_cache/torch_aot_compile/545414eeb21c20d54d4e6caf561a602167b61e860189bf664e37dc4c8e9b3097/rank_0_0/model
+(EngineCore pid=197) INFO 09-05 11:09:06 [monitor.py:53] torch.compile took 75.65 s in total
+(EngineCore pid=197) INFO 09-05 11:09:47 [backends.py:1094] Using cache directory: /cache/.cache/vllm/torch_compile_cache/e69bddde14/rank_0_0/dflash_head for vLLM's torch.compile
+(EngineCore pid=197) INFO 09-05 11:09:47 [backends.py:1155] Dynamo bytecode transform time: 1.61 s
+(EngineCore pid=197) INFO 09-05 11:10:01 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 12.86 s
+(EngineCore pid=197) INFO 09-05 11:10:02 [decorators.py:708] saved AOT compiled function to /cache/.cache/vllm/torch_compile_cache/torch_aot_compile/78049bf0aefa0f9ee05b5154de07dfdadd7d314625dac5883b6ffee29fb66b06/rank_0_0/model
+(EngineCore pid=197) INFO 09-05 11:10:02 [monitor.py:53] torch.compile took 16.76 s in total
+(EngineCore pid=197) INFO 09-05 11:10:03 [backends.py:1094] Using cache directory: /cache/.cache/vllm/torch_compile_cache/e69bddde14/rank_0_0/dflash2_candidate_selector for vLLM's torch.compile
+(EngineCore pid=197) INFO 09-05 11:10:03 [backends.py:1155] Dynamo bytecode transform time: 0.11 s
+(EngineCore pid=197) INFO 09-05 11:10:04 [backends.py:393] Compiling a graph for compile range (1, 2048) takes 1.04 s
+(EngineCore pid=197) INFO 09-05 11:10:04 [decorators.py:708] saved AOT compiled function to /cache/.cache/vllm/torch_compile_cache/torch_aot_compile/e9206395f791b600531211947ad7a390e5a58ccd937207fe17a4671ecef767df/rank_0_0/model
+(EngineCore pid=197) INFO 09-05 11:10:04 [monitor.py:53] torch.compile took 1.79 s in total
+(EngineCore pid=197) INFO 09-05 11:10:07 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=7, draft_logits=True)
+(EngineCore pid=197) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/11 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):   9%|▉         | 1/11 [00:01<00:10,  1.06s/it]Capturing CUDA graphs (PIECEWISE):  18%|█▊        | 2/11 [00:01<00:05,  1.74it/s]Capturing CUDA graphs (PIECEWISE):  27%|██▋       | 3/11 [00:01<00:03,  2.36it/s]Capturing CUDA graphs (PIECEWISE):  36%|██
+(EngineCore pid=197) Capturing CUDA graphs (FULL):   0%|          | 0/8 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  12%|█▎        | 1/8 [00:00<00:02,  3.09it/s]Capturing CUDA graphs (FULL):  38%|███▊      | 3/8 [00:00<00:00,  7.73it/s]Capturing CUDA graphs (FULL):  62%|██████▎   | 5/8 [00:00<00:00, 10.58it/s]Capturing CUDA graphs (FULL):  88%|███████
+(EngineCore pid=197) INFO 09-05 11:10:12 [speculator.py:169] Capturing model for DFlash2 speculator...
+(EngineCore pid=197) Capturing dflash2 CUDA graphs (FULL):   0%|          | 0/8 [00:00<?, ?it/s]Capturing dflash2 CUDA graphs (FULL): 100%|██████████| 8/8 [00:00<00:00, 112.23it/s]
+(EngineCore pid=197) INFO 09-05 11:10:12 [model_runner.py:926] Graph capturing finished in 5 secs, took 1.08 GiB
+(EngineCore pid=197) INFO 09-05 11:10:17 [jit_monitor.py:85] Kernel JIT monitor activated; monitored JIT compilations during inference will use mode=warn.
+(EngineCore pid=197) INFO 09-05 11:10:18 [core.py:347] init engine (profile, create kv cache, warmup model) took 147.51 s (compilation: 94.20 s)
+(EngineCore pid=197) WARNING 09-05 11:10:21 [jit_monitor.py:141] Triton kernel JIT compilation during inference: _k_stats_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=197) WARNING 09-05 11:10:21 [jit_monitor.py:141] Triton kernel JIT compilation during inference: _k_quant_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.
+(EngineCore pid=197) WARNING 09-05 11:10:22 [jit_monitor.py:141] Triton kernel JIT compilation during inference: _prefill_attn_kernel. This causes a latency spike; consider extending warmup to cover this shape/config.

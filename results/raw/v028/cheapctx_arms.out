@@ -1,0 +1,9 @@
+CHEAPCTX cc0 exit=0 RESOLVED draft_logits=True CHEAP_CTX=0 drafting 7 tokens per step 
+CHEAPCTX cc0 rows=32
+CHEAPCTX cc4096 exit=0 RESOLVED draft_logits=True CHEAP_CTX=4096 drafting 7 tokens per step 
+CHEAPCTX cc4096 rows=32
+CHEAPCTX cc8192 exit=0 RESOLVED draft_logits=True CHEAP_CTX=8192 drafting 7 tokens per step 
+CHEAPCTX cc8192 rows=32
+CHEAPCTX cc16384 exit=0 RESOLVED draft_logits=True CHEAP_CTX=16384 drafting 7 tokens per step 
+CHEAPCTX cc16384 rows=32
+CHEAPCTX ARMS DONE 05:43:29Z

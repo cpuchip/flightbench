@@ -1,0 +1,8 @@
+HELD 75da78594620167c51af389e7c81d710f438ac7722692f474444a0873a8ecaa3
+HELD 04cf860e483a8315252ccec6d645181cd86fb72690fe08f37b0563dc63f90248
+AOT entries now: 58
+BLOCK-MIX r7e exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DISABLE_COMPILE_CACHE=unset compiled=1 aot_loaded=2 num_speculative_tokens': 7 draft_logits=True   
+BLOCK-MIX r7e rows=32
+BLOCK-MIX r7f exit=0 SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}" RESOLVED DISABLE_COMPILE_CACHE=unset compiled=1 aot_loaded=2 num_speculative_tokens': 7 draft_logits=True   
+BLOCK-MIX r7f rows=32
+BLOCK-MIX DONE 10:59:14Z

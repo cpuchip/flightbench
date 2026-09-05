@@ -1,0 +1,159 @@
+SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+SEQUENCE L D:dflash_head C 
+RESOLVED max_model_len': 57344 kv_cache_memory_bytes': 5851892940 DFLASH_TOKENS=11 DRAFT=/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2 LOOKUP=0 QMAX=unset SPEC_ATTN=0 VLLM_SPEC_DECODE_ATTN=unset FORCE_FIRST=unset ASYNC_SCHED=unset   num_speculative_tokens': 11 draft_logits=True  
+SERVERLOG_BEGIN
+(APIServer pid=12) INFO 09-05 15:16:05 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18020, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 57344, 'served_model_name': ['qwen3.8-27b'], 'attention_backend': 'FLASH_ATTN', 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.9, 'kv_cache_memory_bytes': 5851892940, 'kv_cache_dtype': 'bfloat16', 'enable_prefix_caching': True, 'mamba_ssm
+(APIServer pid=12) WARNING 09-05 15:16:05 [envs.py:2239] Unknown vLLM environment variable detected: VLLM_V2_CUDAGRAPH_MEM_MIB
+(APIServer pid=12) WARNING 09-05 15:16:07 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=209) INFO 09-05 15:16:15 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model='/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2', num_spec_tokens=11), tokenizer='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=57344, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_pa
+(EngineCore pid=209) WARNING 09-05 15:17:42 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=209) INFO 09-05 15:18:25 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=11, draft_logits=True)
+(EngineCore pid=209) Capturing CUDA graphs (PIECEWISE):   0%|          | 0/9 [00:00<?, ?it/s]Capturing CUDA graphs (PIECEWISE):  11%|█         | 1/9 [00:00<00:03,  2.60it/s]Capturing CUDA graphs (PIECEWISE):  22%|██▏       | 2/9 [00:00<00:02,  3.50it/s]Capturing CUDA graphs (PIECEWISE):  33%|███▎      | 3/9 [00:00<00:01,  3.84it/s]Capturing CUDA graphs (PIECEWISE):  44%|████▍     | 4/9 [00:01<00:01,  3.96it/s]Capturing CUDA graphs (PIECEWISE):  56%|█████▌    | 5/9 [00:01<00:01,  3.93it/s]Capturing CUDA graphs (PIECEWISE):  67%|██████▋ 
+(EngineCore pid=209) Capturing CUDA graphs (FULL):   0%|          | 0/4 [00:00<?, ?it/s]Capturing CUDA graphs (FULL):  25%|██▌       | 1/4 [00:00<00:00,  6.04it/s]Capturing CUDA graphs (FULL):  50%|█████     | 2/4 [00:00<00:00,  6.62it/s]Capturing CUDA graphs (FULL):  75%|███████▌  | 3/4 [00:00<00:00,  6.68it/s]Capturing CUDA graphs (FULL): 100%|██████████| 4/4 [00:00<00:00,  6.32it/s]Capturing CUDA graphs (FULL): 100%|██████████| 4/4 [00:00<00:00,  6.39it/s]
+SERVERLOG_END
+NONDEFAULT_LINE (APIServer pid=12) INFO 09-05 15:16:05 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18020, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 57344, 'served_model_name': ['qwen3.8-27b'], 'attention_backend': 'FLASH_ATTN', 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.9, 'kv_cache_memory_bytes': 5851892940, 'kv_cache_dtype': 'bfloat16', 'enable_prefix_caching': True, 'mamba_ssm_cache_dtype': 'float16', 'mamba_cache_mode': 'align', 'language_model_only': True, 'max_num_batched_tokens': 2048, 'max_num_seqs': 4, 'async_scheduling': True, 'speculative_config': {'method': 'dflash', 'model': '/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2', 'num_speculative_tokens': 11, 'draft_sample_method': 'probabilistic'}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+rms_norm', '+silu_and_mul'], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': None, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': 48, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}}
+PERPOS arm=ap11sa0b prompts=8 seeds=[1, 2, 3, 4]
+LINK 15:18:39 8, 4, 210 MHz, 7.21 W, 0 %
+4, 4, 210 MHz, 24.94 W, 0 %
+LINK 15:19:09 8, 4, 2745 MHz, 115.28 W, 94 %
+4, 4, 210 MHz, 28.97 W, 20 %
+ROW arm=ap11sa0b seed=1 prompt=0 drafts=290 dtok=3190 acc=735 round=11.000 tok_per_step=3.534 out=1024 wall=54.4 tok_s=18.8 distinct=0.570 gzip=0.393 p0=224 p1=158 p2=98 p3=68 p4=50 p5=39 p6=30 p7=22 p8=18 p9=16 p10=12
+LINK 15:19:39 8, 4, 2745 MHz, 117.63 W, 94 %
+4, 4, 210 MHz, 28.41 W, 23 %
+LINK 15:20:09 8, 4, 2745 MHz, 118.29 W, 89 %
+4, 4, 2775 MHz, 87.57 W, 2 %
+LINK 15:20:39 8, 4, 2745 MHz, 117.64 W, 94 %
+4, 4, 210 MHz, 21.65 W, 0 %
+ROW arm=ap11sa0b seed=1 prompt=1 drafts=403 dtok=4433 acc=620 round=11.000 tok_per_step=2.538 out=1024 wall=73.5 tok_s=13.9 distinct=0.591 gzip=0.506 p0=285 p1=158 p2=80 p3=45 p4=26 p5=11 p6=9 p7=4 p8=2 p9=0 p10=0
+LINK 15:21:09 8, 4, 2745 MHz, 118.68 W, 94 %
+4, 4, 600 MHz, 22.37 W, 0 %
+LINK 15:21:39 8, 4, 2745 MHz, 117.29 W, 94 %
+4, 4, 210 MHz, 21.13 W, 10 %
+ROW arm=ap11sa0b seed=1 prompt=2 drafts=370 dtok=4070 acc=658 round=11.000 tok_per_step=2.778 out=1024 wall=67.3 tok_s=15.2 distinct=0.487 gzip=0.433 p0=244 p1=156 p2=87 p3=57 p4=34 p5=26 p6=17 p7=12 p8=10 p9=9 p10=6
+LINK 15:22:09 8, 4, 2745 MHz, 117.51 W, 94 %
+4, 4, 2760 MHz, 126.64 W, 0 %
+LINK 15:22:39 8, 4, 2745 MHz, 117.78 W, 92 %
+4, 4, 2775 MHz, 127.54 W, 49 %
+ROW arm=ap11sa0b seed=1 prompt=3 drafts=314 dtok=3454 acc=711 round=11.000 tok_per_step=3.264 out=1024 wall=57.4 tok_s=17.9 distinct=0.507 gzip=0.442 p0=244 p1=152 p2=100 p3=75 p4=45 p5=29 p6=21 p7=15 p8=12 p9=9 p10=9
+LINK 15:23:09 8, 4, 2745 MHz, 118.35 W, 90 %
+4, 4, 855 MHz, 54.10 W, 46 %
+ROW arm=ap11sa0b seed=1 prompt=4 drafts=241 dtok=2651 acc=783 round=11.000 tok_per_step=4.249 out=1024 wall=44.1 tok_s=23.2 distinct=0.448 gzip=0.451 p0=196 p1=135 p2=101 p3=82 p4=71 p5=56 p6=41 p7=34 p8=26 p9=22 p10=19
+LINK 15:23:39 8, 4, 2745 MHz, 117.96 W, 94 %
+4, 4, 2760 MHz, 230.28 W, 69 %
+LINK 15:24:09 8, 4, 2745 MHz, 118.62 W, 94 %
+4, 4, 2760 MHz, 234.45 W, 68 %
+ROW arm=ap11sa0b seed=1 prompt=5 drafts=238 dtok=2618 acc=786 round=11.000 tok_per_step=4.303 out=1024 wall=43.6 tok_s=23.5 distinct=0.549 gzip=0.350 p0=199 p1=143 p2=103 p3=81 p4=64 p5=54 p6=46 p7=34 p8=28 p9=20 p10=14
+LINK 15:24:39 8, 4, 2745 MHz, 118.69 W, 93 %
+4, 4, 2760 MHz, 235.77 W, 67 %
+LINK 15:25:10 8, 4, 2745 MHz, 118.41 W, 93 %
+4, 4, 2760 MHz, 237.68 W, 71 %
+ROW arm=ap11sa0b seed=1 prompt=6 drafts=381 dtok=4191 acc=645 round=11.000 tok_per_step=2.693 out=1024 wall=69.7 tok_s=14.7 distinct=0.603 gzip=0.464 p0=260 p1=152 p2=88 p3=58 p4=38 p5=21 p6=12 p7=7 p8=4 p9=3 p10=2
+LINK 15:25:40 8, 4, 2745 MHz, 117.78 W, 95 %
+4, 4, 2760 MHz, 236.34 W, 69 %
+LINK 15:26:10 8, 4, 2745 MHz, 118.14 W, 90 %
+4, 4, 2760 MHz, 239.60 W, 69 %
+ROW arm=ap11sa0b seed=1 prompt=7 drafts=321 dtok=3531 acc=707 round=11.000 tok_per_step=3.202 out=1024 wall=59.0 tok_s=17.4 distinct=0.446 gzip=0.389 p0=246 p1=161 p2=105 p3=64 p4=42 p5=29 p6=19 p7=18 p8=11 p9=7 p10=5
+LINK 15:26:40 8, 4, 2745 MHz, 118.51 W, 94 %
+4, 4, 2760 MHz, 239.46 W, 68 %
+LINK 15:27:10 8, 4, 2745 MHz, 118.65 W, 95 %
+4, 4, 2760 MHz, 238.88 W, 70 %
+ROW arm=ap11sa0b seed=2 prompt=0 drafts=346 dtok=3806 acc=680 round=11.000 tok_per_step=2.965 out=1024 wall=63.1 tok_s=16.2 distinct=0.553 gzip=0.440 p0=254 p1=156 p2=101 p3=62 p4=43 p5=24 p6=15 p7=8 p8=7 p9=6 p10=4
+LINK 15:27:40 8, 4, 2745 MHz, 119.26 W, 93 %
+4, 4, 2760 MHz, 236.37 W, 69 %
+LINK 15:28:10 8, 4, 2745 MHz, 118.04 W, 94 %
+4, 4, 2760 MHz, 239.58 W, 69 %
+LINK 15:28:40 8, 4, 2745 MHz, 117.39 W, 93 %
+4, 4, 2760 MHz, 240.68 W, 69 %
+ROW arm=ap11sa0b seed=2 prompt=1 drafts=385 dtok=4235 acc=639 round=11.000 tok_per_step=2.660 out=1024 wall=70.4 tok_s=14.5 distinct=0.545 gzip=0.466 p0=276 p1=153 p2=86 p3=55 p4=31 p5=18 p6=7 p7=4 p8=4 p9=3 p10=2
+LINK 15:29:10 8, 4, 2745 MHz, 117.50 W, 93 %
+4, 4, 2760 MHz, 240.21 W, 68 %
+LINK 15:29:40 8, 4, 2745 MHz, 117.81 W, 94 %
+4, 4, 2760 MHz, 239.87 W, 70 %
+LINK 15:30:10 8, 4, 2745 MHz, 117.97 W, 89 %
+4, 4, 210 MHz, 26.21 W, 0 %
+ROW arm=ap11sa0b seed=2 prompt=2 drafts=544 dtok=5984 acc=480 round=11.000 tok_per_step=1.882 out=1024 wall=99.1 tok_s=10.3 distinct=0.623 gzip=0.466 p0=158 p1=83 p2=57 p3=45 p4=38 p5=29 p6=23 p7=17 p8=16 p9=10 p10=4
+LINK 15:30:40 8, 4, 2745 MHz, 117.37 W, 95 %
+4, 4, 210 MHz, 24.97 W, 0 %
+LINK 15:31:10 8, 4, 2745 MHz, 117.83 W, 94 %
+4, 4, 210 MHz, 24.06 W, 0 %
+ROW arm=ap11sa0b seed=2 prompt=3 drafts=303 dtok=3333 acc=673 round=11.000 tok_per_step=3.221 out=977 wall=55.3 tok_s=17.7 distinct=0.574 gzip=0.450 p0=222 p1=145 p2=91 p3=55 p4=42 p5=33 p6=22 p7=22 p8=16 p9=14 p10=11
+ROW arm=ap11sa0b seed=2 prompt=4 drafts=114 dtok=1254 acc=359 round=11.000 tok_per_step=4.149 out=474 wall=21.0 tok_s=22.6 distinct=0.575 gzip=0.511 p0=87 p1=67 p2=49 p3=39 p4=33 p5=25 p6=18 p7=13 p8=12 p9=8 p10=8
+ROW_ERROR arm=ap11sa0b seed=2 prompt=5 http=500
+SERVER_ERROR_BEGIN
+[start_qwen] WARNING: KV_MEM=5851892940 is above the profile default 5583457484. The extra pool is taken from the headroom prefill and the first concurrent batch allocate from, and the floor is close: +150 MiB ran, +200 MiB killed the engine at CTX=huge MAX_SEQS=8 (gotcha 39 has the ladder). On Linu
+(EngineCore pid=209) ERROR 09-05 15:31:37 [core.py:1348] Traceback (most recent call last):
+(EngineCore pid=209) ERROR 09-05 15:31:37 [core.py:1348] torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+(EngineCore pid=209) ERROR 09-05 15:31:37 [core.py:1348] Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+(APIServer pid=12) ERROR 09-05 15:31:37 [async_llm.py:744] Traceback (most recent call last):
+(APIServer pid=12) ERROR 09-05 15:31:37 [async_llm.py:744] vllm.v1.engine.exceptions.EngineDeadError: EngineCore encountered an issue. See stack trace (above) for the root cause.
+(EngineCore pid=209) Traceback (most recent call last):
+(EngineCore pid=209) torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+(EngineCore pid=209) Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+(EngineCore pid=209) Traceback (most recent call last):
+(EngineCore pid=209) torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+(EngineCore pid=209) Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+(APIServer pid=12) INFO:     127.0.0.1:39480 - "POST /v1/completions HTTP/1.1" 500 Internal Server Error
+SERVER_ERROR_END
+ROW_ERROR arm=ap11sa0b seed=2 prompt=6 http=500
+ROW_ERROR arm=ap11sa0b seed=2 prompt=7 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=0 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=1 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=2 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=3 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=4 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=5 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=6 http=500
+ROW_ERROR arm=ap11sa0b seed=3 prompt=7 http=500
+ROW_ERROR arm=ap11sa0b seed=4 prompt=0 http=500
+ROW_ERROR arm=ap11sa0b seed=4 prompt=1 http=500
+ROW_ERROR arm=ap11sa0b seed=4 prompt=2 http=500
+ROW_ERROR arm=ap11sa0b seed=4 prompt=3 http=500
+Traceback (most recent call last):
+  File "/usr/lib/python3.12/urllib/request.py", line 1344, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/usr/lib/python3.12/http/client.py", line 1365, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1411, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1360, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1120, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1064, in send
+    self.connect()
+  File "/usr/lib/python3.12/http/client.py", line 1030, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 852, in create_connection
+    raise exceptions[0]
+  File "/usr/lib/python3.12/socket.py", line 837, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/tmp/perpos_client.py", line 36, in <module>
+    b, bp = metrics()
+            ^^^^^^^^^
+  File "/tmp/perpos_client.py", line 24, in metrics
+    txt = urllib.request.urlopen(rq, timeout=60).read().decode()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 515, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 532, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 1373, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/urllib/request.py", line 1347, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 111] Connection refused>
