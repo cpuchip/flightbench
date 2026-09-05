@@ -47,7 +47,7 @@ def paired(a, b):
     return dict(n=len(d), mean=m, se=se, t=(m / se if se else float("nan")), worse=sum(1 for v in d if v < 0), median=st.median(d))
 
 baselines = {"default (r7b, LOOKUP=1)": load("r7-r7b.txt"), "bl7off (LOOKUP=0)": load("drf-bl7off.txt")}
-cells = ["drf-ap7sa0.txt", "drf-ap7lite.txt", "drf-bl7off.txt", "drf-ds7.txt", "drf-ap11.txt", "drf-ap15sa0.txt", "drf-ds7sa0.txt"]
+cells = ["drf-ap7sa0.txt", "drf-bl7off.txt", "drf-ap11sa0.txt", "drf-ap15sa0.txt", "drf-ds7sa0.txt", "drf-ds7q.txt", "drf-ds7qsa0.txt", "drf-ap7p3.txt", "drf-bl7p3.txt"]  # void cells (ap7, ap7lite, ap7g, ds7) have no rows and are skipped
 print("baselines: " + ", ".join(f"{k}: {len(v)} rows" + (f", tok/step {st.mean(tps(x) for x in v):.3f}" if v else "") for k, v in baselines.items()))
 for f in cells:
     rows = load(f)
