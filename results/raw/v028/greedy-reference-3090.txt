@@ -1,0 +1,13 @@
+# Greedy reference trajectory from the other box (3090 native), posted 2026-09-05 ~08:05Z by threadchip.
+# cell g-text: width 7, T=0, max_tokens 1024, /v1/completions, bench/prompts_real.jsonl (sha 27da4fd8...)
+# engine-confirmed num_speculative_tokens 7, method dflash; counters reproduce g-t0 exactly on all 8 rows
+# (per-position 1554/1210/972/764/598/488/407, 7931 tokens). Full completions held base64 on that box.
+# prompt sha256(first16) bytes
+0 b961a668505ee844 4208
+1 6e585166d621a731 4334
+2 364ac247e24e6acf 3166
+3 66b9f3a57a6d48dd 3988
+4 3ba16b02adcb0e69 2168
+5 02b3b294ac430c97 3102
+6 71e3ac14c92823f6 4236
+7 ad51a11acd497442 3848
