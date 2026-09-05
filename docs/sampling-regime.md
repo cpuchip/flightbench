@@ -73,8 +73,15 @@ Three things the distribution says about the scenarios themselves:
   controller reads the rules it will need before it needs them, and under recommended sampling this
   model reacts rather than anticipates most of the time. Whether that belongs in the score at its
   current weight is a design choice, but it is measuring something real and worth keeping.
-- **The discriminating middle is the lunar-orbit status read and the powered-descent sequence.** That
-  is where seeds disagree, and it is where a change in model or serving would show first.
+- **The lunar-orbit status read is the same kind of test, and the model passes it about half the
+  time.** The scorer requires a propulsion-system status read before the first action of the phase.
+  The eleven failing traces open with telemetry, a request for evaluation and a tracking update, and
+  never read the system they are about to burn; the nine passing traces read the rules or the status
+  within the first three calls. So the two decisions that discriminate most in this bench measure the
+  same habit from two angles: whether the controller reads what it will need before it acts. Under
+  recommended sampling this model does that about half the time in lunar orbit and about a third of
+  the time in powered descent, and those two rates are where a change in model or serving would show
+  first.
 
 ## Consequences
 
