@@ -1,3 +1,9 @@
+# AMENDMENT 2026-09-05 06:50Z, before this script has been opened by the chain: the card-1 pair
+# ff1/ff2 came back 5/32 identical against 28/32 autotuned, so the registered 32/32 above is now
+# EXPECTED TO FAIL here too. The identity prediction stands as written (a replication on the other
+# card); the cell's remaining value is the default-width speed comparison against w7, direction still
+# unregistered, with card 0's clock the one that counts. If ff7a/ff7b come back 32/32 while card 1
+# gave 5/32, that is a card difference in what the flag removes and is itself a finding.
 set -u
 LOCK=/tmp/ffc_card0.lock
 if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo "REFUSING: live run $(cat "$LOCK")"; exit 3; fi
