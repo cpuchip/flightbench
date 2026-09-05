@@ -1,0 +1,22 @@
+draft_logits=False
+RESOLVED enable_prefix_caching=False
+ORDERROW order=A seed=1 drafts=31 dtok=417 acc=359 round=13.452 tok_per_step=12.581 out=384
+ORDERROW order=A seed=2 drafts=37 dtok=491 acc=347 round=13.270 tok_per_step=10.378 out=384
+ORDERROW order=A seed=3 drafts=41 dtok=575 acc=357 round=14.024 tok_per_step=9.707 out=384
+ORDERROW order=A seed=4 drafts=34 dtok=478 acc=354 round=14.059 tok_per_step=11.412 out=384
+ORDERROW order=A seed=5 drafts=37 dtok=499 acc=346 round=13.486 tok_per_step=10.351 out=384
+ORDERROW order=A seed=6 drafts=31 dtok=441 acc=359 round=14.226 tok_per_step=12.581 out=384
+ORDERROW order=B seed=6 drafts=112 dtok=1000 acc=271 round=8.929 tok_per_step=3.420 out=384
+ORDERROW order=B seed=5 drafts=37 dtok=475 acc=361 round=12.838 tok_per_step=10.757 out=384
+ORDERROW order=B seed=4 drafts=34 dtok=478 acc=354 round=14.059 tok_per_step=11.412 out=384
+ORDERROW order=B seed=3 drafts=31 dtok=449 acc=352 round=14.484 tok_per_step=12.355 out=384
+ORDERROW order=B seed=2 drafts=37 dtok=491 acc=347 round=13.270 tok_per_step=10.378 out=384
+ORDERROW order=B seed=1 drafts=39 dtok=505 acc=352 round=12.949 tok_per_step=10.026 out=384
+ORDERSUMMARY seed | drafts A/B | dtok A/B | acc A/B | roundA/B | verdict
+ORDERSUMMARY 1 | 31/39 | 417/505 | 359/352 | 13.452/12.949 | drafts!= acc!= dtok!=
+ORDERSUMMARY 2 | 37/37 | 491/491 | 347/347 | 13.270/13.270 | drafts= acc= dtok=
+ORDERSUMMARY 3 | 41/31 | 575/449 | 357/352 | 14.024/14.484 | drafts!= acc!= dtok!=
+ORDERSUMMARY 4 | 34/34 | 478/478 | 354/354 | 14.059/14.059 | drafts= acc= dtok=
+ORDERSUMMARY 5 | 37/37 | 499/475 | 346/361 | 13.486/12.838 | drafts= acc!= dtok!=
+ORDERSUMMARY 6 | 31/112 | 441/1000 | 359/271 | 14.226/8.929 | drafts!= acc!= dtok!=
+ORDERVERDICT long-block seen on 6/6 seeds; drafts+accepted invariant 2/6; drafted tokens invariant 2/6
