@@ -61,4 +61,4 @@ def report(prefix, order, ref, label):
 
 report("width", ["w7", "w6", "w5", "w4", "w3"], "w7", "ARM 1 draft width (ref w7)")
 report("cheapctx", ["cc0", "cc4096", "cc8192", "cc16384"], "cc0", "ARM 2 cheap-context threshold (ref cc0)")
-print("\nregistered: |t|>=3 established, 2-3 suggestive, <2 not. H2 for arm 2 predicts p7..p14 share stays under ~2% even at cc16384.")
+print("\nregistered: |t|>=3 established, 2-3 suggestive, <2 not. H2 for arm 2 predicts the conditional acceptance rate at p7..p14 stays under ~2% even at cc16384 (the registered statistic is the rate; an interim result substituted share and was reversed, see docs/v0.28-validation.md, corrections).")
