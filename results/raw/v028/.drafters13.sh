@@ -73,5 +73,5 @@ AP=/app/models/Apathy-Qwen3.8-27B-DFlash-drafter-v2; DS=/app/models/Qwen3.8-27B-
 # shared at baseline = the QMAX-16 'specialization penalty' was the buffer growth crossing the ceiling and item 9's mechanism
 # is corrected at its source (the kernel is exonerated; QMAX enters only through buffer size); ~63 with shared at baseline = a
 # real QMAX-dependent cost at width 7 that width 15 does not pay, which would need its own explanation.
-arm q16p3 7 "-e QMAX=16 -e KV_MEM=3000000000 -e DFLASH_MAX_LEN=8192"
+arm q16p3 7 "-e VLLM_SPEC_DECODE_ATTN_QMAX=16 -e KV_MEM=3000000000 -e DFLASH_MAX_LEN=8192"
 echo "DRAFTERS13 DONE $(date -u +%H:%M:%SZ)"
