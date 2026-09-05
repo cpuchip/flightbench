@@ -46,7 +46,7 @@ arm () {  # name tokens extra-docker-args
   echo "LKCOST $NAME exit=$? $(grep -aE 'RESOLVED|NO HEALTH|SPEC_CFG_LINE' "$OUTD/sa07-$NAME.txt" | head -2 | tr '\n' ' ' | cut -c1-300)"
   echo "LKCOST $NAME rows=$(grep -ac '^ROW ' "$OUTD/sa07-$NAME.txt")"
 }
+# reduced to one boot 2026-09-05 16:30Z: the default-width bimodality is a single observation (std7), so the trio
+# no longer buys a decision; one boot still answers whether SPEC_ATTN=0 costs anything at the default.
 arm sa0_7a 7 "-e SPEC_ATTN=0"
-arm sa0_7b 7 "-e SPEC_ATTN=0"
-arm sa0_7c 7 "-e SPEC_ATTN=0"
 echo "LKCOST SA07 DONE $(date -u +%H:%M:%SZ)"
