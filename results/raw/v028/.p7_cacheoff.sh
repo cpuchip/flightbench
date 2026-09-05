@@ -11,7 +11,7 @@
 LOCK=/tmp/p7.lock
 if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo "REFUSING: live run $(cat "$LOCK")"; exit 3; fi
 echo $$ > "$LOCK"; trap 'rm -f "$LOCK"' EXIT
-while kill -0 739912 2>/dev/null; do sleep 30; done  # wait for the extra width-15 cache-off boots (pc0c, pc0d)
+while kill -0 739964 2>/dev/null; do sleep 30; done  # wait for the extra width-15 cache-off boots (pc0c, pc0d)
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
 CARD=GPU-9d0861d3-75b2-b317-87c0-695bba368f1b; PORT=18021
@@ -35,7 +35,7 @@ arm () {  # name cheap_ctx
       for i in $(seq 1 180); do sleep 5; curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health && break; done
       curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health || { echo "NO HEALTH"; tail -15 /tmp/server.log; exit 1; }
       echo "RESOLVED $(grep -oE "draft_logits=(True|False)" /tmp/server.log | head -1) $(grep -oE "enable_prefix_caching=(True|False)" /tmp/server.log | head -1) card1 $(nvidia-smi --query-gpu=pcie.link.width.current --format=csv,noheader 2>/dev/null | head -1 | sed "s/^/pcie_x/")"
-      echo "SERVERLOG_BEGIN"; grep -aiE "speculative_config|SpeculativeConfig|rejection_sample|num_speculative_tokens|async_scheduling|async-scheduling|enable_prefix_caching|Capturing CUDA graph|cudagraph|force.first|first valid config|draft_logits|max_num_seqs|max_model_len" /tmp/server.log | head -60 | cut -c1-300; echo "SERVERLOG_END"
+      echo "SERVERLOG_BEGIN"; grep -aiE "speculative_config|SpeculativeConfig|rejection_sample|num_speculative_tokens|async_scheduling|async-scheduling|enable_prefix_caching|mamba_cache_mode|Capturing CUDA graph|cudagraph|force.first|first valid config|draft_logits|max_num_seqs|max_model_len" /tmp/server.log | head -60 | cut -c1-300; echo "SERVERLOG_END"
       echo "$CLIENT_B64" | base64 -d > /tmp/perpos_client.py
       PORT='"$PORT"' VLLM_API_KEY="$VLLM_API_KEY" ARM="$ARM" python /tmp/perpos_client.py
     ' > "$OUTD/p7-$NAME.txt" 2>&1
