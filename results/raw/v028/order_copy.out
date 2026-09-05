@@ -1,0 +1,23 @@
+ORDER exit=0
+ORDER draft_logits=False
+ORDER ORDERROW order=A seed=1 drafts=31 dtok=409 acc=359 round=13.194 tok_per_step=12.581 out=384
+ORDER ORDERROW order=A seed=2 drafts=44 dtok=540 acc=339 round=12.273 tok_per_step=8.705 out=384
+ORDER ORDERROW order=A seed=3 drafts=36 dtok=524 acc=348 round=14.556 tok_per_step=10.667 out=384
+ORDER ORDERROW order=A seed=4 drafts=31 dtok=417 acc=363 round=13.452 tok_per_step=12.710 out=384
+ORDER ORDERROW order=A seed=5 drafts=39 dtok=529 acc=352 round=13.564 tok_per_step=10.026 out=384
+ORDER ORDERROW order=A seed=6 drafts=13 dtok=163 acc=74 round=12.538 tok_per_step=6.692 out=88
+ORDER ORDERROW order=B seed=6 drafts=31 dtok=433 acc=359 round=13.968 tok_per_step=12.581 out=384
+ORDER ORDERROW order=B seed=5 drafts=39 dtok=529 acc=352 round=13.564 tok_per_step=10.026 out=384
+ORDER ORDERROW order=B seed=4 drafts=62 dtok=618 acc=321 round=9.968 tok_per_step=6.177 out=384
+ORDER ORDERROW order=B seed=3 drafts=30 dtok=410 acc=361 round=13.667 tok_per_step=13.033 out=384
+ORDER ORDERROW order=B seed=2 drafts=44 dtok=540 acc=339 round=12.273 tok_per_step=8.705 out=384
+ORDER ORDERROW order=B seed=1 drafts=35 dtok=477 acc=362 round=13.629 tok_per_step=11.343 out=384
+ORDER ORDERSUMMARY seed | drafts A/B | dtok A/B | acc A/B | roundA/B | verdict
+ORDER ORDERSUMMARY 1 | 31/35 | 409/477 | 359/362 | 13.194/13.629 | drafts!= acc!= dtok!=
+ORDER ORDERSUMMARY 2 | 44/44 | 540/540 | 339/339 | 12.273/12.273 | drafts= acc= dtok=
+ORDER ORDERSUMMARY 3 | 36/30 | 524/410 | 348/361 | 14.556/13.667 | drafts!= acc!= dtok!=
+ORDER ORDERSUMMARY 4 | 31/62 | 417/618 | 363/321 | 13.452/9.968 | drafts!= acc!= dtok!=
+ORDER ORDERSUMMARY 5 | 39/39 | 529/529 | 352/352 | 13.564/13.564 | drafts= acc= dtok=
+ORDER ORDERSUMMARY 6 | 13/31 | 163/433 | 74/359 | 12.538/13.968 | drafts!= acc!= dtok!=
+ORDER ORDERVERDICT long-block seen on 6/6 seeds; drafts+accepted invariant 2/6; drafted tokens invariant 2/6
+ORDER COPY DONE 02:29:00Z
