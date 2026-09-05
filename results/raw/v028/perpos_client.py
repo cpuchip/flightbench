@@ -45,14 +45,13 @@ for seed in SEEDS:
         except urllib.error.HTTPError as e:
             # 2026-09-05: a 500 mid-run ended ap11sa0 at 13 rows with the engine's error uncaptured. Print the server log's
             # error lines once, record the row as failed, and go on, so the cell keeps its other rows and the cause.
-            print(f'ROW_ERROR arm={ARM} seed={seed} prompt={i} http={e.code}', flush=True)
+            print(f'ROW_ERROR arm={ARM} seed={seed} prompt={pi} http={e.code}', flush=True)
             if not globals().get('_dumped'):
                 globals()['_dumped'] = True
                 try:
                     lines = open('/tmp/server.log', errors='replace').read().splitlines()
                     err = [l for l in lines if re.search(r'Error|Traceback|assert|illegal|died|abort', l)]
-                    print('SERVER_ERROR_BEGIN', flush=True); print('
-'.join(l[:300] for l in (err[-40:] or lines[-40:])), flush=True); print('SERVER_ERROR_END', flush=True)
+                    print('SERVER_ERROR_BEGIN', flush=True); print(chr(10).join(l[:300] for l in (err[-40:] or lines[-40:])), flush=True); print('SERVER_ERROR_END', flush=True)
                 except Exception as ee:
                     print('SERVER_ERROR_UNREADABLE', ee, flush=True)
             continue
