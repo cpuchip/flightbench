@@ -30,7 +30,7 @@ tps = lambda x: x["acc"] / x["drafts"] + 1
 
 def summary(name, rows):
     if not rows: return None
-    steady = [x for x in rows if not (x["seed"] == 1 and x["prompt"] in (0, 1))]
+    steady = [x for x in rows if not (x["seed"] == 1 and x["prompt"] in (0, 1)) and x["out"] >= 16]  # boundary rows (a one- or two-token completion is one step, its wall is the first-step latency) are excluded from the step cost
     ms = [1000 * x["wall"] / x["drafts"] for x in steady] if steady else [float("nan")]
     pk = sorted((k for k in rows[0] if re.fullmatch(r"p\d+", k)), key=lambda k: int(k[1:]))
     return dict(name=name, n=len(rows), ms=st.mean(ms), ms_lo=min(ms), ms_hi=max(ms),
