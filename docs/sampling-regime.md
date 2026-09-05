@@ -63,9 +63,16 @@ Three things the distribution says about the scenarios themselves:
 - **The translunar phase is a ceiling even under sampling.** Five decisions never failed in twenty
   sampled runs. They are not discriminating anything and could be made harder or dropped from the
   score.
-- **The alarm-rule lookup is close to a floor.** Seven of ten seeds failed it on both versions. Either
-  the rule is genuinely hard to find from the tools offered, or the scenario under-specifies what
-  "look up the rule" requires. Worth reading the failing traces before deciding which.
+- **The alarm-rule decision is a foresight test, and the model anticipates about a third of the
+  time.** Seven of ten seeds failed it on both versions. The scorer requires a rules read for the
+  powered-descent alarms *before* the first alarm call, not merely at some point. Reading the fourteen
+  failing traces: nine looked up the go/no-go rule for the descent and never the alarm rule at all, two
+  made no rules lookup in the phase, and three did look up the alarm rule but only after the first
+  alarm had already fired and been handled. Every passing run had read the alarm rule before the
+  alarm. So the decision is not under-specified and not unreachable; it measures whether the
+  controller reads the rules it will need before it needs them, and under recommended sampling this
+  model reacts rather than anticipates most of the time. Whether that belongs in the score at its
+  current weight is a design choice, but it is measuring something real and worth keeping.
 - **The discriminating middle is the lunar-orbit status read and the powered-descent sequence.** That
   is where seeds disagree, and it is where a change in model or serving would show first.
 
