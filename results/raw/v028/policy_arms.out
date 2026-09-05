@@ -1,0 +1,7 @@
+POLICY pol-base exit=0 FIELD_LINES=3 draft_logits=True STICKY=default 
+POLICY pol-base rows=32
+POLICY pol-zrev exit=0 Z-PATCH REVERSED FIELD_LINES=3 draft_logits=True STICKY=default 
+POLICY pol-zrev rows=32
+POLICY pol-sticky0 exit=0 FIELD_LINES=3 draft_logits=True STICKY=0 
+POLICY pol-sticky0 rows=32
+POLICY ARMS DONE 01:56:54Z

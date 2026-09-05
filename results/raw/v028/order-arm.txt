@@ -1,0 +1,21 @@
+draft_logits=False
+ORDERROW order=A seed=1 drafts=72 dtok=504 acc=184 round=7.000 tok_per_step=3.556 out=256
+ORDERROW order=A seed=2 drafts=74 dtok=518 acc=183 round=7.000 tok_per_step=3.473 out=256
+ORDERROW order=A seed=3 drafts=37 dtok=259 acc=223 round=7.000 tok_per_step=7.027 out=256
+ORDERROW order=A seed=4 drafts=57 dtok=399 acc=198 round=7.000 tok_per_step=4.474 out=256
+ORDERROW order=A seed=5 drafts=75 dtok=525 acc=180 round=7.000 tok_per_step=3.400 out=256
+ORDERROW order=A seed=6 drafts=74 dtok=518 acc=187 round=7.000 tok_per_step=3.527 out=256
+ORDERROW order=B seed=6 drafts=74 dtok=518 acc=187 round=7.000 tok_per_step=3.527 out=256
+ORDERROW order=B seed=5 drafts=75 dtok=525 acc=180 round=7.000 tok_per_step=3.400 out=256
+ORDERROW order=B seed=4 drafts=57 dtok=399 acc=198 round=7.000 tok_per_step=4.474 out=256
+ORDERROW order=B seed=3 drafts=37 dtok=259 acc=223 round=7.000 tok_per_step=7.027 out=256
+ORDERROW order=B seed=2 drafts=74 dtok=518 acc=183 round=7.000 tok_per_step=3.473 out=256
+ORDERROW order=B seed=1 drafts=72 dtok=504 acc=184 round=7.000 tok_per_step=3.556 out=256
+ORDERSUMMARY seed | drafts A/B | dtok A/B | acc A/B | verdict
+ORDERSUMMARY 1 | 72/72 | 504/504 | 184/184 | drafts= acc= dtok=
+ORDERSUMMARY 2 | 74/74 | 518/518 | 183/183 | drafts= acc= dtok=
+ORDERSUMMARY 3 | 37/37 | 259/259 | 223/223 | drafts= acc= dtok=
+ORDERSUMMARY 4 | 57/57 | 399/399 | 198/198 | drafts= acc= dtok=
+ORDERSUMMARY 5 | 75/75 | 525/525 | 180/180 | drafts= acc= dtok=
+ORDERSUMMARY 6 | 74/74 | 518/518 | 187/187 | drafts= acc= dtok=
+ORDERVERDICT drafts+accepted invariant on 6/6 seeds; drafted tokens invariant on 6/6 seeds
