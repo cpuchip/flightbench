@@ -3,7 +3,7 @@ tokens, four seeds, counters read per prompt. Emits per row: drafts, drafted tok
 round, tok/step, wall seconds, output tokens, decode tok/s, distinct-word and gzip ratios, and
 the accepted-per-position deltas so the acceptance curve by draft position can be built.
 Registered use: arm 1 (draft width 3..7) and arm 2 (VLLM_DFLASH2_LOOKUP_CHEAP_CTX)."""
-import hashlib, base64
+import re, hashlib, base64
 import gzip, json, os, re, sys, time, urllib.request
 sys.stdout.reconfigure(encoding="utf-8")
 PORT = os.environ["PORT"]; KEY = os.environ["VLLM_API_KEY"]; ARM = os.environ.get("ARM", "?")
@@ -40,7 +40,22 @@ for seed in SEEDS:
         rq = urllib.request.Request(BASE + "/v1/completions", data=body,
             headers={"Content-Type": "application/json", "Authorization": "Bearer " + KEY})
         t0 = time.perf_counter()
-        d = json.load(urllib.request.urlopen(rq, timeout=1800))
+        try:
+            d = json.load(urllib.request.urlopen(rq, timeout=1800))
+        except urllib.error.HTTPError as e:
+            # 2026-09-05: a 500 mid-run ended ap11sa0 at 13 rows with the engine's error uncaptured. Print the server log's
+            # error lines once, record the row as failed, and go on, so the cell keeps its other rows and the cause.
+            print(f'ROW_ERROR arm={ARM} seed={seed} prompt={i} http={e.code}', flush=True)
+            if not globals().get('_dumped'):
+                globals()['_dumped'] = True
+                try:
+                    lines = open('/tmp/server.log', errors='replace').read().splitlines()
+                    err = [l for l in lines if re.search(r'Error|Traceback|assert|illegal|died|abort', l)]
+                    print('SERVER_ERROR_BEGIN', flush=True); print('
+'.join(l[:300] for l in (err[-40:] or lines[-40:])), flush=True); print('SERVER_ERROR_END', flush=True)
+                except Exception as ee:
+                    print('SERVER_ERROR_UNREADABLE', ee, flush=True)
+            continue
         wall = time.perf_counter() - t0
         a, ap = metrics()
         dr = a["drafts"] - b["drafts"]; dt = a["draft_tokens"] - b["draft_tokens"]; ac = a["accepted_tokens"] - b["accepted_tokens"]
