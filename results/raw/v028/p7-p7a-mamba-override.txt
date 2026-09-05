@@ -1,0 +1,3 @@
+# p7a live engine log, read 2026-09-05T11:12Z with docker exec while the cell ran (card 1, width 7, PREFIX_CACHE=1 plus EXTRA_ARGS=--no-enable-prefix-caching): the arguments line and the override warning
+(APIServer pid=8) INFO 09-05 11:06:11 [api_utils.py:272] non-default args:  'kv_cache_memory_bytes': 5583457484 'enable_prefix_caching': False 'mamba_cache_mode': 'align' 'async_scheduling': True 'num_speculative_tokens': 7 
+(APIServer pid=8) WARNING 09-05 11:06:13 [config.py:633] Mamba cache mode is set to 'none' when prefix caching is disabled
