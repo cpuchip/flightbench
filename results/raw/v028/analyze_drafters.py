@@ -46,8 +46,8 @@ def paired(a, b):
     m = st.mean(d); sd = st.pstdev(d) * (len(d) / (len(d) - 1)) ** 0.5; se = sd / len(d) ** 0.5
     return dict(n=len(d), mean=m, se=se, t=(m / se if se else float("nan")), worse=sum(1 for v in d if v < 0), median=st.median(d))
 
-baselines = {"default (r7b, LOOKUP=1)": load("r7-r7b.txt"), "bl7off (LOOKUP=0)": load("drf-bl7off.txt")}
-cells = ["drf-ap7sa0.txt", "drf-bl7off.txt", "drf-ap11sa0.txt", "drf-ap15sa0.txt", "drf-ds7sa0.txt", "drf-ds7q.txt", "drf-ds7qsa0.txt", "drf-ap7p3.txt", "drf-bl7p3.txt"]  # void cells (ap7, ap7lite, ap7g, ds7) have no rows and are skipped
+baselines = {"default (r7b, LOOKUP=1)": load("r7-r7b.txt"), "bl7off (LOOKUP=0)": load("drf-bl7off.txt"), "bl7p3 (LOOKUP=0, 3 GiB pin, 8192)": load("drf-bl7p3.txt")}
+cells = ["drf-ap7sa0.txt", "drf-bl7off.txt", "drf-ap11sa0.txt", "drf-ap15sa0.txt", "drf-ds7sa0.txt", "drf-ds7q.txt", "drf-ds7qsa0.txt", "drf-ap7p3.txt", "drf-bl7p3.txt", "chk-ap11p3.txt", "drf-ds7rp3.txt"]  # void cells (ap7, ap7lite, ap7g, ds7) have no rows and are skipped
 print("baselines: " + ", ".join(f"{k}: {len(v)} rows" + (f", tok/step {st.mean(tps(x) for x in v):.3f}" if v else "") for k, v in baselines.items()))
 for f in cells:
     rows = load(f)
@@ -58,6 +58,6 @@ for f in cells:
     print("   per-position per thousand rounds:", " ".join(f"{v:.0f}" for v in s["pos"]))
     print("   completions under 1024:", s["short"])
     for bname, b in baselines.items():
-        if not b or f == "drf-bl7off.txt" and bname.startswith("bl7off"): continue
+        if not b or f == "drf-bl7off.txt" and bname.startswith("bl7off") or f == "drf-bl7p3.txt" and bname.startswith("bl7p3"): continue
         pr = paired(rows, b)
         if pr: print(f"   vs {bname}: paired mean {pr['mean']:+.3f} tok/step (se {pr['se']:.3f}, t {pr['t']:+.2f}, median {pr['median']:+.3f}, worse {pr['worse']} of {pr['n']}); one boot per arm, interval is a floor")
