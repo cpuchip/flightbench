@@ -1,0 +1,36 @@
+FIELD_LINES=3
+draft_logits=True
+STICKY=default
+POLICY arm=pol-base prompts=8
+ROW arm=pol-base seed=1 prompt=0 drafts=255 dtok=1785 acc=771 round=7.000 tok_per_step=4.024 out=1024 distinct=0.560 gzip=0.451
+ROW arm=pol-base seed=1 prompt=1 drafts=389 dtok=2723 acc=634 round=7.000 tok_per_step=2.630 out=1024 distinct=0.574 gzip=0.512
+ROW arm=pol-base seed=1 prompt=2 drafts=596 dtok=4172 acc=428 round=7.000 tok_per_step=1.718 out=1024 distinct=0.649 gzip=0.528
+ROW arm=pol-base seed=1 prompt=3 drafts=221 dtok=1635 acc=802 round=7.398 tok_per_step=4.629 out=1024 distinct=0.482 gzip=0.393
+ROW arm=pol-base seed=1 prompt=4 drafts=223 dtok=1625 acc=802 round=7.287 tok_per_step=4.596 out=1024 distinct=0.422 gzip=0.451
+ROW arm=pol-base seed=1 prompt=5 drafts=226 dtok=1686 acc=797 round=7.460 tok_per_step=4.527 out=1024 distinct=0.598 gzip=0.377
+ROW arm=pol-base seed=1 prompt=6 drafts=308 dtok=2156 acc=718 round=7.000 tok_per_step=3.331 out=1024 distinct=0.600 gzip=0.467
+ROW arm=pol-base seed=1 prompt=7 drafts=214 dtok=1498 acc=700 round=7.000 tok_per_step=4.271 out=915 distinct=0.487 gzip=0.379
+ROW arm=pol-base seed=2 prompt=0 drafts=252 dtok=1764 acc=771 round=7.000 tok_per_step=4.060 out=1024 distinct=0.600 gzip=0.433
+ROW arm=pol-base seed=2 prompt=1 drafts=315 dtok=2205 acc=709 round=7.000 tok_per_step=3.251 out=1024 distinct=0.572 gzip=0.480
+ROW arm=pol-base seed=2 prompt=2 drafts=605 dtok=4235 acc=418 round=7.000 tok_per_step=1.691 out=1024 distinct=0.700 gzip=0.552
+ROW arm=pol-base seed=2 prompt=3 drafts=229 dtok=1651 acc=797 round=7.210 tok_per_step=4.480 out=1024 distinct=0.522 gzip=0.413
+ROW arm=pol-base seed=2 prompt=4 drafts=205 dtok=1491 acc=819 round=7.273 tok_per_step=4.995 out=1024 distinct=0.486 gzip=0.474
+ROW arm=pol-base seed=2 prompt=5 drafts=231 dtok=1649 acc=792 round=7.139 tok_per_step=4.429 out=1024 distinct=0.495 gzip=0.389
+ROW arm=pol-base seed=2 prompt=6 drafts=277 dtok=1939 acc=749 round=7.000 tok_per_step=3.704 out=1024 distinct=0.610 gzip=0.480
+ROW arm=pol-base seed=2 prompt=7 drafts=102 dtok=714 acc=287 round=7.000 tok_per_step=3.814 out=390 distinct=0.596 gzip=0.487
+ROW arm=pol-base seed=3 prompt=0 drafts=265 dtok=1887 acc=758 round=7.121 tok_per_step=3.860 out=1024 distinct=0.539 gzip=0.440
+ROW arm=pol-base seed=3 prompt=1 drafts=321 dtok=2247 acc=702 round=7.000 tok_per_step=3.187 out=1024 distinct=0.576 gzip=0.490
+ROW arm=pol-base seed=3 prompt=2 drafts=617 dtok=4319 acc=410 round=7.000 tok_per_step=1.665 out=1024 distinct=0.652 gzip=0.522
+ROW arm=pol-base seed=3 prompt=3 drafts=228 dtok=1724 acc=795 round=7.561 tok_per_step=4.487 out=1024 distinct=0.506 gzip=0.415
+ROW arm=pol-base seed=3 prompt=4 drafts=218 dtok=1558 acc=806 round=7.147 tok_per_step=4.697 out=1024 distinct=0.419 gzip=0.445
+ROW arm=pol-base seed=3 prompt=5 drafts=225 dtok=1647 acc=805 round=7.320 tok_per_step=4.578 out=1024 distinct=0.547 gzip=0.402
+ROW arm=pol-base seed=3 prompt=6 drafts=317 dtok=2219 acc=707 round=7.000 tok_per_step=3.230 out=1024 distinct=0.612 gzip=0.486
+ROW arm=pol-base seed=3 prompt=7 drafts=128 dtok=928 acc=378 round=7.250 tok_per_step=3.953 out=507 distinct=0.566 gzip=0.431
+ROW arm=pol-base seed=4 prompt=0 drafts=293 dtok=2051 acc=730 round=7.000 tok_per_step=3.491 out=1024 distinct=0.632 gzip=0.461
+ROW arm=pol-base seed=4 prompt=1 drafts=352 dtok=2464 acc=676 round=7.000 tok_per_step=2.920 out=1024 distinct=0.564 gzip=0.481
+ROW arm=pol-base seed=4 prompt=2 drafts=552 dtok=3864 acc=475 round=7.000 tok_per_step=1.861 out=1024 distinct=0.635 gzip=0.519
+ROW arm=pol-base seed=4 prompt=3 drafts=239 dtok=1673 acc=786 round=7.000 tok_per_step=4.289 out=1024 distinct=0.487 gzip=0.430
+ROW arm=pol-base seed=4 prompt=4 drafts=209 dtok=1495 acc=819 round=7.153 tok_per_step=4.919 out=1024 distinct=0.662 gzip=0.500
+ROW arm=pol-base seed=4 prompt=5 drafts=218 dtok=1758 acc=805 round=8.064 tok_per_step=4.693 out=1024 distinct=0.575 gzip=0.316
+ROW arm=pol-base seed=4 prompt=6 drafts=305 dtok=2167 acc=718 round=7.105 tok_per_step=3.354 out=1024 distinct=0.636 gzip=0.470
+ROW arm=pol-base seed=4 prompt=7 drafts=232 dtok=1624 acc=736 round=7.000 tok_per_step=4.172 out=969 distinct=0.444 gzip=0.371
