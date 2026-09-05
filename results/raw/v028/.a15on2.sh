@@ -37,5 +37,7 @@ arm () {  # name tokens extra-docker-args
   echo "LKCOST $NAME exit=$? $(grep -aE 'RESOLVED|NO HEALTH|SPEC_CFG_LINE' "$OUTD/lkcost-$NAME.txt" | head -2 | tr '\n' ' ' | cut -c1-300)"
   echo "LKCOST $NAME rows=$(grep -ac '^ROW ' "$OUTD/lkcost-$NAME.txt")"
 }
-arm a15on2 15 "-e ASYNC_SCHED=1"
+# KV pin raised 256 MiB (5583457484 + 268435456): the first a15on failed on a ~10 MiB KV shortfall, diagnosed on the other box
+# from the full traceback (async scheduling pads every step to num_speculative_tokens, so width 15 needs more pool than the pin sized for the sync path).
+arm a15on2 15 "-e ASYNC_SCHED=1 -e KV_MEM=5851892940"
 echo "LKCOST A15ON2 DONE $(date -u +%H:%M:%SZ)"
