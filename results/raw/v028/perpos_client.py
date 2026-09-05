@@ -3,6 +3,7 @@ tokens, four seeds, counters read per prompt. Emits per row: drafts, drafted tok
 round, tok/step, wall seconds, output tokens, decode tok/s, distinct-word and gzip ratios, and
 the accepted-per-position deltas so the acceptance curve by draft position can be built.
 Registered use: arm 1 (draft width 3..7) and arm 2 (VLLM_DFLASH2_LOOKUP_CHEAP_CTX)."""
+import hashlib, base64
 import gzip, json, os, re, sys, time, urllib.request
 sys.stdout.reconfigure(encoding="utf-8")
 PORT = os.environ["PORT"]; KEY = os.environ["VLLM_API_KEY"]; ARM = os.environ.get("ARM", "?")
