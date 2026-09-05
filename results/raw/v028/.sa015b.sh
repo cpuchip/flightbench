@@ -17,7 +17,7 @@
 LOCK=/tmp/sa015b.lock
 if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo "REFUSING: live run $(cat "$LOCK")"; exit 3; fi
 echo $$ > "$LOCK"; trap 'rm -f "$LOCK"' EXIT
-while kill -0 745150 2>/dev/null; do sleep 30; done  # wait for the cold pair (end of the card-0 queue)
+while kill -0 748705 2>/dev/null; do sleep 30; done  # wait for the card-1 chain (p7a/p7b, PID 748705) so the replicate runs with card 1 idle; first launch (10:35Z) died on a relative OUTD from the wrong cwd, re-armed 10:40Z from the repo root
 MODELS='C:\Users\cpuch\Documents\code\stuffleberry\workspace\projects\qwen38-27b-rtx3090\models'
 OUTD="results/raw/v028"; TK=kv-probe-key
 CARD=GPU-206a1b8d-47c3-0dba-4ddb-e61c58306387; PORT=18020
@@ -55,6 +55,7 @@ arm () {  # name tokens extra-docker-args
 # reduced to one boot 2026-09-05 16:30Z: the default-width bimodality is a single observation (std7), so the trio
 # no longer buys a decision; one boot still answers whether SPEC_ATTN=0 costs anything at the default.
 arm sa0_15b 15 "-e SPEC_ATTN=0"
-echo "LENGTHS $(grep -a "^ROW " "$OUTD/sa015b-sa0_15b.txt" | grep -oE "prompt=[0-9]+ seed=[0-9]+|out=[0-9]+" | paste - - | awk "$3 != \"out=1024\"" | tr "
+echo "LENGTHS $(grep -a '^ROW ' "$OUTD/sa015b-sa0_15b.txt" | grep -oE 'prompt=[0-9]+ seed=[0-9]+|out=[0-9]+' | paste - - | grep -v 'out=1024' | tr '
+' ';')"
 " ";")"
 echo "LKCOST SA015B DONE $(date -u +%H:%M:%SZ)"
