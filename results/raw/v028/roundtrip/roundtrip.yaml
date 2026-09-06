@@ -1,0 +1,67 @@
+# Round trip, stage 2: one-GPU offline DFlash2 fine-tune of the shipped Qwen3.8-27B head, warm-started
+# from the dequantized W4A16 checkpoint (probe's head_bf16), against hidden states captured from the
+# W4A16 target in vLLM (stage 1). Derived from the probe's probe-dflash2-offline.yaml with the probe's
+# measured settings: 256 anchors (512 spills on 24 GiB under WSL2), sdpa (flex recompiles per shape),
+# accumulation 8, CPU-offloaded AdamW. max_steps is set at launch to records // 8 (see pipeline.sh).
+model:
+  target_model_path: /probe/target_stub          # config + bf16 embed_tokens/lm_head only
+  draft_model_config: /probe/head_bf16/config.json
+  draft_checkpoint_path: /probe/head_bf16         # weights-only warm start (dequantized shipped head)
+  target_backend: sglang
+  embedding_key: model.language_model.embed_tokens.weight
+  lm_head_key: lm_head.weight
+  torch_dtype: bfloat16
+  mask_token_id: 248070
+
+data:
+  hidden_states_path: /work/hs
+  max_length: 2048
+  chat_template: qwen3.5
+  cache_dir: /work/cache
+  dataloader_num_workers: 2
+
+training:
+  strategy: dflash
+  num_epochs: 1
+  batch_size: 1
+  accumulation_steps: 8
+  # 2e-5, not the probe's 5e-5: (a) the selector term now enters the loss (PR 842 fix), which the probe
+  # measured as total loss 1.16 vs 0.75 on the same first batch, so the gradient the clip sees is larger
+  # than in any probe step; (b) the head is already trained and this is a 250-step pass whose purpose
+  # is the round trip, where a large update would confound export damage with training damage.
+  learning_rate: 2.0e-5
+  lr_scheduler: constant
+  warmup_ratio: 0.05
+  max_grad_norm: 1.0
+  fsdp_sharding: NO_SHARD        # single rank: DDP path (selector fix from PR 842 applied to the clone)
+  optimizer_cpu_offload: true    # fp32 masters + Adam moments on host RAM (28.7 GiB would not fit the card)
+  attention_backend: sdpa
+  # 128, not the planned 256: the dry run at 256 anchors with the selector term active (PR 842 fix)
+  # pinned GPU 1 at 24,108 MiB and produced no optimizer step in 116 s (the probe's accum8 run at 256
+  # anchors, selector term silently off, took 19 s at 23,310 MiB) -> the WSL2 spill. 128 anchors with the
+  # fix was measured by the probe (fix128): 20,622 MiB, 7 s per step. Log: dry/logs/train.anchors256-spill.log.
+  num_anchors: 128
+  loss_decay_gamma: 7.0
+  lk_loss_type: lambda
+  loss_type: dpace
+  objective_chunk_blocks: 128
+  dflash2_selector_loss_alpha: 1.0
+  dflash2_selector_warmup_ratio: 0.0
+  dflash2_selector_ramp_ratio: 0.0
+  save_interval: 0               # only the end-of-run checkpoint
+  max_checkpoints: 0
+  log_interval: 1
+  dist_timeout: 30
+  seed: 42
+
+tracking:
+  report_to: none
+
+run_id: roundtrip
+output_dir: /work/outputs/roundtrip
+
+deployment:
+  mode: local_colocated
+  trainer:
+    nnodes: 1
+    nproc_per_node: 1

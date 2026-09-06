@@ -1,0 +1,61 @@
+2026-09-06T04:27:28Z [full] START pipeline DRY=0 N=2000 CHUNK=200 PROMPTS=/work/prompts_2400.jsonl ROOT=/work
+2026-09-06T04:27:29Z [full] GPU visible to torch: 1 9d0861d3-75b2-b317-87c0-695bba368f1b
+2026-09-06T04:27:29Z [full] nvidia-smi: 0, GPU-<fermion-card-0>, 23676 MiB 1, GPU-<fermion-card-1>, 0 MiB 
+2026-09-06T04:27:29Z [full] stage 0: environment
+torch 2.13.0+cu130 vllm 0.28.0 transformers 5.15.0 accelerate 1.14.0 specforge /work/SpecForge/specforge/__init__.py
+2026-09-06T04:27:33Z [full] selector fix (PR 842 _draft_attr) present in the clone
+2026-09-06T04:27:33Z [full] prompts available: 2400
+2026-09-06T04:27:33Z [full] stage 1: capture -> /work/hs (N=2000 CHUNK=200)
+2026-09-06T05:10:43Z [full] stage 1 done rc=0 in 2589s: 2000 records, 60G on disk, peak GPU1 23596 MiB; rates:  capture done: 2000 new records this run (0 skipped), 2000 total, 1241728 tokens, 59.23 GiB; generation 945701 tok in 1549s (610 tok/s), capture 936s (128 rec/min)
+2026-09-06T05:04:52Z chunk 8: generated 93321 response tokens for 200 prompts in 151s = 620 tok/s (mean 467 tok/resp)
+2026-09-06T05:06:24Z chunk 8: captured 200 records in 91s = 131 rec/min; cumulative 1800 records, 53.3 GiB on disk, 992 GiB free; peak GPU reserved 22.57 GiB
+2026-09-06T05:09:02Z chunk 9: generated 96071 response tokens for 200 prompts in 158s = 609 tok/s (mean 480 tok/resp)
+2026-09-06T05:10:35Z chunk 9: captured 200 records in 93s = 129 rec/min; cumulative 2000 records, 59.2 GiB on disk, 986 GiB free; peak GPU reserved 22.57 GiB
+2026-09-06T05:10:48Z [full] GPU after capture: 0, 23676 MiB 1, 0 MiB 
+2026-09-06T05:10:48Z [full] stage 2: train, 2000 records, accumulation 8 -> max_steps=250 (one epoch = 250 optimizer steps; the trainer rejects a partial accumulation window, so max_steps caps at the last complete one); lr 2e-5 and 128 anchors (reasons in roundtrip.yaml), sdpa, CPU-offloaded AdamW, warm start /probe/head_bf16
+2026-09-06T05:49:04Z [full] stage 2 done rc=0 in 2296s; peak GPU1 23596 MiB; steps logged: 250
+train_summary: 250 optimizer steps (step 1 .. 250); CSV /work/logs/train_steps.csv
+   loss                                             first 1.0290  last quarter 0.9653  min 0.4951  max 1.6234
+   lk_loss                                          first 0.6527  last quarter 0.6128  min 0.3048  max 1.1029
+   selector_loss                                    first 0.3933  last quarter 0.3676  min 0.1939  max 0.5714
+   acc                                              first 0.4184  last quarter 0.4279  min 0.3226  max 0.5623
+   dflash/hard_label/expected_accepted_length       first 2.9121  last quarter 3.0205  min 2.2808  max 4.0462
+   selector_accuracy                                first 0.8781  last quarter 0.8849  min 0.8244  max 0.9384
+   grad_norm                                        first 1.2122  last quarter 1.0767  min 0.4492  max 3.0578
+   step time (perf/train_compute_time_s): mean 8.40s, median 8.36s, max 16.35s
+   selector_loss_alpha: 1.0 .. 1.0 (1.0 means the selector term is in the loss)
+Mem:              45           6          32           0           7          39
+2026-09-06T05:49:04Z [full] checkpoint: /work/outputs/roundtrip/roundtrip-step250 (26G)
+2026-09-06T05:49:04Z [full] stage 3: export -> /work/export/head-ft (specforge export --to hf)
+2026-09-06T05:52:34Z [full] export rc=0 in 210s
+tensors: export 81, ref_bf16 81, shipped 153 (shipped counts packed triples)
+vs shipped (dequantized names): missing 0, extra 0
+names/shapes vs ref_bf16: MATCH
+config.json differences vs ref (2):
+    draft_vocab_size: export=248320  ref="<absent>"
+    rope_theta: export=10000000  ref="<absent>"
+config.json: exporter's saved as config.specforge.json; ref_bf16 config installed as config.json (2 substantive difference(s) listed above)
+overall mean |delta| 1.901e-04; tensors with any non-zero value: 81/81
+VERIFY PASS
+2026-09-06T05:52:59Z [full] export verified: config.json config.specforge.json model.safetensors 
+2026-09-06T05:52:59Z [full] stage 4: serve test (launcher in this container, GPU 1); arms: ft=/work/export/head-ft then bf16ctl=/probe/head_bf16; baseline /work/baseline/drf-bl7p3.txt (shipped W4A16 head, same profile)
+2026-09-06T06:01:29Z [full] ft arm rc=0 rows=32 SEQUENCE D:backbone C D:dflash_head C D:dflash2_candidate_selector C  RESOLVED max_model_len': 8192 kv_cache_memory_bytes': 3000000000 DFLASH_TOKENS=7 DRAFT=/work/export/head-ft LOOKUP=0 num_speculative_tokens': 7 draft_logits=True  
+2026-09-06T06:10:07Z [full] bf16ctl arm rc=0 rows=32 SEQUENCE D:backbone C D:dflash_head C D:dflash2_candidate_selector C  RESOLVED max_model_len': 8192 kv_cache_memory_bytes': 3000000000 DFLASH_TOKENS=7 DRAFT=/probe/head_bf16 LOOKUP=0 num_speculative_tokens': 7 draft_logits=True  
+2026-09-06T06:10:07Z [full] acceptance summary (baseline = shipped W4A16 head drf-bl7p3, 3.773 tok/step):
+baseline file /work/baseline/drf-bl7p3.txt
+bl7p3: rows 32, mean tok/step 3.773, pooled tok/step 3.446, decode tok/s 146.7, output tokens 31499
+   per-position acceptance (accepted at pos k / drafts): p0=0.706 p1=0.518 p2=0.390 p3=0.292 p4=0.226 p5=0.176 p6=0.138
+
+arm file /work/logs/serve-ft.txt
+ft: rows 32, mean tok/step 4.116, pooled tok/step 3.924, decode tok/s 145.0, output tokens 29972
+   per-position acceptance (accepted at pos k / drafts): p0=0.794 p1=0.608 p2=0.465 p3=0.362 p4=0.283 p5=0.226 p6=0.187
+   paired vs bl7p3 on 32 rows: mean tok/step diff +0.343 (sd 0.542, se 0.096); rows better 24, worse 8, equal 0
+   per-position diff (arm - baseline): p0=+0.088 p1=+0.090 p2=+0.076 p3=+0.070 p4=+0.057 p5=+0.049 p6=+0.049
+
+arm file /work/logs/serve-bf16ctl.txt
+bf16ctl: rows 32, mean tok/step 3.817, pooled tok/step 3.427, decode tok/s 128.5, output tokens 30979
+   per-position acceptance (accepted at pos k / drafts): p0=0.689 p1=0.508 p2=0.386 p3=0.295 p4=0.230 p5=0.181 p6=0.139
+   paired vs bl7p3 on 32 rows: mean tok/step diff +0.044 (sd 0.344, se 0.061); rows better 20, worse 12, equal 0
+   per-position diff (arm - baseline): p0=-0.018 p1=-0.010 p2=-0.004 p3=+0.002 p4=+0.004 p5=+0.004 p6=+0.001
+2026-09-06T06:10:07Z [full] peak GPU1 over the whole pipeline: 24120 MiB
+2026-09-06T06:10:07Z [full] END rc=0 (DONE)

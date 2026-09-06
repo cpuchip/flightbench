@@ -1,0 +1,32 @@
+export dir files: ['config.json', 'model.safetensors']
+tensors: export 81, ref_bf16 81, shipped 153 (shipped counts packed triples)
+vs shipped (dequantized names): missing 0, extra 0
+names/shapes vs ref_bf16: MATCH
+config.json differences vs ref (2):
+    draft_vocab_size: export=248320  ref="<absent>"
+    rope_theta: export=10000000  ref="<absent>"
+config.json: exporter's saved as config.specforge.json; ref_bf16 config installed as config.json (2 substantive difference(s) listed above)
+weight deltas export - ref_bf16 (mean|d|, max|d|, max|export|) per family:
+    candidate_selector.hidden_projection.weight                  mean 2.400e-04  max 1.587e-03  max|w| 1.055e-01
+    candidate_selector.predecessor_codebook                      mean 2.380e-06  max 3.906e-03  max|w| 9.062e+00
+    candidate_selector.successor_codebook                        mean 3.934e-05  max 2.441e-03  max|w| 5.078e-01
+    fc.weight                                                    mean 1.777e-04  max 1.953e-03  max|w| 2.088e+01
+    hidden_norm.weight                                           mean 0.000e+00  max 0.000e+00  max|w| 1.242e+00
+    layers.N.attention_conv.base_kernel                          mean 1.294e-04  max 1.953e-03  max|w| 1.406e+00
+    layers.N.attention_conv.kernel_projection.weight             mean 2.357e-04  max 2.686e-03  max|w| 2.031e+00
+    layers.N.input_layernorm.weight                              mean 9.632e-07  max 1.953e-03  max|w| 2.422e+00
+    layers.N.mlp.down_proj.weight                                mean 2.008e-04  max 3.906e-03  max|w| 9.188e+00
+    layers.N.mlp.gate_proj.weight                                mean 2.014e-04  max 3.906e-03  max|w| 1.602e+00
+    layers.N.mlp.up_proj.weight                                  mean 1.989e-04  max 3.906e-03  max|w| 2.453e+00
+    layers.N.mlp_conv.base_kernel                                mean 1.356e-04  max 1.953e-03  max|w| 1.555e+00
+    layers.N.mlp_conv.kernel_projection.weight                   mean 2.565e-04  max 2.441e-03  max|w| 3.250e+00
+    layers.N.post_attention_layernorm.weight                     mean 1.653e-05  max 1.953e-03  max|w| 1.109e+00
+    layers.N.self_attn.k_norm.weight                             mean 3.433e-06  max 9.766e-04  max|w| 2.797e+00
+    layers.N.self_attn.k_proj.weight                             mean 2.222e-04  max 3.906e-03  max|w| 2.000e+00
+    layers.N.self_attn.o_proj.weight                             mean 2.105e-04  max 2.029e-03  max|w| 6.594e+00
+    layers.N.self_attn.q_norm.weight                             mean 2.372e-06  max 9.766e-04  max|w| 2.406e+00
+    layers.N.self_attn.q_proj.weight                             mean 2.126e-04  max 2.930e-03  max|w| 2.844e+00
+    layers.N.self_attn.v_proj.weight                             mean 2.034e-04  max 2.197e-03  max|w| 1.188e+00
+    norm.weight                                                  mean 7.451e-08  max 3.815e-04  max|w| 5.250e+00
+overall mean |delta| 1.901e-04; tensors with any non-zero value: 81/81
+VERIFY PASS
