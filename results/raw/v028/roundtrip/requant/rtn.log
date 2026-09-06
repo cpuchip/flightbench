@@ -1,0 +1,28 @@
+torch sees 1 NVIDIA GeForce RTX 4090
+== RTN ft head
+  int4 fc: rel err 0.0029
+  int4 layers.0.mlp.down_proj: rel err 0.0034
+  int4 layers.0.mlp.gate_proj: rel err 0.0037
+  int4 layers.0.mlp.up_proj: rel err 0.0037
+  int4 layers.0.self_attn.k_proj: rel err 0.0039
+  int4 layers.0.self_attn.o_proj: rel err 0.0041
+  int4 layers.0.self_attn.q_proj: rel err 0.0038
+  int4 layers.0.self_attn.v_proj: rel err 0.0043
+quantized 36 matrices in 22s; mean rel err 0.0035
+wrote /app/models/Qwen3.8-27B-DFlash2-ft-W4A16-rtn-2026-09-06/ (1.19 GiB)
+== RTN control (dequantized shipped head)
+  int4 fc: rel err 0.0022
+  int4 layers.0.mlp.down_proj: rel err 0.0022
+  int4 layers.0.mlp.gate_proj: rel err 0.0025
+  int4 layers.0.mlp.up_proj: rel err 0.0025
+  int4 layers.0.self_attn.k_proj: rel err 0.0027
+  int4 layers.0.self_attn.o_proj: rel err 0.0024
+  int4 layers.0.self_attn.q_proj: rel err 0.0022
+  int4 layers.0.self_attn.v_proj: rel err 0.0023
+quantized 36 matrices in 22s; mean rel err 0.0023
+wrote /app/models/Qwen3.8-27B-DFlash2-ctl-W4A16-rtn-2026-09-06/ (1.19 GiB)
+-rw-r--r-- 1 root root       2264 Sep  6 09:52 config.json
+-rw------- 1 root root 1280633960 Sep  6 09:52 model.safetensors
+-rw-r--r-- 1 root root       2264 Sep  6 09:51 config.json
+-rwxrwxrwx 1 root root       1295 Sep  6 09:51 config.specforge.json
+-rw------- 1 root root 1280633960 Sep  6 09:51 model.safetensors

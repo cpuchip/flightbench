@@ -1,0 +1,41 @@
+2026-09-06T10:38:19Z LR10X START torch_devices=1
+2026-09-06T10:38:35Z stage 2: train, lr 2e-4 (10x the round trip), 250 steps, same data and config otherwise
+2026-09-06T11:15:18Z train done; steps logged: 250
+train_summary: 250 optimizer steps (step 1 .. 250); CSV /work/logs/train_steps-lr10x.csv
+   loss                                             first 1.0443  last quarter 1.0154  min 0.5238  max 1.6451
+   lk_loss                                          first 0.6615  last quarter 0.6419  min 0.3210  max 1.1210
+   selector_loss                                    first 0.4006  last quarter 0.3905  min 0.2069  max 0.5873
+   acc                                              first 0.4124  last quarter 0.4171  min 0.3165  max 0.5503
+   dflash/hard_label/expected_accepted_length       first 2.9034  last quarter 2.9677  min 2.2730  max 4.0124
+   selector_accuracy                                first 0.8761  last quarter 0.8803  min 0.8256  max 0.9356
+   grad_norm                                        first 1.6035  last quarter 1.4944  min 0.4341  max 4.0650
+   step time (perf/train_compute_time_s): mean 8.03s, median 7.97s, max 16.23s
+   selector_loss_alpha: 1.0 .. 1.0 (1.0 means the selector term is in the loss)
+2026-09-06T11:15:18Z stage 3: export /work/outputs/lr10x/lr10x-step250/
+2026-09-06T11:18:48Z export rc=0
+2026-09-06T11:19:14Z verify rc=0 names/shapes vs ref_bf16: MATCH overall mean |delta| 2.124e-03; tensors with any non-zero value: 81/81 VERIFY PASS 
+2026-09-06T11:19:14Z ARM ft10xs14 start
+2026-09-06T11:28:16Z ARM ft10xs14 rc=0 rows=32
+2026-09-06T11:28:16Z ARM ft10xs58 start
+2026-09-06T11:36:38Z ARM ft10xs58 rc=0 rows=32
+2026-09-06T11:36:38Z SUMMARY seeds 1-4 (baseline bl7p3)
+baseline file /work/baseline/drf-bl7p3.txt
+bl7p3: rows 32, mean tok/step 3.773, pooled tok/step 3.446, decode tok/s 146.7, output tokens 31499
+   per-position acceptance (accepted at pos k / drafts): p0=0.706 p1=0.518 p2=0.390 p3=0.292 p4=0.226 p5=0.176 p6=0.138
+
+arm file /work/logs/serve-ft10xs14.txt
+ft10xs14: rows 32, mean tok/step 3.711, pooled tok/step 3.498, decode tok/s 131.8, output tokens 30791
+   per-position acceptance (accepted at pos k / drafts): p0=0.735 p1=0.538 p2=0.400 p3=0.297 p4=0.225 p5=0.171 p6=0.132
+   paired vs bl7p3 on 32 rows: mean tok/step diff -0.062 (sd 0.665, se 0.117); rows better 12, worse 20, equal 0
+   per-position diff (arm - baseline): p0=+0.029 p1=+0.020 p2=+0.011 p3=+0.004 p4=-0.001 p5=-0.006 p6=-0.006
+2026-09-06T11:36:38Z SUMMARY seeds 5-8 (baseline shipped58)
+baseline file /work/logs/serve-shipped58.txt
+shipped58: rows 32, mean tok/step 3.925, pooled tok/step 3.716, decode tok/s 157.2, output tokens 29981
+   per-position acceptance (accepted at pos k / drafts): p0=0.764 p1=0.573 p2=0.431 p3=0.327 p4=0.257 p5=0.202 p6=0.163
+
+arm file /work/logs/serve-ft10xs58.txt
+ft10xs58: rows 32, mean tok/step 3.726, pooled tok/step 3.446, decode tok/s 128.4, output tokens 29473
+   per-position acceptance (accepted at pos k / drafts): p0=0.714 p1=0.524 p2=0.386 p3=0.291 p4=0.222 p5=0.174 p6=0.134
+   paired vs shipped58 on 32 rows: mean tok/step diff -0.199 (sd 0.709, se 0.125); rows better 12, worse 20, equal 0
+   per-position diff (arm - baseline): p0=-0.050 p1=-0.048 p2=-0.044 p3=-0.036 p4=-0.035 p5=-0.028 p6=-0.029
+2026-09-06T11:36:38Z LR10X DONE

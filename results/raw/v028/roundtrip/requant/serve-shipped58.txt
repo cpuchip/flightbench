@@ -1,0 +1,62 @@
+2026-09-06T10:13:34Z ARM shipped58 DRAFT=/app/models/Qwen3.8-27B-DFlash2-W4A16 KV_MEM=3000000000 PORT=18021 SEEDS=5,6,7,8 NPROMPTS=8
+SPEC_CFG_LINE 219:  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+DRAFT_FILES  4096 . 4096 .. 4096 .cache 2621 README.md 2264 config.json 1280633960 model.safetensors 
+SERVER_PID 57
+2026-09-06T10:18:14Z HEALTH OK
+SEQUENCE D:backbone C D:dflash_head C D:dflash2_candidate_selector C 
+RESOLVED max_model_len': 8192 kv_cache_memory_bytes': 3000000000 DFLASH_TOKENS=7 DRAFT=/app/models/Qwen3.8-27B-DFlash2-W4A16 LOOKUP=0 num_speculative_tokens': 7 draft_logits=True 
+SERVERLOG_BEGIN
+[start_qwen] note: the pinned pool holds about 3 resident requests at DFLASH_TOKENS=7 (state pages), fewer with long prompts; MAX_SEQS=8 admits more than that and the rest queue.
+(APIServer pid=57) INFO 09-06 10:13:39 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18021, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 8192, 'served_model_name': ['qwen3.8-27b'], 'att
+(APIServer pid=57) WARNING 09-06 10:13:39 [envs.py:2239] Unknown vLLM environment variable detected: VLLM_DFLASH2_LOOKUP
+(APIServer pid=57) INFO 09-06 10:13:41 [model.py:672] Resolved architecture: DFlash2DraftModel
+(APIServer pid=57) INFO 09-06 10:13:41 [speculative.py:1220] Overriding draft model max model len from 262144 to 8192
+(APIServer pid=57) WARNING 09-06 10:13:41 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=246) INFO 09-06 10:15:09 [default_loader.py:430] Loading weights took 77.52 seconds
+(EngineCore pid=246) WARNING 09-06 10:15:13 [vllm.py:1862] max_num_scheduled_tokens is set to 2048 based on the speculative decoding settings. This may lead to suboptimal performance. Consider increasing max_num_batched_tokens to accommodate the additional draft token slots, or decrease num_speculative_tokens.
+(EngineCore pid=246) INFO 09-06 10:15:23 [default_loader.py:430] Loading weights took 9.17 seconds
+(EngineCore pid=246) INFO 09-06 10:15:27 [model_runner.py:384] Model loading took 15.34 GiB memory and 96.272983 seconds
+(EngineCore pid=246) INFO 09-06 10:17:33 [backends.py:1094] Using cache directory: /cache/.cache/vllm/torch_compile_cache/8d15d3dd8e/rank_0_0/dflash_head for vLLM's torch.compile
+(EngineCore pid=246) INFO 09-06 10:17:50 [backends.py:1094] Using cache directory: /cache/.cache/vllm/torch_compile_cache/8d15d3dd8e/rank_0_0/dflash2_candidate_selector for vLLM's torch.compile
+(EngineCore pid=246) INFO 09-06 10:17:53 [kv_cache_utils.py:2065] GPU KV cache size: 15,618 tokens, Maximum concurrency for 8,192 tokens per request: 1.91x
+(EngineCore pid=246) INFO 09-06 10:17:55 [kernel_warmup.py:151] Warmed rejection-sampler kernels (k=7, draft_logits=True)
+(EngineCore pid=246) INFO 09-06 10:18:00 [speculator.py:169] Capturing model for DFlash2 speculator...
+(EngineCore pid=246) Capturing dflash2 CUDA graphs (FULL):   0%|          | 0/8 [00:00<?, ?it/s]Capturing dflash2 CUDA graphs (FULL): 100%|██████████| 8/8 [00:00<00:00, 86.12it/s]
+SERVERLOG_END
+NONDEFAULT_LINE (APIServer pid=57) INFO 09-06 10:13:39 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_prompt_tokens_details': True, 'host': '0.0.0.0', 'port': 18021, 'model': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'max_model_len': 8192, 'served_model_name': ['qwen3.8-27b'], 'attention_backend': 'FLASH_ATTN', 'reasoning_parser': 'qwen3', 'gpu_memory_utilization': 0.9, 'kv_cache_memory_bytes': 3000000000, 'kv_cache_dtype': 'bfloat16', 'enable_prefix_caching': True, 'mamba_ssm_cache_dtype': 'float16', 'mamba_cache_mode': 'align', 'language_model_only': True, 'max_num_batched_tokens': 2048, 'max_num_seqs': 8, 'async_scheduling': True, 'speculative_config': {'method': 'dflash', 'model': '/app/models/Qwen3.8-27B-DFlash2-W4A16', 'num_speculative_tokens': 7, 'draft_sample_method': 'probabilistic'}, 'compilation_config': {'mode': None, 'debug_dump_path': None, 'cache_dir': '', 'compile_cache_save_format': 'binary', 'backend': 'inductor', 'custom_ops': ['+rms_norm', '+silu_and_mul'], 'ir_enable_torch_wrap': None, 'splitting_ops': None, 'compile_mm_encoder': False, 'cudagraph_mm_encoder': False, 'encoder_cudagraph_token_budgets': [], 'encoder_cudagraph_max_vision_items_per_batch': 0, 'encoder_cudagraph_max_frames_per_batch': None, 'compile_sizes': None, 'compile_ranges_endpoints': None, 'inductor_compile_config': {'enable_auto_functionalized_v2': False, 'combo_kernels': True, 'benchmark_combo_kernel': True}, 'inductor_passes': {}, 'cudagraph_mode': None, 'cudagraph_num_of_warmups': 0, 'cudagraph_capture_sizes': None, 'cudagraph_copy_inputs': False, 'cudagraph_specialize_lora': True, 'use_inductor_graph_partition': None, 'pass_config': {}, 'max_cudagraph_capture_size': 64, 'dynamic_shapes_config': {'type': <DynamicShapesType.BACKED: 'backed'>, 'evaluate_guards': False, 'assume_32_bit_indexing': False}, 'local_cache_dir': None, 'fast_moe_cold_start': None, 'static_all_moe_layers': []}}
+GPU_AFTER_BOOT 0, 23676 MiB 1, 20792 MiB 
+PERPOS arm=shipped58 prompts=8 seeds=[5, 6, 7, 8]
+ROW arm=shipped58 seed=5 prompt=0 drafts=270 dtok=1890 acc=754 round=7.000 tok_per_step=3.793 out=1024 wall=7.7 tok_s=133.8 distinct=0.534 gzip=0.436 p0=219 p1=168 p2=114 p3=89 p4=69 p5=53 p6=42
+ROW arm=shipped58 seed=5 prompt=1 drafts=349 dtok=2443 acc=674 round=7.000 tok_per_step=2.931 out=1024 wall=8.8 tok_s=116.2 distinct=0.556 gzip=0.500 p0=265 p1=170 p2=112 p3=66 p4=37 p5=17 p6=7
+ROW arm=shipped58 seed=5 prompt=2 drafts=311 dtok=2177 acc=713 round=7.000 tok_per_step=3.293 out=1024 wall=7.2 tok_s=141.6 distinct=0.434 gzip=0.410 p0=215 p1=168 p2=118 p3=79 p4=57 p5=42 p6=34
+ROW arm=shipped58 seed=5 prompt=3 drafts=232 dtok=1624 acc=792 round=7.000 tok_per_step=4.414 out=1024 wall=5.5 tok_s=187.7 distinct=0.553 gzip=0.425 p0=192 p1=163 p2=124 p3=101 p4=88 p5=69 p6=55
+ROW arm=shipped58 seed=5 prompt=4 drafts=238 dtok=1666 acc=791 round=7.000 tok_per_step=4.324 out=1024 wall=5.6 tok_s=183.5 distinct=0.356 gzip=0.402 p0=200 p1=168 p2=126 p3=99 p4=81 p5=64 p6=53
+ROW arm=shipped58 seed=5 prompt=5 drafts=196 dtok=1372 acc=830 round=7.000 tok_per_step=5.235 out=1024 wall=4.6 tok_s=223.7 distinct=0.494 gzip=0.325 p0=179 p1=155 p2=134 p3=110 p4=95 p5=85 p6=72
+ROW arm=shipped58 seed=5 prompt=6 drafts=319 dtok=2233 acc=708 round=7.000 tok_per_step=3.219 out=1024 wall=7.4 tok_s=137.8 distinct=0.602 gzip=0.464 p0=237 p1=159 p2=117 p3=80 p4=54 p5=37 p6=24
+ROW arm=shipped58 seed=5 prompt=7 drafts=232 dtok=1624 acc=792 round=7.000 tok_per_step=4.414 out=1024 wall=5.4 tok_s=187.9 distinct=0.420 gzip=0.352 p0=192 p1=153 p2=127 p3=101 p4=85 p5=74 p6=60
+ROW arm=shipped58 seed=6 prompt=0 drafts=309 dtok=2163 acc=717 round=7.000 tok_per_step=3.320 out=1024 wall=7.2 tok_s=142.2 distinct=0.575 gzip=0.471 p0=227 p1=162 p2=107 p3=85 p4=64 p5=42 p6=30
+ROW arm=shipped58 seed=6 prompt=1 drafts=369 dtok=2583 acc=655 round=7.000 tok_per_step=2.775 out=1024 wall=8.6 tok_s=119.4 distinct=0.561 gzip=0.499 p0=275 p1=156 p2=94 p3=53 p4=36 p5=24 p6=17
+ROW arm=shipped58 seed=6 prompt=2 drafts=313 dtok=2191 acc=712 round=7.000 tok_per_step=3.275 out=1024 wall=7.3 tok_s=141.0 distinct=0.413 gzip=0.398 p0=221 p1=161 p2=112 p3=80 p4=59 p5=46 p6=33
+ROW arm=shipped58 seed=6 prompt=3 drafts=224 dtok=1568 acc=805 round=7.000 tok_per_step=4.594 out=1024 wall=5.3 tok_s=194.5 distinct=0.566 gzip=0.420 p0=195 p1=163 p2=128 p3=100 p4=85 p5=70 p6=64
+ROW arm=shipped58 seed=6 prompt=4 drafts=166 dtok=1162 acc=859 round=7.000 tok_per_step=6.175 out=1024 wall=3.9 tok_s=262.1 distinct=0.376 gzip=0.408 p0=157 p1=146 p2=138 p3=127 p4=110 p5=96 p6=85
+ROW arm=shipped58 seed=6 prompt=5 drafts=170 dtok=1190 acc=857 round=7.000 tok_per_step=6.041 out=1024 wall=4.0 tok_s=256.2 distinct=0.345 gzip=0.184 p0=155 p1=145 p2=135 p3=124 p4=107 p5=100 p6=91
+ROW arm=shipped58 seed=6 prompt=6 drafts=315 dtok=2205 acc=710 round=7.000 tok_per_step=3.254 out=1024 wall=7.3 tok_s=139.7 distinct=0.617 gzip=0.479 p0=238 p1=174 p2=113 p3=74 p4=54 p5=32 p6=25
+ROW arm=shipped58 seed=6 prompt=7 drafts=184 dtok=1288 acc=636 round=7.000 tok_per_step=4.457 out=821 wall=4.3 tok_s=189.3 distinct=0.476 gzip=0.385 p0=163 p1=123 p2=103 p3=82 p4=67 p5=55 p6=43
+ROW arm=shipped58 seed=7 prompt=0 drafts=255 dtok=1785 acc=771 round=7.000 tok_per_step=4.024 out=1024 wall=6.0 tok_s=172.1 distinct=0.581 gzip=0.456 p0=216 p1=164 p2=131 p3=95 p4=74 p5=55 p6=36
+ROW arm=shipped58 seed=7 prompt=1 drafts=298 dtok=2086 acc=726 round=7.000 tok_per_step=3.436 out=1024 wall=6.9 tok_s=147.8 distinct=0.566 gzip=0.474 p0=234 p1=175 p2=120 p3=82 p4=56 p5=35 p6=24
+ROW arm=shipped58 seed=7 prompt=2 drafts=570 dtok=3990 acc=454 round=7.000 tok_per_step=1.796 out=1024 wall=13.2 tok_s=77.4 distinct=0.620 gzip=0.499 p0=207 p1=94 p2=55 p3=36 p4=26 p5=21 p6=15
+ROW arm=shipped58 seed=7 prompt=3 drafts=214 dtok=1498 acc=809 round=7.000 tok_per_step=4.780 out=1024 wall=5.0 tok_s=203.8 distinct=0.536 gzip=0.408 p0=180 p1=153 p2=125 p3=108 p4=95 p5=81 p6=67
+ROW arm=shipped58 seed=7 prompt=4 drafts=206 dtok=1442 acc=822 round=7.000 tok_per_step=4.990 out=1024 wall=4.8 tok_s=212.1 distinct=0.414 gzip=0.413 p0=178 p1=155 p2=136 p3=112 p4=95 p5=78 p6=68
+ROW arm=shipped58 seed=7 prompt=5 drafts=179 dtok=1253 acc=850 round=7.000 tok_per_step=5.749 out=1024 wall=4.2 tok_s=244.7 distinct=0.533 gzip=0.281 p0=165 p1=150 p2=135 p3=117 p4=103 p5=92 p6=88
+ROW arm=shipped58 seed=7 prompt=6 drafts=333 dtok=2331 acc=694 round=7.000 tok_per_step=3.084 out=1024 wall=7.8 tok_s=131.9 distinct=0.664 gzip=0.473 p0=247 p1=169 p2=106 p3=70 p4=46 p5=34 p6=22
+ROW arm=shipped58 seed=7 prompt=7 drafts=105 dtok=735 acc=340 round=7.000 tok_per_step=4.238 out=446 wall=2.5 tok_s=177.4 distinct=0.576 gzip=0.473 p0=84 p1=73 p2=57 p3=46 p4=36 p5=25 p6=19
+ROW arm=shipped58 seed=8 prompt=0 drafts=271 dtok=1897 acc=755 round=7.000 tok_per_step=3.786 out=1024 wall=6.3 tok_s=162.2 distinct=0.589 gzip=0.474 p0=216 p1=164 p2=128 p3=91 p4=71 p5=47 p6=38
+ROW arm=shipped58 seed=8 prompt=1 drafts=372 dtok=2604 acc=651 round=7.000 tok_per_step=2.750 out=1024 wall=8.6 tok_s=118.4 distinct=0.555 gzip=0.490 p0=268 p1=172 p2=97 p3=56 p4=31 p5=17 p6=10
+ROW arm=shipped58 seed=8 prompt=2 drafts=297 dtok=2079 acc=730 round=7.000 tok_per_step=3.458 out=1024 wall=6.9 tok_s=148.1 distinct=0.380 gzip=0.379 p0=207 p1=145 p2=105 p3=87 p4=70 p5=60 p6=56
+ROW arm=shipped58 seed=8 prompt=3 drafts=239 dtok=1673 acc=784 round=7.000 tok_per_step=4.280 out=1024 wall=5.6 tok_s=182.4 distinct=0.541 gzip=0.410 p0=192 p1=148 p2=126 p3=103 p4=85 p5=71 p6=59
+ROW arm=shipped58 seed=8 prompt=4 drafts=55 dtok=385 acc=162 round=7.000 tok_per_step=3.945 out=218 wall=1.3 tok_s=162.6 distinct=0.655 gzip=0.550 p0=44 p1=33 p2=29 p3=21 p4=16 p5=11 p6=8
+ROW arm=shipped58 seed=8 prompt=5 drafts=5 dtok=35 acc=4 round=7.000 tok_per_step=1.800 out=10 wall=0.2 tok_s=57.7 distinct=1.000 gzip=1.476 p0=2 p1=2 p2=0 p3=0 p4=0 p5=0 p6=0
+ROW arm=shipped58 seed=8 prompt=6 drafts=296 dtok=2072 acc=728 round=7.000 tok_per_step=3.459 out=1024 wall=6.9 tok_s=148.7 distinct=0.620 gzip=0.471 p0=237 p1=169 p2=118 p3=74 p4=55 p5=43 p6=32
+ROW arm=shipped58 seed=8 prompt=7 drafts=186 dtok=1302 acc=651 round=7.000 tok_per_step=4.500 out=838 wall=4.4 tok_s=191.1 distinct=0.504 gzip=0.402 p0=161 p1=126 p2=108 p3=90 p4=72 p5=54 p6=40
+2026-09-06T10:21:25Z CLIENT exit 0 rows=32
+2026-09-06T10:21:32Z SERVER DOWN gpu=0, 23676 MiB 1, 0 MiB 

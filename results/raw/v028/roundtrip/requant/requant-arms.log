@@ -1,0 +1,22 @@
+09:53:18Z ARMS START torch_devices=1
+09:53:19Z ARM ftrtn start
+10:01:10Z ARM ftrtn rc=0 rows=32
+10:01:10Z ARM ctlrtn start
+10:09:21Z ARM ctlrtn rc=0 rows=32
+10:09:21Z SUMMARY
+baseline file /work/baseline/drf-bl7p3.txt
+bl7p3: rows 32, mean tok/step 3.773, pooled tok/step 3.446, decode tok/s 146.7, output tokens 31499
+   per-position acceptance (accepted at pos k / drafts): p0=0.706 p1=0.518 p2=0.390 p3=0.292 p4=0.226 p5=0.176 p6=0.138
+
+arm file /work/logs/serve-ftrtn.txt
+ftrtn: rows 31, mean tok/step 3.965, pooled tok/step 3.759, decode tok/s 159.2, output tokens 29933
+   per-position acceptance (accepted at pos k / drafts): p0=0.776 p1=0.581 p2=0.440 p3=0.333 p4=0.261 p5=0.205 p6=0.163
+   paired vs bl7p3 on 31 rows: mean tok/step diff +0.237 (sd 0.529, se 0.095); rows better 20, worse 11, equal 0
+   per-position diff (arm - baseline): p0=+0.074 p1=+0.069 p2=+0.057 p3=+0.046 p4=+0.041 p5=+0.034 p6=+0.031
+
+arm file /work/logs/serve-ctlrtn.txt
+ctlrtn: rows 32, mean tok/step 3.946, pooled tok/step 3.558, decode tok/s 151.0, output tokens 31349
+   per-position acceptance (accepted at pos k / drafts): p0=0.714 p1=0.528 p2=0.404 p3=0.316 p4=0.245 p5=0.194 p6=0.157
+   paired vs bl7p3 on 32 rows: mean tok/step diff +0.173 (sd 0.342, se 0.060); rows better 26, worse 6, equal 0
+   per-position diff (arm - baseline): p0=+0.008 p1=+0.010 p2=+0.014 p3=+0.024 p4=+0.019 p5=+0.018 p6=+0.019
+10:09:21Z ARMS DONE
