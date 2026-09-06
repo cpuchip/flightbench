@@ -10,7 +10,7 @@ PORT = os.environ["PORT"]; KEY = os.environ["VLLM_API_KEY"]; ARM = os.environ.ge
 SEEDS = [int(s) for s in os.environ.get("SEEDS", "1,2,3,4").split(",")]
 BASE = f"http://127.0.0.1:{PORT}"
 NAMES = ("drafts", "draft_tokens", "accepted_tokens")
-POS_RE = re.compile(r'^vllm:spec_decode_num_accepted_tokens_per_pos_total\{[^}]*position="(\d+)"[^}]*\}\s+([0-9.]+)', re.M)
+POS_RE = re.compile(r'^vllm:spec_decode_num_accepted_tokens_per_pos_total\{[^}]*position="(\d+)"[^}]*\}\s+([0-9.eE+-]+)', re.M)
 prompts = []
 for line in open("/app/bench/prompts_real.jsonl", encoding="utf-8"):
     line = line.strip()
@@ -22,7 +22,7 @@ for line in open("/app/bench/prompts_real.jsonl", encoding="utf-8"):
 def metrics():
     rq = urllib.request.Request(BASE + "/metrics", headers={"Authorization": "Bearer " + KEY})
     txt = urllib.request.urlopen(rq, timeout=60).read().decode()
-    tot = {n: float(re.search(rf"^vllm:spec_decode_num_{n}_total\{{[^}}]*\}}\s+([0-9.]+)", txt, re.M).group(1)) for n in NAMES}
+    tot = {n: float(re.search(rf"^vllm:spec_decode_num_{n}_total\{{[^}}]*\}}\s+([0-9.eE+-]+)", txt, re.M).group(1)) for n in NAMES}
     pos = {int(p): float(v) for p, v in POS_RE.findall(txt)}
     return tot, pos
 
