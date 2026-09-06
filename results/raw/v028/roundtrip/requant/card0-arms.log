@@ -1,0 +1,37 @@
+2026-09-06T11:20:26Z CARD0 ARMS START torch_devices=1
+2026-09-06T11:20:27Z ARM shippedS912 DRAFT=Qwen3.8-27B-DFlash2-W4A16 SEEDS=9,10,11,12 start
+2026-09-06T11:28:22Z ARM shippedS912 rc=0 rows=32
+2026-09-06T11:28:22Z ARM shippedS1316 DRAFT=Qwen3.8-27B-DFlash2-W4A16 SEEDS=13,14,15,16 start
+2026-09-06T11:35:59Z ARM shippedS1316 rc=0 rows=32
+2026-09-06T11:35:59Z ARM ctlrtnS14 DRAFT=Qwen3.8-27B-DFlash2-ctl-W4A16-rtn-2026-09-06 SEEDS=1,2,3,4 start
+2026-09-06T11:44:06Z ARM ctlrtnS14 rc=0 rows=32
+2026-09-06T11:44:06Z SUMMARY noise floor (each arm against itself, for its own mean)
+baseline file /work/logs/serve-shippedS912.txt
+shippedS912: rows 32, mean tok/step 3.794, pooled tok/step 3.627, decode tok/s 153.8, output tokens 29625
+   per-position acceptance (accepted at pos k / drafts): p0=0.751 p1=0.553 p2=0.417 p3=0.318 p4=0.246 p5=0.193 p6=0.150
+
+arm file /work/logs/serve-shippedS912.txt
+shippedS912: rows 32, mean tok/step 3.794, pooled tok/step 3.627, decode tok/s 153.8, output tokens 29625
+   per-position acceptance (accepted at pos k / drafts): p0=0.751 p1=0.553 p2=0.417 p3=0.318 p4=0.246 p5=0.193 p6=0.150
+   paired vs shippedS912 on 32 rows: mean tok/step diff +0.000 (sd 0.000, se 0.000); rows better 0, worse 0, equal 32
+   per-position diff (arm - baseline): p0=+0.000 p1=+0.000 p2=+0.000 p3=+0.000 p4=+0.000 p5=+0.000 p6=+0.000
+baseline file /work/logs/serve-shippedS1316.txt
+shippedS1316: rows 32, mean tok/step 3.726, pooled tok/step 3.694, decode tok/s 156.9, output tokens 30457
+   per-position acceptance (accepted at pos k / drafts): p0=0.776 p1=0.582 p2=0.433 p3=0.323 p4=0.246 p5=0.188 p6=0.147
+
+arm file /work/logs/serve-shippedS1316.txt
+shippedS1316: rows 32, mean tok/step 3.726, pooled tok/step 3.694, decode tok/s 156.9, output tokens 30457
+   per-position acceptance (accepted at pos k / drafts): p0=0.776 p1=0.582 p2=0.433 p3=0.323 p4=0.246 p5=0.188 p6=0.147
+   paired vs shippedS1316 on 32 rows: mean tok/step diff +0.000 (sd 0.000, se 0.000); rows better 0, worse 0, equal 32
+   per-position diff (arm - baseline): p0=+0.000 p1=+0.000 p2=+0.000 p3=+0.000 p4=+0.000 p5=+0.000 p6=+0.000
+2026-09-06T11:44:06Z SUMMARY RTN untrained head, shipped profile, vs the soak pass-1 rows
+baseline file /work/baseline/soak-p1-shipped-profile.txt
+soak-p1: rows 32, mean tok/step 3.789, pooled tok/step 3.476, decode tok/s 147.0, output tokens 30195
+   per-position acceptance (accepted at pos k / drafts): p0=0.715 p1=0.522 p2=0.388 p3=0.296 p4=0.232 p5=0.182 p6=0.142
+
+arm file /work/logs/serve-ctlrtnS14.txt
+ctlrtnS14: rows 32, mean tok/step 3.729, pooled tok/step 3.399, decode tok/s 145.3, output tokens 31101
+   per-position acceptance (accepted at pos k / drafts): p0=0.698 p1=0.506 p2=0.377 p3=0.287 p4=0.222 p5=0.173 p6=0.136
+   paired vs soak-p1 on 32 rows: mean tok/step diff -0.060 (sd 0.558, se 0.099); rows better 10, worse 22, equal 0
+   per-position diff (arm - baseline): p0=-0.017 p1=-0.016 p2=-0.011 p3=-0.009 p4=-0.010 p5=-0.009 p6=-0.005
+2026-09-06T11:44:06Z CARD0 ARMS DONE
