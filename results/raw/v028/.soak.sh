@@ -22,6 +22,8 @@ if [ -e "$LOCK" ] && kill -0 "$(cat "$LOCK" 2>/dev/null)" 2>/dev/null; then echo
 echo $$ > "$LOCK"
 TK=$(python -c "import secrets;print(secrets.token_hex(8))")
 CLIENT_B64=$(base64 -w0 "$OUTD/perpos_client.py")
+# the image's launcher predates the draft_sample_method field the shipped default sets; apply it in the container
+FIELD_B64=$(base64 -w0 "$OUTD/field_patch.py")
 
 # idle gate: card 0 under 500 MiB used, then 30 s of quiet
 for i in $(seq 1 60); do
@@ -32,15 +34,17 @@ sleep 30
 echo "SOAK IDLE_GATE $(date -u +%H:%M:%SZ) card0_used=${used}MiB"
 
 docker rm -f "$NAME" >/dev/null 2>&1
-docker run -d --name "$NAME" --gpus "\"device=$CARD\"" --ipc host \
+docker run --rm --name "$NAME" --gpus "\"device=$CARD\"" --ipc host \
   -v "$VOL":/cache -v "$MODELS":/app/models \
   -e CUDA_VISIBLE_DEVICES=$CARD -e HOME=/cache -e VLLM_API_KEY=$TK -e PORT=$PORT \
   -e SPEC=dflash2 -e CTX=fast -e DFLASH_TOKENS=7 -e PREFIX_CACHE=1 \
   -e INT8_ACT=int8 -e "INT8_LAYERS=mlp|linear_attn|self_attn" -e PREFILL_ATTN=int8 \
   -e GPU_UTIL=0.90 -e VLLM_WSL2_ENABLE_PIN_MEMORY=1 -e VLLM_NO_USAGE_STATS=1 -e CLIENT_B64="$CLIENT_B64" \
-  -e SOAK_HOURS=$SOAK_HOURS \
+  -e SOAK_HOURS=$SOAK_HOURS -e FIELD_B64="$FIELD_B64" \
   --entrypoint bash "$IMG" -c '
     cd /app && echo "$VLLM_API_KEY" > api_key.txt && export PATH=/app/venv/bin:$PATH
+    echo "$FIELD_B64" | base64 -d | python -
+    echo "SPEC_CFG_LINE $(grep -n "method.*dflash.*num_speculative_tokens" single-user/start_qwen.sh | head -1 | cut -c1-200)"
     nohup bash single-user/start_qwen.sh > /tmp/server.log 2>&1 &
     for i in $(seq 1 180); do sleep 5; curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health && break; done
     curl -sf -o /dev/null http://127.0.0.1:'"$PORT"'/health || { echo "NO HEALTH"; grep -n -m1 -B3 -A30 -iE "Traceback|Error" /tmp/server.log | cut -c1-240 | head -60; exit 1; }
