@@ -6,8 +6,9 @@ import sys, os, re, collections
 sys.stdout.reconfigure(encoding="utf-8")
 HERE = os.path.dirname(os.path.abspath(__file__))
 start, end = sys.argv[1], sys.argv[2]; adapter = sys.argv[3] if len(sys.argv) > 3 else "3c6c"
+src = sys.argv[4] if len(sys.argv) > 4 else "spill-counters-continuous.txt"  # e.g. spill-counters-soak.txt
 mins = collections.OrderedDict()
-for line in open(os.path.join(HERE, "spill-counters-continuous.txt"), encoding="utf-8", errors="replace"):
+for line in open(os.path.join(HERE, src), encoding="utf-8", errors="replace"):
     m = re.match(r"(\d\d:\d\d:\d\d) \| (.*)", line)
     if not m or not (start <= m.group(1) <= end): continue
     a = re.search(adapter + r"_phys_0 ded=(\d+) shr=(\d+) com=(\d+)", m.group(2))
