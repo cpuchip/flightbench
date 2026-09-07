@@ -76,3 +76,40 @@ fetch across boxes runs after the swap.
 - `README.md` (this).
 - `fermion-status-phase1.json` — fermion `/api/status`, coordinates redacted: the measured slot
   contract for both cards and the peer roster.
+
+## Two-box tests, PASSED (2026-09-07, driven from fermion; threadchip on fleet-tonight)
+
+Both boxes on fleet-tonight; the same alias `qwen3.6-35b-a3b` served on fermion (card 1, ctx
+32768) and threadchip (card 0, ctx 32768). fermion reads threadchip's full slot contract over the
+mesh (loaded, queue depth, one GPU), so cross-box slot-contract propagation works. Discriminator:
+threadchip's own per-slot request counter (fermion could read it because fermion-to-threadchip is
+outbound; the reverse is firewalled, see below).
+
+| step | expected | observed |
+|---|---|---|
+| baseline request through fermion | served local | reply OK, threadchip counter flat at 0 |
+| manual yield card 1, then request | fail over to threadchip | 35B unloaded, card 1 yielding, threadchip counter 0 to 1 to 2 |
+| release yield | fermion reloads, takes work back | restored ~39s (30s cold-timer + reload), card 1 un-yielded |
+| fresh session after restore | served local | threadchip counter flat |
+| the session that had failed over | stays on threadchip (its cache is there) | threadchip counter rose: prefix affinity holding a conversation to the node with its cache |
+| automatic yield: a 2 GB model launched as a foreign process on card 1 (pid, 2616 MiB) | detect, hold, yield, fail over | foreign>1024 held 5s, card 1 yielded, 35B unloaded, request failed over (counter 4 to 5) |
+| kill the hog (game exits) | fermion restores | 35B reloaded on card 1 in ~18s, card 1 un-yielded |
+
+This is the whole "start a game, the fleet shifts models and requests to another box, close the
+game, it comes back" cycle Michael named as the thing making it hard to work, proven on the real
+path across two machines. Affinity is the answer to the round-robin cache-miss concern: a
+continued conversation sticks to the node holding its prefix cache instead of alternating.
+
+Two defects the tests surfaced, both fixed:
+- A startup race: a card carrying a not-yet-baselined external slot (the vLLM container on card 0)
+  briefly read fully-foreign and self-yielded for ~20s. compute() now treats such a card as
+  unknown (foreign 0) until the baseline lands. Unit-tested.
+- Model sharing shipped wired-off (threadchip's catch): the merge took the WithShare method but
+  main never called OpenIndex/WithShare, so the blob endpoint answered 404 and every model
+  advertised sha256=(none) on a live node. Wired via threadchip's fleet/share-wiring commits.
+
+Firewall note: fermion's inbound 8090 is filtered (the existing allow rule is program-scoped to a
+different binary path), so threadchip-originated requests cannot yet route to fermion. Opening it
+needs an elevated rule this seat could not create; the tests drive from fermion, which is outbound,
+so they were unaffected. Carry-forward for Michael: a scoped inbound allow (TCP 8090 from
+threadchip's mesh IP) for the full bidirectional pool.
