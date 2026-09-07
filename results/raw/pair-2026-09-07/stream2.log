@@ -1,0 +1,3 @@
+http 200 chunks 16 first-token 0.303s total 0.643s completion_tokens 50 prompt_tokens 25
+decode 147.1 tok/s (completion/(total-first))
+text: A speculative decoding draft model rapidly generates a sequence of candidate tokens to propose a potential continuation of the text. The larger, more accurate target model then verifies these proposal

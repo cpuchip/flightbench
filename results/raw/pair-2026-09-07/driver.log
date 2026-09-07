@@ -1,0 +1,77 @@
+04:05:54.196Z driver start bin=<workspace>\projects\personal-ai-router\services\build\bin deadline=2400s poll=5.0s
+04:05:55.135Z notify app:ready {"version": "0.40.2"}
+04:05:55.139Z poll {"engine":{"engine":"lmstudio","display_name":"LM Studio","installed":true,"running":true,"healthy":true,"port":8095},"lmproxy":{"ready":true,"port":1234},"models":{"models":["qwen3.8-27b"],"modelsByEngine":{"lmstudio":["qwen3.8-27b"]},"loadedByEngine":{"lmstudio":["qwen3.8-27b"]}},"nodes":{"nodes":[{"id":"fermion","name":"fermion","hostUuid":"<node-uuid>","ipAddress":"<mesh-ip>","port":14318,"lastSeen":1788753955,"trusted":false,"models":["qwen3.8-27b"],"modelsByEngine":{"lmstudio":["qwen3.8-27b"]},"loadedByEngine":{"lmstudio":["qwen3.8-27b"]}}]}}
+04:06:00.144Z poll unchanged
+04:06:05.150Z poll unchanged
+04:06:10.155Z poll unchanged
+04:06:15.159Z poll unchanged
+04:06:20.164Z poll unchanged
+04:06:25.168Z poll unchanged
+04:06:30.173Z poll unchanged
+04:06:35.177Z poll unchanged
+04:06:40.182Z poll unchanged
+04:06:45.186Z poll unchanged
+04:06:50.191Z poll unchanged
+04:06:55.196Z poll unchanged
+04:07:00.201Z poll unchanged
+04:07:05.206Z poll unchanged
+04:07:10.211Z poll unchanged
+04:07:15.215Z poll unchanged
+04:07:20.220Z poll unchanged
+04:07:25.224Z poll unchanged
+04:07:30.229Z poll unchanged
+04:07:35.234Z poll unchanged
+04:07:40.239Z poll unchanged
+04:07:45.244Z poll unchanged
+04:07:50.249Z poll unchanged
+04:07:55.253Z poll unchanged
+04:08:00.258Z poll unchanged
+04:08:05.262Z poll unchanged
+04:08:10.267Z poll unchanged
+04:08:15.042Z notify errors:update [{"id": "lmstudio-proxy:upstream-unreachable:<node-uuid>", "message": "Upstream node \"fermion\" is no longer reachable (dropped from discovery)", "timestamp": 1788754095042, "nodeId": "<node-uuid>", "severity": "warning", "action": "none"}]
+04:08:15.269Z poll {"engine":{"engine":"lmstudio","display_name":"LM Studio","installed":true,"running":false,"healthy":false,"port":8095},"lmproxy":{"ready":true,"port":1234},"models":{"models":[]},"nodes":{"nodes":[{"id":"fermion","name":"fermion","hostUuid":"<node-uuid>","ipAddress":"<mesh-ip>","port":14318,"lastSeen":1788754095,"trusted":false}]}}
+04:08:20.271Z poll unchanged
+04:08:25.274Z poll unchanged
+04:08:30.277Z poll unchanged
+04:08:35.279Z poll unchanged
+04:08:40.284Z poll {"engine":{"engine":"lmstudio","display_name":"LM Studio","installed":true,"running":true,"healthy":true,"port":8095},"lmproxy":{"ready":true,"port":1234},"models":{"models":["qwen3.8-27b"],"modelsByEngine":{"lmstudio":["qwen3.8-27b"]},"loadedByEngine":{"lmstudio":["qwen3.8-27b"]}},"nodes":{"nodes":[{"id":"fermion","name":"fermion","hostUuid":"<node-uuid>","ipAddress":"<mesh-ip>","port":14318,"lastSeen":1788754095,"trusted":false}]}}
+04:08:45.045Z notify errors:update []
+04:08:45.288Z poll {"engine":{"engine":"lmstudio","display_name":"LM Studio","installed":true,"running":true,"healthy":true,"port":8095},"lmproxy":{"ready":true,"port":1234},"models":{"models":["qwen3.8-27b"],"modelsByEngine":{"lmstudio":["qwen3.8-27b"]},"loadedByEngine":{"lmstudio":["qwen3.8-27b"]}},"nodes":{"nodes":[{"id":"fermion","name":"fermion","hostUuid":"<node-uuid>","ipAddress":"<mesh-ip>","port":14318,"lastSeen":1788754125,"trusted":false,"models":["qwen3.8-27b"],"modelsByEngine":{"lmstudio":["qwen3.8-27b"]},"loadedByEngine":{"lmstudio":["qwen3.8-27b"]}}]}}
+04:08:50.293Z poll unchanged
+04:08:55.297Z poll unchanged
+04:09:00.301Z poll unchanged
+04:09:05.306Z poll unchanged
+04:09:10.311Z poll unchanged
+04:09:15.316Z poll unchanged
+04:09:20.321Z poll unchanged
+04:09:25.326Z poll unchanged
+04:09:30.330Z poll unchanged
+04:09:35.334Z poll unchanged
+04:09:40.338Z poll unchanged
+04:09:45.343Z poll unchanged
+04:09:50.348Z poll unchanged
+04:09:55.352Z poll unchanged
+04:10:00.357Z poll unchanged
+04:10:05.363Z poll unchanged
+04:10:10.367Z poll unchanged
+04:10:15.371Z poll unchanged
+04:10:20.375Z poll unchanged
+04:10:25.379Z poll unchanged
+04:10:30.387Z poll unchanged
+04:10:35.391Z poll unchanged
+04:10:40.396Z poll unchanged
+04:10:45.401Z poll unchanged
+04:10:50.405Z poll unchanged
+04:10:55.410Z poll unchanged
+04:11:00.414Z poll unchanged
+04:11:05.418Z poll unchanged
+04:11:10.423Z poll unchanged
+04:11:15.428Z poll unchanged
+04:11:20.433Z poll unchanged
+04:11:25.437Z poll unchanged
+04:11:30.443Z poll unchanged
+04:11:35.443Z driver stop file seen
+04:11:35.444Z broker sending shutdown
+04:11:35.512Z broker stdout closed
+04:11:35.518Z broker exited 0
+04:11:35.519Z driver done

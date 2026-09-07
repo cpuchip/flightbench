@@ -1,0 +1,250 @@
+23:05:54.275 [nvpair-ui-broker] INFO resolved cluster directory clusterDir="<home>\\AppData\\Local\\Nvidia Corporation\\Personal AI Router\\cluster"
+23:05:54.276 [nvpair-ui-broker] INFO using stdio transport
+23:05:54.313 [nvpair-ui-broker] INFO scanner started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-node-scanner.exe pid=96192
+23:05:54.335 [nvpair-node-scanner] INFO using stdio transport
+23:05:54.370 [nvpair-ui-broker] INFO nvpair-errors started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-errors.exe pid=62068
+23:05:54.392 [nvpair-errors] INFO using stdio transport
+23:05:54.393 [nvpair-errors] INFO peer-sync enabled: serving "<node-uuid>" on port 14319
+23:05:54.393 [nvpair-ui-broker] INFO nvpair-errors reported ready params="{\"version\":\"0.7.4\"}"
+23:05:54.395 [nvpair-errors] INFO errors inter-node server listening (cluster mTLS) port=14319 clustered=false
+23:05:54.465 [nvpair-ui-broker] INFO scanner reported ready params="{\"version\":\"0.20.3\"}"
+23:05:54.475 [nvpair-ui-broker] INFO settings started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-node-settings.exe pid=24060
+23:05:54.505 [nvpair-node-settings] INFO using stdio transport
+23:05:54.506 [nvpair-node-settings] INFO settings loaded path="<home>\\AppData\\Local\\Nvidia Corporation\\Personal AI Router\\settings.json" force_ports=false cluster_auto_sync=false has_cluster_id=false has_cluster_friendly_name=false
+23:05:54.569 [nvpair-engine-manager] INFO using stdio transport
+23:05:54.570 [nvpair-engine-manager] INFO loaded 2 engine manifest(s): [lmstudio ollama]
+23:05:54.571 [nvpair-ui-broker] INFO engine-manager started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-engine-manager.exe pid=10032 httpPort=14322 controlPort=14323
+23:05:54.572 [nvpair-engine-manager] INFO serving engine control surface (mTLS) addr=0.0.0.0:14323 path=/v1/engines clustered=false
+23:05:54.572 [nvpair-engine-manager] INFO serving engine model surface addr=0.0.0.0:14322 path=/v1/models clustered=false
+23:05:54.627 [nvpair-ui-broker] INFO node-info started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-node-info.exe pid=28256
+23:05:54.661 [nvpair-ui-broker] INFO proxy started path=<workspace>\projects\personal-ai-router\services\build\bin\ollama-proxy.exe pid=73944
+23:05:54.677 [nvpair-node-info] INFO detected 3 GPU(s)
+23:05:54.677 [nvpair-node-info] INFO   GPU 0: AMD Radeon(TM) Graphics (2021 MiB)
+23:05:54.677 [nvpair-node-info] INFO   GPU 1: NVIDIA GeForce RTX 4090 (24138 MiB)
+23:05:54.677 [nvpair-node-info] INFO   GPU 2: NVIDIA GeForce RTX 4090 (24138 MiB)
+23:05:54.695 [nvpair-ui-broker] INFO lmstudio-proxy started path=<workspace>\projects\personal-ai-router\services\build\bin\lmstudio-proxy.exe pid=66976
+23:05:54.712 [nvpair-node-info] INFO detected CPU: AMD Ryzen 9 9950X3D 16-Core Processor (16 cores)
+23:05:54.772 [nvpair-node-scanner] WARN node-info is not answering; this node's inventory will not update hostUuid=<node-uuid> endpoint=127.0.0.1:14318
+23:05:54.782 [nvpair-ui-broker] INFO workload-manager started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-workload-manager.exe pid=86768
+23:05:54.795 [nvpair-node-info] INFO detected memory: 98304 MiB total
+23:05:54.807 [nvpair-workload-manager] INFO using stdio transport
+23:05:54.809 [nvpair-workload-manager] INFO inter-node server listening (cluster mTLS) addr=[::]:14320 clustered=false
+23:05:54.827 [ollama-proxy] INFO using stdio transport
+23:05:54.869 [lmstudio-proxy] INFO using stdio transport
+23:05:54.966 [ollama-proxy] INFO proxy timeouts configured dial_timeout=10s keep_alive=30s response_header_timeout=2m0s max_idle_conns=50 idle_conn_timeout=1m30s
+23:05:54.966 [ollama-proxy] INFO HTTP proxy listening port=11435 addr=[::]:11435 cluster_ingress=false
+23:05:54.966 [nvpair-ui-broker] INFO proxy reported ready version=0.26.2 port=11435
+23:05:54.994 [nvpair-ui-broker] INFO proxy reported ready version=0.16.2 port=1234
+23:05:54.994 [lmstudio-proxy] INFO proxy timeouts configured dial_timeout=10s keep_alive=30s response_header_timeout=2m0s max_idle_conns=50 idle_conn_timeout=1m30s
+23:05:54.994 [lmstudio-proxy] INFO HTTP proxy listening port=1234 addr=[::]:1234 cluster_ingress=false
+23:05:54.996 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:05:54.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:05:55.006 [nvpair-ui-broker] INFO manual-nodes started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-manual-nodes.exe pid=31580
+23:05:55.015 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:05:55.033 [nvpair-manual-nodes] INFO using stdio transport
+23:05:55.034 [nvpair-ui-broker] INFO manual-nodes reported ready params="{\"version\":\"0.11.1\"}"
+23:05:55.046 [nvpair-ui-broker] INFO cluster-manager started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-cluster-manager.exe pid=79408
+23:05:55.048 [nvpair-node-info] INFO serving /v1/node-info on port 14318 (discovered via the node-scanner daemon)
+23:05:55.048 [nvpair-node-info] INFO HTTP server listening on :14318
+23:05:55.048 [nvpair-node-info] INFO cluster identity updated clustered=false
+23:05:55.067 [nvpair-cluster-manager] INFO using stdio transport
+23:05:55.071 [nvpair-node-scanner] INFO node-info is answering again hostUuid=<node-uuid> endpoint=127.0.0.1:14318
+23:05:55.071 [nvpair-cluster-manager] INFO node identity <node-uuid> (host fermion) fingerprint sha256:<fingerprint>
+23:05:55.072 [nvpair-cluster-manager] INFO trusted store: loaded 0 pin(s) from <home>\AppData\Local\Nvidia Corporation\Personal AI Router\cluster\trusted
+23:05:55.076 [nvpair-cluster-manager] INFO inter-node server listening on :14321 (plain pairing + mTLS trusted)
+23:05:55.135 [nvpair-ui-broker] INFO scheduler started path=<workspace>\projects\personal-ai-router\services\build\bin\nvpair-job-scheduler.exe pid=75080
+23:05:55.156 [nvpair-job-scheduler] INFO using stdio transport
+23:05:55.158 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:05:55.158 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:05:55.158 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:05:55.158 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:05:56.279 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:05:56.279 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:05:56.279 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:05:56.279 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:05:59.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:05:59.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:04.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:05.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:09.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:09.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:14.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:15.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:19.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:20.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:24.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:24.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:29.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:30.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:34.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:34.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:39.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:40.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:44.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:44.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:49.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:50.007 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:54.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:06:54.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:06:59.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:00.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:02.085 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:07:02.085 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:07:02.085 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:02.085 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:02.779 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:07:02.779 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:07:02.779 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:02.779 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:03.971 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:07:03.971 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:07:03.971 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:03.971 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:04.358 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:07:04.358 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:07:04.358 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:04.358 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:07:04.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:05.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:09.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:10.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:14.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:14.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:19.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:20.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:24.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:24.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:29.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:30.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:34.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:35.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:39.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:39.998 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:42.981 [lmstudio-proxy] WARN proxy request rejected id=4 method=POST path=/v1/chat/completions remote=[::1]:62677 reason="no node advertises requested model"
+23:07:43.027 [lmstudio-proxy] WARN proxy request rejected id=5 method=POST path=/v1/chat/completions remote=[::1]:62678 reason="no node advertises requested model"
+23:07:44.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:45.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:49.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:49.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:54.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:07:55.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:07:59.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:00.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:08:04.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:04.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:08:09.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:10.007 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:08:14.997 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=0 healthy=false
+23:08:14.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:15.042 [nvpair-errors] INFO errors:report upserted id=lmstudio-proxy:upstream-unreachable:<node-uuid> nodeId=<node-uuid> timestamp=1788754095042
+23:08:15.943 [lmstudio-proxy] WARN proxy request rejected id=6 method=POST path=/v1/chat/completions remote=[::1]:63003 reason="no node advertises requested model"
+23:08:19.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:19.997 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=0 healthy=false
+23:08:24.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:24.998 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=0 healthy=false
+23:08:29.997 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=0 healthy=false
+23:08:29.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:34.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:34.997 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=0 healthy=false
+23:08:39.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:39.997 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=0 healthy=false
+23:08:44.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:45.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:08:45.045 [nvpair-errors] INFO errors:clear removed entry id=lmstudio-proxy:upstream-unreachable:<node-uuid> clearedBy=<node-uuid>
+23:08:49.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:49.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:08:54.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:08:55.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:08:59.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:00.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:04.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:04.998 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:09.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:10.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:14.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:15.008 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:19.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:20.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:24.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:24.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:29.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:30.007 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:34.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:34.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:39.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:40.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:44.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:45.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:49.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:49.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:54.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:09:55.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:09:59.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:00.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:04.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:04.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:09.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:10.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:14.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:14.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:19.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:20.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:24.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:24.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:25.090 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:10:25.090 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:10:25.090 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:10:25.090 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:10:25.716 [nvpair-job-scheduler] INFO emitted priority engine=ollama nodes=[<node-uuid>]
+23:10:25.716 [nvpair-job-scheduler] INFO emitted priority engine=lmstudio nodes=[<node-uuid>]
+23:10:25.716 [lmstudio-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:10:25.716 [ollama-proxy] INFO priority snapshot set (1 nodes, 1 ranks): [<node-uuid>]
+23:10:29.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:30.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:34.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:35.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:39.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:39.998 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:44.998 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:45.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:49.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:49.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:54.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:10:55.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:10:59.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:00.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:04.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:05.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:09.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:09.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:14.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:15.005 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:19.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:20.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:24.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:25.007 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:29.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:29.999 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:34.997 [ollama-proxy] INFO local backend updated engine=ollama host=127.0.0.1 port=0 healthy=false
+23:11:35.006 [lmstudio-proxy] INFO local backend updated engine=lmstudio host=127.0.0.1 port=8095 healthy=true
+23:11:35.444 [nvpair-ui-broker] INFO shutdown requested via JSON-RPC
+23:11:35.444 [lmstudio-proxy] ERROR splitlisten accept stopped err="accept tcp [::]:1234: use of closed network connection" addr=[::]:1234
+23:11:35.444 [lmstudio-proxy] INFO shutdown complete
+23:11:35.450 [ollama-proxy] INFO shutdown complete
+23:11:35.450 [ollama-proxy] ERROR splitlisten accept stopped err="accept tcp [::]:11435: use of closed network connection" addr=[::]:11435
+23:11:35.457 [nvpair-ui-broker] INFO requesting engine shutdown before teardown deadlineMs=5000
+23:11:35.457 [nvpair-engine-manager] WARN engine stop during shutdown failed engine=lmstudio err="cannot stop engine \"lmstudio\": no stop command is configured"
+23:11:35.457 [nvpair-job-scheduler] INFO shutdown complete
+23:11:35.461 [nvpair-cluster-manager] INFO shutdown complete
+23:11:35.466 [nvpair-manual-nodes] INFO shutdown complete
+23:11:35.471 [nvpair-workload-manager] INFO local interface closed, shutting down
+23:11:35.471 [nvpair-workload-manager] INFO shutdown complete
+23:11:35.472 [nvpair-ui-broker] INFO workload-manager stdout closed
+23:11:35.476 [nvpair-node-info] INFO stdin closed, shutting down
+23:11:35.476 [nvpair-node-info] INFO shutdown complete
+23:11:35.484 [nvpair-engine-manager] WARN engine stop during shutdown failed engine=lmstudio err="cannot stop engine \"lmstudio\": no stop command is configured"
+23:11:35.484 [nvpair-engine-manager] INFO shutdown complete
+23:11:35.490 [nvpair-node-settings] INFO shutdown complete
+23:11:35.495 [nvpair-errors] INFO shutdown complete
+23:11:35.500 [nvpair-node-scanner] INFO shutdown complete
+23:11:35.509 [nvpair-ui-broker] INFO shutdown complete

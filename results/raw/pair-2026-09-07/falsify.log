@@ -1,0 +1,15 @@
+RED: killing llama-chip rig at 04:08:11Z
+True
+driver saw change after ~6 s:
+04:08:15.042Z notify errors:update [{"id": "lmstudio-proxy:upstream-unreachable:<node-uuid>", "message": "Upstream node \"fermion\" is no longer reachable (dropped from discovery)", "timestamp": 1788754095042, "nodeId": "<node-uuid>", "severity": "warning", "action": "none"}]
+04:08:15.269Z poll {"engine":{"engine":"lmstudio","display_name":"LM Studio","installed":true,"running":false,"healthy":false,"port":8095},"lmproxy":{"ready":true,"port":1234},"models":{"models":[]},"nodes":{"nodes":[{"id":"fermion","name":"fermion","hostUuid":"<node-uuid>","ipAddress":"<mesh-ip>","port":14318,"lastSeen":1788754095,"trusted":false}]}}
+chat through PAIR while the rig is down:
+{"error":"no available node advertises the requested model"}
+
+http 502
+GREEN: rig relaunched at 04:08:48Z
+driver saw recovery after ~90 s:
+stream chat through PAIR after recovery:
+http 200 chunks 16 first-token 0.303s total 0.643s completion_tokens 50 prompt_tokens 25
+decode 147.1 tok/s (completion/(total-first))
+text: A speculative decoding draft model rapidly generates a sequence of candidate tokens to propose a potential continuation of the text. The larger, more accurate target model then verifies these proposal
