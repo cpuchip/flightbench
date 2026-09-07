@@ -1,0 +1,1 @@
+{"model":"qwen3.8-27b","messages":[{"role":"user","content":"In two sentences, what does a speculative decoding draft model do?"}],"max_tokens":120,"temperature":0,"chat_template_kwargs":{"enable_thinking":false}}

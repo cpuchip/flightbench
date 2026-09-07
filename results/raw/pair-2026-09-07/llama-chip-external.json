@@ -1,0 +1,8 @@
+{
+  "backend": "cuda12",
+  "listen": "127.0.0.1:8095",
+  "base_port": 9300,
+  "slots": [
+    { "alias": "qwen3.8-27b", "external": "http://127.0.0.1:18020", "api_key_env": "QWEN_PROD_KEY", "gpus": [0] }
+  ]
+}

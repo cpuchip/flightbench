@@ -1,0 +1,14 @@
+{
+  "engine": "lmstudio",
+  "runtime": {
+    "port": 8095,
+    "start": [["cmd", "/c", "exit", "0"]],
+    "stop": null,
+    "ready": {"http": "http://127.0.0.1:{port}/nvpair-identify", "status": 404, "timeout_s": 60},
+    "health": {"http": "http://127.0.0.1:{port}/v1/models", "status": 200, "interval_s": 10}
+  },
+  "actions": {
+    "list_models": {"http": {"method": "GET", "path": "/v1/models"}, "result": {"array": "data", "field": "id"}},
+    "loaded_models": {"http": {"method": "GET", "path": "/v1/models"}, "result": {"array": "data", "field": "id", "match": {"field": "object", "in": ["model"], "nonempty": false}}}
+  }
+}
