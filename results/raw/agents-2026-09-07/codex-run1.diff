@@ -1,0 +1,35 @@
+diff --git a/tally/__init__.py b/tally/__init__.py
+index f3071d3..af0ff98 100644
+--- a/tally/__init__.py
++++ b/tally/__init__.py
+@@ -1,10 +1,26 @@
+ """tally: a tiny word-frequency tool used as a coding-agent sandbox."""
++import unicodedata
+ from collections import Counter
+ 
++_PUNCT = ("P", "S")
+ 
+-def count_words(text: str) -> Counter:
+-    return Counter(w.lower() for w in text.split())
+ 
++def _strip_punct(token: str) -> str:
++    """Drop leading and trailing punctuation (commas, quotes, dashes, ...) from a token."""
++    start, end = 0, len(token)
++    while start < end and unicodedata.category(token[start])[0] in _PUNCT:
++        start += 1
++    while end > start and unicodedata.category(token[end - 1])[0] in _PUNCT:
++        end -= 1
++    return token[start:end]
+ 
+-def top(text: str, n: int = 3):
+-    return count_words(text).most_common(n)
++
++def count_words(text: str, ignore_punctuation: bool = False) -> Counter:
++    if ignore_punctuation:
++        words = [_strip_punct(word) for word in text.split()]
++        return Counter(word.lower() for word in words if word)
++    return Counter(word.lower() for word in text.split())
++
++
++def top(text: str, n: int = 3, ignore_punctuation: bool = False):
++    return count_words(text, ignore_punctuation=ignore_punctuation).most_common(n)

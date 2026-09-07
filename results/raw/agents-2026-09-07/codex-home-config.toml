@@ -1,0 +1,18 @@
+# A clean Codex home for the local-agent test: only the local provider, no seat instructions.
+model = "qwen3.8-27b"
+model_provider = "vllm"
+model_reasoning_effort = "medium"
+model_context_window = 65536
+model_max_output_tokens = 8192
+
+[model_providers.vllm]
+name = "local vLLM (Qwen3.8-27B W4A16, DFlash2)"
+base_url = "http://127.0.0.1:18020/v1"
+env_key = "QWEN_PROD_KEY"
+wire_api = "responses"
+request_max_retries = 2
+stream_max_retries = 2
+stream_idle_timeout_ms = 120000
+
+[projects.'<home>\appdata\local\temp\claude\<workspace-slug>\a6dde1ae-c949-48c9-90f4-e42fb81edeb5\scratchpad\agent-sandbox']
+trust_level = "trusted"

@@ -1,0 +1,74 @@
+diff --git a/tally/__init__.py b/tally/__init__.py
+index f3071d3..d06f9e0 100644
+--- a/tally/__init__.py
++++ b/tally/__init__.py
+@@ -1,10 +1,14 @@
+ """tally: a tiny word-frequency tool used as a coding-agent sandbox."""
++import string
+ from collections import Counter
+ 
+ 
+-def count_words(text: str) -> Counter:
+-    return Counter(w.lower() for w in text.split())
++def count_words(text: str, ignore_punctuation: bool = False) -> Counter:
++    if not ignore_punctuation:
++        return Counter(w.lower() for w in text.split())
++    cleaned = (w.strip(string.punctuation).lower() for w in text.split())
++    return Counter(w for w in cleaned if w)
+ 
+ 
+-def top(text: str, n: int = 3):
+-    return count_words(text).most_common(n)
++def top(text: str, n: int = 3, ignore_punctuation: bool = False):
++    return count_words(text, ignore_punctuation).most_common(n)
+diff --git a/tally/cli.py b/tally/cli.py
+index ae48bf1..6b8cb85 100644
+--- a/tally/cli.py
++++ b/tally/cli.py
+@@ -8,9 +8,11 @@ def main(argv=None):
+     p = argparse.ArgumentParser(prog="tally", description="count the most frequent words in a file")
+     p.add_argument("path")
+     p.add_argument("-n", type=int, default=3, help="how many words to show")
++    p.add_argument("--ignore-punctuation", action="store_true",
++                   help="strip leading and trailing punctuation before counting")
+     a = p.parse_args(argv)
+     text = open(a.path, encoding="utf-8").read()
+-    for word, n in top(text, a.n):
++    for word, n in top(text, a.n, ignore_punctuation=a.ignore_punctuation):
+         print(f"{n:6d}  {word}")
+     return 0
+ 
+diff --git a/test_tally.py b/test_tally.py
+index 0e49609..296d6ce 100644
+--- a/test_tally.py
++++ b/test_tally.py
+@@ -1,4 +1,5 @@
+ from tally import count_words, top
++from tally import cli
+ 
+ 
+ def test_count_is_case_insensitive():
+@@ -7,3 +8,23 @@ def test_count_is_case_insensitive():
+ 
+ def test_top_orders_by_count():
+     assert top("x y y z z z", 2) == [("z", 3), ("y", 2)]
++
++
++def test_count_words_ignore_punctuation():
++    assert count_words("hello, hello! world.", ignore_punctuation=True)["hello"] == 2
++
++
++def test_cli_ignore_punctuation(tmp_path, capsys):
++    f = tmp_path / "words.txt"
++    f.write_text("hello, hello world\n", encoding="utf-8")
++    cli.main([str(f), "--ignore-punctuation"])
++    assert "     2  hello\n" in capsys.readouterr().out
++
++
++def test_cli_default_still_counts_punctuation(tmp_path, capsys):
++    f = tmp_path / "words.txt"
++    f.write_text("hello, hello world\n", encoding="utf-8")
++    cli.main([str(f)])
++    out = capsys.readouterr().out
++    assert "     1  hello,\n" in out
++    assert "     1  hello\n" in out

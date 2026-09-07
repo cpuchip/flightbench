@@ -1,0 +1,15 @@
+START 03:20:24Z bearer via ANTHROPIC_AUTH_TOKEN
+⚠ claude.ai connectors are disabled because ANTHROPIC_API_KEY or another auth source is set and takes precedence over your claude.ai login · Unset it to load your organization's connectors
+"qwen3.8-27b" is not a model this version of Claude Code recognizes, so auto-compact will keep this session within 200k tokens (the context window it assumes). If the model accepts more, append [1m] to the model name for 1M, or set CLAUDE_CODE_MAX_CONTEXT_TOKENS to its real window; to make it recognized, map it in the modelOverrides setting or update Claude Code; CLAUDE_CODE_DISABLE_UNKNOWN_MODEL_WINDOW_ENFORCEMENT=1 restores the previous wait-for-the-API behavior.
+
+
+Done. Three files changed, uncommitted, and `python -m pytest -q` passes (4 passed):
+
+- **`tally/__init__.py`** — `count_words(text, ignore_punctuation=False)`: with the flag, each token is stripped of leading/trailing punctuation (`string.punctuation`) before lowercasing, and tokens that reduce to empty (e.g. `"..."`) are dropped. `top()` takes the same parameter and passes it through.
+- **`tally/cli.py`** — new `--ignore-punctuation` flag (`store_true`), forwarded as `top(text, a.n, ignore_punctuation=a.ignore_punctuation)`.
+- **`test_tally.py`** — `test_ignore_punctuation_counts_punctuated_and_bare_words_together` (`"hello, hello (hello)"` → 3 × `hello`) and `test_default_counting_keeps_punctuation` (default still distinguishes `hello,` from `hello`).
+
+Verified end-to-end via the CLI on `hello, hello (hello)!`: default prints three separate words; with the flag it prints `3  hello`.
+
+One note: `string.punctuation` includes `_` and `~`, so `don't`-style apostrophes inside words are untouched (only leading/trailing are stripped), but a word like `foo_` would strip its trailing underscore. Let me know if you'd prefer a narrower punctuation set (e.g. just `!"',.;:()[]{}?`) — it'd be a one-character change.
+EXIT 0 03:21:51Z
