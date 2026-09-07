@@ -1,0 +1,25 @@
+model qwen3.8-27b server http://127.0.0.1:18020
+02:52:07Z size~  100 prompt=180 think=0 rep=1 ttft=1.641s ttfc=1.641s comp=51 decode=124 tok/s
+02:52:07Z size~  100 prompt=180 think=0 rep=2 ttft=0.089s ttfc=0.089s comp=60 decode=133 tok/s
+02:52:08Z size~  100 prompt=180 think=0 rep=3 ttft=0.095s ttfc=0.095s comp=64 decode=135 tok/s
+02:52:15Z size~  100 prompt=220 think=1 rep=1 ttft=0.098s ttfc=7.410s comp=1200 decode=163 tok/s
+02:52:22Z size~  100 prompt=220 think=1 rep=2 ttft=0.136s ttfc=nans comp=1200 decode=169 tok/s
+02:52:30Z size~  100 prompt=220 think=1 rep=3 ttft=0.092s ttfc=7.629s comp=1200 decode=159 tok/s
+02:52:32Z size~ 1000 prompt=1458 think=0 rep=1 ttft=1.047s ttfc=1.047s comp=64 decode=107 tok/s
+02:52:32Z size~ 1000 prompt=1458 think=0 rep=2 ttft=0.151s ttfc=0.151s comp=64 decode=95 tok/s
+02:52:33Z size~ 1000 prompt=1458 think=0 rep=3 ttft=0.138s ttfc=0.138s comp=57 decode=112 tok/s
+02:52:37Z size~ 1000 prompt=1498 think=1 rep=1 ttft=0.334s ttfc=3.107s comp=462 decode=149 tok/s
+02:52:40Z size~ 1000 prompt=1498 think=1 rep=2 ttft=0.170s ttfc=2.687s comp=412 decode=137 tok/s
+02:52:43Z size~ 1000 prompt=1498 think=1 rep=3 ttft=0.159s ttfc=2.932s comp=471 decode=151 tok/s
+02:52:44Z size~ 4000 prompt=4893 think=0 rep=1 ttft=0.811s ttfc=0.811s comp=63 decode=99 tok/s
+02:52:45Z size~ 4000 prompt=4893 think=0 rep=2 ttft=0.212s ttfc=0.212s comp=64 decode=118 tok/s
+02:52:46Z size~ 4000 prompt=4893 think=0 rep=3 ttft=0.213s ttfc=0.213s comp=64 decode=109 tok/s
+02:52:52Z size~ 4000 prompt=4933 think=1 rep=1 ttft=0.837s ttfc=5.899s comp=755 decode=142 tok/s
+02:52:57Z size~ 4000 prompt=4933 think=1 rep=2 ttft=0.148s ttfc=4.163s comp=589 decode=134 tok/s
+02:53:05Z size~ 4000 prompt=4933 think=1 rep=3 ttft=0.148s ttfc=8.157s comp=1193 decode=144 tok/s
+02:53:09Z size~16000 prompt=19883 think=0 rep=1 ttft=3.494s ttfc=3.494s comp=64 decode=102 tok/s
+02:53:10Z size~16000 prompt=19883 think=0 rep=2 ttft=0.205s ttfc=0.205s comp=64 decode=106 tok/s
+02:53:11Z size~16000 prompt=19883 think=0 rep=3 ttft=0.229s ttfc=0.229s comp=64 decode=106 tok/s
+02:53:20Z size~16000 prompt=19923 think=1 rep=1 ttft=3.772s ttfc=8.933s comp=752 decode=134 tok/s
+02:53:24Z size~16000 prompt=19923 think=1 rep=2 ttft=0.239s ttfc=3.439s comp=417 decode=113 tok/s
+02:53:31Z size~16000 prompt=19923 think=1 rep=3 ttft=0.238s ttfc=6.348s comp=819 decode=128 tok/s
