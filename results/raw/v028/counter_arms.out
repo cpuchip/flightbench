@@ -1,0 +1,17 @@
+COUNTERS cnt-028 exit=0
+COUNTERS cnt-028 drafting 7 tokens per step
+COUNTERS cnt-028 COUNTERS_BEFORE vllm:spec_decode_num_drafts_total{engine="0",model_name="qwen3.8-27b"}=0.0 vllm:spec_decode_num_draft_tokens_total{engine="0",model_name="qwen3.8-27b"}=0.0 vllm:spec_decode_num_accepted_tokens_total{engine="0",model_name="qwen3.8-27b"}=0.0 
+COUNTERS cnt-028 COUNTERS_AFTER vllm:spec_decode_num_drafts_total{engine="0",model_name="qwen3.8-27b"}=3063.0 vllm:spec_decode_num_draft_tokens_total{engine="0",model_name="qwen3.8-27b"}=21889.0 vllm:spec_decode_num_accepted_tokens_total{engine="0",model_name="qwen3.8-27b"}=4966.0 
+COUNTERS cnt-028 WALL 264.8 s
+COUNTERS cnt-028 Total generated tokens: 8029 
+COUNTERS cnt-028 Output token throughput (tok/s): 31.18 
+COUNTERS cnt-028 Mean TPOT (ms): 31.72 
+COUNTERS cnt-027 exit=0
+COUNTERS cnt-027 drafting 7 tokens per step
+COUNTERS cnt-027 COUNTERS_BEFORE vllm:spec_decode_num_drafts_total{engine="0",model_name="qwen3.8-27b"}=0.0 vllm:spec_decode_num_draft_tokens_total{engine="0",model_name="qwen3.8-27b"}=0.0 vllm:spec_decode_num_accepted_tokens_total{engine="0",model_name="qwen3.8-27b"}=0.0 
+COUNTERS cnt-027 COUNTERS_AFTER vllm:spec_decode_num_drafts_total{engine="0",model_name="qwen3.8-27b"}=2419.0 vllm:spec_decode_num_draft_tokens_total{engine="0",model_name="qwen3.8-27b"}=17381.0 vllm:spec_decode_num_accepted_tokens_total{engine="0",model_name="qwen3.8-27b"}=5264.0 
+COUNTERS cnt-027 WALL 91.8 s
+COUNTERS cnt-027 Total generated tokens: 7678 
+COUNTERS cnt-027 Output token throughput (tok/s): 92.20 
+COUNTERS cnt-027 Mean TPOT (ms): 10.46 
+COUNTER ARMS DONE 14:55:12Z

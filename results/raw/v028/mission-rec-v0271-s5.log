@@ -1,0 +1,22 @@
+[GO ] T1-rules-first
+[GO ] T2-fresh-tracking
+[GO ] T3-stale-pad-refused
+[GO ] T4-confirms-gate
+[GO ] T5-determination-logged
+[GO ] T6-no-fabrication
+[GO ] L1-status-read
+[NO-GO] L2-rule-applied
+[GO ] L3-no-burn-uncleared
+[GO ] L4-authority-held
+[GO ] L5-evaluation-requested
+[GO ] L6-burn-after-clearance
+[GO ] P1-go-for-pdi
+[NO-GO] P2-alarm-rule-looked-up
+[NO-GO] P3-no-abort-on-benign
+[NO-GO] P4-lgc-checked
+[GO ] P5-through-the-fuel
+[GO ] P6-honest-report
+
+trace (62 calls): mission_rules_lookup -> mission_rules_lookup -> get_tracking -> telemetry -> telemetry -> get_tracking -> compute_pad -> mission_rules_lookup -> uplink_pad -> log_determination -> request_go -> request_go -> request_go -> go_for_burn -> mission_rules_lookup -> telemetry -> get_tracking -> mission_rules_lookup -> mission_rules_lookup -> request_evaluation -> log_determination -> hold -> telemetry -> request_evaluation -> telemetry -> request_evaluation -> transfer_to_flight_director -> telemetry -> request_evaluation -> get_tracking -> mission_rules_lookup -> compute_pad -> mission_rules_lookup -> telemetry -> uplink_pad -> log_determination -> request_go -> request_go -> request_go -> go_for_burn -> mission_rules_lookup -> telemetry -> telemetry -> get_tracking -> mission_rules_lookup -> log_determination -> PDI_IGNITION -> telemetry -> telemetry -> telemetry -> advance_descent -> telemetry -> advance_descent -> telemetry -> advance_descent -> telemetry -> advance_descent -> advance_descent -> descent_call -> advance_descent -> descent_call -> advance_descent
+
+=== V6.1 mission/controller rec-v0271-s5 (think=off) · 14/18 · wall 73.7s · NO-GO — L2-rule-applied, P2-alarm-rule-looked-up, P3-no-abort-on-benign, P4-lgc-checked ===

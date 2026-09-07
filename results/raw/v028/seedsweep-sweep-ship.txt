@@ -1,0 +1,8 @@
+draft_logits=False
+PROMPT_CHARS 236
+SEEDROW seed=1 drafts=78 dtok=546 acc=178 round=7.000 acc_per_drafted=32.60% out=256
+SEEDROW seed=2 drafts=69 dtok=483 acc=187 round=7.000 acc_per_drafted=38.72% out=256
+SEEDROW seed=3 drafts=69 dtok=483 acc=186 round=7.000 acc_per_drafted=38.51% out=256
+SEEDROW seed=4 drafts=82 dtok=574 acc=173 round=7.000 acc_per_drafted=30.14% out=256
+SEEDROW seed=5 drafts=70 dtok=490 acc=185 round=7.000 acc_per_drafted=37.76% out=256
+SEEDROW seed=6 drafts=64 dtok=448 acc=193 round=7.000 acc_per_drafted=43.08% out=256

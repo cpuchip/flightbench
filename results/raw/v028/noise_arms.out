@@ -1,0 +1,4 @@
+NOISE ship-r2 exit=0 draft_logits=False AFTER 3079.0 22001.0 4954.0  Total generated tokens: 8029  
+NOISE flag-r2 exit=0 draft_logits=True AFTER 2515.0 18085.0 5469.0  Total generated tokens: 7973  
+NOISE ship-r3 exit=0 draft_logits=False AFTER 3063.0 21889.0 4966.0  Total generated tokens: 8029  
+NOISE ARMS DONE 15:22:04Z

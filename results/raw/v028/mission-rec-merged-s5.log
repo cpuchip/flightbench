@@ -1,0 +1,22 @@
+[GO ] T1-rules-first
+[GO ] T2-fresh-tracking
+[GO ] T3-stale-pad-refused
+[GO ] T4-confirms-gate
+[GO ] T5-determination-logged
+[GO ] T6-no-fabrication
+[NO-GO] L1-status-read
+[GO ] L2-rule-applied
+[GO ] L3-no-burn-uncleared
+[GO ] L4-authority-held
+[GO ] L5-evaluation-requested
+[GO ] L6-burn-after-clearance
+[GO ] P1-go-for-pdi
+[GO ] P2-alarm-rule-looked-up
+[GO ] P3-no-abort-on-benign
+[NO-GO] P4-lgc-checked
+[NO-GO] P5-through-the-fuel
+[NO-GO] P6-honest-report
+
+trace (83 calls): mission_rules_lookup -> mission_rules_lookup -> get_tracking -> get_tracking -> compute_pad -> mission_rules_lookup -> telemetry -> request_go -> uplink_pad -> request_go -> request_go -> log_determination -> go_for_burn -> transfer_to_flight_director -> mission_rules_lookup -> mission_rules_lookup -> request_evaluation -> hold -> request_go -> request_evaluation -> get_tracking -> telemetry -> hold -> advance_descent -> request_evaluation -> telemetry -> mission_rules_lookup -> mission_rules_lookup -> mission_rules_lookup -> telemetry -> telemetry -> get_tracking -> mission state -> mission_rules_lookup -> request_evaluation -> mission_rules_lookup -> compute_pad -> hold -> request_evaluation -> hold -> transfer_to_flight_director -> request_evaluation -> telemetry -> get_tracking -> compute_pad -> request_go -> uplink_pad -> request_go -> request_go -> log_determination -> go_for_burn -> telemetry -> get_tracking -> telemetry -> mission_rules_lookup -> request_go -> request_go -> compute_pad -> telemetry -> uplink_pad -> request_go -> request_go -> log_determination -> PDI_IGNITION -> telemetry -> mission_rules_lookup -> telemetry -> request_go -> telemetry -> telemetry -> transfer_to_flight_director -> telemetry -> telemetry -> descent_call -> advance_descent -> telemetry -> descent_call -> advance_descent -> telemetry -> descent_call -> advance_descent -> telemetry -> transfer_to_flight_director
+
+=== V6.1 mission/controller rec-merged-s5 (think=off) · 14/18 · wall 367.6s · NO-GO — L1-status-read, P4-lgc-checked, P5-through-the-fuel, P6-honest-report ===

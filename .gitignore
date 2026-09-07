@@ -1,2 +1,4 @@
 results/logs/
 __pycache__/
+# arm launch recipes stay local: they carry card UUIDs and a key-file reference (evidence logs are committed; recipes are not)
+results/raw/v028/.*.sh

@@ -1,0 +1,11 @@
+CLAMP clamp-on serving; draft width: drafting 7 tokens per step
+CLAMP clamp-on rows:
+CLAMP clamp-on NO ROWS, tail:
+CLAMP clamp-on              ^^^^^^^^^^^
+CLAMP clamp-on   File "/usr/lib/python3.12/urllib/request.py", line 639, in http_error_default
+CLAMP clamp-on     raise HTTPError(req.full_url, code, msg, hdrs, fp)
+CLAMP clamp-on urllib.error.HTTPError: HTTP Error 404: Not Found
+CLAMP clamp-on done 14:12:27Z
+CLAMP clamp-off: exited during boot: Error response from daemon: No such container: clamp-off
+CLAMP clamp-off done 14:14:11Z
+CLAMP ARMS DONE 14:14:11Z

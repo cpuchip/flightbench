@@ -1,0 +1,7 @@
+drafting 7 tokens per step
+COUNTERS_BEFORE vllm:spec_decode_num_drafts_total{engine="0",model_name="qwen3.8-27b"}=0.0 vllm:spec_decode_num_draft_tokens_total{engine="0",model_name="qwen3.8-27b"}=0.0 vllm:spec_decode_num_accepted_tokens_total{engine="0",model_name="qwen3.8-27b"}=0.0 
+COUNTERS_AFTER vllm:spec_decode_num_drafts_total{engine="0",model_name="qwen3.8-27b"}=3063.0 vllm:spec_decode_num_draft_tokens_total{engine="0",model_name="qwen3.8-27b"}=21889.0 vllm:spec_decode_num_accepted_tokens_total{engine="0",model_name="qwen3.8-27b"}=4966.0 
+WALL 264.8 s
+Total generated tokens: 8029 
+Output token throughput (tok/s): 31.18 
+Mean TPOT (ms): 31.72 

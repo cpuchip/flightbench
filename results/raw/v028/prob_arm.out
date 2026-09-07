@@ -1,0 +1,12 @@
+PROB arm exit=0
+PROB SPEC_CFG line now:
+PROB   SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+PROB draft_logits=True
+PROB drafting 7 tokens per step
+PROB BEFORE 0.0 0.0 0.0 
+PROB AFTER 2485.0 17851.0 5721.0 
+PROB WALL 238.6 s
+PROB Total generated tokens: 8192 
+PROB Output token throughput (tok/s): 35.46 
+PROB Mean TPOT (ms): 28.02 
+PROB ARM DONE 15:01:38Z

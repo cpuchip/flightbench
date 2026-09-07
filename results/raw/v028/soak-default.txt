@@ -4349,3 +4349,4 @@ vllm:spec_decode_num_drafts_total{engine="0",model_name="qwen3.8-27b"} 1.078056e
 vllm:spec_decode_num_draft_tokens_total{engine="0",model_name="qwen3.8-27b"} 7.546392e+06
 vllm:spec_decode_num_accepted_tokens_total{engine="0",model_name="qwen3.8-27b"} 2.668852e+06
 vllm:num_preemptions_total{engine="0",model_name="qwen3.8-27b"} 0.0
+SOAK CONTAINER REMOVED 11:24:01Z

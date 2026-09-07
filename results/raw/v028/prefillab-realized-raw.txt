@@ -1,0 +1,70 @@
+102:        realized = scores
+# booting arm=realized-raw  envs: SPEC=dflash2 CTX=fast DFLASH_TOKENS=15 PREFIX_CACHE=1 INT8_ACT=int8 INT8_LAYERS=mlp|linear_attn|self_attn CHUNK= EXTRA_ARGS=
+0 MiB, 24564 MiB, 450.00 W
+24088 MiB, 24564 MiB, 450.00 W
+ROW realized-raw prefill len=1024 | 3303 tok/s | meanTTFT=309.05 ms
+ROW realized-raw prefill len=4096 | 4668 tok/s | meanTTFT=877.14 ms
+ROW realized-raw decode C1 | decode=83.9 tok/s | tok/step=2.78 | meanTTFT=197.62 ms
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected
+# torn down (gpu mem now 0
+0 MiB)
+# raw logs in /app/bench/results-prefill-ab/realized-raw
+bench/prefill_ab.sh: line 90: [: 0
+0: integer expression expected

@@ -1,0 +1,10 @@
+SPEC_CFG line now:
+  SPEC_CFG="{\"method\":\"dflash\",\"model\":\"$DRAFT\",\"num_speculative_tokens\":$DRAFT_TOKENS,\"draft_sample_method\":\"probabilistic\"}"
+draft_logits=True
+drafting 7 tokens per step
+BEFORE 0.0 0.0 0.0 
+AFTER 2485.0 17851.0 5721.0 
+WALL 238.6 s
+Total generated tokens: 8192 
+Output token throughput (tok/s): 35.46 
+Mean TPOT (ms): 28.02 

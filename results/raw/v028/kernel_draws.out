@@ -1,0 +1,9 @@
+DRAW v028draw-1: merge warps 2 stages 2 -> 160 calls, 7/12 capped
+DRAW v028draw-2: merge warps 2 stages 2 -> 188 calls, 9/12 capped
+DRAW v028draw-3: merge warps 2 stages 2 -> 189 calls, 9/12 capped
+DRAW v028draw-4: merge warps 2 stages 2 -> 74 calls, 1/12 capped
+DRAW v028draw-5: merge warps 2 stages 2 -> 189 calls, 9/12 capped
+DRAW v028draw-6: merge warps 2 stages 2 -> 189 calls, 9/12 capped
+DRAW v028draw-7: merge warps 2 stages 2 -> 189 calls, 9/12 capped
+DRAW v028draw-8: merge warps 2 stages 2 -> 58 calls, 0/12 capped
+KERNEL DRAWS DONE 14:07:26Z

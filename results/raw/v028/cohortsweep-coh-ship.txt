@@ -1,0 +1,34 @@
+draft_logits=False
+COHORT prompts=8 chars=[236, 180, 190, 602, 285, 235, 194, 1211]
+ROW seed=1 prompt=0 drafts=306 dtok=2142 acc=719 round=7.000 accfrac=33.57% tok_per_step=3.350 out=1024 distinct=0.537 gzip=0.466
+ROW seed=1 prompt=1 drafts=388 dtok=2716 acc=635 round=7.000 accfrac=23.38% tok_per_step=2.637 out=1024 distinct=0.550 gzip=0.488
+ROW seed=1 prompt=2 drafts=634 dtok=4438 acc=389 round=7.000 accfrac=8.77% tok_per_step=1.614 out=1024 distinct=0.677 gzip=0.539
+ROW seed=1 prompt=3 drafts=280 dtok=1992 acc=749 round=7.114 accfrac=37.60% tok_per_step=3.675 out=1024 distinct=0.546 gzip=0.458
+ROW seed=1 prompt=4 drafts=249 dtok=1759 acc=789 round=7.064 accfrac=44.86% tok_per_step=4.169 out=1024 distinct=0.422 gzip=0.438
+ROW seed=1 prompt=5 drafts=236 dtok=1756 acc=789 round=7.441 accfrac=44.93% tok_per_step=4.343 out=1024 distinct=0.599 gzip=0.391
+ROW seed=1 prompt=6 drafts=332 dtok=2324 acc=696 round=7.000 accfrac=29.95% tok_per_step=3.096 out=1024 distinct=0.627 gzip=0.485
+ROW seed=1 prompt=7 drafts=224 dtok=1600 acc=547 round=7.143 accfrac=34.19% tok_per_step=3.442 out=772 distinct=0.421 gzip=0.369
+ROW seed=2 prompt=0 drafts=290 dtok=2062 acc=733 round=7.110 accfrac=35.55% tok_per_step=3.528 out=1024 distinct=0.613 gzip=0.472
+ROW seed=2 prompt=1 drafts=318 dtok=2226 acc=706 round=7.000 accfrac=31.72% tok_per_step=3.220 out=1024 distinct=0.559 gzip=0.460
+ROW seed=2 prompt=2 drafts=544 dtok=3808 acc=479 round=7.000 accfrac=12.58% tok_per_step=1.881 out=1024 distinct=0.577 gzip=0.517
+ROW seed=2 prompt=3 drafts=16 dtok=112 acc=22 round=7.000 accfrac=19.64% tok_per_step=2.375 out=39 distinct=0.960 gzip=0.910
+ROW seed=2 prompt=4 drafts=196 dtok=1588 acc=829 round=8.102 accfrac=52.20% tok_per_step=5.230 out=1024 distinct=0.333 gzip=0.326
+ROW seed=2 prompt=5 drafts=208 dtok=1592 acc=815 round=7.654 accfrac=51.19% tok_per_step=4.918 out=1024 distinct=0.448 gzip=0.354
+ROW seed=2 prompt=6 drafts=396 dtok=2772 acc=630 round=7.000 accfrac=22.73% tok_per_step=2.591 out=1024 distinct=0.623 gzip=0.491
+ROW seed=2 prompt=7 drafts=212 dtok=1484 acc=602 round=7.000 accfrac=40.57% tok_per_step=3.840 out=815 distinct=0.477 gzip=0.377
+ROW seed=3 prompt=0 drafts=252 dtok=1828 acc=774 round=7.254 accfrac=42.34% tok_per_step=4.071 out=1024 distinct=0.543 gzip=0.417
+ROW seed=3 prompt=1 drafts=421 dtok=2947 acc=605 round=7.000 accfrac=20.53% tok_per_step=2.437 out=1024 distinct=0.600 gzip=0.499
+ROW seed=3 prompt=2 drafts=602 dtok=4214 acc=425 round=7.000 accfrac=10.09% tok_per_step=1.706 out=1024 distinct=0.604 gzip=0.489
+ROW seed=3 prompt=3 drafts=227 dtok=1589 acc=640 round=7.000 accfrac=40.28% tok_per_step=3.819 out=868 distinct=0.631 gzip=0.466
+ROW seed=3 prompt=4 drafts=229 dtok=1603 acc=798 round=7.000 accfrac=49.78% tok_per_step=4.485 out=1024 distinct=0.491 gzip=0.456
+ROW seed=3 prompt=5 drafts=194 dtok=1670 acc=830 round=8.608 accfrac=49.70% tok_per_step=5.278 out=1024 distinct=0.419 gzip=0.253
+ROW seed=3 prompt=6 drafts=356 dtok=2492 acc=671 round=7.000 accfrac=26.93% tok_per_step=2.885 out=1024 distinct=0.601 gzip=0.463
+ROW seed=3 prompt=7 drafts=184 dtok=1384 acc=471 round=7.522 accfrac=34.03% tok_per_step=3.560 out=656 distinct=0.510 gzip=0.431
+ROW seed=4 prompt=0 drafts=324 dtok=2268 acc=702 round=7.000 accfrac=30.95% tok_per_step=3.167 out=1024 distinct=0.634 gzip=0.485
+ROW seed=4 prompt=1 drafts=423 dtok=2961 acc=603 round=7.000 accfrac=20.36% tok_per_step=2.426 out=1024 distinct=0.605 gzip=0.516
+ROW seed=4 prompt=2 drafts=581 dtok=4067 acc=442 round=7.000 accfrac=10.87% tok_per_step=1.761 out=1024 distinct=0.655 gzip=0.530
+ROW seed=4 prompt=3 drafts=238 dtok=1770 acc=787 round=7.437 accfrac=44.46% tok_per_step=4.307 out=1024 distinct=0.417 gzip=0.370
+ROW seed=4 prompt=4 drafts=220 dtok=1540 acc=807 round=7.000 accfrac=52.40% tok_per_step=4.668 out=1024 distinct=0.570 gzip=0.464
+ROW seed=4 prompt=5 drafts=218 dtok=1718 acc=809 round=7.881 accfrac=47.09% tok_per_step=4.711 out=1024 distinct=0.373 gzip=0.253
+ROW seed=4 prompt=6 drafts=353 dtok=2511 acc=670 round=7.113 accfrac=26.68% tok_per_step=2.898 out=1024 distinct=0.601 gzip=0.461
+ROW seed=4 prompt=7 drafts=195 dtok=1453 acc=586 round=7.451 accfrac=40.33% tok_per_step=4.005 out=782 distinct=0.491 gzip=0.404

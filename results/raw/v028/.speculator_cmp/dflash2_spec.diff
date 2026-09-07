@@ -1,0 +1,126 @@
+--- 0.27.1
++++ 0.28
+@@ -4,7 +4,7 @@
+ import torch
++from vllm.config.compilation import CUDAGraphMode
+ from vllm.config import VllmConfig
+ from vllm.logger import init_logger
+-from vllm.config.compilation import CUDAGraphMode
+-from vllm.triton_utils import tl, tldevice, triton
+-from vllm.v1.worker.gpu.sample.gumbel import tl_rand32, tl_rand64
++from vllm.triton_utils import tl, triton
++from vllm.v1.worker.gpu.sample.gumbel import gumbel_noised_argmax
+ from vllm.v1.worker.gpu.spec_decode.dflash.speculator import (
+@@ -34,2 +34,3 @@
+     BLOCK_K: tl.constexpr,
++    SAMPLE_PROBABILISTIC: tl.constexpr,
+     USE_FP64: tl.constexpr,
+@@ -62,29 +63,24 @@
+         )
+-        if temperature == 0.0:
+-            best = tl.max(scores, axis=0)
+-            index = tl.min(tl.where(scores == best, offsets, BLOCK_K), axis=0)
+-            realized = scores
+-        else:
+-            t_scores = scores / temperature
+-            if TRUNCATE:
+-                mx = tl.max(t_scores, axis=0)
+-                pr = tl.exp(t_scores - mx)
+-                pr = pr / tl.sum(pr, axis=0)
+-                gt = t_scores[None, :] > t_scores[:, None]
+-                rank = tl.sum(gt.to(tl.int32), axis=1)
+-                mass_before = tl.sum(tl.where(gt, pr[None, :], 0.0), axis=1)
+-                keep = mask & (rank < req_top_k) & (mass_before < req_top_p)
+-                t_scores = tl.where(keep, t_scores, -float("inf"))
+-            position = tl.load(sample_pos_ptr + flat) - 1
+-            gumbel_seed = tl.randint(seed, position)
+-            if USE_FP64:
+-                uniform = tl_rand64(gumbel_seed, candidates, includes_zero=False)
+-                noise = -tl.log(-tl.log(uniform))
+-            else:
+-                uniform = tl_rand32(gumbel_seed, candidates, includes_zero=False)
+-                noise = -tl.log(-tldevice.log1p(-uniform))
+-            sampled_scores = tl.where(mask, t_scores + noise, -float("inf"))
+-            best = tl.max(sampled_scores, axis=0)
+-            index = tl.min(tl.where(sampled_scores == best, offsets, BLOCK_K), axis=0)
+-            realized = t_scores
++        if SAMPLE_PROBABILISTIC and temperature != 0.0 and TRUNCATE:
++            scaled_scores = scores / temperature
++            mx = tl.max(scaled_scores, axis=0)
++            probs = tl.exp(scaled_scores - mx)
++            probs = probs / tl.sum(probs, axis=0)
++            greater = scaled_scores[None, :] > scaled_scores[:, None]
++            rank = tl.sum(greater.to(tl.int32), axis=1)
++            mass_before = tl.sum(tl.where(greater, probs[None, :], 0.0), axis=1)
++            keep = mask & (rank < req_top_k) & (mass_before < req_top_p)
++            scores = tl.where(keep, scores, -float("inf"))
++        position = tl.load(sample_pos_ptr + flat) - 1
++        _, index = gumbel_noised_argmax(
++            scores,
++            candidates,
++            mask & valid,
++            seed,
++            position,
++            temperature if SAMPLE_PROBABILISTIC else 0.0,
++            USE_FP64=USE_FP64,
++        )
++        index = tl.where(index >= top_k, 0, index)
++        realized = scores
+         tl.store(
+@@ -94,3 +90,2 @@
+         )
+-        index = tl.where(index >= top_k, 0, index)
+         token = tl.load(candidate_ptr + candidate_base + index, mask=valid, other=0)
+@@ -151,12 +146,2 @@
+             self.selector_top_k,
+-            dtype=torch.float32,
+-            device=device,
+-        )
+-        self.draft_logits = torch.full(
+-            (
+-                self.max_num_reqs,
+-                self.num_speculative_steps,
+-                self.vocab_size,
+-            ),
+-            -float("inf"),
+             dtype=torch.float32,
+@@ -413,5 +398,3 @@
+         )
+-        self.last_num_emitted = (
+-            (num_sampled - num_rejected) if num_sampled is not None else None
+-        )
++        self.last_num_emitted = num_sampled if num_sampled is not None else None
+         if aux_hidden_states:
+@@ -482,3 +465,4 @@
+         draft_logits = self.draft_logits
+-        assert draft_logits is not None
++        if draft_logits is None:
++            return self.draft_tokens[:num_reqs]
+         block_k = triton.next_power_of_2(self.selector_top_k)
+@@ -503,2 +487,4 @@
+         self._req_states = req_states
++    def draft_logits_spec(self, vllm_config: VllmConfig) -> tuple[torch.dtype, float]:
++        return torch.float32, -float("inf")
+     def set_sampling_states(self, sampling_states) -> None:
+@@ -531,2 +517,3 @@
+             BLOCK_K=block_k,
++            SAMPLE_PROBABILISTIC=self.draft_logits is not None,
+             USE_FP64=self.use_fp64_gumbel,
+@@ -537,3 +524,4 @@
+         draft_logits = self.draft_logits
+-        assert draft_logits is not None
++        if draft_logits is None:
++            return
+         block_k = triton.next_power_of_2(self.selector_top_k)
+@@ -589,3 +577,4 @@
+         self._sample_path(candidate_ids, scores, num_reqs)
+-        self._cache_draft_logits(candidate_ids, num_sample)
++        if self.draft_logits is not None:
++            self._cache_draft_logits(candidate_ids, num_sample)
+         self.draft_tokens[:num_reqs, : self.draft_block].copy_(
+@@ -636,3 +625,4 @@
+         draft_logits = self.draft_logits
+-        assert draft_logits is not None
++        if draft_logits is None:
++            return
+         block_k = triton.next_power_of_2(self.selector_top_k)
