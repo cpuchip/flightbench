@@ -1,0 +1,5 @@
+codex-run1.log withheld 2026-09-08.
+
+The original transcript captured the Codex seat's session-start reads of private files verbatim. It was
+removed from the working tree the day the leak was found and from the repository's history the same day;
+the run's task output (the diffs and the README's summary) stands on its own.
