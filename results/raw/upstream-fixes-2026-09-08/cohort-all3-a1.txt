@@ -1,0 +1,37 @@
+ARM all3-a1 seeds=1,2,3,4 start 14:59:02Z
+draft_logits=True
+GPU KV cache size: 68,605 tokens
+PERPOS arm=all3-a1 prompts=8 seeds=[1, 2, 3, 4]
+ROW arm=all3-a1 seed=1 prompt=0 drafts=261 dtok=1827 acc=763 round=7.000 tok_per_step=3.923 out=1024 wall=7.5 tok_s=136.8 distinct=0.570 gzip=0.469 p0=211 p1=156 p2=127 p3=97 p4=72 p5=53 p6=47
+ROW arm=all3-a1 seed=1 prompt=1 drafts=368 dtok=2576 acc=658 round=7.000 tok_per_step=2.788 out=1024 wall=9.3 tok_s=110.4 distinct=0.602 gzip=0.508 p0=250 p1=164 p2=105 p3=61 p4=40 p5=24 p6=14
+ROW arm=all3-a1 seed=1 prompt=2 drafts=587 dtok=4109 acc=437 round=7.000 tok_per_step=1.744 out=1024 wall=13.6 tok_s=75.5 distinct=0.640 gzip=0.551 p0=190 p1=87 p2=59 p3=44 p4=30 p5=16 p6=11
+ROW arm=all3-a1 seed=1 prompt=3 drafts=65 dtok=455 acc=281 round=7.000 tok_per_step=5.323 out=347 wall=1.6 tok_s=220.5 distinct=0.545 gzip=0.400 p0=53 p1=48 p2=43 p3=40 p4=36 p5=33 p6=28
+ROW arm=all3-a1 seed=1 prompt=4 drafts=193 dtok=1351 acc=836 round=7.000 tok_per_step=5.332 out=1024 wall=4.5 tok_s=226.7 distinct=0.514 gzip=0.434 p0=173 p1=157 p2=134 p3=113 p4=97 p5=88 p6=74
+ROW arm=all3-a1 seed=1 prompt=5 drafts=222 dtok=1554 acc=803 round=7.000 tok_per_step=4.617 out=1024 wall=5.2 tok_s=198.1 distinct=0.583 gzip=0.382 p0=194 p1=161 p2=129 p3=111 p4=84 p5=67 p6=57
+ROW arm=all3-a1 seed=1 prompt=6 drafts=313 dtok=2191 acc=714 round=7.000 tok_per_step=3.281 out=1024 wall=7.3 tok_s=140.9 distinct=0.592 gzip=0.462 p0=239 p1=166 p2=127 p3=75 p4=48 p5=35 p6=24
+ROW arm=all3-a1 seed=1 prompt=7 drafts=201 dtok=1407 acc=644 round=7.000 tok_per_step=4.204 out=846 wall=4.7 tok_s=178.7 distinct=0.487 gzip=0.404 p0=167 p1=133 p2=106 p3=87 p4=64 p5=52 p6=35
+ROW arm=all3-a1 seed=2 prompt=0 drafts=266 dtok=1862 acc=757 round=7.000 tok_per_step=3.846 out=1024 wall=6.2 tok_s=165.5 distinct=0.566 gzip=0.485 p0=217 p1=161 p2=123 p3=93 p4=69 p5=53 p6=41
+ROW arm=all3-a1 seed=2 prompt=1 drafts=311 dtok=2177 acc=715 round=7.000 tok_per_step=3.299 out=1024 wall=7.2 tok_s=141.7 distinct=0.545 gzip=0.476 p0=232 p1=165 p2=117 p3=73 p4=53 p5=43 p6=32
+ROW arm=all3-a1 seed=2 prompt=2 drafts=316 dtok=2212 acc=707 round=7.000 tok_per_step=3.237 out=1024 wall=7.3 tok_s=139.8 distinct=0.438 gzip=0.408 p0=229 p1=159 p2=120 p3=76 p4=57 p5=40 p6=26
+ROW arm=all3-a1 seed=2 prompt=3 drafts=231 dtok=1617 acc=793 round=7.000 tok_per_step=4.433 out=1024 wall=5.4 tok_s=189.8 distinct=0.577 gzip=0.444 p0=192 p1=158 p2=126 p3=96 p4=85 p5=74 p6=62
+ROW arm=all3-a1 seed=2 prompt=4 drafts=179 dtok=1253 acc=847 round=7.000 tok_per_step=5.732 out=1024 wall=4.2 tok_s=243.9 distinct=0.242 gzip=0.318 p0=161 p1=145 p2=129 p3=117 p4=107 p5=97 p6=91
+ROW arm=all3-a1 seed=2 prompt=5 drafts=257 dtok=1799 acc=767 round=7.000 tok_per_step=3.984 out=1024 wall=6.0 tok_s=171.2 distinct=0.589 gzip=0.421 p0=210 p1=166 p2=127 p3=93 p4=74 p5=56 p6=41
+ROW arm=all3-a1 seed=2 prompt=6 drafts=294 dtok=2058 acc=729 round=7.000 tok_per_step=3.480 out=1024 wall=6.8 tok_s=149.7 distinct=0.656 gzip=0.462 p0=222 p1=167 p2=113 p3=87 p4=62 p5=47 p6=31
+ROW arm=all3-a1 seed=2 prompt=7 drafts=111 dtok=777 acc=275 round=7.000 tok_per_step=3.477 out=387 wall=2.6 tok_s=146.5 distinct=0.615 gzip=0.500 p0=88 p1=61 p2=45 p3=28 p4=25 p5=16 p6=12
+ROW arm=all3-a1 seed=3 prompt=0 drafts=275 dtok=1925 acc=749 round=7.000 tok_per_step=3.724 out=1024 wall=6.4 tok_s=160.0 distinct=0.539 gzip=0.448 p0=213 p1=164 p2=130 p3=93 p4=65 p5=49 p6=35
+ROW arm=all3-a1 seed=3 prompt=1 drafts=358 dtok=2506 acc=666 round=7.000 tok_per_step=2.860 out=1024 wall=8.3 tok_s=123.3 distinct=0.556 gzip=0.493 p0=262 p1=165 p2=104 p3=68 p4=39 p5=17 p6=11
+ROW arm=all3-a1 seed=3 prompt=2 drafts=531 dtok=3717 acc=492 round=7.000 tok_per_step=1.927 out=1024 wall=12.3 tok_s=83.2 distinct=0.574 gzip=0.514 p0=199 p1=105 p2=63 p3=49 p4=37 p5=22 p6=17
+ROW arm=all3-a1 seed=3 prompt=3 drafts=268 dtok=1876 acc=762 round=7.000 tok_per_step=3.843 out=1024 wall=6.2 tok_s=163.9 distinct=0.556 gzip=0.420 p0=206 p1=160 p2=123 p3=102 p4=74 p5=55 p6=42
+ROW arm=all3-a1 seed=3 prompt=4 drafts=284 dtok=1988 acc=743 round=7.000 tok_per_step=3.616 out=1024 wall=6.6 tok_s=154.8 distinct=0.483 gzip=0.470 p0=222 p1=153 p2=114 p3=88 p4=67 p5=53 p6=46
+ROW arm=all3-a1 seed=3 prompt=5 drafts=209 dtok=1463 acc=814 round=7.000 tok_per_step=4.895 out=1024 wall=4.9 tok_s=211.0 distinct=0.506 gzip=0.267 p0=174 p1=140 p2=124 p3=111 p4=102 p5=88 p6=75
+ROW arm=all3-a1 seed=3 prompt=6 drafts=302 dtok=2114 acc=722 round=7.000 tok_per_step=3.391 out=1024 wall=7.0 tok_s=146.0 distinct=0.630 gzip=0.467 p0=230 p1=160 p2=113 p3=77 p4=57 p5=51 p6=34
+ROW arm=all3-a1 seed=3 prompt=7 drafts=98 dtok=686 acc=256 round=7.000 tok_per_step=3.612 out=355 wall=2.3 tok_s=151.8 distinct=0.627 gzip=0.505 p0=75 p1=53 p2=44 p3=29 p4=23 p5=17 p6=15
+ROW arm=all3-a1 seed=4 prompt=0 drafts=283 dtok=1981 acc=740 round=7.000 tok_per_step=3.615 out=1024 wall=6.6 tok_s=156.0 distinct=0.570 gzip=0.474 p0=225 p1=162 p2=123 p3=94 p4=66 p5=41 p6=29
+ROW arm=all3-a1 seed=4 prompt=1 drafts=328 dtok=2296 acc=695 round=7.000 tok_per_step=3.119 out=1024 wall=7.6 tok_s=134.7 distinct=0.576 gzip=0.495 p0=236 p1=177 p2=111 p3=75 p4=48 p5=29 p6=19
+ROW arm=all3-a1 seed=4 prompt=2 drafts=508 dtok=3556 acc=515 round=7.000 tok_per_step=2.014 out=1024 wall=11.8 tok_s=87.1 distinct=0.567 gzip=0.492 p0=201 p1=100 p2=73 p3=53 p4=36 p5=28 p6=24
+ROW arm=all3-a1 seed=4 prompt=3 drafts=260 dtok=1820 acc=764 round=7.000 tok_per_step=3.938 out=1024 wall=6.1 tok_s=169.0 distinct=0.491 gzip=0.398 p0=205 p1=163 p2=119 p3=87 p4=72 p5=63 p6=55
+ROW arm=all3-a1 seed=4 prompt=4 drafts=204 dtok=1428 acc=825 round=7.000 tok_per_step=5.044 out=1024 wall=4.8 tok_s=214.1 distinct=0.386 gzip=0.446 p0=174 p1=152 p2=127 p3=114 p4=96 p5=85 p6=77
+ROW arm=all3-a1 seed=4 prompt=5 drafts=215 dtok=1505 acc=810 round=7.000 tok_per_step=4.767 out=1024 wall=5.0 tok_s=204.5 distinct=0.453 gzip=0.308 p0=181 p1=149 p2=123 p3=112 p4=95 p5=83 p6=67
+ROW arm=all3-a1 seed=4 prompt=6 drafts=302 dtok=2114 acc=724 round=7.000 tok_per_step=3.397 out=1024 wall=7.0 tok_s=146.0 distinct=0.625 gzip=0.472 p0=233 p1=167 p2=116 p3=78 p4=58 p5=44 p6=28
+ROW arm=all3-a1 seed=4 prompt=7 drafts=269 dtok=1883 acc=760 round=7.000 tok_per_step=3.825 out=1024 wall=6.3 tok_s=162.7 distinct=0.393 gzip=0.364 p0=215 p1=160 p2=124 p3=100 p4=73 p5=52 p6=36
+ARM all3-a1 end 15:02:32Z rows=32

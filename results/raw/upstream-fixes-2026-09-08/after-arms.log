@@ -1,0 +1,75 @@
+14:52:11Z dead-man re-armed for local 11:07
+14:52:11Z salt arm gate/patch lines:
+PATCH applied draft-gumbel-salt.patch
+GATE verify: OK (0 failures)
+14:52:11Z === ALL THREE: boot ===
+started qwen-all3-test on GPU-<fermion-card-1> port 18021 cache qwen-cache-fixtest-20260908145214 image qwen38-27b-rtx3090:main-7ca84fc patches=[draft-gumbel-salt.patch dflash-fa-aot-schedule.patch dflash-draft-rope-layout.patch] (14:52:15Z)
+15:05:47Z all3 arms exit 0
+14:59:02Z HEALTHY qwen-all3-test
+  boot: (APIServer pid=433) INFO 09-08 14:52:45 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 
+  boot: (EngineCore pid=840) INFO 09-08 14:53:07 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeC
+  boot: (EngineCore pid=840) INFO 09-08 14:53:09 [speculator.py:317] DFlash2 lookup-augmented drafting on (k=7 nmin=6 nmax=12 nstrong=6 agree=0 nmin_tail=4 longmin=6 search=1073741824)
+  boot: (EngineCore pid=840) INFO 09-08 14:58:45 [kv_cache_utils.py:2065] GPU KV cache size: 68,605 tokens, Maximum concurrency for 65,536 tokens per request: 1.05x
+  boot: (EngineCore pid=840) INFO 09-08 14:58:52 [model_runner.py:926] Graph capturing finished in 6 secs, took 1.08 GiB
+ARM all3-a1 seeds=1,2,3,4 start 14:59:02Z
+ARM all3-a1 end 15:02:32Z rows=32
+ARM all3-a2 seeds=5,6,7,8 start 15:02:32Z
+ARM all3-a2 end 15:05:45Z rows=32
+A=main-a1  B=all3-a1  matched rows=32
+A=main-a2  B=all3-a2  matched rows=32
+A=main-a1  B=all3-a1  matched rows=64
+15:05:47Z === paired: all3-a1 vs fix-a1 (expect no difference) ===
+A=fix-a1  B=all3-a1  matched rows=32
+tok/step     A=3.788 B=3.759 delta=-0.029 sd=0.496 n=32 paired t=-0.33
+tok/s        A=160.850 B=159.494 delta=-1.356 sd=21.144 n=32 paired t=-0.36
+distinct     A=0.544 B=0.540 delta=-0.004 sd=0.106 n=32 paired t=-0.20
+gzip         A=0.439 B=0.442 delta=+0.004 sd=0.068 n=32 paired t=+0.31
+A: drafts=8845 drafted_tokens=61915 accepted=21822 acceptance/drafted=0.3525 accepted/draft=2.467
+B: drafts=8869 drafted_tokens=62083 accepted=21763 acceptance/drafted=0.3505 accepted/draft=2.454
+per-prompt delta tok/step (B-A, mean over seeds):
+  prompt 0: -0.072  (A 3.849)
+  prompt 1: +0.010  (A 3.006)
+  prompt 2: -0.052  (A 2.283)
+  prompt 3: +0.072  (A 4.312)
+  prompt 4: +0.118  (A 4.813)
+  prompt 5: -0.393  (A 4.958)
+  prompt 6: +0.133  (A 3.254)
+  prompt 7: -0.046  (A 3.825)
+15:05:47Z === paired: all3-a2 vs fix-a2 ===
+A=fix-a2  B=all3-a2  matched rows=31
+tok/step     A=3.817 B=3.844 delta=+0.027 sd=0.621 n=31 paired t=+0.24
+tok/s        A=163.777 B=164.806 delta=+1.029 sd=26.697 n=31 paired t=+0.21
+distinct     A=0.546 B=0.523 delta=-0.023 sd=0.079 n=31 paired t=-1.64
+gzip         A=0.447 B=0.436 delta=-0.011 sd=0.065 n=31 paired t=-0.92
+A: drafts=7960 drafted_tokens=55720 accepted=21064 acceptance/drafted=0.3780 accepted/draft=2.646
+B: drafts=8292 drafted_tokens=58044 accepted=21655 acceptance/drafted=0.3731 accepted/draft=2.612
+per-prompt delta tok/step (B-A, mean over seeds):
+  prompt 0: +0.070  (A 3.846)
+  prompt 1: -0.111  (A 3.102)
+  prompt 2: -0.177  (A 3.059)
+  prompt 3: -0.522  (A 4.290)
+  prompt 4: +0.236  (A 4.586)
+  prompt 5: +0.663  (A 4.403)
+  prompt 6: -0.152  (A 3.267)
+  prompt 7: +0.370  (A 4.126)
+15:05:48Z all3 arm gate/patch lines:
+PATCH applied draft-gumbel-salt.patch
+PATCH applied dflash-fa-aot-schedule.patch
+PATCH applied dflash-draft-rope-layout.patch
+GATE verify: OK (0 failures)
+15:05:50Z dead-man re-armed for local 11:05
+15:05:50Z === full gumbel test list on the salt-patched tree (no -x) ===
+===== patched: test_gpu_gumbel_sample.py
+=========================== short test summary info ============================
+FAILED tests/v1/worker/test_gpu_gumbel_sample.py::test_logits_cache_columns_stay_separate_across_steps[1]
+FAILED tests/v1/worker/test_gpu_gumbel_sample.py::test_logits_cache_narrower_than_logits_is_rejected
+2 failed, 18 passed in 24.03s
+===== patched: test_rejection_sampler_utils.py
+44 passed, 15 warnings in 16.94s
+15:06:37Z === build the salt branch as the maintainer would ===
+15:09:18Z build exit 1 (553 log lines)
+15:09:19Z === restore card 1 ===
+{"gpu":1,"yielding":false}
+
+15:09:20Z 35B slot state: healthy; card 1 used 22160 MiB
+15:09:20Z after-arms chain done
