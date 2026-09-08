@@ -1,0 +1,62 @@
+14:45:29Z HEALTHY qwen-fix-test
+  boot: (APIServer pid=429) INFO 09-08 14:39:19 [api_utils.py:272] non-default args: {'model_tag': '/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', 'enable_auto_tool_choice': True, 'tool_call_parser': 'qwen3_coder', 'enable_promp
+  boot: (EngineCore pid=835) INFO 09-08 14:39:43 [core.py:122] Initializing a V1 LLM engine (v0.28.0) with config: model='/app/models/Qwen3.8-27B-W4A16-AutoRound-fast', speculative_config=SpeculativeConfig(method='dflash', model
+  boot: (EngineCore pid=835) INFO 09-08 14:39:45 [speculator.py:317] DFlash2 lookup-augmented drafting on (k=7 nmin=6 nmax=12 nstrong=6 agree=0 nmin_tail=4 longmin=6 search=1073741824)
+  boot: (EngineCore pid=835) INFO 09-08 14:45:10 [kv_cache_utils.py:2065] GPU KV cache size: 68,605 tokens, Maximum concurrency for 65,536 tokens per request: 1.05x
+  boot: (EngineCore pid=835) INFO 09-08 14:45:17 [model_runner.py:926] Graph capturing finished in 5 secs, took 1.08 GiB
+ARM fix-a1 seeds=1,2,3,4 start 14:45:29Z
+ARM fix-a1 end 14:48:58Z rows=32
+ARM fix-a2 seeds=5,6,7,8 start 14:48:58Z
+ARM fix-a2 end 14:52:04Z rows=32
+14:52:04Z === paired: fix-a1 vs main-a1 ===
+A=main-a1  B=fix-a1  matched rows=32
+tok/step     A=3.730 B=3.788 delta=+0.057 sd=0.569 n=32 paired t=+0.57
+tok/s        A=157.600 B=160.850 delta=+3.250 sd=24.839 n=32 paired t=+0.74
+distinct     A=0.540 B=0.544 delta=+0.004 sd=0.105 n=32 paired t=+0.22
+gzip         A=0.437 B=0.439 delta=+0.002 sd=0.070 n=32 paired t=+0.17
+A: drafts=9184 drafted_tokens=64288 accepted=22028 acceptance/drafted=0.3426 accepted/draft=2.399
+B: drafts=8845 drafted_tokens=61915 accepted=21822 acceptance/drafted=0.3525 accepted/draft=2.467
+per-prompt delta tok/step (B-A, mean over seeds):
+  prompt 0: +0.148  (A 3.700)
+  prompt 1: +0.135  (A 2.871)
+  prompt 2: +0.094  (A 2.188)
+  prompt 3: -0.178  (A 4.490)
+  prompt 4: +0.023  (A 4.790)
+  prompt 5: +0.143  (A 4.815)
+  prompt 6: -0.090  (A 3.344)
+  prompt 7: +0.184  (A 3.641)
+14:52:04Z === paired: fix-a2 vs main-a2 ===
+A=main-a2  B=fix-a2  matched rows=31
+tok/step     A=3.840 B=3.817 delta=-0.023 sd=0.412 n=31 paired t=-0.31
+tok/s        A=163.094 B=163.777 delta=+0.684 sd=18.619 n=31 paired t=+0.20
+distinct     A=0.545 B=0.546 delta=+0.001 sd=0.074 n=31 paired t=+0.07
+gzip         A=0.466 B=0.447 delta=-0.019 sd=0.165 n=31 paired t=-0.64
+A: drafts=7986 drafted_tokens=55902 accepted=21592 acceptance/drafted=0.3862 accepted/draft=2.704
+B: drafts=7960 drafted_tokens=55720 accepted=21064 acceptance/drafted=0.3780 accepted/draft=2.646
+per-prompt delta tok/step (B-A, mean over seeds):
+  prompt 0: -0.149  (A 3.995)
+  prompt 1: +0.181  (A 2.921)
+  prompt 2: -0.013  (A 3.073)
+  prompt 3: +0.082  (A 4.209)
+  prompt 4: -0.297  (A 4.883)
+  prompt 5: +0.413  (A 3.990)
+  prompt 6: -0.266  (A 3.533)
+  prompt 7: -0.026  (A 4.152)
+14:52:05Z === pooled (both seed sets) ===
+A=main-a1  B=fix-a1  matched rows=63
+tok/step     A=3.784 B=3.802 delta=+0.018 sd=0.496 n=63 paired t=+0.28
+tok/s        A=160.303 B=162.290 delta=+1.987 sd=21.861 n=63 paired t=+0.72
+distinct     A=0.543 B=0.545 delta=+0.003 sd=0.090 n=63 paired t=+0.22
+gzip         A=0.451 B=0.443 delta=-0.008 sd=0.125 n=63 paired t=-0.52
+A: drafts=17170 drafted_tokens=120190 accepted=43620 acceptance/drafted=0.3629 accepted/draft=2.540
+B: drafts=16805 drafted_tokens=117635 accepted=42886 acceptance/drafted=0.3646 accepted/draft=2.552
+per-prompt delta tok/step (B-A, mean over seeds):
+  prompt 0: -0.000  (A 3.848)
+  prompt 1: +0.158  (A 2.896)
+  prompt 2: +0.040  (A 2.631)
+  prompt 3: -0.048  (A 4.350)
+  prompt 4: -0.137  (A 4.837)
+  prompt 5: +0.259  (A 4.461)
+  prompt 6: -0.178  (A 3.438)
+  prompt 7: +0.079  (A 3.897)
+14:52:05Z arms chain done

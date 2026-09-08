@@ -1,0 +1,48 @@
+14:36:11Z yield card 1 on: {"gpu":1,"yielding":true}
+14:36:11Z card 1 used after yield: 0 MiB
+14:36:11Z === probe (FA version on this card) ===
+device: NVIDIA GeForce RTX 4090 cc (8, 9)
+/app/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:310: FutureWarning: The `HF_HUB_ENABLE_HF_TRANSFER` environment variable is deprecated as 'hf_transfer' is not used anymore. Please use `HF_XET_HIGH_PERFORMANCE` instead to enable high performance transfer with Xet. Visit https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hfxethighperformance for more details.
+  warnings.warn(
+get_flash_attn_version(): 2
+aot_schedule rule in builder: ['self.aot_schedule = get_flash_attn_version() == 3', 'if self.use_full_cuda_graph and self.aot_schedule:']
+14:36:20Z === salt tests: UNPATCHED (expect the decoupling assertions to fail) ===
+===== unpatched: test_gpu_gumbel_sample.py
+        )
+E       TypeError: gumbel_sample() got an unexpected keyword argument 'is_drafting'
+
+tests/v1/worker/test_gpu_gumbel_sample.py:71: TypeError
+=========================== short test summary info ============================
+FAILED tests/v1/worker/test_gpu_gumbel_sample.py::test_sampling_matches_target_distribution[False]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed in 3.19s
+===== unpatched: test_rejection_sampler_utils.py
+  /app/venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED tests/v1/spec_decode/test_rejection_sampler_utils.py::test_gumbel_drafted_rejection_sample_is_unbiased[1]
+FAILED tests/v1/spec_decode/test_rejection_sampler_utils.py::test_gumbel_drafted_rejection_sample_is_unbiased[3]
+2 failed, 42 passed, 15 warnings in 37.54s
+14:37:07Z === salt tests: PATCHED ===
+salt patch applied
+===== patched: test_gpu_gumbel_sample.py
+E            +    and   tensor([[-1089642216,  1064075016, -1086576890,  ..., -1085553402,\n         -1088086915,  1076023933],\n        [-10904..., -1079915494,  1065422703,  ..., -1103598817,\n          1059925620,  1066913232]], device='cuda:0', dtype=torch.int32) = _float_bits(tensor([[-0.5523,  0.9238, -0.7350,  ..., -0.7960, -0.6450,  2.5441],\n        [-0.5049, -0.2961,  1.3570,  ..., -0.080...0309,  1.3572, -0.1602],\n        [-1.2680, -1.2640,  1.0083,  ..., -0.1801,  0.6765,  1.1860]],\n       device='cuda:0'))
+E            +    and   tensor([[ 1043933800, -1089642216,  1064075016,  ..., -1081859972,\n         -1085553402, -1088086915],\n        [-10825..., -1079882516, -1079915494,  ..., -1088746546,\n         -1103598817,  1059925620]], device='cuda:0', dtype=torch.int32) = _float_bits(tensor([[ 0.1808, -0.5523,  0.9238,  ..., -1.0322, -0.7960, -0.6450],\n        [-0.9776, -0.5049, -0.2961,  ..., -0.367...8322,  1.0309,  1.3572],\n        [-1.4667, -1.2680, -1.2640,  ..., -0.6056, -0.1801,  0.6765]],\n       device='cuda:0'))
+
+tests/v1/worker/test_gpu_gumbel_sample.py:398: AssertionError
+=========================== short test summary info ============================
+FAILED tests/v1/worker/test_gpu_gumbel_sample.py::test_logits_cache_columns_stay_separate_across_steps[1]
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+1 failed, 18 passed in 23.75s
+===== patched: test_rejection_sampler_utils.py
+    warnings.warn(
+
+tests/v1/spec_decode/test_rejection_sampler_utils.py: 14 warnings
+  /app/venv/lib/python3.12/site-packages/torch/jit/_script.py:365: DeprecationWarning: `torch.jit.script_method` is deprecated. Please switch to `torch.compile` or `torch.export`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+44 passed, 15 warnings in 16.81s
+14:37:54Z tests chain done (card 1 stays yielded for the cohort arms; dead-man restores at 15:25Z if nothing else does)
