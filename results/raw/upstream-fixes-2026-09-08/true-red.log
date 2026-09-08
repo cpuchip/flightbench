@@ -1,0 +1,14 @@
+15:13:34Z yield: {"gpu":1,"yielding":true}
+15:13:34Z card 1 used 0 MiB
+===== UNPATCHED tree, adapted test (draft on the shared stream, as the old API does): expect the unbiasedness assertion to FAIL
+    assert 1584.94873046875 < 69.77225575051662
+/tmp/t/tests/v1/spec_decode/test_oldapi.py:135: AssertionError: [position 0] Chi-squared test failed: chi2=1584.9, df=15, threshold=69.8. Output distribution does not match target distribution.
+=============================== warnings summary ===============================
+../../app/venv/lib/python3.12/site-packages/huggingface_hub/constants.py:310
+=========================== short test summary info ============================
+FAILED tests/v1/spec_decode/test_oldapi.py::test_gumbel_drafted_rejection_sample_is_unbiased[1]
+FAILED tests/v1/spec_decode/test_oldapi.py::test_gumbel_drafted_rejection_sample_is_unbiased[3]
+2 failed, 1 warning in 7.47s
+15:13:45Z restore: {"gpu":1,"yielding":false}
+15:14:28Z 35B: healthy
+15:14:28Z dead-man disarmed
